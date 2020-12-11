@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\Application">
+      <UniqueIdentifier>{82ca2fd2-beab-4171-ac77-649a8a47db86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Application">
+      <UniqueIdentifier>{8dfc7f89-8461-4ae7-84d9-fffe0bb4d266}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Utility">
+      <UniqueIdentifier>{ec2420d2-d406-4758-a93c-bc02004de54f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Utility">
+      <UniqueIdentifier>{5e11b139-f4f3-4493-b266-c37b8b1ec4e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Mode">
+      <UniqueIdentifier>{132e0376-8251-4a87-b8af-ec5e95b2ca32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Mode">
+      <UniqueIdentifier>{ec95b431-374c-4654-90e1-900ddb8049f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Resource">
+      <UniqueIdentifier>{e502a0db-68a2-4ce3-be1e-451c84c1a250}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Resource">
+      <UniqueIdentifier>{6133840c-d579-434f-98d6-6070b7f08b6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Picojson">
+      <UniqueIdentifier>{4150e1a0-5dab-49b0-803e-77d1452ef6a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Sound">
+      <UniqueIdentifier>{b93afebd-c021-4fb3-9f5d-26bd3f7b2f73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Sound">
+      <UniqueIdentifier>{3e973915-bf64-4fba-877c-134922e99628}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Paramaters">
+      <UniqueIdentifier>{70a2f256-55d7-4357-b2d1-c3a3e602e392}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Parameters">
+      <UniqueIdentifier>{9ff2bcb2-e99a-4079-b486-508235955a9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Camera">
+      <UniqueIdentifier>{3e1a5b72-cf49-4ff3-9dfb-ddc1a341c968}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Camera">
+      <UniqueIdentifier>{67ff7d34-e582-4139-939a-a274a3d96c90}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Script\Application\ApplicationBase.h">
+      <Filter>ヘッダー ファイル\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Utility\Utility.h">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Mode\ModeBase.h">
+      <Filter>ヘッダー ファイル\Mode</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Mode\ModeServer.h">
+      <Filter>ヘッダー ファイル\Mode</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Resource\ResourceServer.h">
+      <Filter>ヘッダー ファイル\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Picojson\picojson.h">
+      <Filter>ヘッダー ファイル\Picojson</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\appframe.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Sound\MyFadeXAPO.h">
+      <Filter>ヘッダー ファイル\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Sound\MyHighPassFilter.h">
+      <Filter>ヘッダー ファイル\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Sound\MyLowPassFilterXAPO.h">
+      <Filter>ヘッダー ファイル\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Sound\MyPeakMeterXAPO.h">
+      <Filter>ヘッダー ファイル\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Sound\MyStereoDownMixXAPO.h">
+      <Filter>ヘッダー ファイル\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Sound\PlayWAVE.h">
+      <Filter>ヘッダー ファイル\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Sound\WAVEReader.h">
+      <Filter>ヘッダー ファイル\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Parameters\Parameters.h">
+      <Filter>ヘッダー ファイル\Parameters</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Utility\DefineMacro.h">
+      <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Camera\Camera.h">
+      <Filter>ヘッダー ファイル\Camera</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Script\Application\WinMain.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Application\ApplicationBase.cpp">
+      <Filter>ソース ファイル\Application</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Utility\Utility.cpp">
+      <Filter>ソース ファイル\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Mode\ModeBase.cpp">
+      <Filter>ソース ファイル\Mode</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Mode\ModeServer.cpp">
+      <Filter>ソース ファイル\Mode</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Resource\ResourceServer.cpp">
+      <Filter>ソース ファイル\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Sound\MyFadeXAPO.cpp">
+      <Filter>ソース ファイル\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Sound\MyHighPassFilter.cpp">
+      <Filter>ソース ファイル\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Sound\MyLowPassFilterXAPO.cpp">
+      <Filter>ソース ファイル\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Sound\MyPeakMeterXAPO.cpp">
+      <Filter>ソース ファイル\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Sound\MyStereoDownMixXAPO.cpp">
+      <Filter>ソース ファイル\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Sound\PlayWAVE.cpp">
+      <Filter>ソース ファイル\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Sound\WAVEReader.cpp">
+      <Filter>ソース ファイル\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Parameters\Parameters.cpp">
+      <Filter>ソース ファイル\Paramaters</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Camera\Camera.cpp">
+      <Filter>ソース ファイル\Camera</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
