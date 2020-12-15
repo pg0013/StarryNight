@@ -58,6 +58,12 @@
     <Filter Include="ヘッダー ファイル\Camera">
       <UniqueIdentifier>{67ff7d34-e582-4139-939a-a274a3d96c90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Object">
+      <UniqueIdentifier>{fea4b069-f7e6-4df7-aca0-7fc3b2714244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Object">
+      <UniqueIdentifier>{f39f8930-76a8-4c62-b7eb-84a60c3a9896}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\Application\ApplicationBase.h">
@@ -111,6 +117,12 @@
     <ClInclude Include="Script\Camera\Camera.h">
       <Filter>ヘッダー ファイル\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="Script\Object\ObjectServer.h">
+      <Filter>ヘッダー ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Object\ObjectBase.h">
+      <Filter>ヘッダー ファイル\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Script\Application\WinMain.cpp">
@@ -157,6 +169,12 @@
     </ClCompile>
     <ClCompile Include="Script\Camera\Camera.cpp">
       <Filter>ソース ファイル\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Object\ObjectBase.cpp">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Object\ObjectServer.cpp">
+      <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

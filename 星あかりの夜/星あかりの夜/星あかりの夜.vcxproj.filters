@@ -19,6 +19,12 @@
     <Filter Include="ヘッダー ファイル\Mode">
       <UniqueIdentifier>{bf0ba6a2-5fd8-4f9c-a50c-34dae31cb951}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Stage">
+      <UniqueIdentifier>{ca9d406d-cdee-403a-9365-f9b58a999c8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Stage">
+      <UniqueIdentifier>{7daf642f-0042-45cf-aea0-5072984d0a5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Script\ApplicationMain.cpp">
@@ -27,6 +33,9 @@
     <ClCompile Include="Script\Mode\ModeGame.cpp">
       <Filter>ソース ファイル\Mode</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Stage\Stage.cpp">
+      <Filter>ソース ファイル\Stage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h">
@@ -34,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="Script\Mode\ModeGame.h">
       <Filter>ヘッダー ファイル\Mode</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Stage\Stage.h">
+      <Filter>ヘッダー ファイル\Stage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

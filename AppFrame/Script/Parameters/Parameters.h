@@ -10,12 +10,14 @@
 #pragma once
 #include<string>
 #include<unordered_map>
+#include"../Utility/Utility.h"
+#include "DxLib.h"
 
 namespace parameters
 {
 	/**
- * @brief 画像情報格納用構造体
- */
+	 * @brief 画像情報格納用構造体
+	 */
 	struct imag_param
 	{
 		std::string filename_;
@@ -23,6 +25,18 @@ namespace parameters
 		int ynum_;
 		int xsize_;
 		int ysize_;
+	};
+
+	/**
+	 * @brief 3Dモデル用情報格納構造体
+	 */
+	struct model_param
+	{
+		std::string filename_;
+		std::string handlename_;
+		VECTOR position_;
+		VECTOR rotation_;
+		VECTOR scale_;
 	};
 
 	/**
@@ -38,8 +52,31 @@ namespace parameters
 		 * @brief 画像パラメータをjsonから読み込み
 		 *				パラメータはファイル名をkeyとしたimag_map_に保存
 		 *
-		 * @param  _mode　モード名
+		 * @param  _mode	ゲームのモード名
+		 * @param  _async_flag　非同期読み込み用フラグ
 		 */
-		void LoadImagParameters(std::string _mode,bool _async_flag = false);
+		void LoadImagParameters(const std::string _mode, bool _async_flag = false);
+
+		/**
+		 * @brief　 モデルパラメータを読み込み
+		 *
+		 * @param  _mode	ゲームのモード名
+		 * @param  _async_flag　非同期読み込み用フラグ
+		 */
+		void LoadModel(std::string _mode, bool _async_flag = false);
+
+		/**
+		 * @brief　 ステージパラメータの読み込み
+		 *
+		 * @param  _stagename　ステージ名
+		 * @param  _async_flag　非同期読み込みフラグ
+		 */
+		void LoadStage(std::string _stagename, bool _async_flag = false);
+
+		std::unordered_map<std::string, imag_param> GetMapImageParam() { return map_imag_param_; }
+		std::unordered_map<std::string, model_param> GetMapModelParam() { return map_model_param_; }
+	private:
+		std::unordered_map<std::string, imag_param> map_imag_param_;
+		std::unordered_map<std::string, model_param> map_model_param_;
 	};
 }

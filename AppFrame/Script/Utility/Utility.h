@@ -7,9 +7,9 @@
 #include<string>
 #include"DxLib.h"
 
-/**
- * @brief メモリリークチェック用.
- */
+ /**
+  * @brief メモリリークチェック用.
+  */
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
@@ -41,4 +41,9 @@ namespace utility
 	 * @brief長さ_lengthの3d座標軸を描画.
 	 */
 	void Draw3DAxis(float _length, VECTOR _vector);
+
+	/**
+	 * @brief 3Dモデルのデバッグ情報の読み込み
+	 */
+	void DrawModelDebugInfo(const int _handle, const int _draw_start_line);
 }

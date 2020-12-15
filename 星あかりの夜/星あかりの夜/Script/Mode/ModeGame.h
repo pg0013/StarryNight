@@ -1,12 +1,13 @@
 /**
  * @file    ModeGame.h
  * @brief  ゲームモードの定義
- * 
+ *
  * @author Takuya Fujisawa
  * @date    202012/09
  */
 #pragma once
 #include "appframe.h"
+#include"../Stage/Stage.h"
 
 namespace starrynight
 {
@@ -49,8 +50,10 @@ namespace starrynight
 		virtual bool Render();
 
 		camera::Camera camera_;
-
+		object::ObjectServer object_server_;
+		parameters::Parameters game_param_;
+		Stage stage_;
 	private:
-		handle player_,stage_;
+		handle player_;
     };
 }

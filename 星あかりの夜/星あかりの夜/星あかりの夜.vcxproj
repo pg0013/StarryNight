@@ -21,10 +21,12 @@
   <ItemGroup>
     <ClCompile Include="Script\ApplicationMain.cpp" />
     <ClCompile Include="Script\Mode\ModeGame.cpp" />
+    <ClCompile Include="Script\Stage\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h" />
     <ClInclude Include="Script\Mode\ModeGame.h" />
+    <ClInclude Include="Script\Stage\Stage.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

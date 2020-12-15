@@ -42,7 +42,7 @@ namespace appframe
 		AppWindowed(TRUE);
 		OutputDebugLog(TRUE);
 		SetBackgroundColor(255,255,255,255);
-#else 
+#else
 		AppWindowed(FALSE);
 		OutputDebugLog(FALSE);
 #endif
@@ -107,7 +107,7 @@ namespace appframe
 
 #ifdef DEBUG_FUNCTION
 		//FPS•\Ž¦
-		DrawFormatString(0, 0, GetColor(255, 255, 255), "FPS:%d", fps_);
+		DrawFormatString(0, 0, DEBUG_COLOR, "fps : %d", fps_);
 		utility::Draw3DAxis(1000.f, VGet(0, 0, 0));
 #endif
 

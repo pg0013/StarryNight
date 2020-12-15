@@ -6,6 +6,7 @@
  * @date    20201021
  */
 #include"Utility.h"
+#include"DefineMacro.h"
 
 namespace utility
 {
@@ -32,6 +33,21 @@ namespace utility
 		//Ž²‚ð•`‰æ
 		DrawLine3D(VAdd(_origin, axis_x), VAdd(_origin, VScale(axis_x, -1.0f)), GetColor(255, 0, 0));
 		DrawLine3D(VAdd(_origin, axis_y), VAdd(_origin, VScale(axis_y, -1.0f)), GetColor(0, 255, 0));
-		DrawLine3D(VAdd(_origin, axis_z), VAdd(_origin, VScale(axis_z,-1.0f)), GetColor(0, 0, 255));
+		DrawLine3D(VAdd(_origin, axis_z), VAdd(_origin, VScale(axis_z, -1.0f)), GetColor(0, 0, 255));
+	}
+
+	void DrawModelDebugInfo(const int _handle, const int _draw_start_line)
+	{
+		VECTOR position, rotation, scale;
+		position = MV1GetPosition(_handle);
+		rotation = MV1GetRotationXYZ(_handle);
+		scale = MV1GetScale(_handle);
+
+		int x, y;
+		x = 0; y = _draw_start_line*DEBUG_FONT_SIZE;
+		DrawFormatString(x, y, DEBUG_COLOR, "ModelInfo"); y += DEBUG_FONT_SIZE;
+		DrawFormatString(x, y, DEBUG_COLOR, "  |- position : (%5.2f, %5.2f, %5.2f)", position.x, position.y, position.z); y += DEBUG_FONT_SIZE;
+		DrawFormatString(x, y, DEBUG_COLOR, "  |- rotation : (%5.2f, %5.2f, %5.2f)", RAD2DEG(rotation.x), RAD2DEG(rotation.y), RAD2DEG(rotation.z)); y += DEBUG_FONT_SIZE;
+		DrawFormatString(x, y, DEBUG_COLOR, "  -- scale     : (%5.2f, %5.2f, %5.2f)", scale.x, scale.y, scale.z); y += DEBUG_FONT_SIZE;
 	}
 }

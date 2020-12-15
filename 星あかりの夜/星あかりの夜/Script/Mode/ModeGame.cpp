@@ -1,7 +1,7 @@
 /**
  * @file    ModeGame.cpp
  * @brief  ÉQÅ[ÉÄÉÇÅ[ÉhÇÃèàóù
- * 
+ *
  * @author Takuya Fujisawa
  * @date    202012/09
  */
@@ -12,15 +12,11 @@ using namespace starrynight;
 
 ModeGame::ModeGame()
 {
-	camera_.position_ = VGet(73.636536f, 86.688026f, -140.440582f);
-	camera_.target_ = VGet(-12.230986f, 59.101776f, -15.002045f);
-	camera_.clip_near_ = 2.376863f;
-	camera_.clip_far_ = 594.215820f;
+	game_param_.LoadModel("Game", false);
 
-	resource::ResourceServer::RegisterModel("Game", "human", false);
-	player_ = resource::ResourceServer::GetModelHandle("human");
-	resource::ResourceServer::RegisterModel("Game", "field_ver1", false);
-	stage_ = resource::ResourceServer::GetModelHandle("field_ver1");
+	camera_.Initialize();
+	stage_.Initialize();
+	player_ = resource::ResourceServer::GetModelHandle("human_GEO");
 }
 
 ModeGame::~ModeGame()
@@ -40,19 +36,21 @@ bool ModeGame::Terminate()
 
 bool ModeGame::Process()
 {
+	camera_.Process();
 
 	return true;
 }
 
 bool ModeGame::Render()
 {
-	SetCameraPositionAndTarget_UpVecY(camera_.position_,camera_.target_);
-	SetCameraNearFar(camera_.clip_near_,camera_.clip_far_);
-
+	camera_.Render();
 	MV1DrawModel(player_);
-	MV1DrawModel(stage_);
+	stage_.Render();
 
-	utility::Draw3DAxis(10.f, camera_.target_);
+#ifdef DEBUG_FUNCTION
+	camera_.DrawDebugMenu();
+	utility::Draw3DAxis(10.f, camera_.GetTarget());
+#endif
 
 	return true;
 }

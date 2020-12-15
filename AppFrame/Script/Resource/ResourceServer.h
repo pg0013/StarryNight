@@ -93,7 +93,7 @@ namespace resource
 		 * @param _filename　ファイル名
 		 * @return 
 		 */
-		static void RegisterModel(const std::string _mode,const std::string _filename, bool _async);
+		static void RegisterModel(const std::string _mode, const std::string _filename ,const std::string _handlename , bool _async);
 
 		/**
 		 * @brief　リソースサーバ内の3Dモデルハンドルの取得.
@@ -101,7 +101,7 @@ namespace resource
 		 * @param _filename　ファイル名
 		 * @return 
 		 */
-		static int GetModelHandle(const std::string _filename);
+		static int GetModelHandle(const std::string _handlename);
 
 		/**
 		 * @brief　 画像ハンドルの取得
