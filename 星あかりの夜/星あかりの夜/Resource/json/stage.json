@@ -1,13 +1,58 @@
 {
-    "Stage":
-    {
-        "TestStage" :
-        [
-            {"filename" : "field_B_GEO","tx":0,"ty":0,"tz":-0,"rx":-0,"ry":-0,"rz":0,"sx":1,"sy":1,"sz":1},
-            {"filename" : "bridge_GEO","tx":242.992,"ty":0,"tz":-103.657,"rx":-0,"ry":20.081,"rz":0,"sx":1,"sy":1,"sz":1},
-            {"filename" : "field_B_river_GEO","tx":213.219,"ty":-65.088,"tz":0.605,"rx":-0,"ry":-0,"rz":0,"sx":1,"sy":1,"sz":1},
-            {"filename" : "wall_GEO","tx":-74.15,"ty":-38.464,"tz":591.378,"rx":-0,"ry":-0,"rz":0,"sx":0.553,"sy":1.433,"sz":1},
-            {"filename" : "wall_GEO","tx":-128.307,"ty":-38.464,"tz":-292.089,"rx":-0,"ry":-0,"rz":0,"sx":1,"sy":1.373,"sz":1}
+    "Stage": {
+        "test": [
+            {
+                "filename": "field_B_GEO",
+                "handlename": "field_B_GEO",
+                "tx": 0,
+                "ty": 0,
+                "tz": -0,
+                "rx": -0,
+                "ry": -0,
+                "rz": 0,
+                "sx": 1,
+                "sy": 1,
+                "sz": 1
+            },
+            {
+                "filename": "bridge_GEO",
+                "handlename": "bridge_GEO",
+                "tx": 242.992,
+                "ty": 0,
+                "tz": -103.657,
+                "rx": -0,
+                "ry": 20.081,
+                "rz": 0,
+                "sx": 1,
+                "sy": 1,
+                "sz": 1
+            },
+            {
+                "filename": "wall_GEO",
+                "handlename": "wall_GEO_1",
+                "tx": -74.15,
+                "ty": -38.464,
+                "tz": 591.378,
+                "rx": -0,
+                "ry": -0,
+                "rz": 0,
+                "sx": 0.553,
+                "sy": 1.433,
+                "sz": 1
+            },
+            {
+                "filename": "wall_GEO",
+                "handlename": "wall_GEO_2",
+                "tx": -128.307,
+                "ty": -38.464,
+                "tz": -292.089,
+                "rx": -0,
+                "ry": -0,
+                "rz": 0,
+                "sx": 1,
+                "sy": 1.373,
+                "sz": 1
+            }
         ]
     }
 }

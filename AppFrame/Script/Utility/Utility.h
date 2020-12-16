@@ -27,7 +27,7 @@ namespace utility
 	/**
 	 * @brief ファイルの拡張子を取得
 	 *
-	 * @param ファイル名
+	 * @param _filename ファイル名
 	 * @return 拡張子(.xxx)
 	 */
 	std::string GetExtension(std::string _filename);
@@ -38,12 +38,19 @@ namespace utility
 	void CheckMemoryLeak();
 
 	/**
-	 * @brief長さ_lengthの3d座標軸を描画.
+	 * @brief	長さ_lengthの3d座標軸を描画.
+	 * 
+	 * @param _length 座標軸の長さ
+	 * @param _origin  座標軸の原点 
 	 */
-	void Draw3DAxis(float _length, VECTOR _vector);
+	void Draw3DAxis(float _length, VECTOR _origin);
 
 	/**
 	 * @brief 3Dモデルのデバッグ情報の読み込み
+	 * 
+	 * @param _handle モデルハンドル
+	 * @param _name　表示するモデル名
+	 * @param _draw_start_line 画面左に表示を開始する行番号
 	 */
-	void DrawModelDebugInfo(const int _handle, const int _draw_start_line);
+	void DrawModelDebugInfo(const int _handle, const std::string _name, const int _draw_start_line);
 }

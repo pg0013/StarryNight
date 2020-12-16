@@ -14,7 +14,7 @@ Stage::~Stage()
 
 void Stage::Initialize()
 {
-	stage_param_.LoadStage("TestStage", false);
+	stage_param_.LoadStage("test", false);
 
 	auto handle_map = stage_param_.GetMapModelParam();
 	for (auto iter  = handle_map.begin();iter!= handle_map.end();iter++)
@@ -35,7 +35,7 @@ void Stage::Render()
 	{
 		MV1DrawModel(iter);
 	}
-	utility::DrawModelDebugInfo(resource::ResourceServer::GetModelHandle("bridge_GEO"),7);
+	utility::DrawModelDebugInfo(resource::ResourceServer::GetModelHandle("bridge_GEO"),"bridge_GEO",7);
 }
 
 void Stage::ClearHandle()

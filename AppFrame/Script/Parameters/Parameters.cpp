@@ -247,20 +247,24 @@ namespace parameters
 			if (model["filename"].is<std::string>())
 			{
 				param.filename_ = model["filename"].get<std::string>();
-				param.handlename_ = model["filename"].get<std::string>();
 			}
 
-			//前回読み込んだファイル名と比較し、同じであれば数字付きのハンドル名にする
-			if (param.handlename_ == old_file_name)
+			if (model["handlename"].is<std::string>())
 			{
-				name_count++;
-				param.handlename_ = param.filename_ + "_" + std::to_string(name_count);
+				param.handlename_ = model["handlename"].get<std::string>();
 			}
-			else
-			{
-				name_count = 0;
-			}
-			old_file_name = param.filename_;
+
+			////前回読み込んだファイル名と比較し、同じであれば数字付きのハンドル名にする
+			//if (param.handlename_ == old_file_name)
+			//{
+			//	name_count++;
+			//	param.handlename_ = param.filename_ + "_" + std::to_string(name_count);
+			//}
+			//else
+			//{
+			//	name_count = 0;
+			//}
+			//old_file_name = param.filename_;
 
 			//positionを読み込み
 			if (model["tx"].is<double>())

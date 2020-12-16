@@ -43,6 +43,10 @@ bool ModeGame::Process()
 
 bool ModeGame::Render()
 {
+	SetUseZBuffer3D(TRUE);
+	SetWriteZBuffer3D(TRUE);
+	SetUseBackCulling(TRUE);
+
 	camera_.Render();
 	MV1DrawModel(player_);
 	stage_.Render();

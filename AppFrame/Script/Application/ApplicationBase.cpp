@@ -41,7 +41,7 @@ namespace appframe
 		utility::CheckMemoryLeak();
 		AppWindowed(TRUE);
 		OutputDebugLog(TRUE);
-		SetBackgroundColor(255,255,255,255);
+		SetBackgroundColor(0, 255, 255, 255);
 #else
 		AppWindowed(FALSE);
 		OutputDebugLog(FALSE);
@@ -107,7 +107,7 @@ namespace appframe
 
 #ifdef DEBUG_FUNCTION
 		//FPS•\Ž¦
-		DrawFormatString(0, 0, DEBUG_COLOR, "fps : %d", fps_);
+		DrawFormatString(0, 0, DEBUG_COLOR, "%2d fps : %d", 0, fps_);
 		utility::Draw3DAxis(1000.f, VGet(0, 0, 0));
 #endif
 

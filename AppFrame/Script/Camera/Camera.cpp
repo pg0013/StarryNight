@@ -112,11 +112,11 @@ namespace camera
 		float camera_deg = RAD2DEG(camera_rad);
 		float length = sqrt(diff_z * diff_z + diff_x * diff_x);
 
-		DrawFormatString(x, y, DEBUG_COLOR, "Camera"); y += DEBUG_FONT_SIZE;
-		DrawFormatString(x, y, DEBUG_COLOR, "  |- position	: (%5.2f, %5.2f, %5.2f)", position_.x, position_.y, position_.z); y += DEBUG_FONT_SIZE;
-		DrawFormatString(x, y, DEBUG_COLOR, "  |- target : (%5.2f, %5.2f, %5.2f)", target_.x, target_.y, target_.z); y += DEBUG_FONT_SIZE;
-		DrawFormatString(x, y, DEBUG_COLOR, "  |- length : %5.2f", length); y += DEBUG_FONT_SIZE;
-		DrawFormatString(x, y, DEBUG_COLOR, "  |- rad : % 5.2f", camera_rad); y += DEBUG_FONT_SIZE;
-		DrawFormatString(x, y, DEBUG_COLOR, "  -- deg : % 5.2f", camera_deg); y += DEBUG_FONT_SIZE;
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d Camera",y/DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d   |- position	: (%5.2f, %5.2f, %5.2f)", y / DEBUG_FONT_SIZE, position_.x, position_.y, position_.z); y += DEBUG_FONT_SIZE;
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d   |- target : (%5.2f, %5.2f, %5.2f)", y / DEBUG_FONT_SIZE, target_.x, target_.y, target_.z); y += DEBUG_FONT_SIZE;
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d   |- length : %5.2f", y / DEBUG_FONT_SIZE, length); y += DEBUG_FONT_SIZE;
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d   |- rad : % 5.2f", y / DEBUG_FONT_SIZE, camera_rad); y += DEBUG_FONT_SIZE;
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- deg : % 5.2f", y / DEBUG_FONT_SIZE, camera_deg); y += DEBUG_FONT_SIZE;
 	}
 }
