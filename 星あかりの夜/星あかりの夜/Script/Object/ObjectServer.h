@@ -7,11 +7,11 @@
  */
 
 #pragma once
-#include"../appframe.h"
+#include"appframe.h"
 #include"ObjectBase.h"
 #include<vector>
 
-namespace object
+namespace starrynight
 {
 	/**
 	* @class	ObjectServer

@@ -60,10 +60,11 @@ namespace parameters
 		/**
 		 * @brief　 モデルパラメータを読み込み
 		 *
-		 * @param  _mode	ゲームのモード名
+		 * @param  _mode	モデルのタイプ名
+		 * @param  _name	モデル名
 		 * @param  _async_flag　非同期読み込み用フラグ
 		 */
-		void LoadModel(std::string _mode, bool _async_flag = false);
+		void LoadModel(std::string _type, std::string _name, bool _async_flag = false);
 
 		/**
 		 * @brief　 ステージパラメータの読み込み

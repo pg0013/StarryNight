@@ -10,5 +10,4 @@
 #include"Utility/Utility.h"
 #include"Utility/DefineMacro.h"
 #include"Camera/Camera.h"
-#include"Object/ObjectServer.h"
 #include"Parameters/Parameters.h"

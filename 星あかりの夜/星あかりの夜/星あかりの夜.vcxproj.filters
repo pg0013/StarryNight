@@ -25,6 +25,24 @@
     <Filter Include="ヘッダー ファイル\Stage">
       <UniqueIdentifier>{7daf642f-0042-45cf-aea0-5072984d0a5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Object">
+      <UniqueIdentifier>{9bcbbb5c-c6b7-45ab-b793-ff50d189cf5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Object">
+      <UniqueIdentifier>{42528907-611e-497f-97dc-12a179090dbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Player">
+      <UniqueIdentifier>{1cf266d0-0011-4364-ba01-e7e0726764b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Player">
+      <UniqueIdentifier>{0f788fb4-ffa9-4e3a-b466-e5c0e3338e62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Parameters">
+      <UniqueIdentifier>{46dffc78-93a6-42f2-838f-5c3bf846f1a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Parameters">
+      <UniqueIdentifier>{833385b1-e5db-4e29-997b-b88d302d7fb3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Script\ApplicationMain.cpp">
@@ -36,6 +54,15 @@
     <ClCompile Include="Script\Stage\Stage.cpp">
       <Filter>ソース ファイル\Stage</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Object\ObjectBase.cpp">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Object\ObjectServer.cpp">
+      <Filter>ソース ファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Player\Player.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h">
@@ -46,6 +73,15 @@
     </ClInclude>
     <ClInclude Include="Script\Stage\Stage.h">
       <Filter>ヘッダー ファイル\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Object\ObjectBase.h">
+      <Filter>ヘッダー ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Object\ObjectServer.h">
+      <Filter>ヘッダー ファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Player\Player.h">
+      <Filter>ヘッダー ファイル\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

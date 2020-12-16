@@ -8,6 +8,7 @@
 #pragma once
 #include "appframe.h"
 #include"../Stage/Stage.h"
+#include"../Object/ObjectServer.h"
 
 namespace starrynight
 {
@@ -18,7 +19,6 @@ namespace starrynight
 		ModeGame();
 		~ModeGame();
 
-		/**
 		/**
 		 * @brief   初期化処理
 		 * モードサーバー登録時に一度だけ実行される
@@ -50,10 +50,8 @@ namespace starrynight
 		virtual bool Render();
 
 		camera::Camera camera_;
-		object::ObjectServer object_server_;
-		parameters::Parameters game_param_;
+		ObjectServer object_server_;
 		Stage stage_;
 	private:
-		handle player_;
     };
 }

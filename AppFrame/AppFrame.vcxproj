@@ -24,8 +24,6 @@
     <ClInclude Include="Script\Camera\Camera.h" />
     <ClInclude Include="Script\Mode\ModeBase.h" />
     <ClInclude Include="Script\Mode\ModeServer.h" />
-    <ClInclude Include="Script\Object\ObjectBase.h" />
-    <ClInclude Include="Script\Object\ObjectServer.h" />
     <ClInclude Include="Script\Parameters\Parameters.h" />
     <ClInclude Include="Script\Picojson\picojson.h" />
     <ClInclude Include="Script\Resource\ResourceServer.h" />
@@ -45,8 +43,9 @@
     <ClCompile Include="Script\Camera\Camera.cpp" />
     <ClCompile Include="Script\Mode\ModeBase.cpp" />
     <ClCompile Include="Script\Mode\ModeServer.cpp" />
-    <ClCompile Include="Script\Object\ObjectBase.cpp" />
-    <ClCompile Include="Script\Object\ObjectServer.cpp" />
+    <ClCompile Include="Script\Parameters\LoadImageParamFromJson.cpp" />
+    <ClCompile Include="Script\Parameters\LoadModelParamFromJson.cpp" />
+    <ClCompile Include="Script\Parameters\LoadStageParamFromJson.cpp" />
     <ClCompile Include="Script\Parameters\Parameters.cpp" />
     <ClCompile Include="Script\Resource\ResourceServer.cpp" />
     <ClCompile Include="Script\Sound\MyFadeXAPO.cpp" />

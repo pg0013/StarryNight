@@ -87,10 +87,17 @@ namespace camera
 			if (stick_ry > analog_min)
 			{
 				position_.y -= move_speed_;
+				target_.y -= move_speed_;
+				if (target_.y < 60.0f) 
+				{ 
+					target_.y = 60.0f; 
+					position_.y = 90.0f;
+				}
 			}
 			if (stick_ry < -analog_min)
 			{
 				position_.y += move_speed_;
+				target_.y += move_speed_;
 			}
 		}
 	}

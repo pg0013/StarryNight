@@ -12,20 +12,18 @@ using namespace starrynight;
 
 ModeGame::ModeGame()
 {
-	game_param_.LoadModel("Game", false);
-
 	camera_.Initialize();
 	stage_.Initialize();
-	player_ = resource::ResourceServer::GetModelHandle("human_GEO");
+	//player_ = resource::ResourceServer::GetModelHandle("human_GEO");
 }
 
 ModeGame::~ModeGame()
 {
+
 }
 
 bool ModeGame::Initialize()
 {
-
 	return true;
 }
 
@@ -48,7 +46,6 @@ bool ModeGame::Render()
 	SetUseBackCulling(TRUE);
 
 	camera_.Render();
-	MV1DrawModel(player_);
 	stage_.Render();
 
 #ifdef DEBUG_FUNCTION

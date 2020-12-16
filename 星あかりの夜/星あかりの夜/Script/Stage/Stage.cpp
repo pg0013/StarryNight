@@ -35,7 +35,6 @@ void Stage::Render()
 	{
 		MV1DrawModel(iter);
 	}
-	utility::DrawModelDebugInfo(resource::ResourceServer::GetModelHandle("bridge_GEO"),"bridge_GEO",7);
 }
 
 void Stage::ClearHandle()

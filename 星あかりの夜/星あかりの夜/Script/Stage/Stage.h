@@ -1,3 +1,11 @@
+/**
+ * @file    Stage.h
+ * @brief  ステージ管理クラス
+ * 
+ * @author Takuya Fujisawa
+ * @date    202012/16
+ */
+
 #pragma once
 #include"appframe.h"
 #include<vector>
@@ -10,10 +18,26 @@ namespace starrynight
 		Stage();
 		~Stage();
 
+		/**
+		 * @brief　初期化処理.
+		 */
 		void Initialize();
+
+		/**
+		 * @brief　演算処理.
+		 */
 		void Process();
+
+		/**
+		 * @brief　描画処理.
+		 * 
+		 */
 		void Render();
 
+		/**
+		 * @brief　ステージのモデルハンドルを削除.
+		 * 
+		 */
 		void ClearHandle();
 
 	private:
