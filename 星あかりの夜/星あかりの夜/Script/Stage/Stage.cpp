@@ -1,6 +1,6 @@
 #include "Stage.h"
 
-using namespace starrynight;
+using namespace starrynight::stage;
 
 Stage::Stage()
 {

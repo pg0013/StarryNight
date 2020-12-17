@@ -10,19 +10,22 @@
 
 namespace starrynight
 {
-	class StageParameters :
-		public parameters::Parameters
+	namespace stage
 	{
-	public:
-		StageParameters();
-		~StageParameters();
+		class StageParameters :
+			public parameters::Parameters
+		{
+		public:
+			StageParameters();
+			~StageParameters();
 
-		/**
-		 * @brief　 ステージパラメータの読み込み
-		 *
-		 * @param  _stagename　ステージ名
-		 * @param  _async_flag　非同期読み込みフラグ
-		 */
-		void LoadStage(std::string _stagename, bool _async_flag = false);
-	};
+			/**
+			 * @brief　 ステージパラメータの読み込み
+			 *
+			 * @param  _stagename　ステージ名
+			 * @param  _async_flag　非同期読み込みフラグ
+			 */
+			void LoadStage(std::string _stagename, bool _async_flag = false);
+		};
+	}
 }

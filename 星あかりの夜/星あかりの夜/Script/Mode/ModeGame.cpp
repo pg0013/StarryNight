@@ -7,33 +7,50 @@
  */
 #include "ModeGame.h"
 #include"../ApplicationMain.h"
-//#include<Windows.h>
-
-using namespace starrynight;
+#include"../Player/Player.h"
+using namespace starrynight::mode;
 
 ModeGame::ModeGame()
 {
-	camera_.Initialize();
-	stage_.Initialize();
+	stop_object_process_ = false;
 }
 
 ModeGame::~ModeGame()
 {
-
+	
 }
 
 bool ModeGame::Initialize()
 {
+	if (!::mode::ModeBase::Initialize()) { return false; }
+
+	camera_.Initialize();
+	stage_.Initialize();
+
+	object::ObjectBase* player = NEW player::Player();
+	object_server_.Add(player);
+
 	return true;
 }
 
 bool ModeGame::Terminate()
 {
+	::mode::ModeBase::Terminate();
+
+	object_server_.Clear();
+
 	return true;
 }
 
 bool ModeGame::Process()
 {
+	::mode::ModeBase::Process();
+
+	if (!stop_object_process_)
+	{
+		object_server_.Process();
+	}
+
 	camera_.Process();
 
 	return true;
@@ -41,9 +58,13 @@ bool ModeGame::Process()
 
 bool ModeGame::Render()
 {
+	::mode::ModeBase::Render();
+
 	SetUseZBuffer3D(TRUE);
 	SetWriteZBuffer3D(TRUE);
 	SetUseBackCulling(TRUE);
+
+	object_server_.Render();
 
 	camera_.Render();
 	stage_.Render();

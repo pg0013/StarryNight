@@ -13,36 +13,39 @@
 
 namespace starrynight
 {
-	class Stage
+	namespace stage
 	{
-	public:
-		Stage();
-		~Stage();
+		class Stage
+		{
+		public:
+			Stage();
+			~Stage();
 
-		/**
-		 * @brief　初期化処理.
-		 */
-		void Initialize();
+			/**
+			 * @brief　初期化処理.
+			 */
+			void Initialize();
 
-		/**
-		 * @brief　演算処理.
-		 */
-		void Process();
+			/**
+			 * @brief　演算処理.
+			 */
+			void Process();
 
-		/**
-		 * @brief　描画処理.
-		 *
-		 */
-		void Render();
+			/**
+			 * @brief　描画処理.
+			 *
+			 */
+			void Render();
 
-		/**
-		 * @brief　ステージのモデルハンドルを削除.
-		 *
-		 */
-		void ClearHandle();
+			/**
+			 * @brief　ステージのモデルハンドルを削除.
+			 *
+			 */
+			void ClearHandle();
 
-	private:
-		 StageParameters stage_param_;
-		std::vector<handle> stage_handle_;
-	};
+		private:
+			StageParameters stage_param_;
+			std::vector<handle> stage_handle_;
+		};
+	}
 }

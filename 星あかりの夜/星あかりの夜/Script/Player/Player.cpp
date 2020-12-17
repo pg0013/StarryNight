@@ -6,7 +6,7 @@
  * @date    202012/16
  */
 #include "Player.h"
-using namespace starrynight;
+using namespace starrynight::player;
 
 Player::Player()
 {

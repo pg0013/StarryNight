@@ -8,7 +8,7 @@
 #include "StageParameters.h"
 #include<fstream>
 
-using namespace starrynight;
+using namespace starrynight::stage;
 
 StageParameters::StageParameters()
 {

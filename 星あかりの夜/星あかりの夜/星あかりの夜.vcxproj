@@ -28,7 +28,6 @@
     <ClCompile Include="Script\Stage\StageParameters.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h" />
     <ClInclude Include="Script\ApplicationMain.h" />
     <ClInclude Include="Script\Mode\ModeGame.h" />
     <ClInclude Include="Script\Object\ObjectBase.h" />

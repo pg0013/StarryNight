@@ -17,8 +17,8 @@ bool ApplicationMain::Initialize(HINSTANCE _hinstance)
 {
 	if (!appbase::Initialize(_hinstance)) { return false; }
 
-	starrynight::ModeGame* mode_game = NEW ModeGame();
-	mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
+	starrynight::mode::ModeGame* mode_game = NEW mode::ModeGame();
+	::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
 
 	return true;
 }

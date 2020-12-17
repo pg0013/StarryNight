@@ -6,7 +6,7 @@
  * @date    202012/16
  */
 #include "ObjectBase.h"
-using namespace starrynight;
+using namespace starrynight::object;
 
 ObjectBase::ObjectBase()
 {

@@ -7,7 +7,7 @@
  * @date   2020/12/15
  */
 #include "ObjectServer.h"
-using namespace starrynight;
+using namespace starrynight::object;
 
 ObjectServer::ObjectServer()
 {

@@ -80,9 +80,6 @@
     <ClInclude Include="Script\Player\Player.h">
       <Filter>ヘッダー ファイル\Player</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Script\Stage\StageParameters.h">
       <Filter>ヘッダー ファイル\Stage</Filter>
     </ClInclude>
