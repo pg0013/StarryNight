@@ -51,4 +51,9 @@ namespace utility
 		DrawFormatString(x, y, DEBUG_COLOR, "%2d   |- rotation : (%5.2f, %5.2f, %5.2f)", y / DEBUG_FONT_SIZE, RAD2DEG(rotation.x), RAD2DEG(rotation.y), RAD2DEG(rotation.z)); y += DEBUG_FONT_SIZE;
 		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- scale     : (%5.2f, %5.2f, %5.2f)", y / DEBUG_FONT_SIZE, scale.x, scale.y, scale.z); y += DEBUG_FONT_SIZE;
 	}
+
+	void DrawDebugError(const std::string _error)
+	{
+		_RPTF0(_CRT_ERROR, _T(_error.c_str()));
+	}
 }

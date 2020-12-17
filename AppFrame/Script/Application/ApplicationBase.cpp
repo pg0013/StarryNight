@@ -37,7 +37,9 @@ namespace appframe
 		//DXライブラリのアーカイブファイル読み込みを使用する
 		SetUseDXArchiveFlag(TRUE);
 
+
 #ifdef DEBUG_FUNCTION
+		SetLogDrawArea(960, 0, 1920, 1080);//printfdxの描画位置を設定
 		utility::CheckMemoryLeak();
 		AppWindowed(TRUE);
 		OutputDebugLog(TRUE);
@@ -64,7 +66,6 @@ namespace appframe
 		mode_server_ = NEW mode::ModeServer();
 
 		fps_check_time_ = GetNowHiPerformanceCount();
-
 
 		return true;
 	}

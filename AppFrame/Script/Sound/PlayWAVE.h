@@ -58,13 +58,13 @@ namespace sound
 		static void Release();
 
 		/**
-		 * @fn	void PlayWAVE::Load(const char* _fileName);
+		 * @fn	void PlayWAVE::Load(const std::string _fileName);
 		 *
 		 * @brief	wavファイルを読み込み、ソースボイス作成
 		 *
 		 * @param 	_fileName	音声ファイル名
 		 */
-		void Load(const char* _fileName);
+		void Load(const std::string _filename);
 
 		/**
 		 * @fn	void PlayWAVE::SetLoopCount(const int _count);

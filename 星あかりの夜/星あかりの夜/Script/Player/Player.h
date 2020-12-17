@@ -5,6 +5,7 @@
  * @author Takuya Fujisawa
  * @date    202012/16
  */
+
 #pragma once
 #include"appframe.h"
 #include"../Object/ObjectBase.h"

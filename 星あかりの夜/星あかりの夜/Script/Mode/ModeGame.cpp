@@ -7,6 +7,7 @@
  */
 #include "ModeGame.h"
 #include"../ApplicationMain.h"
+//#include<Windows.h>
 
 using namespace starrynight;
 
@@ -14,7 +15,6 @@ ModeGame::ModeGame()
 {
 	camera_.Initialize();
 	stage_.Initialize();
-	//player_ = resource::ResourceServer::GetModelHandle("human_GEO");
 }
 
 ModeGame::~ModeGame()

@@ -5,7 +5,7 @@
  */
 
 #include"PlayWAVE.h"
-
+#include"../Utility/Utility.h"
 #include<DxLib.h>
 
 namespace sound
@@ -47,18 +47,19 @@ namespace sound
 		//CoUninitialize();
 	}
 
-	void PlayWAVE::Load(const char* _fileName)
+	void PlayWAVE::Load(const std::string _filename)
 	{
 		//WAVEファイルの読み込み
-		m_WaveReader = resource::ResourceServer::LoadSound(_fileName);
+		m_WaveReader = resource::ResourceServer::LoadSound(_filename);
 
 		//SourceVoiceの作成
 		WAVEFORMATEX wfx = m_WaveReader.Getwfx();
 		hr = m_pXAudio2->CreateSourceVoice(&m_pSourceVoice, &wfx, XAUDIO2_VOICE_USEFILTER, 16.0f);
 		if (FAILED(hr))
 		{
-			printfDx("can not create SourceVoice");
 			free(m_WaveReader.GetpBuffer());
+			std::string error = "can not create SourceVoice \n" + _filename;
+			utility::DrawDebugError(error.c_str());
 		}
 	}
 
@@ -347,8 +348,10 @@ namespace sound
 		//波形データの情報をセット
 		if (FAILED(hr = m_pSourceVoice->SubmitSourceBuffer(&buffer)))
 		{
-			printfDx("can not submitting source buffer");
 			m_pSourceVoice->DestroyVoice();
+			std::string error = "can not submitting source buffer";
+			utility::DrawDebugError(error.c_str());
+
 		}
 
 		if (SUCCEEDED(hr = m_pSourceVoice->Start()))
@@ -370,8 +373,9 @@ namespace sound
 		//波形データの情報をセット
 		if (FAILED(hr = m_pSourceVoice->SubmitSourceBuffer(&buffer)))
 		{
-			printfDx("can not submitting source buffer");
 			m_pSourceVoice->DestroyVoice();
+			std::string error = "can not submitting source buffer";
+			utility::DrawDebugError(error.c_str());
 		}
 
 		if (SUCCEEDED(hr = m_pSourceVoice->Start()))

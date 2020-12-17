@@ -5,6 +5,7 @@
  */
 
 #include<string>
+#include<Windows.h>
 #include"DxLib.h"
 
  /**
@@ -20,6 +21,9 @@
 #define NEW new
 #endif
 
+/**
+ * @brief  画像、モデルで使用するハンドル
+ */
 typedef int handle;
 
 namespace utility
@@ -39,18 +43,20 @@ namespace utility
 
 	/**
 	 * @brief	長さ_lengthの3d座標軸を描画.
-	 * 
+	 *
 	 * @param _length 座標軸の長さ
-	 * @param _origin  座標軸の原点 
+	 * @param _origin  座標軸の原点
 	 */
 	void Draw3DAxis(float _length, VECTOR _origin);
 
 	/**
 	 * @brief 3Dモデルのデバッグ情報の読み込み
-	 * 
+	 *
 	 * @param _handle モデルハンドル
 	 * @param _name　表示するモデル名
 	 * @param _draw_start_line 画面左に表示を開始する行番号
 	 */
 	void DrawModelDebugInfo(const int _handle, const std::string _name, const int _draw_start_line);
+
+	void DrawDebugError(const std::string _error);
 }
