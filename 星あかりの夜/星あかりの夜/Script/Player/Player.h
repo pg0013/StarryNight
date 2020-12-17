@@ -1,7 +1,7 @@
 /**
  * @file    Player.h
  * @brief  ゲームモード内のプレイヤークラス
- * 
+ *
  * @author Takuya Fujisawa
  * @date    202012/16
  */
@@ -50,6 +50,7 @@ namespace starrynight
 
 		private:
 			parameters::Parameters player_param_;
+			handle model_handle_;
 		};
 	}
 }

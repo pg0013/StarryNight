@@ -17,7 +17,7 @@ ModeGame::ModeGame()
 
 ModeGame::~ModeGame()
 {
-	
+
 }
 
 bool ModeGame::Initialize()
@@ -64,13 +64,14 @@ bool ModeGame::Render()
 	SetWriteZBuffer3D(TRUE);
 	SetUseBackCulling(TRUE);
 
-	object_server_.Render();
-
 	camera_.Render();
+
+	object_server_.Render();
 	stage_.Render();
 
 #ifdef DEBUG_FUNCTION
 	camera_.DrawDebugMenu();
+	utility::DrawModelDebugInfo(resource::ResourceServer::GetModelHandle("SDChar"), "Player", 7);
 	utility::Draw3DAxis(10.f, camera_.GetTarget());
 #endif
 

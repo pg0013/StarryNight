@@ -1,9 +1,9 @@
 {
-    "Game": {
-        "player": [
+    "Player": {
+        "model": [
             {
-                "filename": "human_GEO",
-                "handlename": "human_GEO",
+                "filename": "SDChar",
+                "handlename": "SDChar",
                 "tx": 0,
                 "ty": 0,
                 "tz": -0,
