@@ -48,9 +48,15 @@ namespace starrynight
 			 */
 			void Input();
 
+			/**
+			 * @brief@ ˆÚ“®ˆ—
+			 *
+			 */
+			void Move();
+
 		private:
 			parameters::Parameters player_param_;
-			handle model_handle_;
+			float move_speed_;
 		};
 	}
 }

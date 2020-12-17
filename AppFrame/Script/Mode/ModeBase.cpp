@@ -1,4 +1,4 @@
-/** 
+/**
  * @file    ModeBase.cpp
  * @brief  モードの基底クラス
  *
@@ -17,7 +17,7 @@ namespace mode
 
 		mode_count_ = 0;
 		mode_time_ = 0;
-		step_time_ = 0;
+		delta_time_ = 0;
 		modebase_time_ = 0;
 		pause_base_time_ = 0;
 		pause_step_time_ = 0;
@@ -33,7 +33,7 @@ namespace mode
 	{
 		return true;
 	}
-	
+
 	bool ModeBase::Terminate()
 	{
 		return true;
@@ -55,7 +55,7 @@ namespace mode
 		if (mode_count_ == 0)
 		{
 			mode_time_ = 0;
-			step_time_ = 0;
+			delta_time_ = 0;
 			modebase_time_ = _nowtime;
 			pause_base_time_ = 0;
 			pause_step_time_ = 0;
@@ -63,7 +63,7 @@ namespace mode
 		else
 		{
 			mode_time_ = _nowtime - modebase_time_ + pause_step_time_;
-			step_time_ = _nowtime - old_frame_time_;
+			delta_time_ = _nowtime - old_frame_time_;
 		}
 		old_frame_time_ = _nowtime;
 	}

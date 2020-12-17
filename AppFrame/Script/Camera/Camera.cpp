@@ -7,6 +7,7 @@
  */
 #include "Camera.h"
 #include"../Utility/DefineMacro.h"
+#include"../Application/ApplicationBase.h"
 #include<cmath>
 
 namespace camera
@@ -25,8 +26,8 @@ namespace camera
 
 	void Camera::Initialize()
 	{
-		position_ = VGet(73.636536f, 86.688026f, -140.440582f);
-		target_ = VGet(-12.230986f, 59.101776f, -15.002045f);
+		position_ = VGet(0, 90.f, -300.f);
+		target_ = VGet(0.0f, 60.0f, 0.0f);
 		clip_.near_ = 2.f;
 		clip_.far_ = 10000.f;
 
@@ -40,14 +41,11 @@ namespace camera
 
 	void Camera::Process()
 	{
-		XINPUT_STATE x_input;
-		GetJoypadXInputState(DX_INPUT_PAD1, &x_input);
+		XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
 
-		float stick_rx, stick_ry, stick_lx, stick_ly;//アナログスティックの座標
+		float stick_rx, stick_ry;//右アナログスティックの座標
 		float analog_min = 0.2f;
 
-		stick_lx = x_input.ThumbLX / THUMB_MAX;
-		stick_ly = -x_input.ThumbLY / THUMB_MAX;
 		stick_rx = x_input.ThumbRX / THUMB_MAX;
 		stick_ry = -x_input.ThumbRY / THUMB_MAX;
 
@@ -55,24 +53,6 @@ namespace camera
 		float diff_z = position_.z - target_.z;
 		float camera_rad = atan2(diff_z, diff_x);
 		float length = sqrt(diff_z * diff_z + diff_x * diff_x);
-
-		//左スティックカメラ移動
-		{
-			VECTOR move = { 0,0,0 };
-			float length = sqrt(stick_lx * stick_lx + stick_ly * stick_ly);
-			float rad = atan2(stick_lx, stick_ly);
-
-			if (length < analog_min)
-				length = 0.0f;
-			else
-				length = move_speed_;
-
-			move.x = cos(rad + camera_rad) * length;
-			move.z = sin(rad + camera_rad) * length;
-
-			position_ = VAdd(position_, move);
-			target_ = VAdd(target_, move);
-		}
 
 		//右スティックカメラ回転
 		{
@@ -87,17 +67,10 @@ namespace camera
 			if (stick_ry > analog_min)
 			{
 				position_.y -= move_speed_;
-				target_.y -= move_speed_;
-				if (target_.y < 60.0f) 
-				{ 
-					target_.y = 60.0f; 
-					position_.y = 90.0f;
-				}
 			}
 			if (stick_ry < -analog_min)
 			{
 				position_.y += move_speed_;
-				target_.y += move_speed_;
 			}
 		}
 	}

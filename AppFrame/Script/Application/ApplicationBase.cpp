@@ -28,6 +28,8 @@ namespace appframe
 		now_time_ = 0;
 		fps_check_time_ = 0;
 		fps_count_ = 0;
+		x_input_ = { 0 };
+		d_input_ = { 0 };
 	}
 
 	ApplicationBase::~ApplicationBase() {}
@@ -36,7 +38,6 @@ namespace appframe
 	{
 		//DXライブラリのアーカイブファイル読み込みを使用する
 		SetUseDXArchiveFlag(TRUE);
-
 
 #ifdef DEBUG_FUNCTION
 		SetLogDrawArea(960, 0, 1920, 1080);//printfdxの描画位置を設定
@@ -85,7 +86,11 @@ namespace appframe
 	bool ApplicationBase::Input()
 	{
 		int keyold = trigger_key_;
+
 		key_ = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+		GetJoypadXInputState(DX_INPUT_PAD1, &x_input_);
+		GetJoypadDirectInputState(DX_INPUT_PAD1, &d_input_);
+
 		trigger_key_ = (key_ ^ keyold) & trigger_key_;
 
 		return true;

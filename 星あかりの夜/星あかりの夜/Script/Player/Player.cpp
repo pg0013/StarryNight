@@ -12,7 +12,10 @@ using namespace starrynight::player;
 Player::Player()
 {
 	player_param_.LoadModelParameters("Player");
-	model_handle_ = resource::ResourceServer::GetModelHandle("SDChar");
+	handle_ = resource::ResourceServer::GetModelHandle("SDChar");
+
+	move_speed_ = 300.0f;
+	Initialize();
 }
 
 Player::~Player()
@@ -22,22 +25,22 @@ Player::~Player()
 
 void Player::Initialize()
 {
-
-}
-
-void Player::Process()
-{
-
-}
-
-void Player::Render()
-{
-	starrynight::mode::ModeGame* mode_game = static_cast<starrynight::mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-	//MV1SetPosition(model_handle_, mode_game->camera_.GetTarget());
-	MV1DrawModel(model_handle_);
+	ObjectBase::Initialize();
 }
 
 void Player::Input()
 {
 
+}
+
+void Player::Process()
+{
+	Move();
+}
+
+void Player::Render()
+{
+	MV1SetPosition(handle_, position_);
+	MV1SetRotationXYZ(handle_, rotation_);
+	MV1DrawModel(handle_);
 }

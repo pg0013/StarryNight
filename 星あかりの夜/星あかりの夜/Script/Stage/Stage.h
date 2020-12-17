@@ -43,9 +43,13 @@ namespace starrynight
 			 */
 			void ClearHandle();
 
+			handle GetFieldHandle() { return field_; }
+
 		private:
 			StageParameters stage_param_;
 			std::vector<handle> stage_handle_;
+			handle navimesh_;
+			handle field_;
 		};
 	}
 }
