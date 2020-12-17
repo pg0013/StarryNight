@@ -45,7 +45,6 @@
     <ClCompile Include="Script\Mode\ModeServer.cpp" />
     <ClCompile Include="Script\Parameters\LoadImageParamFromJson.cpp" />
     <ClCompile Include="Script\Parameters\LoadModelParamFromJson.cpp" />
-    <ClCompile Include="Script\Parameters\LoadStageParamFromJson.cpp" />
     <ClCompile Include="Script\Parameters\Parameters.cpp" />
     <ClCompile Include="Script\Resource\ResourceServer.cpp" />
     <ClCompile Include="Script\Sound\MyFadeXAPO.cpp" />

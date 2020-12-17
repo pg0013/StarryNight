@@ -161,9 +161,6 @@
     <ClCompile Include="Script\Parameters\LoadModelParamFromJson.cpp">
       <Filter>ソース ファイル\Paramaters</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Parameters\LoadStageParamFromJson.cpp">
-      <Filter>ソース ファイル\Paramaters</Filter>
-    </ClCompile>
     <ClCompile Include="Script\Parameters\LoadImageParamFromJson.cpp">
       <Filter>ソース ファイル\Paramaters</Filter>
     </ClCompile>

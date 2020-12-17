@@ -1,13 +1,14 @@
 /**
  * @file    Stage.h
  * @brief  ステージ管理クラス
- * 
+ *
  * @author Takuya Fujisawa
  * @date    202012/16
  */
 
 #pragma once
 #include"appframe.h"
+#include"StageParameters.h"
 #include<vector>
 
 namespace starrynight
@@ -30,18 +31,18 @@ namespace starrynight
 
 		/**
 		 * @brief　描画処理.
-		 * 
+		 *
 		 */
 		void Render();
 
 		/**
 		 * @brief　ステージのモデルハンドルを削除.
-		 * 
+		 *
 		 */
 		void ClearHandle();
 
 	private:
-		parameters::Parameters stage_param_;
+		 StageParameters stage_param_;
 		std::vector<handle> stage_handle_;
 	};
 }

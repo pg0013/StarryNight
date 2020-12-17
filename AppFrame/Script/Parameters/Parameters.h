@@ -66,17 +66,10 @@ namespace parameters
 		 */
 		void LoadModel(std::string _type, std::string _name, bool _async_flag = false);
 
-		/**
-		 * @brief　 ステージパラメータの読み込み
-		 *
-		 * @param  _stagename　ステージ名
-		 * @param  _async_flag　非同期読み込みフラグ
-		 */
-		void LoadStage(std::string _stagename, bool _async_flag = false);
-
 		std::unordered_map<std::string, imag_param> GetMapImageParam() { return map_imag_param_; }
 		std::unordered_map<std::string, model_param> GetMapModelParam() { return map_model_param_; }
-	private:
+
+	protected:
 		std::unordered_map<std::string, imag_param> map_imag_param_;
 		std::unordered_map<std::string, model_param> map_model_param_;
 	};
