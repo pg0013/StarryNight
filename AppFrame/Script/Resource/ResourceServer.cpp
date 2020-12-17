@@ -127,7 +127,7 @@ namespace resource
 		}
 	}
 
-	void ResourceServer::RegisterModel(const std::string _mode, const std::string _filename, const std::string _handlename, bool _async)
+	void ResourceServer::RegisterModel(const std::string _foldername, const std::string _filename, const std::string _handlename, bool _async)
 	{
 		auto iter = map_model_.find(_handlename);
 		if (iter != map_model_.end())
@@ -135,7 +135,7 @@ namespace resource
 			return;
 		}
 
-		std::string filename = "Resource/model/" + _mode + "/" + _filename + ".mv1";
+		std::string filename = "Resource/model/" + _foldername + "/" + _filename + ".mv1";
 		SetUseASyncLoadFlag(_async);
 		handle tmp = ::MV1LoadModel(filename.c_str());
 		SetUseASyncLoadFlag(FALSE);

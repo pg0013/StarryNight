@@ -60,11 +60,11 @@ namespace parameters
 		/**
 		 * @brief　 モデルパラメータを読み込み
 		 *
-		 * @param  _mode	モデルのタイプ名
+		 * @param  _foldername	Resource/modelの中のフォルダ名
 		 * @param  _name	モデル名
 		 * @param  _async_flag　非同期読み込み用フラグ
 		 */
-		void LoadModel(std::string _type, std::string _name, bool _async_flag = false);
+		void LoadModel(std::string _foldername, std::string _name, bool _async_flag = false);
 
 		std::unordered_map<std::string, imag_param> GetMapImageParam() { return map_imag_param_; }
 		std::unordered_map<std::string, model_param> GetMapModelParam() { return map_model_param_; }

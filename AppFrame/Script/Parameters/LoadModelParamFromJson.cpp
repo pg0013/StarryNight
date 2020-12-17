@@ -14,7 +14,7 @@
 
 namespace parameters
 {
-	void Parameters::LoadModel(std::string _type, std::string _name, bool _async_flag)
+	void Parameters::LoadModel(std::string _foldername, std::string _name, bool _async_flag)
 	{
 		std::ifstream ifs("Resource/json/model.json");
 
@@ -40,7 +40,7 @@ namespace parameters
 
 		//指定モード名のオブジェクトからimag配列を読み込む
 		auto json_object = json_value.get<picojson::object>();
-		auto mode_object = json_object[_type].get<picojson::object>();
+		auto mode_object = json_object[_foldername].get<picojson::object>();
 		auto model_array = mode_object[_name].get<picojson::array>();
 
 		//ファイル重複チェック用変数
@@ -107,11 +107,8 @@ namespace parameters
 				param.scale_.z = static_cast<float>(model["sz"].get<double>());
 			}
 
-			//モデルフォルダの中からディレクトリを設定
-			std::string filename = _name + "/" + param.filename_;
-
 			//ResourceServerにハンドルを保存
-			resource::ResourceServer::RegisterModel(_type, filename, param.handlename_, _async_flag);
+			resource::ResourceServer::RegisterModel(_foldername, param.filename_, param.handlename_, _async_flag);
 
 			//モデルの初期パラメータをそれぞれセット
 			handle model_handle = resource::ResourceServer::GetModelHandle(param.handlename_);

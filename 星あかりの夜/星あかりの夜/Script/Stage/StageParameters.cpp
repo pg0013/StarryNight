@@ -1,3 +1,10 @@
+/**
+ * @file    StageParameters.cpp
+ * @brief	ステージのハンドルや座標を管理するクラス
+ *
+ * @author Takuya Fujisawa
+ * @date   2020/12/17
+ */
 #include "StageParameters.h"
 #include<fstream>
 
@@ -5,12 +12,10 @@ using namespace starrynight;
 
 StageParameters::StageParameters()
 {
-
 }
 
 StageParameters::~StageParameters()
 {
-
 }
 
 void StageParameters::LoadStage(std::string _stagename, bool _async_flag)

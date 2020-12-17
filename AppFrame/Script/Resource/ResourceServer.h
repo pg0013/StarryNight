@@ -89,17 +89,19 @@ namespace resource
 
 		/**
 		 * @brief　3Dモデルをリソースサーバーに登録.
-		 * 
-		 * @param _filename　ファイル名
-		 * @return 
+		 *
+		 * @param  _foldername	Resource/modelの中のフォルダ名
+		 * @param  _filename		モデルのファイル名
+		 * @param  _handlename　ハンドルマップに登録するハンドル名
+		 * @param  _async			非同期読み込みを行うフラグ
 		 */
-		static void RegisterModel(const std::string _mode, const std::string _filename ,const std::string _handlename , bool _async);
+		static void RegisterModel(const std::string _foldername, const std::string _filename ,const std::string _handlename , bool _async);
 
 		/**
 		 * @brief　リソースサーバ内の3Dモデルハンドルの取得.
-		 * 
+		 *
 		 * @param _filename　ファイル名
-		 * @return 
+		 * @return
 		 */
 		static int GetModelHandle(const std::string _handlename);
 
