@@ -69,27 +69,30 @@ void Player::Move()
 
 	if (VSize(move) > 0.0f)
 	{
-		float stick_rot = atan2(-1 * move.x, -1 * move.z);
+		//スティック方向の角度
+		float stick_rad = atan2(-1.0f * move.x, -1.0f * move.z);
 
-		//0~360に変更
-		if (stick_rot < 0.0f)
-			stick_rot += DEG2RAD(360.0f);
-		if (rotation_.y < 0.0f)
-			rotation_.y += DEG2RAD(360.0f);
+		//forwardベクトルを求める
+		VECTOR forward = VGet(0, 0, -1);
+		//正面方向から左右を判定するために、90度オフセット
+		MATRIX matrix = MGetRotY(rotation_.y - DEG2RAD(90.0f));
+		forward = VTransform(forward, matrix);
 
-		clsDx();
-		printfDx("rotation : %f\n", RAD2DEG(rotation_.y));
-		printfDx("atan2 : %f\n", RAD2DEG(stick_rot));
+		float range = DEG2RAD(10.0f);
+		float rot_speed = DEG2RAD(8.0f);
 
-		if (RAD2DEG(stick_rot) - RAD2DEG(rotation_.y) <= 180.0f)
+		//スティック方向から一定範囲まで回転すれば、スティック方向に設定
+		if (stick_rad - rotation_.y<range || stick_rad - rotation_.y>range)
 		{
-			rotation_.y += DEG2RAD(30.0f);
-			if (rotation_.y > stick_rot) { rotation_.y = stick_rot; }
+			rotation_.y = stick_rad;
 		}
-		else if (RAD2DEG(stick_rot) - RAD2DEG(rotation_.y) >= -180.0f)
+		else if (VDot(forward, move) > 0)
 		{
-			rotation_.y -= DEG2RAD(30.0f);
-			if (rotation_.y > stick_rot) { rotation_.y = stick_rot; }
+			rotation_.y -= rot_speed;
+		}
+		else if (VDot(forward, move) < 0)
+		{
+			rotation_.y += rot_speed;
 		}
 	}
 }

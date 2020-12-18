@@ -11,8 +11,8 @@ using namespace starrynight::player;
 
 Player::Player()
 {
-	player_param_.LoadModelParameters("SDChar");
-	handle_ = resource::ResourceServer::GetModelHandle("SDChar");
+	player_param_.LoadModelParameters("player");
+	handle_ = resource::ResourceServer::GetModelHandle("player");
 
 	move_speed_ = 300.0f;
 	Initialize();

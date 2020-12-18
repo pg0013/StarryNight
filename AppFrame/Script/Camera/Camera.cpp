@@ -32,7 +32,7 @@ namespace camera
 		clip_.far_ = 10000.f;
 
 		move_speed_ = 5.0f;
-		rot_speed_ = 0.05f;
+		rot_speed_ = 0.03f;
 	}
 
 	void Camera::Input()

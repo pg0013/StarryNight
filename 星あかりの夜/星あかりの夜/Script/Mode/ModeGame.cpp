@@ -71,7 +71,7 @@ bool ModeGame::Render()
 
 #ifdef DEBUG_FUNCTION
 	camera_.DrawDebugMenu();
-	utility::DrawModelDebugInfo(resource::ResourceServer::GetModelHandle("SDChar"), "Player", 7);
+	utility::DrawModelDebugInfo(resource::ResourceServer::GetModelHandle("player"), "Player", 7);
 	utility::Draw3DAxis(10.f, camera_.GetTarget());
 #endif
 
