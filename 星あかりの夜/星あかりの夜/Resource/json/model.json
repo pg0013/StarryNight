@@ -1,6 +1,5 @@
 {
-    "Player": {
-        "model": [
+        "SDChar": [
             {
                 "filename": "SDChar",
                 "handlename": "SDChar",
@@ -15,5 +14,4 @@
                 "sz": 1
             }
         ]
-    }
 }

@@ -16,7 +16,8 @@ namespace parameters
 {
 	void Parameters::LoadModelParameters(std::string _object_name, bool _async_flag)
 	{
-		std::ifstream ifs("Resource/json/model.json");
+		std::string json_name = "Resource/json/model/" + _object_name + ".json";
+		std::ifstream ifs(json_name);
 
 		if (ifs.fail())
 		{
@@ -40,8 +41,7 @@ namespace parameters
 
 		//指定モード名のオブジェクトからimag配列を読み込む
 		auto json_object = json_value.get<picojson::object>();
-		auto mode_object = json_object[_object_name].get<picojson::object>();
-		auto model_array = mode_object["model"].get<picojson::array>();
+		auto model_array = json_object[_object_name].get<picojson::array>();
 
 		//ファイル重複チェック用変数
 		std::string old_file_name = "";

@@ -20,7 +20,8 @@ StageParameters::~StageParameters()
 
 void StageParameters::LoadStage(std::string _stagename, bool _async_flag)
 {
-	std::ifstream ifs("Resource/json/stage.json");
+	std::string json_name = "Resource/json/stage/" + _stagename + ".json";
+	std::ifstream ifs(json_name.c_str());
 
 	if (ifs.fail())
 	{
@@ -44,8 +45,7 @@ void StageParameters::LoadStage(std::string _stagename, bool _async_flag)
 
 	//指定モード名のオブジェクトからimag配列を読み込む
 	auto json_object = json_value.get<picojson::object>();
-	auto mode_object = json_object["Stage"].get<picojson::object>();
-	auto model_array = mode_object[_stagename].get<picojson::array>();
+	auto model_array = json_object[_stagename].get<picojson::array>();
 
 	for (auto iter = model_array.begin(); iter != model_array.end(); iter++)
 	{

@@ -67,7 +67,6 @@ void Player::Move()
 		position_ = old_positon;
 	}
 
-
 	if (VSize(move) > 0.0f)
 	{
 		float stick_rot = atan2(-1 * move.x, -1 * move.z);
@@ -78,27 +77,19 @@ void Player::Move()
 		if (rotation_.y < 0.0f)
 			rotation_.y += DEG2RAD(360.0f);
 
+		clsDx();
 		printfDx("rotation : %f\n", RAD2DEG(rotation_.y));
 		printfDx("atan2 : %f\n", RAD2DEG(stick_rot));
 
 		if (RAD2DEG(stick_rot) - RAD2DEG(rotation_.y) <= 180.0f)
 		{
-			rotation_.y += DEG2RAD(3.0f);
+			rotation_.y += DEG2RAD(30.0f);
 			if (rotation_.y > stick_rot) { rotation_.y = stick_rot; }
 		}
 		else if (RAD2DEG(stick_rot) - RAD2DEG(rotation_.y) >= -180.0f)
 		{
-			rotation_.y -= DEG2RAD(3.0f);
-			//if (rotation_.y < stick_rot) { rotation_.y = stick_rot; }
+			rotation_.y -= DEG2RAD(30.0f);
+			if (rotation_.y > stick_rot) { rotation_.y = stick_rot; }
 		}
-		else if (RAD2DEG(stick_rot) - RAD2DEG(rotation_.y) < -180.0f)
-		{
-			rotation_.y -= DEG2RAD(3.0f);
-			if (rotation_.y < stick_rot) { rotation_.y = stick_rot; }
-		}
-
-
-
 	}
-
 }

@@ -40,7 +40,7 @@ namespace appframe
 		SetUseDXArchiveFlag(TRUE);
 
 #ifdef DEBUG_FUNCTION
-		SetLogDrawArea(960, 0, 1920, 1080);//printfdx‚Ì•`‰æˆÊ’u‚ğİ’è
+		SetLogDrawArea(1280, 0, 1920, 1080);//printfdx‚Ì•`‰æˆÊ’u‚ğİ’è
 		utility::CheckMemoryLeak();
 		AppWindowed(TRUE);
 		OutputDebugLog(TRUE);
