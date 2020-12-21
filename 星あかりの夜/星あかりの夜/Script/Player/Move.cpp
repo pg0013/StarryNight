@@ -73,24 +73,22 @@ void Player::Move()
 		float stick_rad = atan2(-1.0f * move.x, -1.0f * move.z);
 
 		//forwardベクトルを求める
-		VECTOR forward = VGet(0, 0, -1);
-		//正面方向から左右を判定するために、90度オフセット
-		MATRIX matrix = MGetRotY(rotation_.y);
-		forward = VTransform(forward, matrix);
+		VECTOR forward = utility::GetForwardVector(rotation_.y);
 
 		float range = DEG2RAD(10.0f);
-		float rot_speed = DEG2RAD(8.0f);
+		float rot_speed = DEG2RAD(10.0f);
 
-		//スティック方向から一定範囲まで回転すれば、スティック方向に設定
-		if (stick_rad - rotation_.y<range || stick_rad - rotation_.y>range)
+		float direction = VCross(VNorm(move), forward).y;
+
+		if (direction > -range && direction < range)
 		{
 			rotation_.y = stick_rad;
 		}
-		else if (VCross(forward, move).z > 0)
+		else if (VCross(move,forward).y > 0)
 		{
 			rotation_.y -= rot_speed;
 		}
-		else if (VCross(forward, move).z < 0)
+		else if (VCross(move,forward).y < 0)
 		{
 			rotation_.y += rot_speed;
 		}

@@ -58,5 +58,31 @@ namespace utility
 	 */
 	void DrawModelDebugInfo(const int _handle, const std::string _name, const int _draw_start_line);
 
+	/**
+	 * @brief　処理を中断してエラーアラートを表示する
+	 * 
+	 * @param エラー文面.
+	 */
 	void DrawDebugError(const std::string _error);
+
+	/**
+	 * @brief　Forwardベクトルを求める.
+	 * 
+	 * @param _rot_y	求めるベクトルのy軸回転量[rad]
+	 */
+	VECTOR GetForwardVector(float& _rot_y);
+
+	/**
+	 * @brief　Rightベクトルを求める.
+	 *
+	 * @param _rot_y	求めるベクトルのy軸回転量[rad]
+	 */
+	VECTOR GetRightVector(float& _rot_y);
+
+	/**
+	 * @brief　Upベクトルを求める.
+	 *
+	 * @param _rot_y	求めるベクトルのy軸回転量[rad]
+	 */
+	VECTOR GetUpVector(float& _rot_y);
 }

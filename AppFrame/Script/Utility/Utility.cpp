@@ -56,4 +56,32 @@ namespace utility
 	{
 		_RPTF0(_CRT_ERROR, _T(_error.c_str()));
 	}
+
+	VECTOR GetForwardVector(float& _rot_y)
+	{
+		//モデルがz軸の負の方向を向いているため
+		VECTOR forward = VGet(0, 0, -1);
+		MATRIX rot_matrix = MGetRotY(_rot_y);
+
+		//forwardベクトルを返す
+		return VTransform(forward, rot_matrix);
+	}
+
+	VECTOR GetRightVector(float& _rot_y)
+	{
+		VECTOR forward = GetForwardVector(_rot_y);
+		VECTOR up = VGet(0, 1, 0);//仮のupベクトル
+
+		//rightベクトルを返す
+		return VCross(up, forward);
+	}
+
+	VECTOR GetUpVector(float& _rot_y)
+	{
+		VECTOR forward = GetForwardVector(_rot_y);
+		VECTOR right = GetRightVector(_rot_y);
+
+		//upベクトルを返す
+		return VCross(forward, right);
+	}
 }
