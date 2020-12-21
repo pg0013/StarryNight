@@ -75,7 +75,7 @@ void Player::Move()
 		//forwardベクトルを求める
 		VECTOR forward = VGet(0, 0, -1);
 		//正面方向から左右を判定するために、90度オフセット
-		MATRIX matrix = MGetRotY(rotation_.y - DEG2RAD(90.0f));
+		MATRIX matrix = MGetRotY(rotation_.y);
 		forward = VTransform(forward, matrix);
 
 		float range = DEG2RAD(10.0f);
@@ -86,11 +86,11 @@ void Player::Move()
 		{
 			rotation_.y = stick_rad;
 		}
-		else if (VDot(forward, move) > 0)
+		else if (VCross(forward, move).z > 0)
 		{
 			rotation_.y -= rot_speed;
 		}
-		else if (VDot(forward, move) < 0)
+		else if (VCross(forward, move).z < 0)
 		{
 			rotation_.y += rot_speed;
 		}

@@ -23,7 +23,7 @@ Stage::~Stage()
 
 void Stage::Initialize()
 {
-	stage_param_.LoadStage("test", false);
+	stage_param_.LoadStage("field_B", false);
 
 	auto handle_map = stage_param_.GetMapModelParam();
 	for (auto iter = handle_map.begin(); iter != handle_map.end(); iter++)
@@ -32,7 +32,7 @@ void Stage::Initialize()
 		stage_handle_.push_back(handle);
 	}
 
-	field_ = resource::ResourceServer::GetModelHandle("field_B_GEO");
+	field_ = resource::ResourceServer::GetModelHandle("field_B_GEO1");
 	MV1SetupCollInfo(field_, MV1SearchFrame(field_, "field_B_NaviMesh_GEO"), 16, 16, 16);
 	MV1SetFrameVisible(field_, MV1SearchFrame(field_, "field_B_NaviMesh_GEO"), FALSE);
 }
