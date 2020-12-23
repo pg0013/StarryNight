@@ -42,5 +42,8 @@ void Player::Render()
 {
 	MV1SetPosition(handle_, position_);
 	MV1SetRotationXYZ(handle_, rotation_);
+
+	MV1SetMeshOpacityRate(handle_, 0, 0.5f);
+
 	MV1DrawModel(handle_);
 }

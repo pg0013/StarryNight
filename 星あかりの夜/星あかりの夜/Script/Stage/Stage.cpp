@@ -44,7 +44,17 @@ void Stage::Process()
 
 void Stage::Render()
 {
+	std::vector<handle> trans_object;
 	for (auto iter : stage_handle_)
+	{
+		if (MV1GetSemiTransState(iter) == TRUE)
+		{
+			trans_object.push_back(iter);
+			continue;
+		}
+		MV1DrawModel(iter);
+	}
+	for (auto iter : trans_object)
 	{
 		MV1DrawModel(iter);
 	}
