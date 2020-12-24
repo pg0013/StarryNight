@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Script\ApplicationMain.cpp" />
+    <ClCompile Include="Script\Camera\Camera.cpp" />
+    <ClCompile Include="Script\Camera\CameraParameters.cpp" />
     <ClCompile Include="Script\Mode\ModeGame.cpp" />
     <ClCompile Include="Script\Object\ObjectBase.cpp" />
     <ClCompile Include="Script\Object\ObjectServer.cpp" />
@@ -31,6 +33,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h" />
+    <ClInclude Include="Script\Camera\Camera.h" />
+    <ClInclude Include="Script\Camera\CameraParameters.h" />
     <ClInclude Include="Script\Mode\ModeGame.h" />
     <ClInclude Include="Script\Object\ObjectBase.h" />
     <ClInclude Include="Script\Object\ObjectServer.h" />

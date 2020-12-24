@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClInclude Include="Script\appframe.h" />
     <ClInclude Include="Script\Application\ApplicationBase.h" />
-    <ClInclude Include="Script\Camera\Camera.h" />
     <ClInclude Include="Script\Mode\ModeBase.h" />
     <ClInclude Include="Script\Mode\ModeServer.h" />
     <ClInclude Include="Script\Parameters\Parameters.h" />
@@ -40,7 +39,6 @@
   <ItemGroup>
     <ClCompile Include="Script\Application\ApplicationBase.cpp" />
     <ClCompile Include="Script\Application\WinMain.cpp" />
-    <ClCompile Include="Script\Camera\Camera.cpp" />
     <ClCompile Include="Script\Mode\ModeBase.cpp" />
     <ClCompile Include="Script\Mode\ModeServer.cpp" />
     <ClCompile Include="Script\Parameters\LoadImageParamFromJson.cpp" />

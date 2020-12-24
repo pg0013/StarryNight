@@ -9,6 +9,7 @@
 #include "appframe.h"
 #include"../Stage/Stage.h"
 #include"../Object/ObjectServer.h"
+#include"../Camera/Camera.h"
 
 namespace starrynight
 {

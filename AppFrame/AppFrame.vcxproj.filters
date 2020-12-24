@@ -52,12 +52,6 @@
     <Filter Include="ヘッダー ファイル\Parameters">
       <UniqueIdentifier>{9ff2bcb2-e99a-4079-b486-508235955a9f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Camera">
-      <UniqueIdentifier>{3e1a5b72-cf49-4ff3-9dfb-ddc1a341c968}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Camera">
-      <UniqueIdentifier>{67ff7d34-e582-4139-939a-a274a3d96c90}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\Application\ApplicationBase.h">
@@ -108,9 +102,6 @@
     <ClInclude Include="Script\Utility\DefineMacro.h">
       <Filter>ヘッダー ファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Script\Camera\Camera.h">
-      <Filter>ヘッダー ファイル\Camera</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Script\Application\WinMain.cpp">
@@ -154,9 +145,6 @@
     </ClCompile>
     <ClCompile Include="Script\Parameters\Parameters.cpp">
       <Filter>ソース ファイル\Paramaters</Filter>
-    </ClCompile>
-    <ClCompile Include="Script\Camera\Camera.cpp">
-      <Filter>ソース ファイル\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Script\Parameters\LoadModelParamFromJson.cpp">
       <Filter>ソース ファイル\Paramaters</Filter>

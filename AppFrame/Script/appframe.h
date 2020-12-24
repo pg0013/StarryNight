@@ -9,5 +9,4 @@
 #include"Picojson/picojson.h"
 #include"Utility/Utility.h"
 #include"Utility/DefineMacro.h"
-#include"Camera/Camera.h"
 #include"Parameters/Parameters.h"

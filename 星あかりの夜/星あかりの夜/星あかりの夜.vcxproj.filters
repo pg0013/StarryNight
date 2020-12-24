@@ -37,6 +37,12 @@
     <Filter Include="ソース ファイル\Player">
       <UniqueIdentifier>{0f788fb4-ffa9-4e3a-b466-e5c0e3338e62}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Camera">
+      <UniqueIdentifier>{ce3a5d4a-19e9-42ee-8fe6-30d241e76d30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Camera">
+      <UniqueIdentifier>{52c89068-034e-4431-b461-1922d0f7daa3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Script\ApplicationMain.cpp">
@@ -66,6 +72,12 @@
     <ClCompile Include="Script\Player\PlayerParameters.cpp">
       <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Camera\Camera.cpp">
+      <Filter>ソース ファイル\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Camera\CameraParameters.cpp">
+      <Filter>ソース ファイル\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h">
@@ -91,6 +103,12 @@
     </ClInclude>
     <ClInclude Include="Script\Player\PlayerParameters.h">
       <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Camera\Camera.h">
+      <Filter>ヘッダー ファイル\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Camera\CameraParameters.h">
+      <Filter>ヘッダー ファイル\Camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
