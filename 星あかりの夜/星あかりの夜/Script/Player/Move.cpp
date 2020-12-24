@@ -35,7 +35,7 @@ void Player::Move()
 	if (length < analog_min)
 		length = 0.0f;
 	else
-		length = move_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
+		length = move_speed_* ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
 
 	VECTOR move = { 0,0,0 };
 	move.x = cos(rad + camera_rad) * length;
@@ -76,7 +76,6 @@ void Player::Move()
 		VECTOR forward = utility::GetForwardVector(rotation_.y);
 
 		float range = DEG2RAD(10.0f);
-		float rot_speed = DEG2RAD(10.0f);
 
 		float direction = VCross(VNorm(move), forward).y;
 
@@ -86,11 +85,11 @@ void Player::Move()
 		}
 		else if (VCross(move,forward).y > 0)
 		{
-			rotation_.y -= rot_speed;
+			rotation_.y -= DEG2RAD(rot_speed_);
 		}
 		else if (VCross(move,forward).y < 0)
 		{
-			rotation_.y += rot_speed;
+			rotation_.y += DEG2RAD(rot_speed_);
 		}
 	}
 }

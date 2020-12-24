@@ -9,6 +9,7 @@
 #pragma once
 #include"appframe.h"
 #include"../Object/ObjectBase.h"
+#include"PlayerParameters.h"
 
 namespace starrynight
 {
@@ -55,8 +56,11 @@ namespace starrynight
 			void Move();
 
 		private:
-			parameters::Parameters player_param_;
+			//プレイヤーパラメータ保持クラス
+			PlayerParameters player_param_;
+
 			float move_speed_;
+			float rot_speed_;
 		};
 	}
 }

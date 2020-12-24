@@ -89,6 +89,8 @@ void ObjectServer::Process()
 
 void ObjectServer::Render()
 {
+	std::vector<handle> trans_list;
+
 	//サーバーにあるオブジェクトのRenderを呼び出し
 	for (auto iter = object_list_.begin(); iter != object_list_.end(); iter++)
 	{

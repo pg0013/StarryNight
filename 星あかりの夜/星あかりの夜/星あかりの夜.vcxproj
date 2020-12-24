@@ -25,6 +25,7 @@
     <ClCompile Include="Script\Object\ObjectServer.cpp" />
     <ClCompile Include="Script\Player\Move.cpp" />
     <ClCompile Include="Script\Player\Player.cpp" />
+    <ClCompile Include="Script\Player\PlayerParameters.cpp" />
     <ClCompile Include="Script\Stage\Stage.cpp" />
     <ClCompile Include="Script\Stage\StageParameters.cpp" />
   </ItemGroup>
@@ -34,6 +35,7 @@
     <ClInclude Include="Script\Object\ObjectBase.h" />
     <ClInclude Include="Script\Object\ObjectServer.h" />
     <ClInclude Include="Script\Player\Player.h" />
+    <ClInclude Include="Script\Player\PlayerParameters.h" />
     <ClInclude Include="Script\Stage\Stage.h" />
     <ClInclude Include="Script\Stage\StageParameters.h" />
   </ItemGroup>
