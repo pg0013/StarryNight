@@ -131,7 +131,7 @@
       "sz": 1.527
     },
     {
-      "filename": "tree_GEO",
+      "filename": "models/tree_test1",
       "handlename": "tree_GEO1",
       "tx": -520,
       "ty": -30,
@@ -139,12 +139,12 @@
       "rx": -0,
       "ry": -0,
       "rz": 0,
-      "sx": 2.988,
-      "sy": 2.988,
-      "sz": 2.988
+      "sx": 0.5,
+      "sy": 0.5,
+      "sz": 0.5
     },
     {
-      "filename": "tree_GEO",
+      "filename": "models/tree_test1",
       "handlename": "tree_GEO2",
       "tx": 375.852,
       "ty": -30,
@@ -152,9 +152,9 @@
       "rx": -0,
       "ry": -0,
       "rz": 0,
-      "sx": 1.495,
-      "sy": 1.495,
-      "sz": 1.495
+      "sx": 1.0,
+      "sy": 1.0,
+      "sz": 1.0
     },
     {
       "filename": "wall_GEO",
@@ -467,19 +467,6 @@
       "sx": 0.925,
       "sy": 1,
       "sz": 1.189
-    },
-    {
-      "filename": "touka",
-      "handlename": "touka",
-      "tx": 0,
-      "ty": 0,
-      "tz": -0,
-      "rx": -0,
-      "ry": -0,
-      "rz": 0,
-      "sx": 5,
-      "sy": 5,
-      "sz": 5
     }
   ]
 }

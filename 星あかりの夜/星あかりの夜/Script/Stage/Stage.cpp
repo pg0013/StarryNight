@@ -56,6 +56,7 @@ void Stage::Render()
 	}
 	for (auto iter : trans_object)
 	{
+		MV1SetMaterialDrawAlphaTestAll(iter, TRUE, DX_CMP_GREATER, 51);
 		MV1DrawModel(iter);
 	}
 }

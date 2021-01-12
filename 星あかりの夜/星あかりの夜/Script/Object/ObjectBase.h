@@ -34,6 +34,23 @@ namespace starrynight
 			virtual OBJECT_TYPE GetObjectType() = 0;
 
 			/**
+			 * @brief　 ムーブコンストラクタ
+			 * 
+			 * @param  _object
+			 * @return   
+			 */
+			ObjectBase(ObjectBase&& _object) noexcept :
+				handle_(_object.handle_),
+				position_(_object.position_),
+				rotation_(_object.rotation_)
+			{
+			}
+
+			//オペレータ演算子
+			ObjectBase& operator=(const ObjectBase& _object);
+			ObjectBase& operator=(ObjectBase&& _object) noexcept;
+
+			/**
 			 * @fn	virtual void ObjectBase::Initialize();
 			 *
 			 * @brief	初期化処理

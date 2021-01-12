@@ -55,12 +55,39 @@ namespace starrynight
 			 */
 			void Move();
 
+			/**
+			 * @brief 状態遷移用定数
+			 */
+			enum class STATUS
+			{
+				NONE,
+				WAIT,
+				WALK,
+				_EOT_
+			};
+
+			/**
+			 * @brief　 アニメーション切り替え関数
+			 *
+			 * @param  _old_status	遷移元の状態
+			 */
+			void SwitchAnimation(STATUS _old_status);
+
 		private:
 			//プレイヤーパラメータ保持クラス
 			PlayerParameters player_param_;
 
-			float move_speed_;
-			float rot_speed_;
+			float move_speed_;//移動速度
+			float rot_speed_;//回転速度
+
+			//モデルアニメーション用変数
+			int anim_attach_index_;//アニメーションアタッチ番号
+			int old_anim_attach_index_;//遷移元のアニメーションアタッチ番号
+			float anim_rate_;//アニメーションブレンド率
+			float anim_total_time_;//アニメーション総再生時間
+			float anim_play_time_;//アニメーション再生時間
+
+			STATUS status_;//プレイヤーの状態保持変数
 		};
 	}
 }

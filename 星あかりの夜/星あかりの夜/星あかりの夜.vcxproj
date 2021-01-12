@@ -28,6 +28,7 @@
     <ClCompile Include="Script\Player\Move.cpp" />
     <ClCompile Include="Script\Player\Player.cpp" />
     <ClCompile Include="Script\Player\PlayerParameters.cpp" />
+    <ClCompile Include="Script\Player\SwitchAnimation.cpp" />
     <ClCompile Include="Script\Stage\Stage.cpp" />
     <ClCompile Include="Script\Stage\StageParameters.cpp" />
   </ItemGroup>

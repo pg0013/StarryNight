@@ -21,6 +21,11 @@ Player::Player()
 	move_speed_ = player_param_.GetPlayerParam("move_speed");
 	rot_speed_ = player_param_.GetPlayerParam("rot_speed");
 
+	status_ = STATUS::WAIT;
+	anim_attach_index_ = -1;
+	old_anim_attach_index_ = -1;
+	anim_rate_ = 0.0f;
+
 	Initialize();
 }
 
@@ -41,11 +46,22 @@ void Player::Input()
 
 void Player::Process()
 {
+	STATUS old_status = status_;
 	Move();
+	SwitchAnimation(old_status);
+
 }
 
 void Player::Render()
 {
+	if (anim_rate_ >= 1.0f)
+		MV1SetAttachAnimTime(handle_, anim_attach_index_, anim_play_time_);
+	else
+	{
+		MV1SetAttachAnimBlendRate(handle_, old_anim_attach_index_, 1.0f - anim_rate_);
+		MV1SetAttachAnimBlendRate(handle_, anim_attach_index_, anim_rate_);
+	}
+
 	MV1SetPosition(handle_, position_);
 	MV1SetRotationXYZ(handle_, rotation_);
 	MV1DrawModel(handle_);

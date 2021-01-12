@@ -32,7 +32,6 @@ namespace starrynight
 			 * @fn	void ObjectServer::Clear();
 			 *
 			 * @brief	コンテナの中身をすべて削除
-			 *
 			 */
 			void Clear();
 

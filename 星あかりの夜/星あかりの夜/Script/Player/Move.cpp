@@ -69,6 +69,15 @@ void Player::Move()
 
 	if (VSize(move) > 0.0f)
 	{
+		status_ = STATUS::WALK;
+	}
+	else
+	{
+		status_ = STATUS::WAIT;
+	}
+
+	if (VSize(move) > 0.0f)
+	{
 		//スティック方向の角度
 		float stick_rad = atan2(-1.0f * move.x, -1.0f * move.z);
 
