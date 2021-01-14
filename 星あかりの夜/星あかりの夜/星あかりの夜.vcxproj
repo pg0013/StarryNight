@@ -25,6 +25,7 @@
     <ClCompile Include="Script\Mode\ModeGame.cpp" />
     <ClCompile Include="Script\Object\ObjectBase.cpp" />
     <ClCompile Include="Script\Object\ObjectServer.cpp" />
+    <ClCompile Include="Script\Player\Jump.cpp" />
     <ClCompile Include="Script\Player\Move.cpp" />
     <ClCompile Include="Script\Player\Player.cpp" />
     <ClCompile Include="Script\Player\PlayerParameters.cpp" />

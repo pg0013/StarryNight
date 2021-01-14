@@ -49,11 +49,18 @@ namespace starrynight
 			 */
 			void Input();
 
+		private:
 			/**
 			 * @brief　 移動処理
 			 *
 			 */
 			void Move();
+
+			/**
+			 * @brief　 ジャンプ処理
+			 *
+			 */
+			void Jump();
 
 			/**
 			 * @brief 状態遷移用定数
@@ -63,6 +70,7 @@ namespace starrynight
 				NONE,
 				WAIT,
 				WALK,
+				JUMP,
 				_EOT_
 			};
 

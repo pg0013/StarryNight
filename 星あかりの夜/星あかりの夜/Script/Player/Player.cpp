@@ -31,7 +31,6 @@ Player::Player()
 
 Player::~Player()
 {
-
 }
 
 void Player::Initialize()
@@ -41,15 +40,20 @@ void Player::Initialize()
 
 void Player::Input()
 {
-
 }
 
 void Player::Process()
 {
+	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
+	int trigger_key = appframe::ApplicationBase::GetInstance()->GetKey();
 	STATUS old_status = status_;
-	Move();
-	SwitchAnimation(old_status);
 
+	Move();
+	if (trigger_key & PAD_INPUT_1)
+	{
+		Jump();
+	}
+	SwitchAnimation(old_status);
 }
 
 void Player::Render()
@@ -65,4 +69,6 @@ void Player::Render()
 	MV1SetPosition(handle_, position_);
 	MV1SetRotationXYZ(handle_, rotation_);
 	MV1DrawModel(handle_);
+
+	DrawLine3D(VAdd(position_, VGet(0, 40.0f, 0)), VAdd(position_, VGet(0, -10.0f, 0)), DEBUG_COLOR);
 }

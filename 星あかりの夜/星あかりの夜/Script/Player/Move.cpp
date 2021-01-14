@@ -42,29 +42,55 @@ void Player::Move()
 	move.z = sin(rad + camera_rad) * length;
 
 	VECTOR old_positon = position_;
-	position_ = VAdd(position_, move);
-
+	VECTOR old_move = move;
 	MV1_COLL_RESULT_POLY hit_poly;
 
 	mode::ModeGame* game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
-	hit_poly = MV1CollCheck_Line(
-		game->stage_.GetFieldHandle(),
-		MV1SearchFrame(game->stage_.GetFieldHandle(), "field_B_NavMesh_GEO"),
-		VAdd(position_, VGet(0, 40.0f, 0)), VAdd(position_, VGet(0, -9999.0f, 0)));
+	float direction = VCross(VNorm(move), utility::GetForwardVector(rotation_.y)).y;
 
-	if (hit_poly.HitFlag)
+	//壁ずり処理
+	int escape_max_rad = 80;
+	for (int i = 0; i < escape_max_rad; i++)
 	{
-		position_.y = hit_poly.HitPosition.y;
+		float escape_rad = DEG2RAD(i);
 
-		move.y += position_.y - old_positon.y;
+		//壁ずりする角度をプレイヤーの向きによって調整
+		if (direction > 0)
+			escape_rad *= -1;
 
-		camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, move));
-		camera::Camera::GetInstance()->SetTarget(VAdd(camera_tar, move));
-	}
-	else
-	{
-		position_ = old_positon;
+		//moveの角度をescape_rad分変更
+		move.x = cos(rad + camera_rad + escape_rad) * length;
+		move.z = sin(rad + camera_rad + escape_rad) * length;
+
+		//move分移動
+		position_ = VAdd(position_, move);
+
+		//Navimeshとの当たり判定
+		hit_poly = MV1CollCheck_Line(
+			game->stage_.GetFieldHandle(),
+			MV1SearchFrame(game->stage_.GetFieldHandle(), "field_B_NavMesh_GEO"),
+			VAdd(position_, VGet(0, 40.0f, 0)), VAdd(position_, VGet(0, -10.0f, 0)));
+
+		if (hit_poly.HitFlag)
+		{
+			position_.y = hit_poly.HitPosition.y;
+
+			//キャラクターのy座標を調整
+			move.y += position_.y - old_positon.y;
+
+			//カメラを移動
+			camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, move));
+			camera::Camera::GetInstance()->SetTarget(VAdd(camera_tar, move));
+
+			break;
+		}
+		else
+		{
+			//Navimeshに当たらなかったので元に戻す
+			position_ = old_positon;
+			move = old_move;
+		}
 	}
 
 	if (VSize(move) > 0.0f)
@@ -87,7 +113,6 @@ void Player::Move()
 		float range = DEG2RAD(10.0f);
 
 		float direction = VCross(VNorm(move), forward).y;
-
 		if (direction > -range && direction < range)
 		{
 			rotation_.y = stick_rad;
