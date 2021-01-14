@@ -58,6 +58,13 @@ namespace starrynight
 			VECTOR GetTarget() { return target_; }
 			void SetTarget(VECTOR _vector) { target_ = _vector; }
 
+			/**
+			 * @brief@ target‚Æcamera‚ÌŠp“x‚ğŒvZ‚µ‚Ä•Ô‚·
+			 * 
+			 * @return   target‚Æcamera‚ÌŠp“x
+			 */
+			float GetCameraRad();
+
 			CLIP GetClip() { return clip_; }
 			void SetClip(float _near, float _far)
 			{

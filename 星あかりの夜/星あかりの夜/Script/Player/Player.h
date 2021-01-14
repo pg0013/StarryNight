@@ -88,6 +88,10 @@ namespace starrynight
 			float move_speed_;//移動速度
 			float rot_speed_;//回転速度
 
+			float jump_speed_;//ジャンプ速度
+			float gravity_;//重力
+			bool jump_flag_;
+
 			//モデルアニメーション用変数
 			int anim_attach_index_;//アニメーションアタッチ番号
 			int old_anim_attach_index_;//遷移元のアニメーションアタッチ番号

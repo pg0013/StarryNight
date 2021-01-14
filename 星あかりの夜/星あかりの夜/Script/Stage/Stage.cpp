@@ -9,16 +9,19 @@
 
 using namespace starrynight::stage;
 
+Stage* Stage::instance_ = nullptr;
+
 Stage::Stage()
 {
+	instance_ = this;
 	stage_handle_.clear();
-	field_ = 0;
-	navimesh_ = 0;
+	navimesh_handle_.clear();
 }
 
 Stage::~Stage()
 {
 	ClearHandle();
+	instance_ = nullptr;
 }
 
 void Stage::Initialize()
@@ -30,16 +33,28 @@ void Stage::Initialize()
 	{
 		auto handle = resource::ResourceServer::GetModelHandle((*iter).second.handlename_);
 		stage_handle_.push_back(handle);
-	}
 
-	field_ = resource::ResourceServer::GetModelHandle("field_B_GEO1");
-	MV1SetupCollInfo(field_, MV1SearchFrame(field_, "field_B_NaviMesh_GEO"), 16, 16, 16);
-	MV1SetFrameVisible(field_, MV1SearchFrame(field_, "field_B_NaviMesh_GEO"), FALSE);
+		if (MV1SearchFrame(handle, "field_B_NavMesh_GEO") > 0)
+		{
+			MV1SetupCollInfo(handle, MV1SearchFrame(handle, "field_B_NavMesh_GEO"), 16, 16, 16);
+			//MV1SetFrameVisible(handle, MV1SearchFrame(handle, "field_B_NavMesh_GEO"), FALSE);
+			navimesh_handle_.push_back(handle);
+		}
+		if (MV1SearchFrame(handle, "foothold_NavMesh") > 0)
+		{
+			MV1SetupCollInfo(handle, MV1SearchFrame(handle, "foothold_NavMesh"), 16, 16, 16);
+			navimesh_handle_.push_back(handle);
+		}
+		if (MV1SearchFrame(handle, "step_NavMesh") > 0)
+		{
+			MV1SetupCollInfo(handle, MV1SearchFrame(handle, "step_NavMesh"), 16, 16, 16);
+			navimesh_handle_.push_back(handle);
+		}
+	}
 }
 
 void Stage::Process()
 {
-
 }
 
 void Stage::Render()
@@ -68,4 +83,56 @@ void Stage::ClearHandle()
 		MV1DeleteModel(iter);
 	}
 	stage_handle_.clear();
+}
+
+MV1_COLL_RESULT_POLY Stage::GetHitToNaviMesh(VECTOR& _player_position)
+{
+	MV1_COLL_RESULT_POLY hit_poly;
+	hit_poly.HitFlag = 0;
+
+	for (auto iter = navimesh_handle_.begin(); iter != navimesh_handle_.end(); iter++)
+	{
+		if (MV1SearchFrame((*iter), "field_B_NavMesh_GEO") > 0)
+		{
+			hit_poly = MV1CollCheck_Line(
+				(*iter),
+				MV1SearchFrame((*iter), "field_B_NavMesh_GEO"),
+				VAdd(_player_position, VGet(0, 40.0f, 0)), VAdd(_player_position, VGet(0, -10.0f, 0)));
+		}
+
+		//“–‚½‚è”»’è‚ª‚ ‚ê‚Î”²‚¯‚é
+		if (hit_poly.HitFlag)
+			break;
+	}
+	return hit_poly;
+}
+
+MV1_COLL_RESULT_POLY Stage::GetHitToColObject(VECTOR& _player_position)
+{
+	MV1_COLL_RESULT_POLY hit_poly;
+	hit_poly.HitFlag = 0;
+
+	for (auto iter = navimesh_handle_.begin(); iter != navimesh_handle_.end(); iter++)
+	{
+		if (MV1SearchFrame((*iter), "foothold_NavMesh") > 0)
+		{
+			hit_poly = MV1CollCheck_Line(
+				(*iter),
+				MV1SearchFrame((*iter), "foothold_NavMesh"),
+				VAdd(_player_position, VGet(0, 40.0f, 0)), VAdd(_player_position, VGet(0, -10.0f, 0)));
+		}
+		if (MV1SearchFrame((*iter), "step_NavMesh") > 0)
+		{
+			hit_poly = MV1CollCheck_Line(
+				(*iter),
+				MV1SearchFrame((*iter), "step_NavMesh"),
+				VAdd(_player_position, VGet(0, 40.0f, 0)), VAdd(_player_position, VGet(0, -10.0f, 0)));
+		}
+
+		//“–‚½‚è”»’è‚ª‚ ‚ê‚Î”²‚¯‚é
+		if (hit_poly.HitFlag)
+			return hit_poly;
+
+	}
+	return hit_poly;
 }

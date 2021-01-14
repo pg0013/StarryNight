@@ -194,7 +194,8 @@
       "sx": 1,
       "sy": 1,
       "sz": 1
-    },
+    }
+    ,
     {
       "filename": "foothold_GEO",
       "handlename": "foothold_GEO2",

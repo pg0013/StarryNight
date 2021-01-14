@@ -21,6 +21,9 @@ namespace starrynight
 			Stage();
 			~Stage();
 
+			static Stage* instance_;
+			static Stage* GetInstance() { return instance_; }
+
 			/**
 			 * @brief　初期化処理.
 			 */
@@ -33,23 +36,34 @@ namespace starrynight
 
 			/**
 			 * @brief　描画処理.
-			 *
 			 */
 			void Render();
 
 			/**
 			 * @brief　ステージのモデルハンドルを削除.
-			 *
 			 */
 			void ClearHandle();
 
-			handle GetFieldHandle() { return field_; }
+			/**
+			 * @brief　 ナビメッシュとの当たり判定を取得する
+			 *
+			 * @param  _player_position	プレイヤーの位置
+			 * @return   当たり判定
+			 */
+			MV1_COLL_RESULT_POLY GetHitToNaviMesh(VECTOR& _player_position);
+
+			/**
+			 * @brief　 オブジェクトとの当たり判定を取得する
+			 *
+			 * @param  _player_position	プレイヤーの位置
+			 * @return   当たり判定
+			 */
+			MV1_COLL_RESULT_POLY GetHitToColObject(VECTOR& _player_position);
 
 		private:
 			StageParameters stage_param_;
 			std::vector<handle> stage_handle_;
-			handle navimesh_;
-			handle field_;
+			std::vector<handle> navimesh_handle_;
 		};
 	}
 }

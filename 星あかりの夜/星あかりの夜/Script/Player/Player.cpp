@@ -21,6 +21,10 @@ Player::Player()
 	move_speed_ = player_param_.GetPlayerParam("move_speed");
 	rot_speed_ = player_param_.GetPlayerParam("rot_speed");
 
+	jump_speed_ = 0.0f;
+	gravity_ = 0.5f;
+	jump_flag_ = false;
+
 	status_ = STATUS::WAIT;
 	anim_attach_index_ = -1;
 	old_anim_attach_index_ = -1;
@@ -45,14 +49,20 @@ void Player::Input()
 void Player::Process()
 {
 	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
-	int trigger_key = appframe::ApplicationBase::GetInstance()->GetKey();
+	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
 	STATUS old_status = status_;
 
 	Move();
-	if (trigger_key & PAD_INPUT_1)
+	Jump();
+
+	if (position_.y < -100)
 	{
-		Jump();
+		position_ = VGet(0, 0, 0);
+		camera::Camera::GetInstance()->SetPosition(VGet(0, 90.f, -300.f));
+		camera::Camera::GetInstance()->SetTarget(VGet(0.0f, 60.0f, 0.0f));
 	}
+
+
 	SwitchAnimation(old_status);
 }
 
@@ -70,5 +80,6 @@ void Player::Render()
 	MV1SetRotationXYZ(handle_, rotation_);
 	MV1DrawModel(handle_);
 
-	DrawLine3D(VAdd(position_, VGet(0, 40.0f, 0)), VAdd(position_, VGet(0, -10.0f, 0)), DEBUG_COLOR);
+	if(!jump_flag_)
+		DrawLine3D(VAdd(position_, VGet(0, 40.0f, 0)), VAdd(position_, VGet(0, -.0f, 0)), DEBUG_COLOR);
 }

@@ -7,6 +7,7 @@
  */
 #include"Utility.h"
 #include"DefineMacro.h"
+#include"../Application/ApplicationBase.h"
 #include<string>
 
 namespace utility
@@ -83,5 +84,34 @@ namespace utility
 
 		//upベクトルを返す
 		return VCross(forward, right);
+	}
+
+	float GetLeftStickLength()
+	{
+		XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
+
+		float stick_lx, stick_ly;//アナログスティックの座標
+		float analog_min = 0.2f;//アナログスティックのデッドスペース
+
+		stick_lx = x_input.ThumbLX / THUMB_MAX;
+		stick_ly = -x_input.ThumbLY / THUMB_MAX;
+
+		float length = static_cast<float>(sqrt(stick_lx * stick_lx + stick_ly * stick_ly));
+
+		return length;
+	}
+
+	float GetLeftStickRad()
+	{
+		XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
+
+		float stick_lx, stick_ly;//アナログスティックの座標
+		float analog_min = 0.2f;//アナログスティックのデッドスペース
+
+		stick_lx = x_input.ThumbLX / THUMB_MAX;
+		stick_ly = -x_input.ThumbLY / THUMB_MAX;
+
+		float rad = static_cast<float>(atan2(stick_lx, stick_ly));
+		return rad;
 	}
 }

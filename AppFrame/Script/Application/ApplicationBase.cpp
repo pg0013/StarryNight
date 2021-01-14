@@ -85,13 +85,13 @@ namespace appframe
 
 	bool ApplicationBase::Input()
 	{
-		int keyold = trigger_key_;
+		int keyold = key_;
 
 		key_ = GetJoypadInputState(DX_INPUT_KEY_PAD1);
 		GetJoypadXInputState(DX_INPUT_PAD1, &x_input_);
 		GetJoypadDirectInputState(DX_INPUT_PAD1, &d_input_);
 
-		trigger_key_ = (key_ ^ keyold) & trigger_key_;
+		trigger_key_ = (key_ ^ keyold) & key_;
 
 		return true;
 	}

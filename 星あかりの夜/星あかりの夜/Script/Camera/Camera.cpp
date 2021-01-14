@@ -99,3 +99,12 @@ void Camera::DrawDebugMenu()
 	DrawFormatString(x, y, DEBUG_COLOR, "%2d   |- rad : % 5.2f", y / DEBUG_FONT_SIZE, camera_rad); y += DEBUG_FONT_SIZE;
 	DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- deg : % 5.2f", y / DEBUG_FONT_SIZE, camera_deg); y += DEBUG_FONT_SIZE;
 }
+
+float Camera::GetCameraRad()
+{
+	float diff_x = position_.x - target_.x;
+	float diff_z = position_.z - target_.z;
+
+	float camera_rad = atan2(diff_z, diff_x);
+	return camera_rad;
+}

@@ -60,14 +60,14 @@ namespace utility
 
 	/**
 	 * @brief　処理を中断してエラーアラートを表示する
-	 * 
+	 *
 	 * @param エラー文面.
 	 */
 	void DrawDebugError(const std::string _error);
 
 	/**
 	 * @brief　Forwardベクトルを求める.
-	 * 
+	 *
 	 * @param _rot_y	求めるベクトルのy軸回転量[rad]
 	 */
 	VECTOR GetForwardVector(float& _rot_y);
@@ -85,4 +85,20 @@ namespace utility
 	 * @param _rot_y	求めるベクトルのy軸回転量[rad]
 	 */
 	VECTOR GetUpVector(float& _rot_y);
+
+	/**
+	 * @brief 左スティックの移動量を返す
+	 * 
+	 * @return 左スティック移動量
+	 */
+	float GetLeftStickLength();
+
+	/**
+	 * @brief 左スティックの角度を返す
+	 * 
+	 * @return 左スティックの角度
+	 */
+	float GetLeftStickRad();
+
+
 }

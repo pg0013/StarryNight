@@ -36,6 +36,10 @@ void Player::SwitchAnimation(STATUS _old_status)
 		case STATUS::WALK:
 			anim_attach_index_ = MV1AttachAnim(handle_, MV1GetAnimIndex(handle_, "kyrie_run"), -1, FALSE);
 			break;
+		case STATUS::JUMP:
+			//TODO:仮モーション
+			anim_attach_index_ = MV1AttachAnim(handle_, MV1GetAnimIndex(handle_, "kyrie_run"), -1, FALSE);
+			break;
 		}
 
 		//アニメーションの総再生時間を取得し、再生時間を初期化
