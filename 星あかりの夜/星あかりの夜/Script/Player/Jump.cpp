@@ -23,7 +23,7 @@ void Player::Jump()
 		jump_flag_ = true;
 	}
 
-	if (jump_flag_ )
+	if (jump_flag_)
 	{
 		VECTOR camera_pos = camera::Camera::GetInstance()->GetPosition();
 		VECTOR camera_tar = camera::Camera::GetInstance()->GetTarget();
@@ -43,10 +43,23 @@ void Player::Jump()
 		move.x = cos(rad + camera_rad) * length;
 		move.z = sin(rad + camera_rad) * length;
 
+		//乗れるオブジェクトとの当たり判定
+		MV1_COLL_RESULT_POLY hit_poly_object;
+		hit_poly_object = stage::Stage::GetInstance()->GetHitToColObject(position_);
+		if (hit_poly_object.HitFlag)
+		{
+			position_.y = hit_poly_object.HitPosition.y;
+			jump_speed_ = 0.0f;
+
+			//足場からジャンプ
+			if (trigger_key & PAD_INPUT_1)
+				jump_speed_ = 15.0f;
+		}
+
 		position_ = VAdd(position_, move);
 		position_.y += jump_speed_;
-
 		move.y += jump_speed_;
+
 		//カメラを移動
 		camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, move));
 		camera::Camera::GetInstance()->SetTarget(VAdd(camera_tar, move));
@@ -55,12 +68,9 @@ void Player::Jump()
 
 		//Navimeshとの当たり判定
 		MV1_COLL_RESULT_POLY hit_poly_stage;
-		MV1_COLL_RESULT_POLY hit_poly_object;
-
 		hit_poly_stage = stage::Stage::GetInstance()->GetHitToNaviMesh(position_);
-		hit_poly_object = stage::Stage::GetInstance()->GetHitToColObject(position_);
 
-		if (hit_poly_object.HitFlag || hit_poly_stage.HitFlag)
+		if (hit_poly_stage.HitFlag)
 		{
 			jump_flag_ = false;
 			status_ = STATUS::WAIT;
