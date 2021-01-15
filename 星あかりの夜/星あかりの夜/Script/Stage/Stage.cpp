@@ -85,7 +85,7 @@ void Stage::ClearHandle()
 	stage_handle_.clear();
 }
 
-MV1_COLL_RESULT_POLY Stage::GetHitToNaviMesh(VECTOR& _player_position)
+MV1_COLL_RESULT_POLY Stage::GetHitToNaviMesh(VECTOR& _startline, VECTOR& _endline)
 {
 	MV1_COLL_RESULT_POLY hit_poly;
 	hit_poly.HitFlag = 0;
@@ -97,7 +97,7 @@ MV1_COLL_RESULT_POLY Stage::GetHitToNaviMesh(VECTOR& _player_position)
 			hit_poly = MV1CollCheck_Line(
 				(*iter),
 				MV1SearchFrame((*iter), "field_B_NavMesh_GEO"),
-				VAdd(_player_position, VGet(0, 40.0f, 0)), VAdd(_player_position, VGet(0, -10.0f, 0)));
+				_startline, _endline);
 		}
 
 		//“–‚½‚è”»’è‚ª‚ ‚ê‚Î”²‚¯‚é
@@ -107,7 +107,7 @@ MV1_COLL_RESULT_POLY Stage::GetHitToNaviMesh(VECTOR& _player_position)
 	return hit_poly;
 }
 
-MV1_COLL_RESULT_POLY Stage::GetHitToColObject(VECTOR& _player_position)
+MV1_COLL_RESULT_POLY Stage::GetHitToColObject(VECTOR& _startline, VECTOR& _endline)
 {
 	MV1_COLL_RESULT_POLY hit_poly;
 	hit_poly.HitFlag = 0;
@@ -119,14 +119,14 @@ MV1_COLL_RESULT_POLY Stage::GetHitToColObject(VECTOR& _player_position)
 			hit_poly = MV1CollCheck_Line(
 				(*iter),
 				MV1SearchFrame((*iter), "foothold_NavMesh"),
-				VAdd(_player_position, VGet(0, 40.0f, 0)), VAdd(_player_position, VGet(0, -10.0f, 0)));
+				_startline, _endline);
 		}
 		if (MV1SearchFrame((*iter), "step_NavMesh") > 0)
 		{
 			hit_poly = MV1CollCheck_Line(
 				(*iter),
 				MV1SearchFrame((*iter), "step_NavMesh"),
-				VAdd(_player_position, VGet(0, 40.0f, 0)), VAdd(_player_position, VGet(0, -10.0f, 0)));
+				_startline, _endline);
 		}
 
 		//“–‚½‚è”»’è‚ª‚ ‚ê‚Î”²‚¯‚é

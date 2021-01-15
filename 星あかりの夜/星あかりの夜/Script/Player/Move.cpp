@@ -57,9 +57,12 @@ void Player::Move()
 		MV1_COLL_RESULT_POLY hit_poly_stage;
 		MV1_COLL_RESULT_POLY hit_poly_object;
 
-		hit_poly_stage = stage::Stage::GetInstance()->GetHitToNaviMesh(position_);
-		hit_poly_object = stage::Stage::GetInstance()->GetHitToColObject(position_);
+		//腰から地面までの線分ベクトル
+		VECTOR start_line = VAdd(position_, VGet(0, 40.0f, 0));
+		VECTOR end_line = VAdd(position_, VGet(0, -10.0f, 0));
 
+		hit_poly_stage = stage::Stage::GetInstance()->GetHitToNaviMesh(start_line, end_line);
+		hit_poly_object = stage::Stage::GetInstance()->GetHitToColObject(start_line, end_line);
 
 		if (hit_poly_stage.HitFlag &&
 			jump_flag_ == false)
@@ -71,12 +74,12 @@ void Player::Move()
 
 			//カメラを移動
 			camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, move));
-			camera::Camera::GetInstance()->SetTarget(VAdd(camera_tar, move));
+			camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
 
 			break;
 		}
 		else if (hit_poly_object.HitFlag &&
-			jump_flag_ == false)
+					jump_flag_ == false)
 		{
 			position_.y = hit_poly_object.HitPosition.y;
 
@@ -91,9 +94,9 @@ void Player::Move()
 		}
 		else
 		{
-				//Navimeshに当たらなかったので元に戻す
-				position_ = old_positon;
-				move = old_move;
+			//Navimeshに当たらなかったので元に戻す
+			position_ = old_positon;
+			move = old_move;
 		}
 	}
 

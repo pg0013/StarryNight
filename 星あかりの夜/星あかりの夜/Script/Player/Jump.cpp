@@ -43,9 +43,14 @@ void Player::Jump()
 		move.x = cos(rad + camera_rad) * length;
 		move.z = sin(rad + camera_rad) * length;
 
+		//腰から地面までの線分ベクトル
+		VECTOR start_line = VAdd(position_, VGet(0, 40.0f, 0));
+		VECTOR end_line = VAdd(position_, VGet(0, -10.0f, 0));
+
 		//乗れるオブジェクトとの当たり判定
 		MV1_COLL_RESULT_POLY hit_poly_object;
-		hit_poly_object = stage::Stage::GetInstance()->GetHitToColObject(position_);
+		hit_poly_object = stage::Stage::GetInstance()->GetHitToColObject(start_line, end_line);
+
 		if (hit_poly_object.HitFlag)
 		{
 			position_.y = hit_poly_object.HitPosition.y;
@@ -56,19 +61,43 @@ void Player::Jump()
 				jump_speed_ = 15.0f;
 		}
 
-		position_ = VAdd(position_, move);
-		position_.y += jump_speed_;
-		move.y += jump_speed_;
+		//頭から前方までの線分ベクトル
+		VECTOR start_forward = VAdd(position_, VGet(0, 100.0f, 0));
+		VECTOR end_forward = VAdd(start_forward, VScale(VNorm(utility::GetForwardVector(rotation_.y)), 30.0f));
+
+		//乗れるオブジェクトとの当たり判定
+		MV1_COLL_RESULT_POLY hit_forward_object;
+		hit_forward_object = stage::Stage::GetInstance()->GetHitToColObject(start_forward, end_forward);
+
+		VECTOR old_position = position_;
+
+		if (hit_forward_object.HitFlag)
+		{
+			position_.x = old_position.x;
+			position_.z = old_position.z;
+			position_.y += jump_speed_;
+			move.y += jump_speed_;
+		}
+		else
+		{
+			position_ = VAdd(position_, move);
+			position_.y += jump_speed_;
+			move.y += jump_speed_;
+		}
 
 		//カメラを移動
 		camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, move));
-		camera::Camera::GetInstance()->SetTarget(VAdd(camera_tar, move));
+		camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
 
 		jump_speed_ -= gravity_;
 
+		//腰から地面までの線分ベクトル
+		start_line = VAdd(position_, VGet(0, 40.0f, 0));
+		end_line = VAdd(position_, VGet(0, -10.0f, 0));
+
 		//Navimeshとの当たり判定
 		MV1_COLL_RESULT_POLY hit_poly_stage;
-		hit_poly_stage = stage::Stage::GetInstance()->GetHitToNaviMesh(position_);
+		hit_poly_stage = stage::Stage::GetInstance()->GetHitToNaviMesh(start_line, end_line);
 
 		if (hit_poly_stage.HitFlag)
 		{

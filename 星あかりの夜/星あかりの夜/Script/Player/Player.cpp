@@ -81,5 +81,10 @@ void Player::Render()
 	MV1DrawModel(handle_);
 
 	if(!jump_flag_)
-		DrawLine3D(VAdd(position_, VGet(0, 40.0f, 0)), VAdd(position_, VGet(0, -.0f, 0)), DEBUG_COLOR);
+		DrawLine3D(VAdd(position_, VGet(0, 40.0f, 0)), VAdd(position_, VGet(0, -10.0f, 0)), DEBUG_COLOR);
+
+	VECTOR start = VAdd(position_, VGet(0, 100.0f, 0));
+	VECTOR end = VAdd(start, VScale(VNorm(utility::GetForwardVector(rotation_.y)), 30.0f));
+	DrawLine3D(start, end, DEBUG_COLOR);
+
 }

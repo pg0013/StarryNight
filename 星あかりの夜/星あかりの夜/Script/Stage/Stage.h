@@ -50,7 +50,7 @@ namespace starrynight
 			 * @param  _player_position	プレイヤーの位置
 			 * @return   当たり判定
 			 */
-			MV1_COLL_RESULT_POLY GetHitToNaviMesh(VECTOR& _player_position);
+			MV1_COLL_RESULT_POLY GetHitToNaviMesh(VECTOR& _startline,VECTOR& _endline);
 
 			/**
 			 * @brief　 オブジェクトとの当たり判定を取得する
@@ -58,7 +58,7 @@ namespace starrynight
 			 * @param  _player_position	プレイヤーの位置
 			 * @return   当たり判定
 			 */
-			MV1_COLL_RESULT_POLY GetHitToColObject(VECTOR& _player_position);
+			MV1_COLL_RESULT_POLY GetHitToColObject(VECTOR& _startline, VECTOR& _endline);
 
 		private:
 			StageParameters stage_param_;
