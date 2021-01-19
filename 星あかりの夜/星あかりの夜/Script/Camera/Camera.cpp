@@ -6,6 +6,7 @@
  * @date    202012/11
  */
 #include "Camera.h"
+#include"../Stage/Stage.h"
 #include<cmath>
 using namespace starrynight::camera;
 
@@ -56,6 +57,8 @@ void Camera::Process()
 
 	//右スティックカメラ回転
 	{
+		VECTOR old_position = position_;
+
 		if (stick_rx > analog_min)
 			camera_rad -= DEG2RAD(rot_speed_) * stick_rx;
 		if (stick_rx < -analog_min)
@@ -64,13 +67,30 @@ void Camera::Process()
 		position_.x = target_.x + length * cos(camera_rad);
 		position_.z = target_.z + length * sin(camera_rad);
 
+		if (stick_ry < -analog_min)
+		{
+			position_.y += move_speed_;
+			return;
+		}
+
+		MV1_COLL_RESULT_POLY hit_stage;
+		VECTOR hit_end_line = VAdd(position_, VGet(0, -90, 0));
+		hit_stage = stage::Stage::GetInstance()->GetHitLineToNaviMesh(position_, hit_end_line);
+
 		if (stick_ry > analog_min)
 		{
 			position_.y -= move_speed_;
 		}
-		if (stick_ry < -analog_min)
+		if (hit_stage.HitFlag)
 		{
-			position_.y += move_speed_;
+			float camera_position_min = hit_stage.HitPosition.y + 80;
+
+			//下りの傾斜でカメラが床に沿って移動しないようにする
+			if (old_position.y > camera_position_min)
+				position_.y = old_position.y;
+			else
+				position_.y = camera_position_min;
+			return;
 		}
 	}
 }

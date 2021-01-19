@@ -34,11 +34,13 @@ void Player::Jump()
 		float rad = utility::GetLeftStickRad();
 
 		float analog_min = 0.2f;//アナログスティックのデッドスペース
+
 		if (length < analog_min)
 			length = 0.0f;
 		else
 			length = move_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
 
+		//移動量の計算
 		VECTOR move = { 0,0,0 };
 		move.x = cos(rad + camera_rad) * length;
 		move.z = sin(rad + camera_rad) * length;
@@ -49,7 +51,7 @@ void Player::Jump()
 
 		//乗れるオブジェクトとの当たり判定
 		MV1_COLL_RESULT_POLY hit_poly_object;
-		hit_poly_object = stage::Stage::GetInstance()->GetHitToColObject(start_line, end_line);
+		hit_poly_object = stage::Stage::GetInstance()->GetHitLineToColObject(start_line, end_line);
 
 		if (hit_poly_object.HitFlag)
 		{
@@ -60,26 +62,33 @@ void Player::Jump()
 			if (trigger_key & PAD_INPUT_1)
 				jump_speed_ = 15.0f;
 		}
-
-		//頭から前方までの線分ベクトル
-		VECTOR start_forward = VAdd(position_, VGet(0, 100.0f, 0));
-		VECTOR end_forward = VAdd(start_forward, VScale(VNorm(utility::GetForwardVector(rotation_.y)), 30.0f));
+		
+		//プレイヤーのカプセル情報
+		VECTOR capsule_positon1 = VAdd(position_, VGet(0, 100, 0));
+		VECTOR capsule_positon2 = VAdd(position_, VGet(0, 45, 0));
+		float radius = 35.0f;
 
 		//乗れるオブジェクトとの当たり判定
-		MV1_COLL_RESULT_POLY hit_forward_object;
-		hit_forward_object = stage::Stage::GetInstance()->GetHitToColObject(start_forward, end_forward);
+		MV1_COLL_RESULT_POLY_DIM hit_capsule_object;
+		hit_capsule_object = stage::Stage::GetInstance()->GetHitCapsuleToColObject(capsule_positon1, capsule_positon2, radius);
 
 		VECTOR old_position = position_;
 
-		if (hit_forward_object.HitFlag)
+		if (hit_capsule_object.HitNum > 0)
 		{
+			//オブジェクトと当たったら位置はそのまま高さを変える
+			printfDx("%d\n", hit_capsule_object.HitNum);
 			position_.x = old_position.x;
 			position_.z = old_position.z;
 			position_.y += jump_speed_;
+
+			move.x = 0.0f;
 			move.y += jump_speed_;
+			move.z = 0.0f;
 		}
 		else
 		{
+			//移動処理
 			position_ = VAdd(position_, move);
 			position_.y += jump_speed_;
 			move.y += jump_speed_;
@@ -97,7 +106,7 @@ void Player::Jump()
 
 		//Navimeshとの当たり判定
 		MV1_COLL_RESULT_POLY hit_poly_stage;
-		hit_poly_stage = stage::Stage::GetInstance()->GetHitToNaviMesh(start_line, end_line);
+		hit_poly_stage = stage::Stage::GetInstance()->GetHitLineToNaviMesh(start_line, end_line);
 
 		if (hit_poly_stage.HitFlag)
 		{

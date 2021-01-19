@@ -60,7 +60,7 @@ namespace starrynight
 
 			/**
 			 * @brief@ target‚Æcamera‚ÌŠp“x‚ğŒvZ‚µ‚Ä•Ô‚·
-			 * 
+			 *
 			 * @return   target‚Æcamera‚ÌŠp“x
 			 */
 			float GetCameraRad();

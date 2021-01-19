@@ -54,6 +54,7 @@ void Player::Process()
 
 	Move();
 	Jump();
+	HoldSlingShot();
 
 	if (position_.y < -100)
 	{
@@ -79,6 +80,8 @@ void Player::Render()
 	MV1SetPosition(handle_, position_);
 	MV1SetRotationXYZ(handle_, rotation_);
 	MV1DrawModel(handle_);
+
+	DrawCapsule3D(VAdd(position_, VGet(0, 100, 0)), VAdd(position_, VGet(0, 45, 0)), 35, 16, DEBUG_COLOR, DEBUG_COLOR, FALSE);
 
 	if(!jump_flag_)
 		DrawLine3D(VAdd(position_, VGet(0, 40.0f, 0)), VAdd(position_, VGet(0, -10.0f, 0)), DEBUG_COLOR);

@@ -63,6 +63,12 @@ namespace starrynight
 			void Jump();
 
 			/**
+			 * @brief	パチンコを構える処理.
+			 * 
+			 */
+			void HoldSlingShot();
+
+			/**
 			 * @brief 状態遷移用定数
 			 */
 			enum class STATUS
