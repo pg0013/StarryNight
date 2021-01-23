@@ -28,13 +28,23 @@ void Player::Move()
 		length = move_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
 
 	VECTOR move = { 0,0,0 };
+
 	move.x = cos(rad + camera_rad) * length;
 	move.z = sin(rad + camera_rad) * length;
 
 	VECTOR old_positon = position_;
 	VECTOR old_move = move;
-
 	float direction = VCross(VNorm(move), utility::GetForwardVector(rotation_.y)).y;
+
+	//プレイヤーのカプセル情報
+	VECTOR capsule_positon1 = VAdd(position_, VGet(0, 100, 0));
+	VECTOR capsule_positon2 = VAdd(position_, VGet(0, 45, 0));
+	float radius = 35.0f;
+
+	MV1_COLL_RESULT_POLY_DIM hit_poly_wall;
+	hit_poly_wall = stage::Stage::GetInstance()->GetHitCapsuleToColObject(capsule_positon1, capsule_positon2, radius);
+
+	VECTOR old_escape = utility::GetForwardVector(rotation_.y);
 
 	//壁ずり処理
 	int escape_max_rad = 80;
@@ -58,10 +68,39 @@ void Player::Move()
 
 		//腰から地面までの線分ベクトル
 		VECTOR start_line = VAdd(position_, VGet(0, 40.0f, 0));
-		VECTOR end_line = VAdd(position_, VGet(0, -10.0f, 0));
+		VECTOR end_line = VAdd(position_, VGet(0, -30.0f, 0));
 
 		hit_poly_stage = stage::Stage::GetInstance()->GetHitLineToNaviMesh(start_line, end_line);
 
+		if (hit_poly_wall.HitNum > 0 &&
+			jump_flag_ == false)
+		{
+			VECTOR normal = VNorm(hit_poly_wall.Dim->Normal);
+
+			VECTOR escape = VAdd(move, VScale(normal, VDot(VScale(move, -1.0f), normal)));
+
+			position_ = old_positon;
+			printfDx("%f\n", VDot(normal, move));
+			if (VDot(normal, move) < 0.0f)
+			{
+				position_ = VAdd(position_, escape);
+
+				camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, escape));
+			}
+			else
+			{
+				position_ = VAdd(position_, VScale(normal, VSize(move)));
+				camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, VScale(normal, VSize(move))));
+			}
+
+			if (hit_poly_stage.HitFlag)
+				position_.y = hit_poly_stage.HitPosition.y;
+
+			camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
+
+			MV1CollResultPolyDimTerminate(hit_poly_wall);
+			break;
+		}
 		if (hit_poly_stage.HitFlag &&
 			jump_flag_ == false)
 		{
@@ -81,6 +120,8 @@ void Player::Move()
 			//Navimeshに当たらなかったので元に戻す
 			position_ = old_positon;
 			move = old_move;
+			camera::Camera::GetInstance()->SetPosition(camera_pos);
+			camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
 		}
 	}
 

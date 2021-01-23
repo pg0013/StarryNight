@@ -63,7 +63,6 @@ void Player::Process()
 		camera::Camera::GetInstance()->SetTarget(VGet(0.0f, 60.0f, 0.0f));
 	}
 
-
 	SwitchAnimation(old_status);
 }
 
@@ -81,13 +80,16 @@ void Player::Render()
 	MV1SetRotationXYZ(handle_, rotation_);
 	MV1DrawModel(handle_);
 
-	DrawCapsule3D(VAdd(position_, VGet(0, 100, 0)), VAdd(position_, VGet(0, 45, 0)), 35, 16, DEBUG_COLOR, DEBUG_COLOR, FALSE);
+	//プレイヤーのカプセル情報
+	VECTOR capsule_positon1 = VAdd(position_, VGet(0, 100, 0));
+	VECTOR capsule_positon2 = VAdd(position_, VGet(0, 45, 0));
+	float radius = 35.0f;
+	DrawCapsule3D(capsule_positon1, capsule_positon2, radius, 16, DEBUG_COLOR, DEBUG_COLOR, FALSE);
 
-	if(!jump_flag_)
+	if (!jump_flag_)
 		DrawLine3D(VAdd(position_, VGet(0, 40.0f, 0)), VAdd(position_, VGet(0, -10.0f, 0)), DEBUG_COLOR);
 
 	VECTOR start = VAdd(position_, VGet(0, 100.0f, 0));
 	VECTOR end = VAdd(start, VScale(VNorm(utility::GetForwardVector(rotation_.y)), 30.0f));
 	DrawLine3D(start, end, DEBUG_COLOR);
-
 }

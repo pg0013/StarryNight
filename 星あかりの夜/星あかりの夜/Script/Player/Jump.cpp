@@ -62,7 +62,7 @@ void Player::Jump()
 			if (trigger_key & PAD_INPUT_1)
 				jump_speed_ = 15.0f;
 		}
-		
+
 		//プレイヤーのカプセル情報
 		VECTOR capsule_positon1 = VAdd(position_, VGet(0, 100, 0));
 		VECTOR capsule_positon2 = VAdd(position_, VGet(0, 45, 0));
@@ -76,15 +76,32 @@ void Player::Jump()
 
 		if (hit_capsule_object.HitNum > 0)
 		{
-			//オブジェクトと当たったら位置はそのまま高さを変える
-			printfDx("%d\n", hit_capsule_object.HitNum);
-			position_.x = old_position.x;
-			position_.z = old_position.z;
-			position_.y += jump_speed_;
+			VECTOR normal = VNorm(hit_capsule_object.Dim->Normal);
+			VECTOR escape = VAdd(move, VScale(VScale(normal, -1.0f), VDot(move, normal)));
 
-			move.x = 0.0f;
-			move.y += jump_speed_;
-			move.z = 0.0f;
+			position_ = old_position;
+
+			if (VDot(normal, move) < 0.0f)
+			{
+				move.x = escape.x;
+				move.y += jump_speed_;
+				move.z = escape.z;
+
+				position_ = VAdd(position_, move);
+
+				camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, move));
+				camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
+			}
+			else
+			{
+				//移動処理
+				escape = VScale(normal, VSize(move));
+
+				move.x = escape.x;
+				move.y += jump_speed_;
+				move.z = escape.z;
+				position_ = VAdd(position_, move);
+			}
 		}
 		else
 		{

@@ -64,7 +64,7 @@ namespace starrynight
 
 			/**
 			 * @brief	パチンコを構える処理.
-			 * 
+			 *
 			 */
 			void HoldSlingShot();
 

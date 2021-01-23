@@ -43,6 +43,12 @@
     <Filter Include="ヘッダー ファイル\Camera">
       <UniqueIdentifier>{52c89068-034e-4431-b461-1922d0f7daa3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Star">
+      <UniqueIdentifier>{f8ca9e54-db2b-40bc-be30-8d391d8ba240}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Star">
+      <UniqueIdentifier>{ce2778e6-610d-4229-8aff-fc9677c48e79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Script\ApplicationMain.cpp">
@@ -121,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="Script\Camera\CameraParameters.h">
       <Filter>ヘッダー ファイル\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

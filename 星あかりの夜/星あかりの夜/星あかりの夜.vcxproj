@@ -36,6 +36,7 @@
     <ClCompile Include="Script\Stage\StageParameters.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Script\ApplicationMain.h" />
     <ClInclude Include="Script\Camera\Camera.h" />
     <ClInclude Include="Script\Camera\CameraParameters.h" />
