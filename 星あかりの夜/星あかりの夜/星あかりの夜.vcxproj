@@ -34,9 +34,10 @@
     <ClCompile Include="Script\Stage\CollisionToStage.cpp" />
     <ClCompile Include="Script\Stage\Stage.cpp" />
     <ClCompile Include="Script\Stage\StageParameters.cpp" />
+    <ClCompile Include="Script\Star\Star.cpp" />
+    <ClCompile Include="Script\Star\StarParameter.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h" />
     <ClInclude Include="Script\ApplicationMain.h" />
     <ClInclude Include="Script\Camera\Camera.h" />
     <ClInclude Include="Script\Camera\CameraParameters.h" />
@@ -47,6 +48,8 @@
     <ClInclude Include="Script\Player\PlayerParameters.h" />
     <ClInclude Include="Script\Stage\Stage.h" />
     <ClInclude Include="Script\Stage\StageParameters.h" />
+    <ClInclude Include="Script\Star\Star.h" />
+    <ClInclude Include="Script\Star\StarParameter.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

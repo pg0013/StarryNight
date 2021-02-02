@@ -6,6 +6,8 @@
  * @date   2020/12/17
  */
 #include "Stage.h"
+#include"../Mode/ModeGame.h"
+#include"../Star/Star.h"
 
 using namespace starrynight::stage;
 
@@ -26,30 +28,42 @@ Stage::~Stage()
 
 void Stage::Initialize()
 {
-	stage_param_.LoadStage("field_B", false);
+	stage_param_.LoadStage("stage_test", false);
+	star_param_.LoadStageStar("stage_test", false);
 
+	//Stageƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İ
 	auto handle_map = stage_param_.GetMapModelParam();
 	for (auto iter = handle_map.begin(); iter != handle_map.end(); iter++)
 	{
 		auto handle = resource::ResourceServer::GetModelHandle((*iter).second.handlename_);
 		stage_handle_.push_back(handle);
 
-		if (MV1SearchFrame(handle, "field_B_NavMesh_GEO") > 0)
+		if (MV1SearchFrame(handle, "floor_NavMesh") > 0)
 		{
-			MV1SetupCollInfo(handle, MV1SearchFrame(handle, "field_B_NavMesh_GEO"), 16, 16, 16);
-			//MV1SetFrameVisible(handle, MV1SearchFrame(handle, "field_B_NavMesh_GEO"), FALSE);
+			MV1SetupCollInfo(handle, MV1SearchFrame(handle, "floor_NavMesh"), 16, 16, 16);
 			navimesh_handle_.push_back(handle);
+			MV1SetFrameVisible(handle, MV1SearchFrame(handle, "floor_NavMesh"), FALSE);
 		}
-		if (MV1SearchFrame(handle, "foothold_NavMesh") > 0)
+		if (MV1SearchFrame(handle, "wall_NavMesh") > 0)
 		{
-			MV1SetupCollInfo(handle, MV1SearchFrame(handle, "foothold_NavMesh"), 16, 16, 16);
+			MV1SetupCollInfo(handle, MV1SearchFrame(handle, "wall_NavMesh"), 16, 16, 16);
 			navimesh_handle_.push_back(handle);
+			MV1SetFrameVisible(handle, MV1SearchFrame(handle, "wall_NavMesh"), TRUE);
 		}
-		if (MV1SearchFrame(handle, "step_NavMesh") > 0)
-		{
-			MV1SetupCollInfo(handle, MV1SearchFrame(handle, "step_NavMesh"), 16, 16, 16);
-			navimesh_handle_.push_back(handle);
-		}
+	}
+
+	//Starƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İ
+	handle_map = star_param_.GetMapModelParam();
+	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+
+	for (auto iter = handle_map.begin(); iter != handle_map.end(); iter++)
+	{
+		star::Star* star = NEW star::Star();
+		star->SetModelHandle(resource::ResourceServer::GetModelHandle((*iter).second.handlename_));
+		star->SetPosition((*iter).second.position_);
+		star->SetRotation((*iter).second.rotation_);
+		star->Initialize();
+		mode_game->object_server_.Add(star);
 	}
 }
 
@@ -84,4 +98,3 @@ void Stage::ClearHandle()
 	}
 	stage_handle_.clear();
 }
-

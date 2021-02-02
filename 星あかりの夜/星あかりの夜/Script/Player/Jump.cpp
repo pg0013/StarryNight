@@ -15,12 +15,42 @@ void Player::Jump()
 {
 	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
 
-	if (trigger_key & PAD_INPUT_1 &&
+	//腰から地面までの線分ベクトル
+	VECTOR start_line = VAdd(position_, VGet(0, 40.0f, 0));
+	VECTOR end_line = VAdd(position_, VGet(0, -5.0f, 0));
+
+	//Navimeshとの当たり判定
+	MV1_COLL_RESULT_POLY hit_poly_floor;
+	hit_poly_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
+
+	if (hit_poly_floor.HitFlag)
+	{
+		if (trigger_key & PAD_INPUT_1)
+		{
+			jump_speed_ = 15.0f;
+			status_ = STATUS::JUMP_START;
+			jump_flag_ = true;
+		}
+		else
+		{
+			if (jump_flag_)
+			{
+				if (jump_speed_ < 0.0f)
+					jump_flag_ = false;
+			}
+			else
+			{
+				jump_flag_ = false;
+			}
+		}
+	}
+	printfDx("%f\n", jump_speed_);
+
+	if (!hit_poly_floor.HitFlag &&
 		jump_flag_ == false)
 	{
-		jump_speed_ = 15.0f;
-		status_ = STATUS::JUMP;
 		jump_flag_ = true;
+		jump_speed_ = 0.0f;
 	}
 
 	if (jump_flag_)
@@ -49,59 +79,36 @@ void Player::Jump()
 		VECTOR start_line = VAdd(position_, VGet(0, 40.0f, 0));
 		VECTOR end_line = VAdd(position_, VGet(0, -10.0f, 0));
 
-		//乗れるオブジェクトとの当たり判定
-		MV1_COLL_RESULT_POLY hit_poly_object;
-		hit_poly_object = stage::Stage::GetInstance()->GetHitLineToColObject(start_line, end_line);
-
-		if (hit_poly_object.HitFlag)
-		{
-			position_.y = hit_poly_object.HitPosition.y;
-			jump_speed_ = 0.0f;
-
-			//足場からジャンプ
-			if (trigger_key & PAD_INPUT_1)
-				jump_speed_ = 15.0f;
-		}
-
 		//プレイヤーのカプセル情報
 		VECTOR capsule_positon1 = VAdd(position_, VGet(0, 100, 0));
 		VECTOR capsule_positon2 = VAdd(position_, VGet(0, 45, 0));
 		float radius = 35.0f;
 
 		//乗れるオブジェクトとの当たり判定
-		MV1_COLL_RESULT_POLY_DIM hit_capsule_object;
-		hit_capsule_object = stage::Stage::GetInstance()->GetHitCapsuleToColObject(capsule_positon1, capsule_positon2, radius);
+		MV1_COLL_RESULT_POLY_DIM hit_capsule_wall;
+		hit_capsule_wall = stage::Stage::GetInstance()->GetHitCapsuleToWall(capsule_positon1, capsule_positon2, radius);
 
-		VECTOR old_position = position_;
-
-		if (hit_capsule_object.HitNum > 0)
+		if (hit_capsule_wall.HitNum > 0)
 		{
-			VECTOR normal = VNorm(hit_capsule_object.Dim->Normal);
-			VECTOR escape = VAdd(move, VScale(VScale(normal, -1.0f), VDot(move, normal)));
-
-			position_ = old_position;
-
-			if (VDot(normal, move) < 0.0f)
+			VECTOR normal = { 0,0,0 };
+			for (int i = 0; i < hit_capsule_wall.HitNum; i++)
 			{
-				move.x = escape.x;
-				move.y += jump_speed_;
-				move.z = escape.z;
-
-				position_ = VAdd(position_, move);
-
-				camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, move));
-				camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
+				normal = VAdd(normal, hit_capsule_wall.Dim[i].Normal);
 			}
-			else
-			{
-				//移動処理
-				escape = VScale(normal, VSize(move));
+			normal = VNorm(normal);
+			VECTOR fall = { 0,jump_speed_,0 };
 
-				move.x = escape.x;
-				move.y += jump_speed_;
-				move.z = escape.z;
-				position_ = VAdd(position_, move);
-			}
+			move = VAdd(move, fall);
+
+			VECTOR escape = VCross(move, normal);
+			escape = VCross(normal, escape);
+
+			position_ = VAdd(position_, escape);
+
+			camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, escape));
+			camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
+
+			MV1CollResultPolyDimTerminate(hit_capsule_wall);
 		}
 		else
 		{
@@ -117,18 +124,20 @@ void Player::Jump()
 
 		jump_speed_ -= gravity_;
 
-		//腰から地面までの線分ベクトル
-		start_line = VAdd(position_, VGet(0, 40.0f, 0));
-		end_line = VAdd(position_, VGet(0, -10.0f, 0));
-
-		//Navimeshとの当たり判定
-		MV1_COLL_RESULT_POLY hit_poly_stage;
-		hit_poly_stage = stage::Stage::GetInstance()->GetHitLineToNaviMesh(start_line, end_line);
-
-		if (hit_poly_stage.HitFlag)
+		//ジャンプアニメーションを設定
+		if (jump_speed_ < 0.0f)
 		{
-			jump_flag_ = false;
-			status_ = STATUS::WAIT;
+			VECTOR start_line = VAdd(position_, VGet(0, 40.0f, 0));
+			VECTOR end_line = VAdd(position_, VGet(0, -40.0f, 0));
+
+			//Navimeshとの当たり判定
+			MV1_COLL_RESULT_POLY hit_jump_floor;
+			hit_jump_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
+
+			if (hit_jump_floor.HitFlag)
+				status_ = STATUS::JUMP_END;
+			else
+				status_ = STATUS::JUMP_LOOP;
 		}
 	}
 }

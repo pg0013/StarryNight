@@ -75,7 +75,7 @@ void Camera::Process()
 
 		MV1_COLL_RESULT_POLY hit_stage;
 		VECTOR hit_end_line = VAdd(position_, VGet(0, -90, 0));
-		hit_stage = stage::Stage::GetInstance()->GetHitLineToNaviMesh(position_, hit_end_line);
+		hit_stage = stage::Stage::GetInstance()->GetHitLineToFloor(position_, hit_end_line);
 
 		if (stick_ry > analog_min)
 		{
@@ -127,4 +127,13 @@ float Camera::GetCameraRad()
 
 	float camera_rad = atan2(diff_z, diff_x);
 	return camera_rad;
+}
+
+float Camera::GetCameraLength()
+{
+	float diff_x = position_.x - target_.x;
+	float diff_z = position_.z - target_.z;
+
+	float length = sqrt(diff_z * diff_z + diff_x * diff_x);
+	return length;
 }

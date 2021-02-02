@@ -76,7 +76,11 @@ namespace starrynight
 				NONE,
 				WAIT,
 				WALK,
-				JUMP,
+				RUN,
+				JUMP_START,
+				JUMP_LOOP,
+				JUMP_END,
+				SHOOT,
 				_EOT_
 			};
 
@@ -104,6 +108,7 @@ namespace starrynight
 			float anim_rate_;//アニメーションブレンド率
 			float anim_total_time_;//アニメーション総再生時間
 			float anim_play_time_;//アニメーション再生時間
+			bool anim_loop_flag_;//アニメーションをループするかどうか
 
 			STATUS status_;//プレイヤーの状態保持変数
 		};

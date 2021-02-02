@@ -25,10 +25,11 @@ Player::Player()
 	gravity_ = 0.5f;
 	jump_flag_ = false;
 
-	status_ = STATUS::WAIT;
+	status_ = STATUS::NONE;
 	anim_attach_index_ = -1;
-	old_anim_attach_index_ = -1;
-	anim_rate_ = 0.0f;
+	old_anim_attach_index_ = anim_attach_index_;
+	anim_rate_ = 1.0f;
+	anim_loop_flag_ = true;
 
 	Initialize();
 }
@@ -92,4 +93,37 @@ void Player::Render()
 	VECTOR start = VAdd(position_, VGet(0, 100.0f, 0));
 	VECTOR end = VAdd(start, VScale(VNorm(utility::GetForwardVector(rotation_.y)), 30.0f));
 	DrawLine3D(start, end, DEBUG_COLOR);
+
+	int x, y;
+	x = 0; y = 11 * DEBUG_FONT_SIZE;
+	switch (status_)
+	{
+	case starrynight::player::Player::STATUS::NONE:
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- status    : NONE", y / DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;
+		break;
+	case starrynight::player::Player::STATUS::WAIT:
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- status    : WAIT", y / DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;
+		break;
+	case starrynight::player::Player::STATUS::WALK:
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- status    : WALK", y / DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;
+		break;
+	case starrynight::player::Player::STATUS::RUN:
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- status    : RUN", y / DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;
+		break;
+	case starrynight::player::Player::STATUS::JUMP_START:
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- status    : JUMP_START", y / DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;
+		break;
+	case starrynight::player::Player::STATUS::JUMP_LOOP:
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- status    : JUMP_LOOP", y / DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;
+		break;
+	case starrynight::player::Player::STATUS::JUMP_END:
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- status    : JUMP_END", y / DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;
+		break;
+	case starrynight::player::Player::STATUS::SHOOT:
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- status    : SHOOT", y / DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;
+		break;
+	case starrynight::player::Player::STATUS::_EOT_:
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- status    : _EOT_", y / DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;
+		break;
+	}
 }

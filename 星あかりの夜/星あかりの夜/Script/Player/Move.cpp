@@ -21,20 +21,46 @@ void Player::Move()
 	float length = utility::GetLeftStickLength();
 	float rad = utility::GetLeftStickRad();
 
-	float analog_min = 0.2f;//アナログスティックのデッドスペース
+	float analog_min = 0.1f;//アナログスティックのデッドスペース
 	if (length < analog_min)
 		length = 0.0f;
+	else if (length < 0.6f)
+		length = move_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime() / 4.0f;
 	else
 		length = move_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
 
 	VECTOR move = { 0,0,0 };
 
+	//着地硬直
+	if (status_ == STATUS::JUMP_END)
+	{
+		if (length < analog_min)
+			move = { 0,0,0 };
+		else
+			length = 2.5f;
+	}
+
 	move.x = cos(rad + camera_rad) * length;
 	move.z = sin(rad + camera_rad) * length;
 
-	VECTOR old_positon = position_;
+	VECTOR old_position = position_;
 	VECTOR old_move = move;
 	float direction = VCross(VNorm(move), utility::GetForwardVector(rotation_.y)).y;
+
+	//move分移動
+	if (jump_flag_ == false)
+	{
+		position_ = VAdd(position_, move);
+	}
+
+	//Navimeshとの当たり判定
+	MV1_COLL_RESULT_POLY hit_poly_floor;
+
+	//腰から地面までの線分ベクトル
+	VECTOR start_line = VAdd(position_, VGet(0, 40.0f, 0));
+	VECTOR end_line = VAdd(position_, VGet(0, -30.0f, 0));
+
+	hit_poly_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
 
 	//プレイヤーのカプセル情報
 	VECTOR capsule_positon1 = VAdd(position_, VGet(0, 100, 0));
@@ -42,99 +68,88 @@ void Player::Move()
 	float radius = 35.0f;
 
 	MV1_COLL_RESULT_POLY_DIM hit_poly_wall;
-	hit_poly_wall = stage::Stage::GetInstance()->GetHitCapsuleToColObject(capsule_positon1, capsule_positon2, radius);
+	hit_poly_wall = stage::Stage::GetInstance()->GetHitCapsuleToWall(capsule_positon1, capsule_positon2, radius);
 
-	VECTOR old_escape = utility::GetForwardVector(rotation_.y);
-
-	//壁ずり処理
-	int escape_max_rad = 80;
-	for (int i = 0; i < escape_max_rad; i++)
+	if (hit_poly_wall.HitNum > 0)
 	{
-		float escape_rad = DEG2RAD(i);
-
-		//壁ずりする角度をプレイヤーの向きによって調整
-		if (direction > 0)
-			escape_rad *= -1;
-
-		//moveの角度をescape_rad分変更
-		move.x = cos(rad + camera_rad + escape_rad) * length;
-		move.z = sin(rad + camera_rad + escape_rad) * length;
-
-		//move分移動
-		position_ = VAdd(position_, move);
-
-		//Navimeshとの当たり判定
-		MV1_COLL_RESULT_POLY hit_poly_stage;
-
-		//腰から地面までの線分ベクトル
-		VECTOR start_line = VAdd(position_, VGet(0, 40.0f, 0));
-		VECTOR end_line = VAdd(position_, VGet(0, -30.0f, 0));
-
-		hit_poly_stage = stage::Stage::GetInstance()->GetHitLineToNaviMesh(start_line, end_line);
-
-		if (hit_poly_wall.HitNum > 0 &&
-			jump_flag_ == false)
+		VECTOR normal = { 0,0,0 };
+		for (int i = 0; i < hit_poly_wall.HitNum; i++)
 		{
-			VECTOR normal = VNorm(hit_poly_wall.Dim->Normal);
-
-			VECTOR escape = VAdd(move, VScale(normal, VDot(VScale(move, -1.0f), normal)));
-
-			position_ = old_positon;
-			printfDx("%f\n", VDot(normal, move));
-			if (VDot(normal, move) < 0.0f)
-			{
-				position_ = VAdd(position_, escape);
-
-				camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, escape));
-			}
-			else
-			{
-				position_ = VAdd(position_, VScale(normal, VSize(move)));
-				camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, VScale(normal, VSize(move))));
-			}
-
-			if (hit_poly_stage.HitFlag)
-				position_.y = hit_poly_stage.HitPosition.y;
-
-			camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
-
-			MV1CollResultPolyDimTerminate(hit_poly_wall);
-			break;
+			normal = VAdd(normal, hit_poly_wall.Dim[i].Normal);
 		}
-		if (hit_poly_stage.HitFlag &&
-			jump_flag_ == false)
+		normal = VNorm(normal);
+
+		VECTOR escape = VCross(move, normal);
+		escape = VCross(normal, escape);
+		escape.y = 0.0f;
+
+		position_ = old_position;
+		position_ = VAdd(position_, escape);
+
+		MV1CollResultPolyDimTerminate(hit_poly_wall);
+
+		VECTOR camera_diff = camera_pos;
+		camera_diff.x = camera_tar.x + 300.0f * cos(camera_rad);
+		camera_diff.z = camera_tar.z + 300.0f * sin(camera_rad);
+
+		camera::Camera::GetInstance()->SetPosition(camera_diff);
+		camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
+
+		//押し出し処理
+		while (1)
 		{
-			position_.y = hit_poly_stage.HitPosition.y;
+			//プレイヤーのカプセル情報
+			VECTOR capsule_positon1 = VAdd(position_, VGet(0, 100, 0));
+			VECTOR capsule_positon2 = VAdd(position_, VGet(0, 45, 0));
+			float radius = 35.0f;
 
-			//キャラクターのy座標を調整
-			move.y += position_.y - old_positon.y;
+			MV1_COLL_RESULT_POLY_DIM hit_poly_wallpush;
+			hit_poly_wallpush = stage::Stage::GetInstance()->GetHitCapsuleToWall(capsule_positon1, capsule_positon2, radius);
 
-			//カメラを移動
-			camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, move));
-			camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
+			if (hit_poly_wallpush.HitNum == 0)
+				break;
 
-			break;
+			VECTOR normal = { 0,0,0 };
+			for (int i = 0; i < hit_poly_wall.HitNum; i++)
+			{
+				normal = VAdd(normal, VNorm(hit_poly_wall.Dim[i].Normal));
+			}
+			normal = VNorm(normal);
+			normal.y = 0;
+
+			position_ = VAdd(position_, VScale(normal, 0.5f));
+
+			MV1CollResultPolyDimTerminate(hit_poly_wallpush);
 		}
+	}
+	else if (hit_poly_floor.HitFlag &&
+		jump_flag_ == false)
+	{
+		position_.y = hit_poly_floor.HitPosition.y;
+
+		//キャラクターのy座標を調整
+		move.y += position_.y - old_position.y;
+
+		//カメラを移動
+		camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, move));
+		camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
+	}
+
+	//アニメーションステータスを設定
+	if (jump_flag_ == false)
+	{
+		if (status_ == STATUS::JUMP_END &&
+			anim_play_time_ < anim_total_time_ * 2 / 3)
+			status_ = STATUS::JUMP_END;
+		else if (utility::GetLeftStickLength() < analog_min)
+			status_ = STATUS::WAIT;
+		else if (utility::GetLeftStickLength() < 0.6f)
+			status_ = STATUS::WALK;
 		else
-		{
-			//Navimeshに当たらなかったので元に戻す
-			position_ = old_positon;
-			move = old_move;
-			camera::Camera::GetInstance()->SetPosition(camera_pos);
-			camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
-		}
+			status_ = STATUS::RUN;
 	}
 
-	if (VSize(move) > 0.0f)
-	{
-		status_ = STATUS::WALK;
-	}
-	else
-	{
-		status_ = STATUS::WAIT;
-	}
-
-	if (VSize(move) > 0.0f)
+	if (length > analog_min)
 	{
 		//スティック方向の角度
 		float stick_rad = atan2(-1.0f * move.x, -1.0f * move.z);

@@ -23,7 +23,7 @@ namespace starrynight
 			 */
 			enum class OBJECT_TYPE
 			{
-				PLAYER
+				PLAYER,ENEMY,STAR
 			};
 
 			/**
@@ -59,14 +59,14 @@ namespace starrynight
 			virtual void Initialize();
 
 			/**
-			 * @fn	virtual void ObjectBase::Process(Game& _game);
+			 * @fn	virtual void ObjectBase::Process();
 			 *
 			 * @brief	毎フレーム呼ばれる演算処理
 			 */
 			virtual void Process();
 
 			/**
-			 * @fn	virtual void ObjectBase::Render(Game& _game);
+			 * @fn	virtual void ObjectBase::Render();
 			 *
 			 * @brief	描画処理
 			 */
@@ -99,6 +99,8 @@ namespace starrynight
 			 * @return 回転角度(x,y,z)[rad]
 			 */
 			inline VECTOR GetRotation() { return MV1GetRotationXYZ(handle_); }
+
+			inline void SetModelHandle(const handle _handle) { handle_ = _handle; }
 
 			/**
 			 * @brief	オブジェクトのハンドルを返す.

@@ -65,6 +65,14 @@ namespace starrynight
 			 */
 			float GetCameraRad();
 
+			/**
+			 * @brief ƒJƒƒ‰‚Æ‚Ì‹——£‚ğ•Ô‚·.
+			 * 
+			 * @return 
+			 */
+			float GetCameraLength();
+
+
 			CLIP GetClip() { return clip_; }
 			void SetClip(float _near, float _far)
 			{

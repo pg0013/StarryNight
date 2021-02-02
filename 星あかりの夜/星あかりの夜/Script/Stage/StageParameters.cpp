@@ -20,7 +20,7 @@ StageParameters::~StageParameters()
 
 void StageParameters::LoadStage(std::string _stagename, bool _async_flag)
 {
-	std::string json_name = "Resource/json/stage/" + _stagename + ".json";
+	std::string json_name = "Resource/json/stage/" + _stagename + "/" + _stagename + ".json";
 	std::ifstream ifs(json_name.c_str());
 
 	if (ifs.fail())
@@ -108,7 +108,7 @@ void StageParameters::LoadStage(std::string _stagename, bool _async_flag)
 		}
 
 		//ステージ名のファイルパスを追加
-		std::string stage_name = _stagename + "/" + param.filename_;
+		std::string stage_name = _stagename + "/models/" + param.filename_;
 
 		//ResourceServerにハンドルを保存
 		resource::ResourceServer::RegisterModel("Stage", stage_name, param.handlename_, _async_flag);

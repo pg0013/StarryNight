@@ -91,7 +91,6 @@ namespace utility
 		XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
 
 		float stick_lx, stick_ly;//アナログスティックの座標
-		float analog_min = 0.2f;//アナログスティックのデッドスペース
 
 		stick_lx = x_input.ThumbLX / THUMB_MAX;
 		stick_ly = -x_input.ThumbLY / THUMB_MAX;
@@ -106,7 +105,6 @@ namespace utility
 		XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
 
 		float stick_lx, stick_ly;//アナログスティックの座標
-		float analog_min = 0.2f;//アナログスティックのデッドスペース
 
 		stick_lx = x_input.ThumbLX / THUMB_MAX;
 		stick_ly = -x_input.ThumbLY / THUMB_MAX;

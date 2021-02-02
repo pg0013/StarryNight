@@ -9,18 +9,18 @@
 #include"Stage.h"
 using namespace starrynight::stage;
 
-MV1_COLL_RESULT_POLY Stage::GetHitLineToNaviMesh(VECTOR& _startline, VECTOR& _endline)
+MV1_COLL_RESULT_POLY Stage::GetHitLineToFloor(VECTOR& _startline, VECTOR& _endline)
 {
 	MV1_COLL_RESULT_POLY hit_poly;
 	hit_poly.HitFlag = 0;
 
 	for (auto iter = navimesh_handle_.begin(); iter != navimesh_handle_.end(); iter++)
 	{
-		if (MV1SearchFrame((*iter), "field_B_NavMesh_GEO") > 0)
+		if (MV1SearchFrame((*iter), "floor_NavMesh") > 0)
 		{
 			hit_poly = MV1CollCheck_Line(
 				(*iter),
-				MV1SearchFrame((*iter), "field_B_NavMesh_GEO"),
+				MV1SearchFrame((*iter), "floor_NavMesh"),
 				_startline, _endline);
 		}
 
@@ -31,25 +31,18 @@ MV1_COLL_RESULT_POLY Stage::GetHitLineToNaviMesh(VECTOR& _startline, VECTOR& _en
 	return hit_poly;
 }
 
-MV1_COLL_RESULT_POLY Stage::GetHitLineToColObject(VECTOR& _startline, VECTOR& _endline)
+MV1_COLL_RESULT_POLY Stage::GetHitLineToWall(VECTOR& _startline, VECTOR& _endline)
 {
 	MV1_COLL_RESULT_POLY hit_poly;
 	hit_poly.HitFlag = 0;
 
 	for (auto iter = navimesh_handle_.begin(); iter != navimesh_handle_.end(); iter++)
 	{
-		if (MV1SearchFrame((*iter), "foothold_NavMesh") > 0)
+		if (MV1SearchFrame((*iter), "wall_NavMesh") > 0)
 		{
 			hit_poly = MV1CollCheck_Line(
 				(*iter),
-				MV1SearchFrame((*iter), "foothold_NavMesh"),
-				_startline, _endline);
-		}
-		if (MV1SearchFrame((*iter), "step_NavMesh") > 0)
-		{
-			hit_poly = MV1CollCheck_Line(
-				(*iter),
-				MV1SearchFrame((*iter), "step_NavMesh"),
+				MV1SearchFrame((*iter), "wall_NavMesh"),
 				_startline, _endline);
 		}
 
@@ -60,18 +53,18 @@ MV1_COLL_RESULT_POLY Stage::GetHitLineToColObject(VECTOR& _startline, VECTOR& _e
 	return hit_poly;
 }
 
-MV1_COLL_RESULT_POLY_DIM Stage::GetHitSphereToStage(VECTOR& _position, float _radius)
+MV1_COLL_RESULT_POLY_DIM Stage::GetHitSphereToFloor(VECTOR& _position, float _radius)
 {
 	MV1_COLL_RESULT_POLY_DIM hit_poly;
 	hit_poly.HitNum = 0;
 
 	for (auto iter = navimesh_handle_.begin(); iter != navimesh_handle_.end(); iter++)
 	{
-		if (MV1SearchFrame((*iter), "field_B_NavMesh_GEO") > 0)
+		if (MV1SearchFrame((*iter), "floor_NavMesh") > 0)
 		{
 			hit_poly = MV1CollCheck_Sphere(
 				(*iter),
-				MV1SearchFrame((*iter), "field_B_NavMesh_GEO"),
+				MV1SearchFrame((*iter), "floor_NavMesh"),
 				_position,
 				_radius);
 		}
@@ -82,26 +75,18 @@ MV1_COLL_RESULT_POLY_DIM Stage::GetHitSphereToStage(VECTOR& _position, float _ra
 	return hit_poly;
 }
 
-MV1_COLL_RESULT_POLY_DIM Stage::GetHitSphereToColObject(VECTOR& _position, float _radius)
+MV1_COLL_RESULT_POLY_DIM Stage::GetHitSphereToWall(VECTOR& _position, float _radius)
 {
 	MV1_COLL_RESULT_POLY_DIM hit_poly;
 	hit_poly.HitNum = 0;
 
 	for (auto iter = navimesh_handle_.begin(); iter != navimesh_handle_.end(); iter++)
 	{
-		if (MV1SearchFrame((*iter), "foothold_NavMesh") > 0)
+		if (MV1SearchFrame((*iter), "wall_NavMesh") > 0)
 		{
 			hit_poly = MV1CollCheck_Sphere(
 				(*iter),
-				MV1SearchFrame((*iter), "foothold_NavMesh"),
-				_position,
-				_radius);
-		}
-		if (MV1SearchFrame((*iter), "step_NavMesh") > 0)
-		{
-			hit_poly = MV1CollCheck_Sphere(
-				(*iter),
-				MV1SearchFrame((*iter), "step_NavMesh"),
+				MV1SearchFrame((*iter), "wall_NavMesh"),
 				_position,
 				_radius);
 		}
@@ -112,18 +97,18 @@ MV1_COLL_RESULT_POLY_DIM Stage::GetHitSphereToColObject(VECTOR& _position, float
 	return hit_poly;
 }
 
-MV1_COLL_RESULT_POLY_DIM Stage::GetHitCapsuleToStage(VECTOR& _position1, VECTOR& _position2, float _radius)
+MV1_COLL_RESULT_POLY_DIM Stage::GetHitCapsuleToFloor(VECTOR& _position1, VECTOR& _position2, float _radius)
 {
 	MV1_COLL_RESULT_POLY_DIM hit_poly;
 	hit_poly.HitNum = 0;
 
 	for (auto iter = navimesh_handle_.begin(); iter != navimesh_handle_.end(); iter++)
 	{
-		if (MV1SearchFrame((*iter), "field_B_NavMesh_GEO") > 0)
+		if (MV1SearchFrame((*iter), "floor_NavMesh") > 0)
 		{
 			hit_poly = MV1CollCheck_Capsule(
 				(*iter),
-				MV1SearchFrame((*iter), "field_B_NavMesh_GEO"),
+				MV1SearchFrame((*iter), "floor_NavMesh"),
 				_position1, _position2, _radius);
 		}
 
@@ -134,25 +119,18 @@ MV1_COLL_RESULT_POLY_DIM Stage::GetHitCapsuleToStage(VECTOR& _position1, VECTOR&
 	return hit_poly;
 }
 
-MV1_COLL_RESULT_POLY_DIM Stage::GetHitCapsuleToColObject(VECTOR& _position1, VECTOR& _position2, float _radius)
+MV1_COLL_RESULT_POLY_DIM Stage::GetHitCapsuleToWall(VECTOR& _position1, VECTOR& _position2, float _radius)
 {
 	MV1_COLL_RESULT_POLY_DIM hit_poly;
 	hit_poly.HitNum = 0;
 
 	for (auto iter = navimesh_handle_.begin(); iter != navimesh_handle_.end(); iter++)
 	{
-		if (MV1SearchFrame((*iter), "foothold_NavMesh") > 0)
+		if (MV1SearchFrame((*iter), "wall_NavMesh") > 0)
 		{
 			hit_poly = MV1CollCheck_Capsule(
 				(*iter),
-				MV1SearchFrame((*iter), "foothold_NavMesh"),
-				_position1, _position2, _radius);
-		}
-		if (MV1SearchFrame((*iter), "step_NavMesh") > 0)
-		{
-			hit_poly = MV1CollCheck_Capsule(
-				(*iter),
-				MV1SearchFrame((*iter), "step_NavMesh"),
+				MV1SearchFrame((*iter), "wall_NavMesh"),
 				_position1, _position2, _radius);
 		}
 

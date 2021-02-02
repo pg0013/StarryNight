@@ -96,6 +96,12 @@
     <ClCompile Include="Script\Player\HoldSlingShot.cpp">
       <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Star\Star.cpp">
+      <Filter>ソース ファイル\Star</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Star\StarParameter.cpp">
+      <Filter>ソース ファイル\Star</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h">
@@ -128,8 +134,11 @@
     <ClInclude Include="Script\Camera\CameraParameters.h">
       <Filter>ヘッダー ファイル\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Script\Star\Star.h">
+      <Filter>ヘッダー ファイル\Star</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Star\StarParameter.h">
+      <Filter>ヘッダー ファイル\Star</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
