@@ -13,12 +13,13 @@ using namespace starrynight::player;
 Player::Player()
 {
 	player_param_.LoadModelParameters("player");
-	std::vector<std::string> param = { "move_speed","rot_speed" };
+	std::vector<std::string> param = { "walk_speed","run_speed","rot_speed" };
 	player_param_.LoadPlayerParameters(param);
 
 	handle_ = resource::ResourceServer::GetModelHandle("player");
 
-	move_speed_ = player_param_.GetPlayerParam("move_speed");
+	walk_speed_ = player_param_.GetPlayerParam("walk_speed");
+	run_speed_ = player_param_.GetPlayerParam("run_speed");
 	rot_speed_ = player_param_.GetPlayerParam("rot_speed");
 
 	jump_speed_ = 0.0f;
@@ -50,12 +51,26 @@ void Player::Input()
 void Player::Process()
 {
 	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
+	int key = appframe::ApplicationBase::GetInstance()->GetKey();
 	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
 	STATUS old_status = status_;
 
-	Move();
-	Jump();
-	HoldSlingShot();
+	if (x_input.RightTrigger == 255)
+	{
+		HoldSlingShot();
+		mode::ModeGame* mode_game = 
+			static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		mode_game->ui_.shoot_ui_.SetDrawShootGuide(true);
+	}
+	else
+	{
+		mode::ModeGame* mode_game =
+			static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
+
+		Move();
+		Jump();
+	}
 
 	if (position_.y < -100)
 	{
@@ -119,8 +134,11 @@ void Player::Render()
 	case starrynight::player::Player::STATUS::JUMP_END:
 		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- status    : JUMP_END", y / DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;
 		break;
-	case starrynight::player::Player::STATUS::SHOOT:
-		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- status    : SHOOT", y / DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;
+	case starrynight::player::Player::STATUS::SHOOT_START:
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- status    : SHOOT_START", y / DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;
+		break;
+	case starrynight::player::Player::STATUS::SHOOT_END:
+		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- status    : SHOOT_END", y / DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;
 		break;
 	case starrynight::player::Player::STATUS::_EOT_:
 		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- status    : _EOT_", y / DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;

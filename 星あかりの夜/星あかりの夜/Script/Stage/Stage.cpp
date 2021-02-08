@@ -48,7 +48,7 @@ void Stage::Initialize()
 		{
 			MV1SetupCollInfo(handle, MV1SearchFrame(handle, "wall_NavMesh"), 16, 16, 16);
 			navimesh_handle_.push_back(handle);
-			MV1SetFrameVisible(handle, MV1SearchFrame(handle, "wall_NavMesh"), TRUE);
+			MV1SetFrameVisible(handle, MV1SearchFrame(handle, "wall_NavMesh"), FALSE);
 		}
 	}
 

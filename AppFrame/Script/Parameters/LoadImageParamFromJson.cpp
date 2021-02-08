@@ -13,9 +13,10 @@
 
 namespace parameters
 {
-	void Parameters::LoadImagParameters(const std::string _mode, bool _async_flag)
+	void Parameters::LoadImagParameters(std::string _file_name, bool _async_flag)
 	{
-		std::ifstream ifs("Resource/json/imag.json");
+		std::string json_name = "Resource/json/image/" + _file_name + ".json";
+		std::ifstream ifs(json_name);
 
 		if (ifs.fail())
 		{
@@ -39,8 +40,7 @@ namespace parameters
 
 		//指定モード名のオブジェクトからimag配列を読み込む
 		auto json_object = json_value.get<picojson::object>();
-		auto mode_object = json_object[_mode].get<picojson::object>();
-		auto imag_array = mode_object["imag"].get<picojson::array>();
+		auto imag_array = json_object["image"].get<picojson::array>();
 
 		for (auto iter = imag_array.begin(); iter != imag_array.end(); iter++)
 		{
@@ -72,7 +72,7 @@ namespace parameters
 				param.ysize_ = static_cast<int>(imag["ysize"].get<double>());
 			}
 
-			resource::ResourceServer::RegisterDivGraph(_mode, param.filename_, param.xnum_ * param.ynum_,
+			resource::ResourceServer::RegisterDivGraph(_file_name, param.filename_, param.xnum_ * param.ynum_,
 				param.xnum_, param.ynum_, param.xsize_, param.ysize_, _async_flag);
 
 			map_imag_param_.emplace(param.filename_, param);

@@ -3,7 +3,7 @@
 		"camera": {
 			"move_speed": 5,
 			"rot_speed": 3,
-			"near": 2,
+			"near": 1,
 			"far": 10000
 		}
 	}

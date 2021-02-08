@@ -25,9 +25,9 @@ void Player::Move()
 	if (length < analog_min)
 		length = 0.0f;
 	else if (length < 0.6f)
-		length = move_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime() / 4.0f;
+		length = walk_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
 	else
-		length = move_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
+		length = run_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
 
 	VECTOR move = { 0,0,0 };
 

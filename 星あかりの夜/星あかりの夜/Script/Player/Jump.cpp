@@ -44,7 +44,6 @@ void Player::Jump()
 			}
 		}
 	}
-	printfDx("%f\n", jump_speed_);
 
 	if (!hit_poly_floor.HitFlag &&
 		jump_flag_ == false)
@@ -63,12 +62,14 @@ void Player::Jump()
 		float length = utility::GetLeftStickLength();
 		float rad = utility::GetLeftStickRad();
 
-		float analog_min = 0.2f;//アナログスティックのデッドスペース
+		float analog_min = 0.1f;//アナログスティックのデッドスペース
 
 		if (length < analog_min)
 			length = 0.0f;
+		else if (length < 0.6f)
+			length = walk_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
 		else
-			length = move_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
+			length = run_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
 
 		//移動量の計算
 		VECTOR move = { 0,0,0 };
@@ -105,7 +106,11 @@ void Player::Jump()
 
 			position_ = VAdd(position_, escape);
 
-			camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, escape));
+			VECTOR camera_diff = camera_pos;
+			camera_diff.x = camera_tar.x + 300.0f * cos(camera_rad);
+			camera_diff.z = camera_tar.z + 300.0f * sin(camera_rad);
+
+			camera::Camera::GetInstance()->SetPosition(camera_diff);
 			camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
 
 			MV1CollResultPolyDimTerminate(hit_capsule_wall);

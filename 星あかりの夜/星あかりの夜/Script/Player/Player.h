@@ -80,7 +80,8 @@ namespace starrynight
 				JUMP_START,
 				JUMP_LOOP,
 				JUMP_END,
-				SHOOT,
+				SHOOT_START,
+				SHOOT_END,
 				_EOT_
 			};
 
@@ -95,7 +96,8 @@ namespace starrynight
 			//プレイヤーパラメータ保持クラス
 			PlayerParameters player_param_;
 
-			float move_speed_;//移動速度
+			float walk_speed_;//移動速度
+			float run_speed_;//移動速度
 			float rot_speed_;//回転速度
 
 			float jump_speed_;//ジャンプ速度

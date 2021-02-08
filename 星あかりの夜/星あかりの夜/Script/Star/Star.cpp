@@ -8,6 +8,7 @@
 
 #include "Star.h"
 #include"../Stage/Stage.h"
+#include"../Mode/ModeGame.h"
 
 using namespace starrynight::star;
 
@@ -18,6 +19,9 @@ Star::Star()
 	jump_height_ = 5.0f;
 	jump_speed_ = jump_height_;
 	gravity_ = 0.1f;
+	star_num_ = 0;
+	follow_interval_ = 100.0f;
+	old_player_position_ = { 0,0,0 };
 }
 
 Star::~Star()
@@ -57,17 +61,30 @@ void Star::Wait()
 
 	VECTOR distance = VSub(player_position, position_);
 	float length = VSize(distance);
-	float detect_length = 500.0f;
+	float detect_length = 500.0f;//検出範囲
+	float touch_length = 100.0f;//取得範囲
 
 	//Navimeshとの当たり判定
 	MV1_COLL_RESULT_POLY hit_poly_floor;
 
-	//腰から地面までの線分ベクトル
+	//地面までの線分ベクトル
 	VECTOR start_line = position_;
 	VECTOR end_line = VAdd(position_, VGet(0, -10.0f, 0));
 
 	hit_poly_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
 
+	//プレイヤーとの距離が取得範囲ないであれば、followモードへ遷移
+	if (length < touch_length)
+	{
+		status_ = STATUS::FOLLOW;
+
+		//取得したスターの数を増やす
+		mode::ModeGame* modegame = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		modegame->AddPlayerStarNum();
+		star_num_ = modegame->GetPlayerStarNum();
+	}
+
+	//プレイヤーとの距離が検出範囲であれば、飛び跳ねる
 	if (length < detect_length)
 	{
 		if (position_.y < ground_position_y_)
@@ -78,8 +95,6 @@ void Star::Wait()
 
 		position_.y += jump_speed_;
 		jump_speed_ -= gravity_;
-
-		rotation_.y += DEG2RAD(rot_speed_);
 	}
 	else
 	{
@@ -97,6 +112,36 @@ void Star::Wait()
 
 void Star::Follow()
 {
+	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
+	player_position = VAdd(player_position, VGet(0.0f, 50.0f, 0.0f));
+
+	//前フレームとの移動距離が小さい場合は、キューに追加しない
+	float move_min_size = 1.0f;
+	if (VSize(VSub(player_position, old_player_position_)) > move_min_size)
+		player_pos_history_.push(player_position);
+
+	if (VSize(VSub(player_position, position_)) > star_num_ * follow_interval_)
+	{
+		VECTOR que_position;
+
+		while (1)
+		{
+			que_position = player_pos_history_.front();
+
+			//プレイヤーとの距離が間隔より近ければ、遠くなるまで待つ
+			if (VSize(VSub(player_position, que_position)) >= star_num_ * follow_interval_)
+				player_pos_history_.pop();
+			else
+				break;
+		}
+
+		VECTOR star_move = VScale(VSub(que_position, position_), 0.1f);
+		position_ = VAdd(position_, star_move);
+
+		player_pos_history_.pop();
+	}
+
+	old_player_position_ = player_position;
 }
 
 void Star::Diffusion()
@@ -105,6 +150,8 @@ void Star::Diffusion()
 
 void Star::Render()
 {
+	rotation_.y += DEG2RAD(rot_speed_);
+
 	MV1SetPosition(handle_, position_);
 	MV1SetRotationXYZ(handle_, rotation_);
 	MV1DrawModel(handle_);

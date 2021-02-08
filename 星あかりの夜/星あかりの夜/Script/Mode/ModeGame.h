@@ -10,6 +10,7 @@
 #include"../Stage/Stage.h"
 #include"../Object/ObjectServer.h"
 #include"../Camera/Camera.h"
+#include"../UI/UIManager.h"
 
 namespace starrynight
 {
@@ -62,10 +63,31 @@ namespace starrynight
 			camera::Camera camera_;
 			object::ObjectServer object_server_;
 			stage::Stage stage_;
+			ui::UIManager ui_;
+
+		public:
+			/**
+			 * @brief　 プレイヤーが取得したステージスターの数を取得する
+			 *
+			 * @return   取得したスターの数
+			 */
+			int GetPlayerStarNum() { return player_star_num_; }
+
+			/**
+			 * @brief　 プレイヤーが取得したスターの数を設定する
+			 *
+			 * @param  _star_num　取得したスターの数
+			 */
+			void SetPlayerStarNum(int _star_num) { player_star_num_ = _star_num; }
+
+			/**
+			 * @brief　 プレイヤーが取得したスターの数を＋１する
+			 */
+			void AddPlayerStarNum() { player_star_num_++; }
 
 		private:
 			bool stop_object_process_;//オブジェクトの処理をストップする
+			int player_star_num_;
 		};
-
 	}
 }

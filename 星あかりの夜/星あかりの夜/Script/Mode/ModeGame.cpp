@@ -13,11 +13,11 @@ using namespace starrynight::mode;
 ModeGame::ModeGame()
 {
 	stop_object_process_ = false;
+	player_star_num_ = 0;
 }
 
 ModeGame::~ModeGame()
 {
-
 }
 
 bool ModeGame::Initialize()
@@ -26,6 +26,7 @@ bool ModeGame::Initialize()
 
 	camera_.Initialize();
 	stage_.Initialize();
+	ui_.Initialize();
 
 	object::ObjectBase* player = NEW player::Player();
 	object_server_.Add(player);
@@ -38,6 +39,7 @@ bool ModeGame::Terminate()
 	::mode::ModeBase::Terminate();
 
 	object_server_.Clear();
+	ui_.Terminate();
 
 	return true;
 }
@@ -52,6 +54,7 @@ bool ModeGame::Process()
 	}
 
 	camera_.Process();
+	ui_.Process();
 
 	return true;
 }
@@ -68,7 +71,8 @@ bool ModeGame::Render()
 
 	object_server_.Render();
 	stage_.Render();
-
+	ui_.Render();
+	
 #ifdef DEBUG_FUNCTION
 	camera_.DrawDebugMenu();
 	utility::DrawModelDebugInfo(resource::ResourceServer::GetModelHandle("player"), "Player", 7);

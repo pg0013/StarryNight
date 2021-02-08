@@ -52,10 +52,10 @@ namespace parameters
 		 * @brief 画像パラメータをjsonから読み込み
 		 *				パラメータはファイル名をkeyとしたimag_map_に保存
 		 *
-		 * @param  _mode	ゲームのモード名
+		 * @param  _folder_name ファイル名
 		 * @param  _async_flag　非同期読み込み用フラグ
 		 */
-		void LoadImagParameters(const std::string _mode, bool _async_flag = false);
+		void LoadImagParameters(const std::string _file_name, bool _async_flag = false);
 
 		/**
 		 * @brief　 Resource/json/model.jsonにあるオブジェクトのモデルパラメータを読み込む処理

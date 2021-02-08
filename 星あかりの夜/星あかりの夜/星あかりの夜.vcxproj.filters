@@ -49,6 +49,12 @@
     <Filter Include="ヘッダー ファイル\Star">
       <UniqueIdentifier>{ce2778e6-610d-4229-8aff-fc9677c48e79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\UI">
+      <UniqueIdentifier>{4f78ebce-9f57-40af-9033-55aa0ea2cc66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\UI">
+      <UniqueIdentifier>{52e18750-8f79-4801-a3d7-261ff8792292}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Script\ApplicationMain.cpp">
@@ -102,6 +108,18 @@
     <ClCompile Include="Script\Star\StarParameter.cpp">
       <Filter>ソース ファイル\Star</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Camera\MoveCamera.cpp">
+      <Filter>ソース ファイル\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Camera\ShootCamera.cpp">
+      <Filter>ソース ファイル\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\UI\UIManager.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\UI\Shoot_UI.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h">
@@ -139,6 +157,12 @@
     </ClInclude>
     <ClInclude Include="Script\Star\StarParameter.h">
       <Filter>ヘッダー ファイル\Star</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\UI\UIManager.h">
+      <Filter>ヘッダー ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\UI\Shoot_UI.h">
+      <Filter>ヘッダー ファイル\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

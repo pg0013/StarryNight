@@ -1,10 +1,95 @@
 {
-"stage_test" : [
-{"filename" : "step_C_flat_GEO","handlename" : "step_C_flat_GEO1","tx" : 1536.739,"ty" : 0,"tz" : 38.102,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1,"sy" : 1,"sz" : 1},
-{"filename" : "step_D_flat_GEO","handlename" : "step_D_flat_GEO1","tx" : 1556.52,"ty" : 175,"tz" : -0,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1,"sy" : 1,"sz" : 1},
-{"filename" : "island_GEO","handlename" : "island_GEO","tx" : 0,"ty" : 0,"tz" : -0,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1,"sy" : 1,"sz" : 1},
-{"filename" : "cliff_A_flat_GEO","handlename" : "cliff_A_flat_GEO1","tx" : 0,"ty" : 0,"tz" : -1281.949,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1,"sy" : 1,"sz" : 1},
-{"filename" : "step_A_bumpy_GEO","handlename" : "step_A_bumpy_GEO1","tx" : 0,"ty" : 0,"tz" : 1330.767,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1,"sy" : 1,"sz" : 1},
-{"filename" : "slope_A_GEO","handlename" : "slope_A_GEO1","tx" : 0,"ty" : 0,"tz" : 523.068,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1,"sy" : 1,"sz" : 1}
-]
+    "stage_test": [
+        {
+            "filename": "skysphere",
+            "handlename": "skyphiere",
+            "tx": 0,
+            "ty": 0,
+            "tz": 0,
+            "rx": -0,
+            "ry": -0,
+            "rz": 0,
+            "sx": 1,
+            "sy": 1,
+            "sz": 1
+        },
+        {
+            "filename": "step_C_flat_GEO",
+            "handlename": "step_C_flat_GEO1",
+            "tx": 1536.739,
+            "ty": 0,
+            "tz": 38.102,
+            "rx": -0,
+            "ry": -0,
+            "rz": 0,
+            "sx": 1,
+            "sy": 1,
+            "sz": 1
+        },
+        {
+            "filename": "step_D_flat_GEO",
+            "handlename": "step_D_flat_GEO1",
+            "tx": 1556.52,
+            "ty": 175,
+            "tz": -0,
+            "rx": -0,
+            "ry": -0,
+            "rz": 0,
+            "sx": 1,
+            "sy": 1,
+            "sz": 1
+        },
+        {
+            "filename": "island_GEO",
+            "handlename": "island_GEO",
+            "tx": 0,
+            "ty": 0,
+            "tz": -0,
+            "rx": -0,
+            "ry": -0,
+            "rz": 0,
+            "sx": 1,
+            "sy": 1,
+            "sz": 1
+        },
+        {
+            "filename": "cliff_A_flat_GEO",
+            "handlename": "cliff_A_flat_GEO1",
+            "tx": 0,
+            "ty": 0,
+            "tz": -1281.949,
+            "rx": -0,
+            "ry": -0,
+            "rz": 0,
+            "sx": 1,
+            "sy": 1,
+            "sz": 1
+        },
+        {
+            "filename": "step_A_bumpy_GEO",
+            "handlename": "step_A_bumpy_GEO1",
+            "tx": 0,
+            "ty": 0,
+            "tz": 1330.767,
+            "rx": -0,
+            "ry": -0,
+            "rz": 0,
+            "sx": 1,
+            "sy": 1,
+            "sz": 1
+        },
+        {
+            "filename": "slope_A_GEO",
+            "handlename": "slope_A_GEO1",
+            "tx": 0,
+            "ty": 0,
+            "tz": 523.068,
+            "rx": -0,
+            "ry": -0,
+            "rz": 0,
+            "sx": 1,
+            "sy": 1,
+            "sz": 1
+        }
+    ]
 }

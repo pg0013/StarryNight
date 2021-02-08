@@ -1,0 +1,58 @@
+/**
+ * @file    Shoot_UI.h
+ * @brief  射撃時のUI描画処理を行うクラス
+ *
+ * @author Takuya Fujisawa
+ * @date    202102/08
+ */
+
+#pragma once
+#include"appframe.h"
+
+namespace starrynight
+{
+	namespace ui
+	{
+		class Shoot_UI
+		{
+		public:
+			Shoot_UI();
+			~Shoot_UI();
+
+			/**
+			 * @brief   初期化処理
+			 *
+			 * @return 初期化成功の可否
+			 */
+			void Initialize();
+
+			/**
+			 * @brief   終了処理
+			 *
+			 * @return 終了処理成功の可否
+			 */
+			void Terminate();
+
+			/**
+			 * @brief   演算処理
+			 *
+			 * @return 演算処理成功の可否
+			 */
+			void Process();
+
+			/**
+			 * @brief   描画処理
+			 *
+			 * @return 描画処理成功の可否
+			 */
+			void Render();
+
+			void SetDrawShootGuide(bool _flag) { draw_shoot_guide_ = _flag; }
+		private:
+			bool draw_shoot_guide_;
+
+			//画像用ハンドル
+			handle shoot_guide_;
+		};
+	}
+}

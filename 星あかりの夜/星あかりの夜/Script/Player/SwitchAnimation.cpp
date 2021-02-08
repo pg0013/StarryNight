@@ -64,6 +64,14 @@ void Player::SwitchAnimation(STATUS _old_status)
 			anim_attach_index_ = MV1AttachAnim(handle_, MV1GetAnimIndex(handle_, "kyrie_jump_end"), -1, FALSE);
 			anim_loop_flag_ = false;
 			break;
+		case STATUS::SHOOT_START:
+			anim_attach_index_ = MV1AttachAnim(handle_, MV1GetAnimIndex(handle_, "kyrie_shoot_start"), -1, FALSE);
+			anim_loop_flag_ = false;
+			break;
+		case STATUS::SHOOT_END:
+			anim_attach_index_ = MV1AttachAnim(handle_, MV1GetAnimIndex(handle_, "kyrie_shoot_end"), -1, FALSE);
+			anim_loop_flag_ = false;
+			break;
 		}
 
 		//アニメーションの総再生時間を取得し、再生時間を初期化

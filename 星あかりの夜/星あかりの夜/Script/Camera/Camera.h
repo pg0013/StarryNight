@@ -67,11 +67,10 @@ namespace starrynight
 
 			/**
 			 * @brief カメラとの距離を返す.
-			 * 
-			 * @return 
+			 *
+			 * @return
 			 */
 			float GetCameraLength();
-
 
 			CLIP GetClip() { return clip_; }
 			void SetClip(float _near, float _far)
@@ -85,10 +84,41 @@ namespace starrynight
 			 */
 			void DrawDebugMenu();
 
+		public:
+			/**
+			 * @brief　移動時のカメラ制御処理
+			 *
+			 */
+			void MoveCamera();
+
+			/**
+			 * @brief　 射撃時のカメラ位置初期化処理
+			 *
+			 */
+			void ShootCameraInit();
+
+			/**
+			 * @brief　 射撃時のカメラ制御処理
+			 *
+			 */
+			void ShootCamera();
+
+			/**
+			 * @brief 状態遷移用変数
+			 */
+			enum class STATUS
+			{
+				MOVE,
+				SHOOT
+			};
+
+			void SetStatus(STATUS _status) { status_ = _status; }
 		private:
 			VECTOR position_;
 			VECTOR target_;
 			CLIP clip_;
+
+			STATUS status_;
 
 			CameraParameters camera_param_;
 

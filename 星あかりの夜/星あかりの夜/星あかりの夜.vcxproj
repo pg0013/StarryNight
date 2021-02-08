@@ -22,6 +22,8 @@
     <ClCompile Include="Script\ApplicationMain.cpp" />
     <ClCompile Include="Script\Camera\Camera.cpp" />
     <ClCompile Include="Script\Camera\CameraParameters.cpp" />
+    <ClCompile Include="Script\Camera\MoveCamera.cpp" />
+    <ClCompile Include="Script\Camera\ShootCamera.cpp" />
     <ClCompile Include="Script\Mode\ModeGame.cpp" />
     <ClCompile Include="Script\Object\ObjectBase.cpp" />
     <ClCompile Include="Script\Object\ObjectServer.cpp" />
@@ -36,6 +38,8 @@
     <ClCompile Include="Script\Stage\StageParameters.cpp" />
     <ClCompile Include="Script\Star\Star.cpp" />
     <ClCompile Include="Script\Star\StarParameter.cpp" />
+    <ClCompile Include="Script\UI\Shoot_UI.cpp" />
+    <ClCompile Include="Script\UI\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h" />
@@ -50,6 +54,8 @@
     <ClInclude Include="Script\Stage\StageParameters.h" />
     <ClInclude Include="Script\Star\Star.h" />
     <ClInclude Include="Script\Star\StarParameter.h" />
+    <ClInclude Include="Script\UI\Shoot_UI.h" />
+    <ClInclude Include="Script\UI\UIManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

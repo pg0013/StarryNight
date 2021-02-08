@@ -8,6 +8,7 @@
 
 #pragma once
 #include "../Object/ObjectBase.h"
+#include<queue>
 
 namespace starrynight
 {
@@ -77,11 +78,17 @@ namespace starrynight
 
 			STATUS status_;
 
+			std::queue<VECTOR> player_pos_history_;
+			VECTOR old_player_position_;
+
 			float jump_height_;//ジャンプする高さ
 			float jump_speed_;//
 			float ground_position_y_;
 			float gravity_;
 			float rot_speed_;//待機時回転速度
+
+			int star_num_;//プレイヤーが何番目に取得したスターかを記録
+			float follow_interval_;
 		};
 	}
 }
