@@ -55,6 +55,18 @@
     <Filter Include="ソース ファイル\UI">
       <UniqueIdentifier>{52e18750-8f79-4801-a3d7-261ff8792292}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Effect">
+      <UniqueIdentifier>{02ccfbb3-894c-4b8f-a96e-42804fe4b20b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Effect">
+      <UniqueIdentifier>{62fb51f6-5003-446c-9abd-61e1894325fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Enemy">
+      <UniqueIdentifier>{54d8d77e-4625-43b9-950a-a3b88b9da54d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Enemy">
+      <UniqueIdentifier>{fc3b6e87-c923-4ea4-b8ce-f09d7da2054f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Script\ApplicationMain.cpp">
@@ -120,6 +132,27 @@
     <ClCompile Include="Script\UI\Shoot_UI.cpp">
       <Filter>ソース ファイル\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Effect\ShootChargeEffect.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Effect\EffectBase.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Effect\EffectServer.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Effect\ShootEffect.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Effect\ShootPointEffect.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Enemy\Enemy.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Enemy\EnemyParameters.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h">
@@ -163,6 +196,27 @@
     </ClInclude>
     <ClInclude Include="Script\UI\Shoot_UI.h">
       <Filter>ヘッダー ファイル\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Effect\ShootChargeEffect.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Effect\EffectBase.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Effect\EffectServer.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Effect\ShootEffect.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Effect\ShootPointEffect.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Enemy\Enemy.h">
+      <Filter>ヘッダー ファイル\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Enemy\EnemyParameters.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

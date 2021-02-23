@@ -53,11 +53,24 @@ namespace appframe
 		SetMainWindowText("¯‚ ‚©‚è‚Ì–é");
 		SetGraphMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_DEPTH);
 
+		SetUseDirect3DVersion(DX_DIRECT3D_11);
+
+		//DXƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»
 		if (DxLib_Init() == -1)
 		{
 			return false;
 		}
 		SetDrawScreen(DX_SCREEN_BACK);
+
+		//Effekseer‰Šú‰»
+		if (Effekseer_Init(8000) == -1)
+		{
+			DxLib_End();
+			return false;
+		}
+
+		SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
+		Effekseer_SetGraphicsDeviceLostCallbackFunctions();
 
 		srand((unsigned int)time(NULL));
 
@@ -78,6 +91,7 @@ namespace appframe
 		resource::ResourceServer::Release();
 		sound::PlayWAVE::Release();
 
+		Effkseer_End();
 		DxLib_End();
 
 		return true;

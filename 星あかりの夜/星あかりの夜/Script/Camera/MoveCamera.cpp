@@ -40,6 +40,9 @@ void Camera::MoveCamera()
 		if (stick_ry < -analog_min)
 		{
 			position_.y += move_speed_;
+			if (position_.y > 300.0f)
+				position_.y = 300.0f;
+
 			return;
 		}
 

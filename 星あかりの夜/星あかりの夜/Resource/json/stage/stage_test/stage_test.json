@@ -9,9 +9,9 @@
             "rx": -0,
             "ry": -0,
             "rz": 0,
-            "sx": 1,
-            "sy": 1,
-            "sz": 1
+            "sx": 3,
+            "sy": 3,
+            "sz": 3
         },
         {
             "filename": "step_C_flat_GEO",

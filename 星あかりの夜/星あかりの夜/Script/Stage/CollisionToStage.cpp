@@ -13,20 +13,29 @@ MV1_COLL_RESULT_POLY Stage::GetHitLineToFloor(VECTOR& _startline, VECTOR& _endli
 {
 	MV1_COLL_RESULT_POLY hit_poly;
 	hit_poly.HitFlag = 0;
+	hit_poly.HitPosition = { 0,-1,0 };
+
+	MV1_COLL_RESULT_POLY hit_poly_check;
+	hit_poly_check.HitFlag = 0;
 
 	for (auto iter = navimesh_handle_.begin(); iter != navimesh_handle_.end(); iter++)
 	{
 		if (MV1SearchFrame((*iter), "floor_NavMesh") > 0)
 		{
-			hit_poly = MV1CollCheck_Line(
+			hit_poly_check = MV1CollCheck_Line(
 				(*iter),
 				MV1SearchFrame((*iter), "floor_NavMesh"),
 				_startline, _endline);
 		}
 
-		//“–‚½‚è”»’è‚ª‚ ‚ê‚Î”²‚¯‚é
-		if (hit_poly.HitFlag)
-			break;
+		if (!hit_poly_check.HitFlag)
+			continue;
+
+		if (hit_poly_check.HitPosition.y >= hit_poly.HitPosition.y)
+		{
+			std::swap(hit_poly, hit_poly_check);
+			//break;
+		}
 	}
 	return hit_poly;
 }

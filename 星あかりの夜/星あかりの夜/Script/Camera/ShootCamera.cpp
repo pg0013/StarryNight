@@ -23,8 +23,8 @@ void Camera::ShootCameraInit()
 
 	//プレイヤーの右後ろにカメラを設定
 	VECTOR shoot_camera_pos;
-	shoot_camera_pos = VAdd(player_positon, VScale(right, 50.0f));
-	shoot_camera_pos = VAdd(shoot_camera_pos, VScale(up, 50.0f));
+	shoot_camera_pos = VAdd(player_positon, VScale(right, 80.0f));
+	shoot_camera_pos = VAdd(shoot_camera_pos, VScale(up, 10.0f));
 	shoot_camera_pos = VAdd(shoot_camera_pos, VScale(back, 150.0f));
 
 	position_ = shoot_camera_pos;

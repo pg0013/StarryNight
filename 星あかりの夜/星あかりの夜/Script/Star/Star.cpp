@@ -17,7 +17,7 @@ Star::Star()
 	status_ = STATUS::WAIT;
 	rot_speed_ = 5.0f;
 	jump_height_ = 5.0f;
-	jump_speed_ = jump_height_;
+	jump_speed_ = -jump_height_;
 	gravity_ = 0.1f;
 	star_num_ = 0;
 	follow_interval_ = 100.0f;
@@ -41,9 +41,11 @@ void Star::Process()
 		break;
 	case starrynight::star::Star::STATUS::WAIT:
 		Wait();
+		//printfDx("wait\n");
 		break;
 	case starrynight::star::Star::STATUS::FOLLOW:
 		Follow();
+		//printfDx("  follow\n");
 		break;
 	case starrynight::star::Star::STATUS::DIFFUSION:
 		Diffusion();
@@ -112,6 +114,8 @@ void Star::Wait()
 
 void Star::Follow()
 {
+	mode::ModeGame* modegame = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 	player_position = VAdd(player_position, VGet(0.0f, 50.0f, 0.0f));
 
@@ -120,11 +124,12 @@ void Star::Follow()
 	if (VSize(VSub(player_position, old_player_position_)) > move_min_size)
 		player_pos_history_.push(player_position);
 
+	//プレイヤーとの距離が設定した間隔より大きい
 	if (VSize(VSub(player_position, position_)) > star_num_ * follow_interval_)
 	{
 		VECTOR que_position;
 
-		while (1)
+		while (!player_pos_history_.empty())
 		{
 			que_position = player_pos_history_.front();
 
@@ -135,13 +140,33 @@ void Star::Follow()
 				break;
 		}
 
+		if (player_position.y <= 0)
+		{
+			ground_position_y_ = position_.y;
+			modegame->SetPlayerStarNum(0);
+
+			//queueを初期化
+			std::queue<VECTOR> empty;
+			std::swap(player_pos_history_, empty);
+
+			//待機状態にする
+			status_ = STATUS::WAIT;
+			return;
+		}
+
 		VECTOR star_move = VScale(VSub(que_position, position_), 0.1f);
 		position_ = VAdd(position_, star_move);
 
-		player_pos_history_.pop();
+		if (!player_pos_history_.empty())
+			player_pos_history_.pop();
 	}
 
 	old_player_position_ = player_position;
+
+	if (modegame->GetPlayerStarNum() == 0)
+	{
+		modegame->object_server_.Delete(this);
+	}
 }
 
 void Star::Diffusion()

@@ -113,6 +113,8 @@ namespace starrynight
 			};
 
 			void SetStatus(STATUS _status) { status_ = _status; }
+			STATUS GetStatus() { return status_; }
+
 		private:
 			VECTOR position_;
 			VECTOR target_;

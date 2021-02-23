@@ -49,24 +49,29 @@ namespace starrynight
 			 */
 			void Input();
 
+			void SetDamageFlag(bool _flag) { damage_flag_ = _flag; }
+			void SetDamageAnimFlag(bool _flag) { damage_anim_flag_ = _flag; }
+
 		private:
 			/**
 			 * @brief　 移動処理
-			 *
 			 */
 			void Move();
 
 			/**
 			 * @brief　 ジャンプ処理
-			 *
 			 */
 			void Jump();
 
 			/**
 			 * @brief	パチンコを構える処理.
-			 *
 			 */
 			void HoldSlingShot();
+
+			/**
+			 * @brief	ダメージを受けた時の処理
+			 */
+			void Damage();
 
 			/**
 			 * @brief 状態遷移用定数
@@ -82,6 +87,7 @@ namespace starrynight
 				JUMP_END,
 				SHOOT_START,
 				SHOOT_END,
+				DAMAGE,
 				_EOT_
 			};
 
@@ -91,6 +97,7 @@ namespace starrynight
 			 * @param  _old_status	遷移元の状態
 			 */
 			void SwitchAnimation(STATUS _old_status);
+
 
 		private:
 			//プレイヤーパラメータ保持クラス
@@ -104,6 +111,9 @@ namespace starrynight
 			float gravity_;//重力
 			bool jump_flag_;
 
+			bool damage_flag_;
+			bool damage_anim_flag_;
+
 			//モデルアニメーション用変数
 			int anim_attach_index_;//アニメーションアタッチ番号
 			int old_anim_attach_index_;//遷移元のアニメーションアタッチ番号
@@ -111,6 +121,9 @@ namespace starrynight
 			float anim_total_time_;//アニメーション総再生時間
 			float anim_play_time_;//アニメーション再生時間
 			bool anim_loop_flag_;//アニメーションをループするかどうか
+
+			//エフェクト用変数
+			bool shoot_charge_effect_flag_;//射撃溜めエフェクト生成フラグ
 
 			STATUS status_;//プレイヤーの状態保持変数
 		};

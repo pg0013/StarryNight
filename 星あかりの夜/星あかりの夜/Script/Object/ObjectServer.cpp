@@ -54,7 +54,7 @@ void ObjectServer::DeleteListObject()
 {
 	for (auto iter_del = delete_list_.begin(); iter_del != delete_list_.end(); iter_del++)
 	{
-		for (auto iter = object_list_.begin(); iter != object_list_.end(); iter++)
+		for (auto iter = object_list_.begin(); iter != object_list_.end();)
 		{
 			//削除リストと一致したオブジェクトを削除
 			if ((*iter) == (*iter_del))
@@ -89,8 +89,6 @@ void ObjectServer::Process()
 
 void ObjectServer::Render()
 {
-	std::vector<handle> trans_list;
-
 	//サーバーにあるオブジェクトのRenderを呼び出し
 	for (auto iter = object_list_.begin(); iter != object_list_.end(); iter++)
 	{

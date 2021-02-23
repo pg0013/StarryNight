@@ -9,6 +9,7 @@
 #include "appframe.h"
 #include"../Stage/Stage.h"
 #include"../Object/ObjectServer.h"
+#include"../Effect/EffectServer.h"
 #include"../Camera/Camera.h"
 #include"../UI/UIManager.h"
 
@@ -62,6 +63,7 @@ namespace starrynight
 
 			camera::Camera camera_;
 			object::ObjectServer object_server_;
+			effect::EffectServer effect_server_;
 			stage::Stage stage_;
 			ui::UIManager ui_;
 

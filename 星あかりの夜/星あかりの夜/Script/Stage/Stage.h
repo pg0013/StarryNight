@@ -63,7 +63,7 @@ namespace starrynight
 
 			/**
 			 * @brief	ステージと球の当たり判定を取得する.
-			 * 
+			 *
 			 * @param _position	球の中心座標
 			 * @param _radius		球の半径
 			 * @return						コリジョン結果代入用ポリゴン配列
@@ -92,7 +92,7 @@ namespace starrynight
 
 			/**
 			 * @brief オブジェクトとカプセルの当たり判定を取得する.
-			 * 
+			 *
 			 * @param _position1	カプセルを形成する二点中の一点の座標
 			 * @param _position2	カプセルを形成する二点中の一点の座標
 			 * @param _radius			半径
@@ -106,6 +106,8 @@ namespace starrynight
 			star::StarParameter star_param_;
 			std::vector<handle> stage_handle_;
 			std::vector<handle> navimesh_handle_;
+
+			handle skysphere_;
 		};
 	}
 }

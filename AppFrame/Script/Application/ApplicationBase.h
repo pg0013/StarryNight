@@ -11,6 +11,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
+#include"EffekseerForDXLib.h"
 #include"../Mode/ModeServer.h"
 
 namespace appframe

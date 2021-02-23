@@ -44,15 +44,6 @@ void Camera::Input()
 
 void Camera::Process()
 {
-	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
-	int key = appframe::ApplicationBase::GetInstance()->GetKey();
-	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
-
-	if (x_input.RightTrigger == 255)
-		status_ = STATUS::SHOOT;
-	else
-		status_ = STATUS::MOVE;
-
 	switch (status_)
 	{
 	case STATUS::MOVE:

@@ -26,11 +26,16 @@ Player::Player()
 	gravity_ = 0.5f;
 	jump_flag_ = false;
 
+	damage_flag_ = false;
+	damage_anim_flag_ = false;
+
 	status_ = STATUS::NONE;
 	anim_attach_index_ = -1;
 	old_anim_attach_index_ = anim_attach_index_;
 	anim_rate_ = 1.0f;
 	anim_loop_flag_ = true;
+
+	shoot_charge_effect_flag_ = true;
 
 	Initialize();
 }
@@ -55,21 +60,31 @@ void Player::Process()
 	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
 	STATUS old_status = status_;
 
-	if (x_input.RightTrigger == 255)
+	mode::ModeGame* mode_game =
+		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+
+	if (damage_flag_)
 	{
-		HoldSlingShot();
-		mode::ModeGame* mode_game = 
-			static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-		mode_game->ui_.shoot_ui_.SetDrawShootGuide(true);
+		Damage();
 	}
 	else
 	{
-		mode::ModeGame* mode_game =
-			static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-		mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
+		if (x_input.RightTrigger == 255 &&
+			jump_flag_ == false &&
+			mode_game->GetPlayerStarNum() > 0)
+		{
+			HoldSlingShot();
+			camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::SHOOT);
+		}
+		else
+		{
+			mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
+			shoot_charge_effect_flag_ = true;
+			camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::MOVE);
 
-		Move();
-		Jump();
+			Move();
+			Jump();
+		}
 	}
 
 	if (position_.y < -100)
@@ -80,6 +95,20 @@ void Player::Process()
 	}
 
 	SwitchAnimation(old_status);
+}
+
+void Player::Damage()
+{
+	if (damage_anim_flag_ == false)
+		return;
+
+	status_ = STATUS::DAMAGE;
+	if (anim_play_time_ >= anim_total_time_)
+	{
+		damage_flag_ = false;
+		damage_anim_flag_ = false;
+		status_ = STATUS::WAIT;
+	}
 }
 
 void Player::Render()
@@ -100,7 +129,7 @@ void Player::Render()
 	VECTOR capsule_positon1 = VAdd(position_, VGet(0, 100, 0));
 	VECTOR capsule_positon2 = VAdd(position_, VGet(0, 45, 0));
 	float radius = 35.0f;
-	DrawCapsule3D(capsule_positon1, capsule_positon2, radius, 16, DEBUG_COLOR, DEBUG_COLOR, FALSE);
+	//DrawCapsule3D(capsule_positon1, capsule_positon2, radius, 16, DEBUG_COLOR, DEBUG_COLOR, FALSE);
 
 	if (!jump_flag_)
 		DrawLine3D(VAdd(position_, VGet(0, 40.0f, 0)), VAdd(position_, VGet(0, -10.0f, 0)), DEBUG_COLOR);
@@ -110,7 +139,7 @@ void Player::Render()
 	DrawLine3D(start, end, DEBUG_COLOR);
 
 	int x, y;
-	x = 0; y = 11 * DEBUG_FONT_SIZE;
+	x = 0; y = 12 * DEBUG_FONT_SIZE;
 	switch (status_)
 	{
 	case starrynight::player::Player::STATUS::NONE:
