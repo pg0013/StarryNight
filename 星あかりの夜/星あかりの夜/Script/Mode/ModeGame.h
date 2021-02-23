@@ -61,11 +61,11 @@ namespace starrynight
 			 */
 			void SetStopObjectProcess(bool _stopflag) { stop_object_process_ = _stopflag; }
 
-			camera::Camera camera_;
-			object::ObjectServer object_server_;
-			effect::EffectServer effect_server_;
-			stage::Stage stage_;
-			ui::UIManager ui_;
+			camera::Camera camera_;//カメラ
+			object::ObjectServer object_server_;//オブジェクト管理サーバ
+			effect::EffectServer effect_server_;//エフェクト管理サーバ
+			stage::Stage stage_;//ステージ管理クラス
+			ui::UIManager ui_;//UI管理クラス
 
 		public:
 			/**
@@ -89,7 +89,7 @@ namespace starrynight
 
 		private:
 			bool stop_object_process_;//オブジェクトの処理をストップする
-			int player_star_num_;
+			int player_star_num_;//プレイヤーが取得したスターの数
 		};
 	}
 }

@@ -13,6 +13,7 @@ namespace starrynight
 {
 	namespace camera
 	{
+		//カメラ設定用構造体
 		struct CLIP
 		{
 			float near_;
@@ -52,10 +53,32 @@ namespace starrynight
 			 */
 			void Render();
 
+			/**
+			 * @brief　 カメラ座標を取得する
+			 *
+			 * @return   カメラ座標
+			 */
 			VECTOR GetPosition() { return position_; }
+
+			/**
+			 * @brief　 カメラ座標を設定する
+			 *
+			 * @param  _vector	カメラ座標
+			 */
 			void SetPosition(VECTOR _vector) { position_ = _vector; }
 
+			/**
+			 * @brief　 カメラのターゲット座標を取得する
+			 *
+			 * @return   ターゲット座標
+			 */
 			VECTOR GetTarget() { return target_; }
+
+			/**
+			 * @brief　 カメラのターゲット座標を設定する
+			 *
+			 * @param  _vector	ターゲット座標
+			 */
 			void SetTarget(VECTOR _vector) { target_ = _vector; }
 
 			/**
@@ -72,7 +95,19 @@ namespace starrynight
 			 */
 			float GetCameraLength();
 
+			/**
+			 * @brief　 カメラのNear,Far設定を取得する
+			 *
+			 * @return   near,far格納構造体
+			 */
 			CLIP GetClip() { return clip_; }
+
+			/**
+			 * @brief　 カメラのNear,Farを設定する
+			 *
+			 * @param  _near	カメラのNear
+			 * @param  _far		カメラのFar
+			 */
 			void SetClip(float _near, float _far)
 			{
 				clip_.near_ = _near;
@@ -112,16 +147,28 @@ namespace starrynight
 				SHOOT
 			};
 
+			/**
+			 * @brief　 カメラの状態を設定する
+			 *
+			 * @param  _status	カメラ状態用変数
+			 */
 			void SetStatus(STATUS _status) { status_ = _status; }
+
+			/**
+			 * @brief　 カメラの状態を取得する
+			 *
+			 * @return   カメラの状態
+			 */
 			STATUS GetStatus() { return status_; }
 
 		private:
-			VECTOR position_;
-			VECTOR target_;
-			CLIP clip_;
+			VECTOR position_;//座標
+			VECTOR target_;//ターゲット座標
+			CLIP clip_;//Near,Far設定構造体
 
-			STATUS status_;
+			STATUS status_;//状態遷移用変数
 
+			//カメラパラメータ
 			CameraParameters camera_param_;
 
 			float move_speed_;//移動速度

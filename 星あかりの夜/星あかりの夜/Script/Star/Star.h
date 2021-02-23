@@ -46,21 +46,21 @@ namespace starrynight
 		private:
 			/**
 			 * @brief 待機処理.
-			 *
 			 */
 			void Wait();
 
+			/**
+			 * @brief　 単振動挙動処理
+			 */
 			void Vibration();
 
 			/**
 			 * @brief　プレイヤーの後ろをついてくる処理.
-			 *
 			 */
 			void Follow();
 
 			/**
 			 * @brief　プレイヤーの元から散らばる処理.
-			 *
 			 */
 			void Diffusion();
 
@@ -76,19 +76,19 @@ namespace starrynight
 				_EOT_
 			};
 
-			STATUS status_;
+			STATUS status_;//状態遷移用変数
 
-			std::queue<VECTOR> player_pos_history_;
-			VECTOR old_player_position_;
+			std::queue<VECTOR> player_pos_history_;//プレイヤーの位置ベクトル記録用コンテナ
+			VECTOR old_player_position_;//前フレームのプレイヤーの位置ベクトルを記録する
 
 			float jump_height_;//ジャンプする高さ
-			float jump_speed_;//
-			float ground_position_y_;
-			float gravity_;
+			float jump_speed_;//ジャンプ速度
+			float ground_position_y_;//初期のY座標
+			float gravity_;//重力
 			float rot_speed_;//待機時回転速度
 
 			int star_num_;//プレイヤーが何番目に取得したスターかを記録
-			float follow_interval_;
+			float follow_interval_;//プレイヤーやひとつ前の星との間隔
 		};
 	}
 }

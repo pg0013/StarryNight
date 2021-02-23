@@ -49,7 +49,18 @@ namespace starrynight
 			 */
 			void Input();
 
+			/**
+			 * @brief　 ダメージを受けたことを記録するフラグを設定する
+			 *
+			 * @param  _flag　ダメージを受けたフラグ
+			 */
 			void SetDamageFlag(bool _flag) { damage_flag_ = _flag; }
+
+			/**
+			 * @brief　 ダメージモーションを開始するフラグを設定する
+			 *
+			 * @param  _flag	ダメージモーションを開始するフラグ
+			 */
 			void SetDamageAnimFlag(bool _flag) { damage_anim_flag_ = _flag; }
 
 		private:
@@ -98,7 +109,6 @@ namespace starrynight
 			 */
 			void SwitchAnimation(STATUS _old_status);
 
-
 		private:
 			//プレイヤーパラメータ保持クラス
 			PlayerParameters player_param_;
@@ -109,10 +119,10 @@ namespace starrynight
 
 			float jump_speed_;//ジャンプ速度
 			float gravity_;//重力
-			bool jump_flag_;
+			bool jump_flag_;//ジャンプ状態記録用フラグ
 
-			bool damage_flag_;
-			bool damage_anim_flag_;
+			bool damage_flag_;//ダメージを受けたことを記録するフラグ
+			bool damage_anim_flag_;//ダメージモーションを開始するフラグ
 
 			//モデルアニメーション用変数
 			int anim_attach_index_;//アニメーションアタッチ番号

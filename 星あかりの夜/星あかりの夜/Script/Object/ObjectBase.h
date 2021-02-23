@@ -35,9 +35,9 @@ namespace starrynight
 
 			/**
 			 * @brief　 ムーブコンストラクタ
-			 * 
+			 *
 			 * @param  _object
-			 * @return   
+			 * @return
 			 */
 			ObjectBase(ObjectBase&& _object) noexcept :
 				handle_(_object.handle_),
@@ -110,9 +110,9 @@ namespace starrynight
 			inline handle GetModelHandle() { return handle_; }
 
 		protected:
-			VECTOR position_;
-			VECTOR rotation_;
-			handle handle_;
+			VECTOR position_;//位置ベクトル
+			VECTOR rotation_;//回転ベクトル
+			handle handle_;//モデルハンドル
 		};
 	}
 }

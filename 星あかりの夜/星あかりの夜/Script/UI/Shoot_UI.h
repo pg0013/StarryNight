@@ -47,8 +47,14 @@ namespace starrynight
 			 */
 			void Render();
 
+			/**
+			 * @brief　 射撃用ガイドを表示するフラグを設定する
+			 *
+			 * @param  _flag	trueで射撃ガイド表示
+			 */
 			void SetDrawShootGuide(bool _flag) { draw_shoot_guide_ = _flag; }
 		private:
+			//射撃用ガイドを表示するフラグ
 			bool draw_shoot_guide_;
 
 			//画像用ハンドル

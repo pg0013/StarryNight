@@ -71,6 +71,9 @@ namespace starrynight
 				ATTACK
 			};
 
+			/**
+			 * @brief 移動状態用定数
+			 */
 			enum class MOVE_STATUS
 			{
 				WAIT,
@@ -87,7 +90,6 @@ namespace starrynight
 			 */
 			void SwitchAnimation(STATUS _old_status);
 
-
 		private:
 			//エネミーパラメータ保持クラス
 			EnemyParameters enemy_param_;
@@ -98,14 +100,14 @@ namespace starrynight
 			//jsonから読み込む外部パラメーター
 			float walk_speed_;//移動速度
 			float run_speed_;//移動速度
-			float rot_speed_;
-			float detect_length_;
+			float rot_speed_;//回転速度
+			float detect_length_;//プレイヤー検出範囲
 
-			int start_frame_;
+			int start_frame_;//生成フレーム記録用変数
 
-			bool attacked_flag_;
+			bool attacked_flag_;//攻撃したことを記録するフラグ
 
-			float random_rot_direction_;
+			float random_rot_direction_;//回転方向をランダムで変化させる変数
 
 			//モデルアニメーション用変数
 			int anim_attach_index_;//アニメーションアタッチ番号
@@ -117,5 +119,3 @@ namespace starrynight
 		};
 	}
 }
-
-

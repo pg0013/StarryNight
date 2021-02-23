@@ -108,7 +108,9 @@ void StageParameters::LoadStage(std::string _stagename, bool _async_flag)
 		}
 
 		//ステージ名のファイルパスを追加
-		std::string stage_name = _stagename + "/models/" + param.filename_;
+		int _pos = static_cast<int>(_stagename.find_last_of("_"));
+		std::string stage_name = _stagename.substr(0, _pos);
+		stage_name = stage_name + "/models/" + param.filename_;
 
 		//ResourceServerにハンドルを保存
 		resource::ResourceServer::RegisterModel("Stage", stage_name, param.handlename_, _async_flag);

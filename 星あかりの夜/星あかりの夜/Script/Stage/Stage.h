@@ -51,7 +51,7 @@ namespace starrynight
 			 * @param  _player_position	プレイヤーの位置
 			 * @return   当たり判定
 			 */
-			MV1_COLL_RESULT_POLY GetHitLineToFloor(VECTOR& _startline,VECTOR& _endline);
+			MV1_COLL_RESULT_POLY GetHitLineToFloor(VECTOR& _startline, VECTOR& _endline);
 
 			/**
 			 * @brief　 オブジェクトと線分の当たり判定を取得する
@@ -89,7 +89,6 @@ namespace starrynight
 			 */
 			MV1_COLL_RESULT_POLY_DIM GetHitCapsuleToFloor(VECTOR& _position1, VECTOR& _position2, float _radius);
 
-
 			/**
 			 * @brief オブジェクトとカプセルの当たり判定を取得する.
 			 *
@@ -100,14 +99,14 @@ namespace starrynight
 			 */
 			MV1_COLL_RESULT_POLY_DIM GetHitCapsuleToWall(VECTOR& _position1, VECTOR& _position2, float _radius);
 
-
 		private:
-			StageParameters stage_param_;
-			star::StarParameter star_param_;
-			std::vector<handle> stage_handle_;
-			std::vector<handle> navimesh_handle_;
+			StageParameters stage_param_;//ステージパラメータ管理クラス
+			star::StarParameter star_param_;//スターパラメータ管理クラス
 
-			handle skysphere_;
+			std::vector<handle> stage_handle_;//ステージモデルのハンドル管理コンテナ
+			std::vector<handle> navimesh_handle_;//ステージの当たり判定管理コンテナ
+
+			handle skysphere_;//天球用ハンドル
 		};
 	}
 }

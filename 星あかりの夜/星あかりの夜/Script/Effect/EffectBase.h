@@ -81,13 +81,13 @@ namespace starrynight
 			void SetPlayingEffectRotation();
 
 		protected:
-			VECTOR position_;
-			VECTOR rotation_;
+			VECTOR position_;//座標ベクトル
+			VECTOR rotation_;//回転ベクトル
 
 			handle effect_resource_;//エフェクトファイルをロードするハンドル
 			handle playing_effect_;//ロードしたファイルからエフェクトを生成したもの
 
-			int effect_frame_;
+			int effect_frame_;//エフェクトの総再生時間
 		};
 	}
 }

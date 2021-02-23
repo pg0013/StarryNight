@@ -37,7 +37,7 @@ namespace starrynight
             float GetEnemyParam(const std::string _param_name);
 
         private:
-            //プレイヤーパラメータ記録用変数
+            //エネミーパラメータ記録用変数
             std::unordered_map<std::string, float> map_enemy_param_;
         };
     }

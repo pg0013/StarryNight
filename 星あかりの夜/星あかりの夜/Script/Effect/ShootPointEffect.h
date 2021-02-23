@@ -37,6 +37,7 @@ namespace starrynight
 			virtual void Render();
 
 		private:
+			//1frame‚Ì‚İˆ—‚·‚é‚½‚ß‚Ìƒtƒ‰ƒO
 			bool once_flag_;
         };
     }
