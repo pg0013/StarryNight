@@ -173,6 +173,7 @@ namespace starrynight
 
 			float move_speed_;//ˆÚ“®‘¬“x
 			float rot_speed_;//‰ñ“]‘¬“x
+			float camera_distance_;//ƒJƒƒ‰‹——£
 		};
 	}
 }

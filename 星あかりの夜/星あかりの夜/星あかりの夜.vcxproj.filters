@@ -67,6 +67,15 @@
     <Filter Include="ヘッダー ファイル\Enemy">
       <UniqueIdentifier>{fc3b6e87-c923-4ea4-b8ce-f09d7da2054f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Player\Player_Action">
+      <UniqueIdentifier>{a6458858-a388-4818-aab8-2de6b3d15337}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Enemy\Enemy_Action">
+      <UniqueIdentifier>{967e6315-d3ca-4dd7-a71f-8004304b1aea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Server">
+      <UniqueIdentifier>{0fa298f1-4c20-48f6-a7e5-8ab09b30d6f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Script\ApplicationMain.cpp">
@@ -81,17 +90,11 @@
     <ClCompile Include="Script\Object\ObjectBase.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Object\ObjectServer.cpp">
-      <Filter>ソース ファイル\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Script\Player\Player.cpp">
       <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
     <ClCompile Include="Script\Stage\StageParameters.cpp">
       <Filter>ソース ファイル\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Script\Player\Move.cpp">
-      <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
     <ClCompile Include="Script\Player\PlayerParameters.cpp">
       <Filter>ソース ファイル\Player</Filter>
@@ -102,17 +105,8 @@
     <ClCompile Include="Script\Camera\CameraParameters.cpp">
       <Filter>ソース ファイル\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Player\SwitchAnimation.cpp">
-      <Filter>ソース ファイル\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Script\Player\Jump.cpp">
-      <Filter>ソース ファイル\Player</Filter>
-    </ClCompile>
     <ClCompile Include="Script\Stage\CollisionToStage.cpp">
       <Filter>ソース ファイル\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Script\Player\HoldSlingShot.cpp">
-      <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
     <ClCompile Include="Script\Star\Star.cpp">
       <Filter>ソース ファイル\Star</Filter>
@@ -138,9 +132,6 @@
     <ClCompile Include="Script\Effect\EffectBase.cpp">
       <Filter>ソース ファイル\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Effect\EffectServer.cpp">
-      <Filter>ソース ファイル\Effect</Filter>
-    </ClCompile>
     <ClCompile Include="Script\Effect\ShootEffect.cpp">
       <Filter>ソース ファイル\Effect</Filter>
     </ClCompile>
@@ -152,6 +143,48 @@
     </ClCompile>
     <ClCompile Include="Script\Enemy\EnemyParameters.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Enemy\SwitchStatus.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Player\HoldSlingShot.cpp">
+      <Filter>ソース ファイル\Player\Player_Action</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Player\Jump.cpp">
+      <Filter>ソース ファイル\Player\Player_Action</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Player\Move.cpp">
+      <Filter>ソース ファイル\Player\Player_Action</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Enemy\Attack.cpp">
+      <Filter>ソース ファイル\Enemy\Enemy_Action</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Enemy\Tracking.cpp">
+      <Filter>ソース ファイル\Enemy\Enemy_Action</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Enemy\Enemy_Move.cpp">
+      <Filter>ソース ファイル\Enemy\Enemy_Action</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Enemy\DecideMoveAmount.cpp">
+      <Filter>ソース ファイル\Enemy\Enemy_Action</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Effect\EffectServer.cpp">
+      <Filter>ソース ファイル\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Object\ObjectServer.cpp">
+      <Filter>ソース ファイル\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Enemy\SwitchEnemyAnimation.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Player\SwitchPlayerAnimation.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Player\SwitchPlayerStatus.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Player\SwitchPlayerAction.cpp">
+      <Filter>ソース ファイル\Player\Player_Action</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,6 @@
 #include "ModeGame.h"
 #include"../ApplicationMain.h"
 #include"../Player/Player.h"
-#include"../Enemy/Enemy.h"
 using namespace starrynight::mode;
 
 ModeGame::ModeGame()
@@ -25,14 +24,12 @@ bool ModeGame::Initialize()
 {
 	if (!::mode::ModeBase::Initialize()) { return false; }
 
+	object::ObjectBase* player = NEW player::Player();
+	object_server_.Add(player);
+
 	camera_.Initialize();
 	stage_.Initialize();
 	ui_.Initialize();
-
-	object::ObjectBase* player = NEW player::Player();
-	object::ObjectBase* enemy = NEW enemy::Enemy();
-	object_server_.Add(player);
-	object_server_.Add(enemy);
 
 	return true;
 }

@@ -1,5 +1,5 @@
 /**
- * @file    SwitchAnimation.cpp
+ * @file    SwitchPlayerAnimation.cpp
  * @brief  アニメーション切り替え関数
  *
  * @author Takuya Fujisawa
@@ -9,7 +9,7 @@
 #include"../Mode/ModeGame.h"
 using namespace starrynight::player;
 
-void Player::SwitchAnimation(STATUS _old_status)
+void Player::SwitchPlayerAnimation(STATUS _old_status)
 {
 	if (_old_status == status_ &&
 		status_ != STATUS::NONE)

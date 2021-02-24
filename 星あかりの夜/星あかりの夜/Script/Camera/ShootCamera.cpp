@@ -12,6 +12,7 @@ using namespace starrynight::camera;
 
 void Camera::ShootCameraInit()
 {
+	//プレイヤーの情報を取得
 	VECTOR player_positon = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 	player_positon = VAdd(player_positon, VGet(0.0f, 85.0f, 0.0f));
 	VECTOR player_rotation = MV1GetRotationXYZ(resource::ResourceServer::GetModelHandle("player"));
@@ -38,14 +39,17 @@ void Camera::ShootCamera()
 	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
 
 	float stick_ry;//右アナログスティックの座標
-	float analog_min = 0.2f;
 
 	stick_ry = -x_input.ThumbRY / THUMB_MAX;
 
 	float rot_vertical = 0.0f;
 
 	VECTOR old_target = target_;
+
+	//カメラの位置とターゲットを初期化
+	//カメラの左右移動はプレイヤーの向きによって、移動処理を行う
 	ShootCameraInit();
+
 	//y座標を変更するために値を保持
 	target_.y = old_target.y;
 
@@ -53,9 +57,10 @@ void Camera::ShootCamera()
 	VECTOR rot_vertical_axis = VSub(target_, position_);
 	rot_vertical_axis = VNorm(VCross(rot_vertical_axis, VGet(0, 1, 0)));
 
-	if (stick_ry > analog_min)
+	//カメラを上下に移動
+	if (stick_ry > ANALOG_MIN)
 		rot_vertical -= DEG2RAD(rot_speed_) * stick_ry;
-	if (stick_ry < -analog_min)
+	if (stick_ry < -ANALOG_MIN)
 		rot_vertical += DEG2RAD(rot_speed_) * -stick_ry;
 
 	//回転行列を算出

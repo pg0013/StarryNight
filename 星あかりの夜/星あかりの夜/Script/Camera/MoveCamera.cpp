@@ -15,55 +15,63 @@ void Camera::MoveCamera()
 	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
 
 	float stick_rx, stick_ry;//右アナログスティックの座標
-	float analog_min = 0.2f;
 
+	//スティックの傾きを取得
 	stick_rx = x_input.ThumbRX / THUMB_MAX;
 	stick_ry = -x_input.ThumbRY / THUMB_MAX;
 
-	float diff_x = position_.x - target_.x;
-	float diff_z = position_.z - target_.z;
-	float camera_rad = atan2(diff_z, diff_x);
-	float length = 300.0f;
+	//カメラ角度を取得
+	float camera_rad = GetCameraRad();
 
 	//右スティックカメラ回転
+	VECTOR old_position = position_;
+
+	//カメラを左右に回転する
+	if (stick_rx > ANALOG_MIN)
+		camera_rad -= DEG2RAD(rot_speed_) * stick_rx;
+	if (stick_rx < -ANALOG_MIN)
+		camera_rad += DEG2RAD(rot_speed_) * -stick_rx;
+
+	//カメラの左右位置を更新
+	position_.x = target_.x + camera_distance_ * cos(camera_rad);
+	position_.z = target_.z + camera_distance_ * sin(camera_rad);
+
+	//カメラを上に移動する
+	if (stick_ry < -ANALOG_MIN)
 	{
-		VECTOR old_position = position_;
+		position_.y += move_speed_;
 
-		if (stick_rx > analog_min)
-			camera_rad -= DEG2RAD(rot_speed_) * stick_rx;
-		if (stick_rx < -analog_min)
-			camera_rad += DEG2RAD(rot_speed_) * -stick_rx;
+		//カメラの高さの上限を設定
+		float camera_max_y = MV1GetPosition(resource::ResourceServer::GetModelHandle("player")).y + 300.0f;
+		if (position_.y > camera_max_y)
+			position_.y = camera_max_y;
 
-		position_.x = target_.x + length * cos(camera_rad);
-		position_.z = target_.z + length * sin(camera_rad);
+		return;
+	}
 
-		if (stick_ry < -analog_min)
-		{
-			position_.y += move_speed_;
-			if (position_.y > 300.0f)
-				position_.y = 300.0f;
+	//ステージの床との当たり判定
+	MV1_COLL_RESULT_POLY hit_stage;
+	VECTOR hit_end_line = VAdd(position_, VGet(0, -90, 0));
+	hit_stage = stage::Stage::GetInstance()->GetHitLineToFloor(position_, hit_end_line);
 
-			return;
-		}
+	//カメラの高さを下に移動
+	if (stick_ry > ANALOG_MIN)
+	{
+		position_.y -= move_speed_;
+	}
 
-		MV1_COLL_RESULT_POLY hit_stage;
-		VECTOR hit_end_line = VAdd(position_, VGet(0, -90, 0));
-		hit_stage = stage::Stage::GetInstance()->GetHitLineToFloor(position_, hit_end_line);
+	//床との当たり判定を検出
+	if (hit_stage.HitFlag)
+	{
+		float camera_position_min = hit_stage.HitPosition.y + 80;
 
-		if (stick_ry > analog_min)
-		{
-			position_.y -= move_speed_;
-		}
-		if (hit_stage.HitFlag)
-		{
-			float camera_position_min = hit_stage.HitPosition.y + 80;
+		//床よりカメラが下に行かない
+		//下りの傾斜でカメラが床に沿って移動しない
+		if (old_position.y > camera_position_min)
+			position_.y = old_position.y;
+		else
+			position_.y = camera_position_min;
 
-			//下りの傾斜でカメラが床に沿って移動しないようにする
-			if (old_position.y > camera_position_min)
-				position_.y = old_position.y;
-			else
-				position_.y = camera_position_min;
-			return;
-		}
+		return;
 	}
 }

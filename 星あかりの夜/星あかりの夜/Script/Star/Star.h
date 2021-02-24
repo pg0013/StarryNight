@@ -69,7 +69,6 @@ namespace starrynight
 			 */
 			enum class STATUS
 			{
-				NONE,
 				WAIT,
 				FOLLOW,
 				DIFFUSION,

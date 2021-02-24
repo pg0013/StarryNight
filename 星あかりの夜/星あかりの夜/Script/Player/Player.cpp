@@ -49,52 +49,16 @@ void Player::Initialize()
 	ObjectBase::Initialize();
 }
 
-void Player::Input()
-{
-}
-
 void Player::Process()
 {
-	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
-	int key = appframe::ApplicationBase::GetInstance()->GetKey();
-	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
 	STATUS old_status = status_;
 
-	mode::ModeGame* mode_game =
-		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	SwitchPlayerAction();
 
-	if (damage_flag_)
-	{
-		Damage();
-	}
-	else
-	{
-		if (x_input.RightTrigger == 255 &&
-			jump_flag_ == false &&
-			mode_game->GetPlayerStarNum() > 0)
-		{
-			HoldSlingShot();
-			camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::SHOOT);
-		}
-		else
-		{
-			mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
-			shoot_charge_effect_flag_ = true;
-			camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::MOVE);
+	OutOfStage();
 
-			Move();
-			Jump();
-		}
-	}
-
-	if (position_.y < -100)
-	{
-		position_ = VGet(0, 0, 0);
-		camera::Camera::GetInstance()->SetPosition(VGet(0, 90.f, -300.f));
-		camera::Camera::GetInstance()->SetTarget(VGet(0.0f, 60.0f, 0.0f));
-	}
-
-	SwitchAnimation(old_status);
+	SwitchPlayerAnimation(old_status);
+	PlayerAnimationBlend();
 }
 
 void Player::Damage()
@@ -103,6 +67,12 @@ void Player::Damage()
 		return;
 
 	status_ = STATUS::DAMAGE;
+
+	//所持しているスターの数をリセットする
+	mode::ModeGame* mode_game =
+		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode_game->SetPlayerStarNum(0);
+
 	if (anim_play_time_ >= anim_total_time_)
 	{
 		damage_flag_ = false;
@@ -111,8 +81,19 @@ void Player::Damage()
 	}
 }
 
-void Player::Render()
+void Player::OutOfStage()
 {
+	if (position_.y < -100)
+	{
+		position_ = VGet(0, 100, 0);
+		camera::Camera::GetInstance()->SetPosition(VGet(0, 90.f, -300.f));
+		camera::Camera::GetInstance()->SetTarget(VGet(0.0f, 60.0f, 0.0f));
+	}
+}
+
+void Player::PlayerAnimationBlend()
+{
+	//アニメーションブレンド処理
 	if (anim_rate_ >= 1.0f)
 		MV1SetAttachAnimTime(handle_, anim_attach_index_, anim_play_time_);
 	else
@@ -120,16 +101,20 @@ void Player::Render()
 		MV1SetAttachAnimBlendRate(handle_, old_anim_attach_index_, 1.0f - anim_rate_);
 		MV1SetAttachAnimBlendRate(handle_, anim_attach_index_, anim_rate_);
 	}
+}
 
+void Player::Render()
+{
 	MV1SetPosition(handle_, position_);
 	MV1SetRotationXYZ(handle_, rotation_);
 	MV1DrawModel(handle_);
 
+#ifdef DEBUG_FUNCTION
 	//プレイヤーのカプセル情報
 	VECTOR capsule_positon1 = VAdd(position_, VGet(0, 100, 0));
 	VECTOR capsule_positon2 = VAdd(position_, VGet(0, 45, 0));
 	float radius = 35.0f;
-	//DrawCapsule3D(capsule_positon1, capsule_positon2, radius, 16, DEBUG_COLOR, DEBUG_COLOR, FALSE);
+	DrawCapsule3D(capsule_positon1, capsule_positon2, radius, 16, DEBUG_COLOR, DEBUG_COLOR, FALSE);
 
 	if (!jump_flag_)
 		DrawLine3D(VAdd(position_, VGet(0, 40.0f, 0)), VAdd(position_, VGet(0, -10.0f, 0)), DEBUG_COLOR);
@@ -173,4 +158,5 @@ void Player::Render()
 		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- status    : _EOT_", y / DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;
 		break;
 	}
+#endif
 }

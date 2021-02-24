@@ -1,6 +1,6 @@
 /**
  * @file    ShootPointEffect.h
- * @brief  射撃ポイントエフェクトクラス
+ * @brief  射撃ポイントのエフェクトクラス
  *
  * @author Takuya Fujisawa
  * @date   2021/02/19
@@ -31,13 +31,16 @@ void ShootPointEffect::Process()
 {
 	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
-
+	//プレイヤーとの距離を算出
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
-
 	VECTOR distance = VSub(player_position, position_);
 
-	if (VSize(distance) < 200.0f)
+	//プレイヤーとの距離が近くなったらエフェクトを停止
+	float turnoff_length = 200.0f;
+
+	if (VSize(distance) < turnoff_length)
 	{
+		//プレイヤーが星を持っていれば、エフェクトを停止
 		if (mode_game->GetPlayerStarNum() > 0)
 		{
 			StopEffekseer3DEffect(playing_effect_);
@@ -46,6 +49,7 @@ void ShootPointEffect::Process()
 	}
 	else
 	{
+		//1フレームだけ処理が行われるようにフラグで管理
 		if (once_flag_)
 		{
 			PlayEffect();

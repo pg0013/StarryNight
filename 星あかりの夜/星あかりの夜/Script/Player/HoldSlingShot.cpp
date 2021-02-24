@@ -22,16 +22,17 @@ void Player::HoldSlingShot()
 	mode::ModeGame* mode_game =
 		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
+	//Yボタンが押されたら星を発射
 	if (trigger_key & PAD_INPUT_4)
 	{
-		status_ = STATUS::SHOOT_END;
-
 		mode::ModeGame* modegame = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 		effect::ShootEffect* shoot_effect = NEW effect::ShootEffect();
 
 		shoot_effect->Initialize();
 		shoot_effect->PlayEffect();
 		modegame->effect_server_.Add(shoot_effect);
+
+		status_ = STATUS::SHOOT_END;
 	}
 	else
 	{
@@ -39,20 +40,11 @@ void Player::HoldSlingShot()
 			status_ = STATUS::SHOOT_START;
 	}
 
-	//射撃標準を表示
-	if (status_ == STATUS::SHOOT_START)
-	{
-		mode_game->ui_.shoot_ui_.SetDrawShootGuide(true);
-	}
-	else
-	{
-		mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
-	}
-
 	//射撃溜めエフェクト生成
 	if (status_ == STATUS::SHOOT_START &&
 		anim_play_time_ == anim_total_time_)
 	{
+		//1フレームだけ処理を行う
 		if (shoot_charge_effect_flag_)
 		{
 			mode::ModeGame* modegame = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
@@ -69,23 +61,22 @@ void Player::HoldSlingShot()
 	if (status_ == STATUS::SHOOT_END &&
 		anim_play_time_ == shoot_anim_end)
 	{
+		status_ = STATUS::WAIT;
 		mode::ModeGame* modegame = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 		modegame->SetPlayerStarNum(0);
-		status_ = STATUS::WAIT;
 	}
 
 	float stick_rx;
-	float analog_min = 0.2f;
 
 	//右スティックの移動量
 	stick_rx = x_input.ThumbRX / THUMB_MAX;
 
-	float rot_speed = 3.0f;
 	float rot_horizon = 0.0f;
+	float rot_speed = 3.0f;
 
-	if (stick_rx > analog_min)
+	if (stick_rx > ANALOG_MIN)
 		rot_horizon += DEG2RAD(rot_speed) * stick_rx;
-	if (stick_rx < -analog_min)
+	if (stick_rx < -ANALOG_MIN)
 		rot_horizon -= DEG2RAD(rot_speed) * -stick_rx;
 
 	//プレイヤーの向きを回転

@@ -24,6 +24,14 @@ namespace starrynight
             /**
              * @brief　 エネミーパラメータをjsonファイルから読み込む
              *
+             * @param  _stagename   読み込むステージ名
+             * @param  _async_flag     非同期読み込みを行うフラグ
+             */
+            void LoadStageEnemys(std::string _stagename, bool _async_flag);
+
+            /**
+             * @brief　 エネミーパラメータをjsonファイルから読み込む
+             *
              * @param  _param_name　パラメータ名を格納したコンテナ
              */
             void LoadEnemyParameters(const std::vector<std::string>& _param_name);

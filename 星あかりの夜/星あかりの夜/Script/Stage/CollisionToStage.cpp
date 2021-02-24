@@ -20,6 +20,7 @@ MV1_COLL_RESULT_POLY Stage::GetHitLineToFloor(VECTOR& _startline, VECTOR& _endli
 
 	for (auto iter = navimesh_handle_.begin(); iter != navimesh_handle_.end(); iter++)
 	{
+		//床ポリゴンがあるオブジェクトと当たり判定をとる
 		if (MV1SearchFrame((*iter), "floor_NavMesh") > 0)
 		{
 			hit_poly_check = MV1CollCheck_Line(
@@ -31,10 +32,10 @@ MV1_COLL_RESULT_POLY Stage::GetHitLineToFloor(VECTOR& _startline, VECTOR& _endli
 		if (!hit_poly_check.HitFlag)
 			continue;
 
+		//すでに当たり判定があるものより高さが高ければ、入れ替える
 		if (hit_poly_check.HitPosition.y >= hit_poly.HitPosition.y)
 		{
 			std::swap(hit_poly, hit_poly_check);
-			//break;
 		}
 	}
 	return hit_poly;
@@ -45,6 +46,7 @@ MV1_COLL_RESULT_POLY Stage::GetHitLineToWall(VECTOR& _startline, VECTOR& _endlin
 	MV1_COLL_RESULT_POLY hit_poly;
 	hit_poly.HitFlag = 0;
 
+	//壁ポリゴンがあるオブジェクトと当たり判定をとる
 	for (auto iter = navimesh_handle_.begin(); iter != navimesh_handle_.end(); iter++)
 	{
 		if (MV1SearchFrame((*iter), "wall_NavMesh") > 0)
@@ -69,6 +71,7 @@ MV1_COLL_RESULT_POLY_DIM Stage::GetHitSphereToFloor(VECTOR& _position, float _ra
 
 	for (auto iter = navimesh_handle_.begin(); iter != navimesh_handle_.end(); iter++)
 	{
+		//床ポリゴンがあるオブジェクトと当たり判定をとる
 		if (MV1SearchFrame((*iter), "floor_NavMesh") > 0)
 		{
 			hit_poly = MV1CollCheck_Sphere(
@@ -89,6 +92,7 @@ MV1_COLL_RESULT_POLY_DIM Stage::GetHitSphereToWall(VECTOR& _position, float _rad
 	MV1_COLL_RESULT_POLY_DIM hit_poly;
 	hit_poly.HitNum = 0;
 
+	//壁ポリゴンがあるオブジェクトと当たり判定をとる
 	for (auto iter = navimesh_handle_.begin(); iter != navimesh_handle_.end(); iter++)
 	{
 		if (MV1SearchFrame((*iter), "wall_NavMesh") > 0)
@@ -111,6 +115,7 @@ MV1_COLL_RESULT_POLY_DIM Stage::GetHitCapsuleToFloor(VECTOR& _position1, VECTOR&
 	MV1_COLL_RESULT_POLY_DIM hit_poly;
 	hit_poly.HitNum = 0;
 
+	//床ポリゴンがあるオブジェクトと当たり判定をとる
 	for (auto iter = navimesh_handle_.begin(); iter != navimesh_handle_.end(); iter++)
 	{
 		if (MV1SearchFrame((*iter), "floor_NavMesh") > 0)
@@ -133,6 +138,7 @@ MV1_COLL_RESULT_POLY_DIM Stage::GetHitCapsuleToWall(VECTOR& _position1, VECTOR& 
 	MV1_COLL_RESULT_POLY_DIM hit_poly;
 	hit_poly.HitNum = 0;
 
+	//壁ポリゴンがあるオブジェクトと当たり判定をとる
 	for (auto iter = navimesh_handle_.begin(); iter != navimesh_handle_.end(); iter++)
 	{
 		if (MV1SearchFrame((*iter), "wall_NavMesh") > 0)

@@ -7,6 +7,8 @@
  */
 
 #include "Shoot_UI.h"
+#include"../Mode/ModeGame.h"
+#include"../Player/Player.h"
 
 using namespace starrynight::ui;
 
@@ -30,6 +32,27 @@ void Shoot_UI::Terminate()
 
 void Shoot_UI::Process()
 {
+	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+
+	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+	{
+		if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
+		{
+			player::Player* player = static_cast<player::Player*>(*iter);
+
+			//ŽËŒ‚•W€‚ð•\Ž¦
+			if (player->GetPlayerStatus() == player::Player::STATUS::SHOOT_START)
+			{
+				mode_game->ui_.shoot_ui_.SetDrawShootGuide(true);
+			}
+			else
+			{
+				mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
+			}
+			break;
+		}
+	}
+
 }
 
 void Shoot_UI::Render()

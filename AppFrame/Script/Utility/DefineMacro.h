@@ -14,3 +14,6 @@
 //XINPUT最大値
 #define TRIGGER_MAX (255.0f)
 #define THUMB_MAX (32767.0f)
+
+//アナログスティックのデッドスペース
+#define ANALOG_MIN (0.2f)

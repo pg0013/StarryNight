@@ -15,6 +15,7 @@ EffectBase::EffectBase()
 
 EffectBase::~EffectBase()
 {
+	//エフェクトを停止し、リソースを削除
 	StopEffekseer3DEffect(playing_effect_);
 	DeleteEffekseerEffect(effect_resource_);
 }
@@ -29,6 +30,7 @@ void EffectBase::Process()
 
 void EffectBase::Render()
 {
+	//3D表示設定を同期して、エフェクトを描画
 	Effekseer_Sync3DSetting();
 	DrawEffekseer3D();
 }

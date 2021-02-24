@@ -87,6 +87,13 @@ namespace starrynight
 			 */
 			void AddPlayerStarNum() { player_star_num_++; }
 
+			/**
+			 * @brief　 ゲームモードを取得する
+			 *
+			 * @return　ゲームモードインスタンス
+			 */
+			ModeGame* GetModeGame() { static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game")); }
+
 		private:
 			bool stop_object_process_;//オブジェクトの処理をストップする
 			int player_star_num_;//プレイヤーが取得したスターの数

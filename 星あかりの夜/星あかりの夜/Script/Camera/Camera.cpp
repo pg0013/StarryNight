@@ -24,17 +24,20 @@ Camera::~Camera()
 
 void Camera::Initialize()
 {
-	std::vector<std::string> param = { "move_speed","rot_speed","near","far" };
+	//パラメータをjsonから読み込み
+	std::vector<std::string> param = { "move_speed","rot_speed","near","far","camera_distance" };
 	camera_param_.LoadCameraParameters(param);
 
-	position_ = VGet(0, 90.f, -300.f);
-	target_ = VGet(0.0f, 60.0f, 0.0f);
-	clip_.near_ = camera_param_.GetCameraParam("near");
-	clip_.far_ = camera_param_.GetCameraParam("far");
-
+	//カメラパラメータ初期化
 	move_speed_ = camera_param_.GetCameraParam("move_speed");
 	rot_speed_ = camera_param_.GetCameraParam("rot_speed");
+	camera_distance_ = camera_param_.GetCameraParam("camera_distance");
 
+	//カメラ設定を初期化
+	position_ = VGet(0, 90.f, -1.0f * camera_distance_);
+	target_ = VAdd(VGet(0.0f, 60.0f, 0.0f), MV1GetPosition(resource::ResourceServer::GetModelHandle("player")));
+	clip_.near_ = camera_param_.GetCameraParam("near");
+	clip_.far_ = camera_param_.GetCameraParam("far");
 	status_ = STATUS::MOVE;
 }
 
@@ -47,9 +50,11 @@ void Camera::Process()
 	switch (status_)
 	{
 	case STATUS::MOVE:
+		//移動用カメラ処理
 		MoveCamera();
 		break;
 	case STATUS::SHOOT:
+		//射撃用カメラ処理
 		ShootCamera();
 		break;
 	}
@@ -57,13 +62,13 @@ void Camera::Process()
 
 void Camera::Render()
 {
-
 	SetCameraPositionAndTarget_UpVecY(position_, target_);
 	SetCameraNearFar(clip_.near_, clip_.far_);
 }
 
 void Camera::DrawDebugMenu()
 {
+#ifdef DEBUG_FUNCTION
 	int x, y;
 	x = 0; y = DEBUG_FONT_SIZE;
 
@@ -79,6 +84,7 @@ void Camera::DrawDebugMenu()
 	DrawFormatString(x, y, DEBUG_COLOR, "%2d   |- length : %5.2f", y / DEBUG_FONT_SIZE, length); y += DEBUG_FONT_SIZE;
 	DrawFormatString(x, y, DEBUG_COLOR, "%2d   |- rad : % 5.2f", y / DEBUG_FONT_SIZE, camera_rad); y += DEBUG_FONT_SIZE;
 	DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- deg : % 5.2f", y / DEBUG_FONT_SIZE, camera_deg); y += DEBUG_FONT_SIZE;
+#endif
 }
 
 float Camera::GetCameraRad()

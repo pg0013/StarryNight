@@ -23,28 +23,28 @@ void Player::Jump()
 	MV1_COLL_RESULT_POLY hit_poly_floor;
 	hit_poly_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
 
+	//ジャンプ開始処理
 	if (hit_poly_floor.HitFlag)
 	{
 		if (trigger_key & PAD_INPUT_1)
 		{
+			//床に接地している状態でAボタンが押されたら、ジャンプを開始する
 			jump_speed_ = 15.0f;
 			status_ = STATUS::JUMP_START;
 			jump_flag_ = true;
 		}
 		else
 		{
+			//ジャンプや落下後に地面に着地したら、ジャンプ状態を解除する
 			if (jump_flag_)
 			{
 				if (jump_speed_ < 0.0f)
 					jump_flag_ = false;
 			}
-			else
-			{
-				jump_flag_ = false;
-			}
 		}
 	}
 
+	//崖などから飛び降りたら落下状態にして、ジャンプ中に設定する
 	if (!hit_poly_floor.HitFlag &&
 		jump_flag_ == false)
 	{
@@ -52,6 +52,7 @@ void Player::Jump()
 		jump_speed_ = 0.0f;
 	}
 
+	//ジャンプ中の処理
 	if (jump_flag_)
 	{
 		VECTOR camera_pos = camera::Camera::GetInstance()->GetPosition();
@@ -62,9 +63,7 @@ void Player::Jump()
 		float length = utility::GetLeftStickLength();
 		float rad = utility::GetLeftStickRad();
 
-		float analog_min = 0.1f;//アナログスティックのデッドスペース
-
-		if (length < analog_min)
+		if (length < ANALOG_MIN)
 			length = 0.0f;
 		else if (length < 0.6f)
 			length = walk_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
@@ -89,6 +88,7 @@ void Player::Jump()
 		MV1_COLL_RESULT_POLY_DIM hit_capsule_wall;
 		hit_capsule_wall = stage::Stage::GetInstance()->GetHitCapsuleToWall(capsule_positon1, capsule_positon2, radius);
 
+		//ジャンプ中の壁刷り処理
 		if (hit_capsule_wall.HitNum > 0)
 		{
 			VECTOR normal = { 0,0,0 };
@@ -97,7 +97,7 @@ void Player::Jump()
 				normal = VAdd(normal, hit_capsule_wall.Dim[i].Normal);
 			}
 			normal = VNorm(normal);
-			VECTOR fall = { 0,jump_speed_,0 };
+			VECTOR fall = { 0 , jump_speed_ , 0 };
 
 			move = VAdd(move, fall);
 
@@ -107,8 +107,8 @@ void Player::Jump()
 			position_ = VAdd(position_, escape);
 
 			VECTOR camera_diff = camera_pos;
-			camera_diff.x = camera_tar.x + 300.0f * cos(camera_rad);
-			camera_diff.z = camera_tar.z + 300.0f * sin(camera_rad);
+			camera_diff.x = camera_tar.x + camera::Camera::GetInstance()->GetCameraLength() * cos(camera_rad);
+			camera_diff.z = camera_tar.z + camera::Camera::GetInstance()->GetCameraLength() * sin(camera_rad);
 
 			camera::Camera::GetInstance()->SetPosition(camera_diff);
 			camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
@@ -127,22 +127,7 @@ void Player::Jump()
 		camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, move));
 		camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
 
+		//ジャンプ加速処理
 		jump_speed_ -= gravity_;
-
-		//ジャンプアニメーションを設定
-		if (jump_speed_ < 0.0f)
-		{
-			VECTOR start_line = VAdd(position_, VGet(0, 40.0f, 0));
-			VECTOR end_line = VAdd(position_, VGet(0, -40.0f, 0));
-
-			//Navimeshとの当たり判定
-			MV1_COLL_RESULT_POLY hit_jump_floor;
-			hit_jump_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
-
-			if (hit_jump_floor.HitFlag)
-				status_ = STATUS::JUMP_END;
-			else
-				status_ = STATUS::JUMP_LOOP;
-		}
 	}
 }

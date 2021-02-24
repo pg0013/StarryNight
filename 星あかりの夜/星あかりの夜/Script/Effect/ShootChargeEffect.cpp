@@ -19,7 +19,6 @@ ShootChargeEffect::ShootChargeEffect()
 
 ShootChargeEffect::~ShootChargeEffect()
 {
-
 }
 
 void ShootChargeEffect::Initialize()
@@ -33,6 +32,7 @@ void ShootChargeEffect::Process()
 
 	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
 
+	//プレイヤーの座標と回転ベクトルを取得
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 	VECTOR player_rotation = MV1GetRotationXYZ(resource::ResourceServer::GetModelHandle("player"));
 
@@ -41,6 +41,7 @@ void ShootChargeEffect::Process()
 	VECTOR up = VNorm(utility::GetUpVector(player_rotation.y));
 	VECTOR back = VScale(VNorm(utility::GetForwardVector(player_rotation.y)), -1.0f);
 
+	//プレイヤーがパチンコを構えた手の場所にエフェクトを配置
 	VECTOR effect_pos;
 	effect_pos = VAdd(player_position, VScale(right, 20.0f));
 	effect_pos = VAdd(effect_pos, VScale(up, 110.0f));
@@ -50,6 +51,7 @@ void ShootChargeEffect::Process()
 
 	SetPlayingEffectPosition();
 
+	//プレイヤーが射撃モードでないとき、または星が発射されたらエフェクトを消す
 	if (camera::Camera::GetInstance()->GetStatus() != camera::Camera::STATUS::SHOOT ||
 		trigger_key & PAD_INPUT_4)
 	{

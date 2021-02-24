@@ -21,8 +21,7 @@ void Player::Move()
 	float length = utility::GetLeftStickLength();
 	float rad = utility::GetLeftStickRad();
 
-	float analog_min = 0.1f;//アナログスティックのデッドスペース
-	if (length < analog_min)
+	if (length < ANALOG_MIN)
 		length = 0.0f;
 	else if (length < 0.6f)
 		length = walk_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
@@ -34,7 +33,7 @@ void Player::Move()
 	//着地硬直
 	if (status_ == STATUS::JUMP_END)
 	{
-		if (length < analog_min)
+		if (length < ANALOG_MIN)
 			move = { 0,0,0 };
 		else
 			length = 2.5f;
@@ -134,22 +133,20 @@ void Player::Move()
 		camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, move));
 		camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
 	}
+}
 
-	//アニメーションステータスを設定
-	if (jump_flag_ == false)
-	{
-		if (status_ == STATUS::JUMP_END &&
-			anim_play_time_ < anim_total_time_ * 2 / 3)
-			status_ = STATUS::JUMP_END;
-		else if (utility::GetLeftStickLength() < analog_min)
-			status_ = STATUS::WAIT;
-		else if (utility::GetLeftStickLength() < 0.6f)
-			status_ = STATUS::WALK;
-		else
-			status_ = STATUS::RUN;
-	}
+void Player::DecideForwardDirection()
+{
+	//スティックの移動量と角度を計算
+	float length = utility::GetLeftStickLength();
+	float rad = utility::GetLeftStickRad();
+	float camera_rad = camera::Camera::GetInstance()->GetCameraRad();
 
-	if (length > analog_min)
+	VECTOR move = { 0,0,0 };
+	move.x = cos(rad + camera_rad) * length;
+	move.z = sin(rad + camera_rad) * length;
+
+	if (length > ANALOG_MIN)
 	{
 		//スティック方向の角度
 		float stick_rad = atan2(-1.0f * move.x, -1.0f * move.z);

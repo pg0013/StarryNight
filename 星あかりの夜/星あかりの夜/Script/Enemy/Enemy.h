@@ -19,7 +19,7 @@ namespace starrynight
 			public object::ObjectBase
 		{
 		public:
-			Enemy();
+			Enemy(std::string _handle_name);
 			~Enemy();
 
 			/**
@@ -45,12 +45,30 @@ namespace starrynight
 			virtual void Render() override;
 
 		private:
+
+
 			/**
 			 * @brief　 エネミーのさまよう移動処理
 			 *
 			 * @return　移動方向
 			 */
-			VECTOR Wander();
+			VECTOR DecideMoveAmount();
+
+			/**
+			 * @brief　 プレイヤーを追跡する処理
+			 *
+			 * @param  _move　移動方向ベクトル
+			 * @return   移動方向
+			 */
+			VECTOR Tracking(VECTOR _move);
+
+			/**
+			 * @brief　 プレイヤーを攻撃する処理
+			 *
+			 * @param  _move　移動方向ベクトル
+			 * @return   移動方向
+			 */
+			VECTOR Attack(VECTOR _move);
 
 			/**
 			 * @brief　 移動処理
@@ -61,7 +79,7 @@ namespace starrynight
 			/**
 			 * @brief 状態遷移用定数
 			 */
-			enum class STATUS
+			enum class ANIM_STATUS
 			{
 				NONE,
 				WAIT,
@@ -84,17 +102,24 @@ namespace starrynight
 			};
 
 			/**
+			 * @brief　 状態遷移を決定する処理
+			 *
+			 * @param  _old_status	前フレームの状態
+			 */
+			void SwitchStatus(ANIM_STATUS _old_status);
+
+			/**
 			 * @brief　 アニメーション切り替え関数
 			 *
 			 * @param  _old_status	遷移元の状態
 			 */
-			void SwitchAnimation(STATUS _old_status);
+			void SwitchEnemyAnimation(ANIM_STATUS _old_status);
 
 		private:
 			//エネミーパラメータ保持クラス
 			EnemyParameters enemy_param_;
 
-			STATUS status_;
+			ANIM_STATUS anim_status_;
 			MOVE_STATUS move_status_;
 
 			//jsonから読み込む外部パラメーター
@@ -102,6 +127,7 @@ namespace starrynight
 			float run_speed_;//移動速度
 			float rot_speed_;//回転速度
 			float detect_length_;//プレイヤー検出範囲
+			float attack_length_;//攻撃開始距離
 
 			int start_frame_;//生成フレーム記録用変数
 

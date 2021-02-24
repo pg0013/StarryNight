@@ -45,11 +45,6 @@ namespace starrynight
 			virtual void Render() override;
 
 			/**
-			 * @brief　コントローラ入力検知処理.
-			 */
-			void Input();
-
-			/**
 			 * @brief　 ダメージを受けたことを記録するフラグを設定する
 			 *
 			 * @param  _flag　ダメージを受けたフラグ
@@ -57,32 +52,18 @@ namespace starrynight
 			void SetDamageFlag(bool _flag) { damage_flag_ = _flag; }
 
 			/**
+			 * @brief　 ダメージを受けたことを記録するフラグを返す
+			 *
+			 * @return   trueでダメージを受けた
+			 */
+			bool GetDamageFlag() { return damage_flag_; }
+
+			/**
 			 * @brief　 ダメージモーションを開始するフラグを設定する
 			 *
 			 * @param  _flag	ダメージモーションを開始するフラグ
 			 */
 			void SetDamageAnimFlag(bool _flag) { damage_anim_flag_ = _flag; }
-
-		private:
-			/**
-			 * @brief　 移動処理
-			 */
-			void Move();
-
-			/**
-			 * @brief　 ジャンプ処理
-			 */
-			void Jump();
-
-			/**
-			 * @brief	パチンコを構える処理.
-			 */
-			void HoldSlingShot();
-
-			/**
-			 * @brief	ダメージを受けた時の処理
-			 */
-			void Damage();
 
 			/**
 			 * @brief 状態遷移用定数
@@ -103,11 +84,67 @@ namespace starrynight
 			};
 
 			/**
+			 * @brief　 プレイヤーの状態を取得
+			 *
+			 * @return   プレイヤー状態
+			 */
+			STATUS GetPlayerStatus() { return status_; }
+
+		private:
+			/**
+			 * @brief　 移動処理
+			 */
+			void Move();
+
+			/**
+			 * @brief　 ジャンプ処理
+			 */
+			void Jump();
+
+			/**
+			 * @brief	パチンコを構える処理.
+			 */
+			void HoldSlingShot();
+
+			/**
+			 * @brief　 右スティック入力からプレイヤーの方向を決める
+			 */
+			void DecideForwardDirection();
+
+			/**
+			 * @brief	ダメージを受けた時の処理
+			 */
+			void Damage();
+
+			/**
+			 * @brief　 ステージの外に飛び出たときの処理
+			 *
+			 */
+			void OutOfStage();
+
+			/**
+			 * @brief　 プレイヤーのアクション切り替えを行う処理
+			 *
+			 */
+			void SwitchPlayerAction();
+
+			/**
+			 * @brief　 プレイヤーの状態切り替えを行う処理
+			 *
+			 */
+			void SwitchPlayerStatus();
+
+			/**
 			 * @brief　 アニメーション切り替え関数
 			 *
 			 * @param  _old_status	遷移元の状態
 			 */
-			void SwitchAnimation(STATUS _old_status);
+			void SwitchPlayerAnimation(STATUS _old_status);
+
+			/**
+			 * @brief　 別のアニメーションに移行するときにアニメーションをブレンドする処理
+			 */
+			void PlayerAnimationBlend();
 
 		private:
 			//プレイヤーパラメータ保持クラス
