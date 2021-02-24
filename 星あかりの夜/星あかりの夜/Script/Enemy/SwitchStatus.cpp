@@ -8,6 +8,7 @@
 
 #include "Enemy.h"
 #include"../Player/Player.h"
+#include"../Effect/DamageEffect.h"
 #include"../Mode/ModeGame.h"
 
 using namespace starrynight::enemy;
@@ -62,9 +63,22 @@ void Enemy::SwitchStatus(ANIM_STATUS _old_status)
 					player::Player* player = static_cast<player::Player*>(*iter);
 					player->SetRotation(VGet(0.0f, rotation_.y + DEG2RAD(180.0f), 0.0f));
 					player->SetDamageFlag(true);
+
 					break;
 				}
 			}
+			//プレイヤーのダメージエフェクトを描画
+			effect::DamageEffect* damage_effect = NEW effect::DamageEffect();
+			VECTOR damage_pos = VScale(VAdd(player_position, position_), 0.5f);
+			damage_pos = VAdd(damage_pos, VGet(0,50,0));
+
+			damage_effect->SetPosition(damage_pos);
+			damage_effect->SetRotation(VGet(0, 0, 0));
+			damage_effect->Initialize();
+
+			damage_effect->PlayEffect();
+			mode_game->effect_server_.Add(damage_effect);
+
 			attacked_flag_ = true;
 		}
 	}

@@ -24,6 +24,7 @@
     <ClCompile Include="Script\Camera\CameraParameters.cpp" />
     <ClCompile Include="Script\Camera\MoveCamera.cpp" />
     <ClCompile Include="Script\Camera\ShootCamera.cpp" />
+    <ClCompile Include="Script\Effect\DamageEffect.cpp" />
     <ClCompile Include="Script\Effect\EffectBase.cpp" />
     <ClCompile Include="Script\Effect\EffectServer.cpp" />
     <ClCompile Include="Script\Effect\ShootChargeEffect.cpp" />
@@ -60,6 +61,7 @@
     <ClInclude Include="Script\ApplicationMain.h" />
     <ClInclude Include="Script\Camera\Camera.h" />
     <ClInclude Include="Script\Camera\CameraParameters.h" />
+    <ClInclude Include="Script\Effect\DamageEffect.h" />
     <ClInclude Include="Script\Effect\EffectBase.h" />
     <ClInclude Include="Script\Effect\EffectServer.h" />
     <ClInclude Include="Script\Effect\ShootChargeEffect.h" />

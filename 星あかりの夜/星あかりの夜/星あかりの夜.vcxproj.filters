@@ -186,6 +186,9 @@
     <ClCompile Include="Script\Player\SwitchPlayerAction.cpp">
       <Filter>ソース ファイル\Player\Player_Action</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Effect\DamageEffect.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h">
@@ -250,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="Script\Enemy\EnemyParameters.h">
       <Filter>ヘッダー ファイル\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Effect\DamageEffect.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
