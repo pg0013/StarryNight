@@ -94,9 +94,55 @@ namespace starrynight
 			 */
 			ModeGame* GetModeGame() { static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game")); }
 
+			/**
+			 * @brief　 ゲームスコアを追加する
+			 *
+			 * @param  _score		ゲームのスコア
+			 */
+			void AddGameScore(int _score) { game_score_ += _score; }
+
+			/**
+			 * @brief　 ゲームスコアを取得する
+			 *
+			 * @return   ゲームスコア
+			 */
+			int GetGameScore() { return game_score_; }
+
+			/**
+			 * @brief　 ステージのフィールドスター総数を設定する
+			 *
+			 * @param  _stage_star_num	　ステージのフィールドスター総数
+			 */
+			void SetStageStarNum(int _stage_star_num) { stage_star_num_ = _stage_star_num; }
+
+			/**
+			 * @brief　 ステージのフィールドスター総数を取得する
+			 *
+			 * @return   ステージのフィールドスター総数
+			 */
+			int GetStageStarNum() { return stage_star_num_; }
+
+			/**
+			 * @brief　 ステージの規定スコアを設定する
+			 *
+			 * @param  _regulations_score	ステージの規定スコア
+			 */
+			void SetStageRegulationsScore(int _regulations_score) { regulations_score_ = _regulations_score; }
+
+			/**
+			 * @brief　 ステージの規定スコアを取得する
+			 *
+			 * @return   ステージの規定スコア
+			 */
+			int GetStageRegulationsScore() { return regulations_score_; }
+
 		private:
 			bool stop_object_process_;//オブジェクトの処理をストップする
 			int player_star_num_;//プレイヤーが取得したスターの数
+
+			int game_score_;//ゲームのスコア
+			int stage_star_num_;//ステージのスター総数
+			int regulations_score_;//ステージの規定スコア
 		};
 	}
 }

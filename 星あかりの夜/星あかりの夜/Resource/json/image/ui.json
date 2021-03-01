@@ -4,6 +4,20 @@
             "filename": "shoot_guide.png",
             "xnum": 1,
             "ynum": 1,
+            "xsize": 824,
+            "ysize": 823
+        },
+        {
+            "filename": "circle_green.png",
+            "xnum": 1,
+            "ynum": 1,
+            "xsize": 1000,
+            "ysize": 1000
+        },
+        {
+            "filename": "circle_white.png",
+            "xnum": 1,
+            "ynum": 1,
             "xsize": 1000,
             "ysize": 1000
         }

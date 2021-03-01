@@ -8,9 +8,11 @@
 
 #include"Player.h"
 #include"../Camera/Camera.h"
-#include"../Mode/ModeGame.h"
+#include"../Star/Star.h"
+#include"../Star/SkyStar.h"
 #include"../Effect/ShootChargeEffect.h"
 #include"../Effect/ShootEffect.h"
+#include"../Mode/ModeGame.h"
 
 using namespace starrynight::player;
 
@@ -22,22 +24,66 @@ void Player::HoldSlingShot()
 	mode::ModeGame* mode_game =
 		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
-	//Yボタンが押されたら星を発射
-	if (trigger_key & PAD_INPUT_4)
+	//星との当たり判定
+	MV1_COLL_RESULT_POLY hit_star;
+	hit_star.HitFlag = 0;
+
+	//射撃標準の地点への線分
+	VECTOR start = camera::Camera::GetInstance()->GetPosition();
+	VECTOR end = ConvScreenPosToWorldPos(
+		VGet(appframe::SCREEN_WIDTH / 2.0f, appframe::SCREEN_HEIGHT / 2.0f, 1.0f));
+
+	//星座との当たり判定をとる
+	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
 	{
-		mode::ModeGame* modegame = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-		effect::ShootEffect* shoot_effect = NEW effect::ShootEffect();
+		if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::SKY_STAR)
+		{
+			star::SkyStar* star = static_cast<star::SkyStar*>(*iter);
+			hit_star = star->GetHitToSkyStar(start, end);
+			break;
+		}
+	}
 
-		shoot_effect->Initialize();
-		shoot_effect->PlayEffect();
-		modegame->effect_server_.Add(shoot_effect);
+	if (hit_star.HitFlag)
+	{
+		hitposition = hit_star.HitPosition;
 
-		status_ = STATUS::SHOOT_END;
+		//Yボタンが押されたら、タイミングゲージを描画
+		if (trigger_key & PAD_INPUT_4)
+		{
+			mode_game->ui_.timing_ui_.SetSelectedStarNum(hit_star.FrameIndex);
+			mode_game->ui_.timing_ui_.SetDrawTimingGuide(true);
+			mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
+		}
 	}
 	else
 	{
 		if (status_ != STATUS::SHOOT_END)
 			status_ = STATUS::SHOOT_START;
+	}
+
+	if (mode_game->ui_.timing_ui_.GetLaunchStarShoot() == true)
+	{
+		effect::ShootEffect* shoot_effect = NEW effect::ShootEffect(hit_star.HitPosition);
+
+		shoot_effect->PlayEffect();
+		shoot_effect->Initialize();
+		mode_game->effect_server_.Add(shoot_effect);
+
+		//プレイヤーが連れていた星を削除する
+		for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+		{
+			if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::STAGE_STAR)
+			{
+				star::Star* star = static_cast<star::Star*>(*iter);
+				if (star->GetPlayersStarNum() > 0)
+					mode_game->object_server_.Delete(*iter);
+			}
+		}
+
+		status_ = STATUS::SHOOT_END;
+
+		mode_game->ui_.timing_ui_.SetLaunchStarShoot(false);
 	}
 
 	//射撃溜めエフェクト生成
@@ -54,6 +100,14 @@ void Player::HoldSlingShot()
 			modegame->effect_server_.Add(charge_effect);
 			shoot_charge_effect_flag_ = false;
 		}
+	}
+
+	//射撃溜めエフェクト生成
+	if (status_ == STATUS::SHOOT_START &&
+		anim_play_time_ == 0)
+	{
+		//射撃標準を描画
+		mode_game->ui_.shoot_ui_.SetDrawShootGuide(true);
 	}
 
 	float shoot_anim_end = 80.0f;

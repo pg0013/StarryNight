@@ -11,10 +11,11 @@
 
 using namespace starrynight::effect;
 
-ShootEffect::ShootEffect()
+ShootEffect::ShootEffect(VECTOR _target)
 {
 	effect_resource_ = LoadEffekseerEffect("Resource/effect/shoot.efk", 10.0f);
 	effect_frame_ = 120;
+	shoot_target_ = _target;
 }
 
 ShootEffect::~ShootEffect()
@@ -42,23 +43,37 @@ void ShootEffect::Initialize()
 
 	SetPosition(effect_pos);
 
-	//カメラターゲットとプレイヤーの角度を算出
-	VECTOR target = camera::Camera::GetInstance()->GetTarget();
-	float diff_x = abs(camera::Camera::GetInstance()->GetClip().far_) - abs(player_position.x);
-	float diff_y = target.y - player_position.y;
+	//エフェクトがx軸正方向に向いているので、ターゲットとx軸の
+	//xz平面の角度を求める
+	VECTOR axis_x = VGet(1, 0, 0);
+	VECTOR totarget = VNorm(VGet(shoot_target_.x - effect_pos.x, 0, shoot_target_.z - effect_pos.z));
+	float theta = VDot(axis_x, totarget);
+	theta = acosf(theta);
 
-	float tar_rad_xy = atan2(diff_y, diff_x);
-	float tar_rad_xz = player_rotation.y + DEG2RAD(90.0f);
+	//フォワードベクトルとエフェクトからターゲットへ向くベクトルの角度を求める
+	VECTOR forward = VSub(VAdd(utility::GetForwardVector(player_rotation.y), effect_pos), effect_pos);
+	totarget = VNorm(VSub(shoot_target_, effect_pos));
+	float phi = VDot(forward, totarget);
+	phi = acosf(phi);
 
-	//EffekseerとDXライブラリで回転する軸の順番が違う
-	//回転の方向は時計回りである。
-	//回転の順番は Z軸回転 → X軸回転 → Y軸回転
 	rotation_.x = 0.0f;
-	rotation_.y = tar_rad_xz;
-	rotation_.z = tar_rad_xy;
+	rotation_.y = -theta;//反時計回りの回転をする行列なのでマイナス倍する
+	rotation_.z = phi;
 
-	SetPlayingEffectPosition();
-	SetPlayingEffectRotation();
+	Effekseer_Sync3DSetting();
+
+	//effekseerをもちいて回転行列を生成
+	Effekseer::Manager* manager = GetEffekseer3DManager();
+	Effekseer::Matrix43 matrix, rot_matrix;
+	rot_matrix.Indentity();
+	rot_matrix.RotationZXY(rotation_.z, rotation_.x, rotation_.y);
+
+	//エフェクトの行列を取得し、回転行列をセットする
+	matrix = manager->GetBaseMatrix(playing_effect_);
+	matrix.SetSRT(DXLibtoEffekseer(VGet(10.0f, 10.0f, 10.0f)),
+		rot_matrix,
+		DXLibtoEffekseer(effect_pos));
+	manager->SetBaseMatrix(playing_effect_, matrix);
 }
 
 void ShootEffect::Process()
@@ -66,9 +81,6 @@ void ShootEffect::Process()
 	EffectBase::Process();
 
 	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
-
-	SetPlayingEffectPosition();
-	SetPlayingEffectRotation();
 
 	//カメラが射撃モードでなくなったら、エフェクトを削除
 	if (camera::Camera::GetInstance()->GetStatus() != camera::Camera::STATUS::SHOOT)

@@ -35,6 +35,7 @@ void Player::SwitchPlayerAction()
 	{
 		//移動、ジャンプアクションを行う
 		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::MOVE);
+		mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
 		shoot_charge_effect_flag_ = true;
 
 		Move();

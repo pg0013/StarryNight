@@ -81,6 +81,17 @@ namespace starrynight
 			void SetPlayingEffectRotation();
 
 		protected:
+			/**
+			 * @brief　 DXライブラリのベクトルをEffekseerのベクトルに変換する
+			 *
+			 * @param  _vector	DXライブラリのベクトル構造体
+			 * @return   Effekseerのベクトル構造体
+			 */
+			Effekseer::Vector3D DXLibtoEffekseer(VECTOR _vector)
+			{
+				return Effekseer::Vector3D(_vector.x, _vector.y, _vector.z);
+			}
+
 			VECTOR position_;//座標ベクトル
 			VECTOR rotation_;//回転ベクトル
 

@@ -189,6 +189,15 @@
     <ClCompile Include="Script\Effect\DamageEffect.cpp">
       <Filter>ソース ファイル\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Star\SkyStar.cpp">
+      <Filter>ソース ファイル\Star</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Star\SkyStarParameter.cpp">
+      <Filter>ソース ファイル\Star</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\UI\TimingGame_UI.cpp">
+      <Filter>ソース ファイル\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h">
@@ -256,6 +265,15 @@
     </ClInclude>
     <ClInclude Include="Script\Effect\DamageEffect.h">
       <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Star\SkyStar.h">
+      <Filter>ヘッダー ファイル\Star</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Star\SkyStarParameter.h">
+      <Filter>ヘッダー ファイル\Star</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\UI\TimingGame_UI.h">
+      <Filter>ヘッダー ファイル\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

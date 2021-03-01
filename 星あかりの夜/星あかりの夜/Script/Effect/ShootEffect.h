@@ -17,7 +17,7 @@ namespace starrynight
 			public effect::EffectBase
 		{
 		public:
-			ShootEffect();
+			ShootEffect(VECTOR _target);
 			~ShootEffect();
 
 			/**
@@ -36,6 +36,7 @@ namespace starrynight
 			virtual void Render();
 
 		private:
+			VECTOR shoot_target_;
 		};
 	}
 }

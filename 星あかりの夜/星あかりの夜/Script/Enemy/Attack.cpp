@@ -16,7 +16,7 @@ VECTOR Enemy::Attack(VECTOR _move)
 {
 	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
-	if (anim_play_time_ > 40.0f)
+	if (anim_play_time_ > 0.0f)//40.0f)
 	{
 		for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
 		{

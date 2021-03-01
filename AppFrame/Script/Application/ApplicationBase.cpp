@@ -42,12 +42,12 @@ namespace appframe
 #ifdef DEBUG_FUNCTION
 		SetLogDrawArea(1280, 0, 1920, 1080);//printfdx‚Ì•`‰æˆÊ’u‚ğİ’è
 		utility::CheckMemoryLeak();
-		AppWindowed(TRUE);
 		OutputDebugLog(TRUE);
-		SetBackgroundColor(0, 255, 255, 255);
+		AppWindowed(TRUE);
+		SetBackgroundColor(0, 0, 0, 255);
 #else
-		AppWindowed(FALSE);
 		OutputDebugLog(FALSE);
+		AppWindowed(FALSE);
 #endif
 
 		SetMainWindowText("¯‚ ‚©‚è‚Ì–é");

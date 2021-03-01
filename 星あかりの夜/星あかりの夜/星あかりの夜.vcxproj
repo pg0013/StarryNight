@@ -52,9 +52,12 @@
     <ClCompile Include="Script\Stage\CollisionToStage.cpp" />
     <ClCompile Include="Script\Stage\Stage.cpp" />
     <ClCompile Include="Script\Stage\StageParameters.cpp" />
+    <ClCompile Include="Script\Star\SkyStar.cpp" />
+    <ClCompile Include="Script\Star\SkyStarParameter.cpp" />
     <ClCompile Include="Script\Star\Star.cpp" />
     <ClCompile Include="Script\Star\StarParameter.cpp" />
     <ClCompile Include="Script\UI\Shoot_UI.cpp" />
+    <ClCompile Include="Script\UI\TimingGame_UI.cpp" />
     <ClCompile Include="Script\UI\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -76,9 +79,12 @@
     <ClInclude Include="Script\Player\PlayerParameters.h" />
     <ClInclude Include="Script\Stage\Stage.h" />
     <ClInclude Include="Script\Stage\StageParameters.h" />
+    <ClInclude Include="Script\Star\SkyStar.h" />
+    <ClInclude Include="Script\Star\SkyStarParameter.h" />
     <ClInclude Include="Script\Star\Star.h" />
     <ClInclude Include="Script\Star\StarParameter.h" />
     <ClInclude Include="Script\UI\Shoot_UI.h" />
+    <ClInclude Include="Script\UI\TimingGame_UI.h" />
     <ClInclude Include="Script\UI\UIManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

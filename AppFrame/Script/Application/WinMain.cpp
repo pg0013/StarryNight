@@ -22,6 +22,9 @@ int WINAPI WinMain(HINSTANCE _hinstance, HINSTANCE _hprev_instance, LPSTR _lpcmd
 		appbase->Input();
 		appbase->Process();
 		appbase->Render();
+
+		//Esc‚ğ‰Ÿ‚·‚ÆI—¹
+		if (GetAsyncKeyState(VK_ESCAPE)){break;}
 	}
 
 	appbase->Terminate();

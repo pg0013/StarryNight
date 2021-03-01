@@ -1,10 +1,13 @@
 #pragma once
 #include"DxLib.h"
 
-#define DEBUG_FUNCTION 1
+#ifdef _DEBUG
+#define DEBUG_FUNCTION
+#endif // _DEBUG
+
 
 #define DEBUG_COLOR GetColor(255,0,0)
-#define DEBUG_FONT_SIZE 20
+#define DEBUG_FONT_SIZE (20)
 
 //計算用マクロ
 #define	PI	(3.1415926535897932386f)

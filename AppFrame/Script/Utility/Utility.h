@@ -88,14 +88,14 @@ namespace utility
 
 	/**
 	 * @brief 左スティックの移動量を返す
-	 * 
+	 *
 	 * @return 左スティック移動量
 	 */
 	float GetLeftStickLength();
 
 	/**
 	 * @brief 左スティックの角度を返す
-	 * 
+	 *
 	 * @return 左スティックの角度
 	 */
 	float GetLeftStickRad();

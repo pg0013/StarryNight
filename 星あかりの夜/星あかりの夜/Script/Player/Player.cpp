@@ -37,6 +37,8 @@ Player::Player()
 
 	shoot_charge_effect_flag_ = true;
 
+	hitposition = VGet(0, 0, 0);
+
 	Initialize();
 }
 
@@ -123,6 +125,10 @@ void Player::Render()
 	VECTOR end = VAdd(start, VScale(VNorm(utility::GetForwardVector(rotation_.y)), 30.0f));
 	DrawLine3D(start, end, DEBUG_COLOR);
 
+	//éÀåÇïWèÄÇÃínì_Ç÷ÇÃê¸ï™
+	end = hitposition;
+	DrawLine3D(start, end, DEBUG_COLOR);
+
 	int x, y;
 	x = 0; y = 12 * DEBUG_FONT_SIZE;
 	switch (status_)
@@ -158,5 +164,6 @@ void Player::Render()
 		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- status    : _EOT_", y / DEBUG_FONT_SIZE); y += DEBUG_FONT_SIZE;
 		break;
 	}
+
 #endif
 }

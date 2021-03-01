@@ -31,7 +31,7 @@ void Camera::ShootCameraInit()
 	position_ = shoot_camera_pos;
 
 	//ターゲットはプレイヤーの向きに合わせる
-	target_ = VAdd(player_positon, VScale(VNorm(utility::GetForwardVector(player_rotation.y)), clip_.far_));
+	target_ = VAdd(player_positon, VScale(VNorm(utility::GetForwardVector(player_rotation.y)), 10000));
 }
 
 void Camera::ShootCamera()
@@ -59,9 +59,9 @@ void Camera::ShootCamera()
 
 	//カメラを上下に移動
 	if (stick_ry > ANALOG_MIN)
-		rot_vertical -= DEG2RAD(rot_speed_) * stick_ry;
+		rot_vertical -= DEG2RAD(rot_speed_*0.5f) * stick_ry;
 	if (stick_ry < -ANALOG_MIN)
-		rot_vertical += DEG2RAD(rot_speed_) * -stick_ry;
+		rot_vertical += DEG2RAD(rot_speed_*0.5f) * -stick_ry;
 
 	//回転行列を算出
 	MATRIX rot_v = MGetRotAxis(rot_vertical_axis, rot_vertical);
@@ -70,7 +70,7 @@ void Camera::ShootCamera()
 	target_.y = VTransform(target_, rot_v).y;
 
 	float target_y_min = 0.0f;
-	float target_y_max = 10000.0f;
+	float target_y_max = 12500.0f;
 
 	//カメラ角度の上下限を設定
 	if (target_.y < target_y_min)

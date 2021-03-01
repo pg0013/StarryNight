@@ -173,6 +173,8 @@ namespace starrynight
 			bool shoot_charge_effect_flag_;//射撃溜めエフェクト生成フラグ
 
 			STATUS status_;//プレイヤーの状態保持変数
+
+			VECTOR hitposition;
 		};
 	}
 }

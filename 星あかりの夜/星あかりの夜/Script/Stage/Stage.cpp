@@ -8,6 +8,7 @@
 #include "Stage.h"
 #include"../Mode/ModeGame.h"
 #include"../Star/Star.h"
+#include"../Star/SkyStar.h"
 #include"../Enemy/Enemy.h"
 #include"../Effect/ShootPointEffect.h"
 
@@ -32,6 +33,7 @@ void Stage::Initialize()
 {
 	stage_param_.LoadStage("haru_A", false);
 	star_param_.LoadStageStar("haru_A", false);
+	skystar_param_.LoadSkyStar("haru_A", false);
 	enemy_param_.LoadStageEnemys("haru_A", false);
 
 	//Stageモデルの読み込み
@@ -74,12 +76,27 @@ void Stage::Initialize()
 	handle_map = star_param_.GetMapModelParam();
 
 	//StageにStarモデルを配置する
+	int stage_star_num = 0;
 	for (auto iter = handle_map.begin(); iter != handle_map.end(); iter++)
 	{
 		star::Star* star = NEW star::Star();
 		star->SetModelHandle(resource::ResourceServer::GetModelHandle((*iter).second.handlename_));
 		star->Initialize();
 		mode_game->object_server_.Add(star);
+		stage_star_num++;
+	}
+	//ステージのフィールドスター総数を設定
+	mode_game->SetStageStarNum(stage_star_num);
+
+	//星座の情報を読み込み
+	handle_map = skystar_param_.GetMapModelParam();
+
+	//星座モデルを配置する
+	for (auto iter = handle_map.begin(); iter != handle_map.end(); iter++)
+	{
+		star::SkyStar* skystar = NEW star::SkyStar((*iter).second.filename_);
+		skystar->Initialize();
+		mode_game->object_server_.Add(skystar);
 	}
 
 	//エネミーモデルの配置情報を読み込み

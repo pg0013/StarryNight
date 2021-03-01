@@ -9,6 +9,7 @@
 #pragma once
 #include"appframe.h"
 #include"Shoot_UI.h"
+#include"TimingGame_UI.h"
 
 namespace starrynight
 {
@@ -51,6 +52,9 @@ namespace starrynight
 		public:
 			//射撃ガイド表示クラス
 			Shoot_UI shoot_ui_;
+
+			//タイミングゲーム表示クラス
+			TimingGame_UI timing_ui_;
 
 		private:
 			//UIパラメータ管理クラス

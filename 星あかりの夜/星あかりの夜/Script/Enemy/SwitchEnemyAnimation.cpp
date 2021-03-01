@@ -25,7 +25,10 @@ void Enemy::SwitchEnemyAnimation(ANIM_STATUS _old_status)
 		else
 		{
 			//Ä¶ŠÔ‚ği‚ß‚é
-			anim_play_time_ += 1.0f;
+			if (anim_status_ == ANIM_STATUS::ATTACK)
+				anim_play_time_ += 2.0f;
+			else
+				anim_play_time_ += 1.0f;
 			anim_rate_ += 0.2f;
 		}
 	}

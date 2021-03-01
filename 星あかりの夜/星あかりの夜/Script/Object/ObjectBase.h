@@ -23,7 +23,7 @@ namespace starrynight
 			 */
 			enum class OBJECT_TYPE
 			{
-				PLAYER,ENEMY,STAR,EFFECT
+				PLAYER,ENEMY,SKY_STAR,STAGE_STAR,EFFECT
 			};
 
 			/**

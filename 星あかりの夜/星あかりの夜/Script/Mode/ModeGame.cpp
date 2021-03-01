@@ -14,6 +14,8 @@ ModeGame::ModeGame()
 {
 	stop_object_process_ = false;
 	player_star_num_ = 0;
+	game_score_ = 0;
+	regulations_score_ = 30000;
 }
 
 ModeGame::~ModeGame()
@@ -67,7 +69,8 @@ bool ModeGame::Render()
 
 	SetUseZBuffer3D(TRUE);
 	SetWriteZBuffer3D(TRUE);
-	SetUseBackCulling(TRUE);
+
+	SetLightAmbColor(GetColorF(0.2f, 0.2f, 0.2f, 0.0f));
 
 	camera_.Render();
 
@@ -77,12 +80,15 @@ bool ModeGame::Render()
 	ui_.Render();
 
 #ifdef DEBUG_FUNCTION
+	int x, y;
 	camera_.DrawDebugMenu();
 	utility::DrawModelDebugInfo(resource::ResourceServer::GetModelHandle("player"), "Player", 7);
 	utility::Draw3DAxis(10.f, camera_.GetTarget());
-	int x, y;
 	x = 0; y = 11 * DEBUG_FONT_SIZE;
-	DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- star    : %d", y / DEBUG_FONT_SIZE,GetPlayerStarNum()); y += DEBUG_FONT_SIZE;
+	DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- star    : %d", y / DEBUG_FONT_SIZE, GetPlayerStarNum()); y += DEBUG_FONT_SIZE;
+	y = 13 * DEBUG_FONT_SIZE;
+	DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- RegScore    : %d", y / DEBUG_FONT_SIZE, GetStageRegulationsScore()); y += DEBUG_FONT_SIZE;
+	DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- GameScore   : %d", y / DEBUG_FONT_SIZE,GetGameScore()); y += DEBUG_FONT_SIZE;
 #endif
 
 	return true;

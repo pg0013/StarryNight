@@ -4,7 +4,7 @@
  *				ゲームごとにオーバーライドして使用する
  *
  * @author Takuya Fujisawa
- * @date    20201021
+ * @date   2020/10/25
  */
 
 #include"DxLib.h"
@@ -109,7 +109,6 @@ namespace appframe
 		 * @return   XINPUTコントローラの入力
 		 */
 		virtual XINPUT_STATE GetXInputState() { return x_input_; }
-
 
 		/**
 		 * @brief　 DIRECTINPUTコントローラの入力を返す

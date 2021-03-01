@@ -8,6 +8,7 @@
 
 #include "ShootChargeEffect.h"
 #include"../Mode/ModeGame.h"
+#include"../Player/Player.h"
 
 using namespace starrynight::effect;
 
@@ -51,14 +52,21 @@ void ShootChargeEffect::Process()
 
 	SetPlayingEffectPosition();
 
+
 	//プレイヤーが射撃モードでないとき、または星が発射されたらエフェクトを消す
-	if (camera::Camera::GetInstance()->GetStatus() != camera::Camera::STATUS::SHOOT ||
-		trigger_key & PAD_INPUT_4)
-	{
 		mode::ModeGame* mode_game =
 			static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-		mode_game->effect_server_.Delete(this);
-	}
+
+		for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+		{
+			if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
+			{
+				player::Player* player = static_cast<player::Player*>(*iter);
+
+				if (player->GetPlayerStatus() != player::Player::STATUS::SHOOT_START)
+					mode_game->effect_server_.Delete(this);
+			}
+		}
 }
 
 void ShootChargeEffect::Render()

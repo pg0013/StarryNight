@@ -10,6 +10,7 @@
 #include"appframe.h"
 #include"StageParameters.h"
 #include"../Star/StarParameter.h"
+#include"../Star/SkyStarParameter.h"
 #include"../Enemy/EnemyParameters.h"
 #include<vector>
 
@@ -103,6 +104,7 @@ namespace starrynight
 		private:
 			StageParameters stage_param_;//ステージパラメータ管理クラス
 			star::StarParameter star_param_;//スターパラメータ管理クラス
+			star::SkyStarParameter skystar_param_;//星座パラメータ管理クラス
 			enemy::EnemyParameters enemy_param_;//エネミーパラメータ管理クラス
 
 			std::vector<handle> stage_handle_;//ステージモデルのハンドル管理コンテナ

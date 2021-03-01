@@ -75,6 +75,10 @@ void Star::Wait()
 		mode::ModeGame* modegame = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 		modegame->AddPlayerStarNum();
 		star_num_ = modegame->GetPlayerStarNum();
+
+		VECTOR player_rotation = MV1GetRotationXYZ(resource::ResourceServer::GetModelHandle("player"));
+		player_position = VAdd(player_position, VGet(0.0f, 50.0f, 0.0f));
+		position_ = VAdd(player_position, VScale(VNorm(utility::GetForwardVector(player_rotation.y)), -0.5f * star_num_ * follow_interval_));
 	}
 
 	//プレイヤーとの距離が検出範囲であれば、飛び跳ねる
@@ -156,11 +160,6 @@ void Star::Follow()
 
 	old_player_position_ = player_position;
 
-	if (modegame->GetPlayerStarNum() == 0)
-	{
-		modegame->object_server_.Delete(this);
-	}
-
 	bool player_damaged = false;
 	for (auto iter = modegame->object_server_.List()->begin(); iter != modegame->object_server_.List()->end(); iter++)
 	{
@@ -174,7 +173,8 @@ void Star::Follow()
 	if (player_damaged)
 	{
 		status_ = STATUS::DIFFUSION;
-		jump_speed_ = jump_height_*4.0f;
+		star_num_ = 0;
+		jump_speed_ = jump_height_ * 3.0f;
 	}
 
 	rotation_.y += DEG2RAD(rot_speed_);
@@ -182,23 +182,13 @@ void Star::Follow()
 
 void Star::Diffusion()
 {
-	//Navimeshとの当たり判定
-	MV1_COLL_RESULT_POLY hit_poly_floor;
-
-	//地面までの線分ベクトル
-	VECTOR start_line = position_;
-	VECTOR end_line = VAdd(position_, VGet(0, -50.0f, 0));
-
-	hit_poly_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
-
-	if (hit_poly_floor.HitFlag)
-	{
-		ground_position_y_ = position_.y;
-		status_ = STATUS::WAIT;
-	}
-
 	VECTOR move = VNorm(utility::GetForwardVector(rotation_.y));
-	move = VScale(move, 8.0f);
+	move = VScale(move, 10.0f);
+
+	//ステージ範囲外まで到達したら、移動しない
+	float out_of_stage = 2500.0f;
+	if (VSize(VAdd(position_, move)) > out_of_stage)
+		move = { 0,0,0 };
 
 	//プレイヤーのカプセル情報
 	VECTOR sphere_positon = VAdd(position_, VGet(0, 50, 0));
@@ -234,13 +224,28 @@ void Star::Diffusion()
 		position_.y += jump_speed_;
 	}
 
-	jump_speed_ -= gravity_*5.0f;
+	jump_speed_ -= gravity_ * 3.0f;
+
+	//Navimeshとの当たり判定
+	MV1_COLL_RESULT_POLY hit_poly_floor;
+
+	//地面までの線分ベクトル
+	VECTOR start_line = position_;
+	VECTOR end_line = VAdd(position_, VGet(0, -50.0f, 0));
+
+	hit_poly_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
+
+	if (hit_poly_floor.HitFlag)
+	{
+		ground_position_y_ = position_.y;
+		status_ = STATUS::WAIT;
+	}
 }
 
 void Star::Render()
 {
-
 	MV1SetPosition(handle_, position_);
 	MV1SetRotationXYZ(handle_, rotation_);
+
 	MV1DrawModel(handle_);
 }
