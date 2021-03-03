@@ -10,6 +10,8 @@
 #include"appframe.h"
 #include"Shoot_UI.h"
 #include"TimingGame_UI.h"
+#include"Score_UI.h"
+#include"Hp_UI.h"
 
 namespace starrynight
 {
@@ -55,6 +57,12 @@ namespace starrynight
 
 			//タイミングゲーム表示クラス
 			TimingGame_UI timing_ui_;
+
+			//ゲームスコア表示クラス
+			Score_UI score_ui_;
+
+			//プレイヤーHP表示クラス
+			Hp_UI hp_ui_;
 
 		private:
 			//UIパラメータ管理クラス
