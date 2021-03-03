@@ -201,6 +201,9 @@
     <ClCompile Include="Script\Effect\ZodiacSignEffect.cpp">
       <Filter>ソース ファイル\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Effect\GetStarEffect.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h">
@@ -279,6 +282,9 @@
       <Filter>ヘッダー ファイル\UI</Filter>
     </ClInclude>
     <ClInclude Include="Script\Effect\ZodiacSignEffect.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Effect\GetStarEffect.h">
       <Filter>ヘッダー ファイル\Effect</Filter>
     </ClInclude>
   </ItemGroup>

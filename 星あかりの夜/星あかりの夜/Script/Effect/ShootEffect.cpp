@@ -42,17 +42,43 @@ void ShootEffect::Initialize()
 	effect_pos = VAdd(effect_pos, VScale(back, 10.0f));
 
 	SetPosition(effect_pos);
+	SetRotationToTarget();
+}
+
+void ShootEffect::Process()
+{
+	EffectBase::Process();
+
+	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
+
+	//カメラが射撃モードでなくなったら、エフェクトを削除
+	if (camera::Camera::GetInstance()->GetStatus() != camera::Camera::STATUS::SHOOT)
+	{
+		mode::ModeGame* mode_game =
+			static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		mode_game->effect_server_.Delete(this);
+	}
+}
+
+void ShootEffect::Render()
+{
+	EffectBase::Render();
+}
+
+void ShootEffect::SetRotationToTarget()
+{
+	VECTOR player_rotation = MV1GetRotationXYZ(resource::ResourceServer::GetModelHandle("player"));
 
 	//エフェクトがx軸正方向に向いているので、ターゲットとx軸の
 	//xz平面の角度を求める
 	VECTOR axis_x = VGet(1, 0, 0);
-	VECTOR totarget = VNorm(VGet(shoot_target_.x - effect_pos.x, 0, shoot_target_.z - effect_pos.z));
+	VECTOR totarget = VNorm(VGet(shoot_target_.x - position_.x, 0, shoot_target_.z - position_.z));
 	float theta = VDot(axis_x, totarget);
 	theta = acosf(theta);
 
 	//フォワードベクトルとエフェクトからターゲットへ向くベクトルの角度を求める
-	VECTOR forward = VSub(VAdd(utility::GetForwardVector(player_rotation.y), effect_pos), effect_pos);
-	totarget = VNorm(VSub(shoot_target_, effect_pos));
+	VECTOR forward = VSub(VAdd(utility::GetForwardVector(player_rotation.y), position_), position_);
+	totarget = VNorm(VSub(shoot_target_, position_));
 	float phi = VDot(forward, totarget);
 	phi = acosf(phi);
 
@@ -72,28 +98,6 @@ void ShootEffect::Initialize()
 	matrix = manager->GetBaseMatrix(playing_effect_);
 	matrix.SetSRT(DXLibtoEffekseer(VGet(10.0f, 10.0f, 10.0f)),
 		rot_matrix,
-		DXLibtoEffekseer(effect_pos));
+		DXLibtoEffekseer(position_));
 	manager->SetBaseMatrix(playing_effect_, matrix);
-}
-
-void ShootEffect::Process()
-{
-	EffectBase::Process();
-
-	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
-
-	//カメラが射撃モードでなくなったら、エフェクトを削除
-	if (camera::Camera::GetInstance()->GetStatus() != camera::Camera::STATUS::SHOOT)
-	{
-		mode::ModeGame* mode_game =
-			static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-		mode_game->effect_server_.Delete(this);
-	}
-
-
-}
-
-void ShootEffect::Render()
-{
-	EffectBase::Render();
 }

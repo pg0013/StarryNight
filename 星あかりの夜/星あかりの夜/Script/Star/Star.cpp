@@ -9,6 +9,7 @@
 #include "Star.h"
 #include"../Stage/Stage.h"
 #include"../Player/Player.h"
+#include"../Effect/GetStarEffect.h"
 #include"../Mode/ModeGame.h"
 
 using namespace starrynight::star;
@@ -72,13 +73,20 @@ void Star::Wait()
 		status_ = STATUS::FOLLOW;
 
 		//取得したスターの数を増やす
-		mode::ModeGame* modegame = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-		modegame->AddPlayerStarNum();
-		star_num_ = modegame->GetPlayerStarNum();
+		mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		mode_game->AddPlayerStarNum();
+		star_num_ = mode_game->GetPlayerStarNum();
 
 		VECTOR player_rotation = MV1GetRotationXYZ(resource::ResourceServer::GetModelHandle("player"));
 		player_position = VAdd(player_position, VGet(0.0f, 50.0f, 0.0f));
 		position_ = VAdd(player_position, VScale(VNorm(utility::GetForwardVector(player_rotation.y)), -0.5f * star_num_ * follow_interval_));
+
+		//星獲得エフェクトを生成
+		effect::GetStarEffect* getstar_effect = NEW effect::GetStarEffect();
+		getstar_effect->SetPosition(player_position);
+		getstar_effect->Initialize();
+		getstar_effect->PlayEffect();
+		mode_game->effect_server_.Add(getstar_effect);
 	}
 
 	//プレイヤーとの距離が検出範囲であれば、飛び跳ねる
