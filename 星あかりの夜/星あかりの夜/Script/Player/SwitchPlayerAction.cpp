@@ -7,6 +7,7 @@
  */
 
 #include"Player.h"
+#include"../Stage/Stage.h"
 #include"../Mode/ModeGame.h"
 using namespace starrynight::player;
 
@@ -25,9 +26,19 @@ void Player::SwitchPlayerAction()
 	mode::ModeGame* mode_game =
 		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
+	//Navimeshとの当たり判定
+	MV1_COLL_RESULT_POLY hit_poly_shootpoint;
+
+	//腰から地面までの線分ベクトル
+	VECTOR start_line = VAdd(position_, VGet(0, 40.0f, 0));
+	VECTOR end_line = VAdd(position_, VGet(0, -30.0f, 0));
+
+	hit_poly_shootpoint = stage::Stage::GetInstance()->GetHitLineToShootPoint(start_line, end_line);
+
 	if (x_input.RightTrigger == 255 &&
 		jump_flag_ == false &&
-		mode_game->GetPlayerStarNum() > 0)
+		mode_game->GetPlayerStarNum() > 0 &&
+		hit_poly_shootpoint.HitFlag)
 	{
 		//射撃アクションを行う
 		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::SHOOT);

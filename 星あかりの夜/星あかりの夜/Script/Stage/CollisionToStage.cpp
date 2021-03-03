@@ -155,3 +155,15 @@ MV1_COLL_RESULT_POLY_DIM Stage::GetHitCapsuleToWall(VECTOR& _position1, VECTOR& 
 	}
 	return hit_poly;
 }
+
+MV1_COLL_RESULT_POLY Stage::GetHitLineToShootPoint(VECTOR& _startline, VECTOR& _endline)
+{
+	MV1_COLL_RESULT_POLY hit_poly;
+
+	hit_poly = MV1CollCheck_Line(
+		shootpoint_,
+		MV1SearchFrame(shootpoint_, "floor_NavMesh"),
+		_startline, _endline);
+
+	return hit_poly;
+}

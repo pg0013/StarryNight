@@ -22,6 +22,8 @@ Player::Player()
 	run_speed_ = player_param_.GetPlayerParam("run_speed");
 	rot_speed_ = player_param_.GetPlayerParam("rot_speed");
 
+	player_hp_ = 3;
+
 	jump_speed_ = 0.0f;
 	gravity_ = 0.5f;
 	jump_flag_ = false;

@@ -16,14 +16,15 @@ VECTOR Enemy::Attack(VECTOR _move)
 {
 	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
-	if (anim_play_time_ > 0.0f)//40.0f)
+	if (anim_play_time_ == 0.0f)
 	{
 		for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
 		{
 			if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 			{
 				player::Player* player = static_cast<player::Player*>(*iter);
-				player->SetDamageAnimFlag(true);
+				player->SetDamageAnimFlag(true);//ダメージアニメーションを再生
+				player->AddPlayerHP(-1);//HPを減らす
 				break;
 			}
 		}

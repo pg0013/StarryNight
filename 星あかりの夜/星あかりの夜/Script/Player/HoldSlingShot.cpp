@@ -112,13 +112,13 @@ void Player::HoldSlingShot()
 
 	float shoot_anim_end = 80.0f;
 
-	//if (status_ == STATUS::SHOOT_END &&
-	//	anim_play_time_ == shoot_anim_end)
-	//{
-	//	status_ = STATUS::WAIT;
-	//	mode::ModeGame* modegame = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-	//	modegame->SetPlayerStarNum(0);
-	//}
+	if (status_ == STATUS::SHOOT_END &&
+		anim_play_time_ == shoot_anim_end)
+	{
+		status_ = STATUS::WAIT;
+		mode::ModeGame* modegame = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		modegame->SetPlayerStarNum(0);
+	}
 
 	float stick_rx;
 

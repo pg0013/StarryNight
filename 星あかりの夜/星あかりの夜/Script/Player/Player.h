@@ -66,6 +66,20 @@ namespace starrynight
 			void SetDamageAnimFlag(bool _flag) { damage_anim_flag_ = _flag; }
 
 			/**
+			 * @brief　 プレイヤーの残りHPを返す
+			 *
+			 * @return   HP
+			 */
+			int GetPlayerHP() { return player_hp_; }
+
+			/**
+			 * @brief　 プレイヤーのHPを加算する
+			 *
+			 * @param  _addhp　加えるHP数
+			 */
+			void AddPlayerHP(int _addhp) { player_hp_ += _addhp; }
+
+			/**
 			 * @brief 状態遷移用定数
 			 */
 			enum class STATUS
@@ -89,6 +103,7 @@ namespace starrynight
 			 * @return   プレイヤー状態
 			 */
 			STATUS GetPlayerStatus() { return status_; }
+
 
 		private:
 			/**
@@ -149,6 +164,8 @@ namespace starrynight
 		private:
 			//プレイヤーパラメータ保持クラス
 			PlayerParameters player_param_;
+
+			int player_hp_;//プレイヤー体力
 
 			float walk_speed_;//移動速度
 			float run_speed_;//移動速度

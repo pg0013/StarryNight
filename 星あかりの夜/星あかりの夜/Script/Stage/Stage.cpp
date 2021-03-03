@@ -11,6 +11,7 @@
 #include"../Star/SkyStar.h"
 #include"../Enemy/Enemy.h"
 #include"../Effect/ShootPointEffect.h"
+#include"../Effect/StageFlowEffect.h"
 
 using namespace starrynight::stage;
 
@@ -47,6 +48,13 @@ void Stage::Initialize()
 		if (handle == resource::ResourceServer::GetModelHandle("skysphere"))
 		{
 			skysphere_ = handle;
+			continue;
+		}
+
+		//射撃ポイントは当たり判定のために個別で管理する
+		if (handle == resource::ResourceServer::GetModelHandle("ShootPoint_GEO1"))
+		{
+			shootpoint_ = handle;
 			continue;
 		}
 
@@ -112,10 +120,15 @@ void Stage::Initialize()
 
 	//射撃ポイントにエフェクトを配置
 	handle shootpoint = resource::ResourceServer::GetModelHandle("ShootPoint_GEO1");
-	effect::ShootPointEffect* effect = NEW effect::ShootPointEffect();
-	effect->SetPosition(MV1GetPosition(shootpoint));
-	effect->PlayEffect();
-	mode_game->effect_server_.Add(effect);
+	effect::ShootPointEffect* shootpoint_effect = NEW effect::ShootPointEffect();
+	shootpoint_effect->SetPosition(MV1GetPosition(shootpoint));
+	shootpoint_effect->PlayEffect();
+	mode_game->effect_server_.Add(shootpoint_effect);
+
+	effect::StageFlowEffect* stageflow_effect = NEW effect::StageFlowEffect();
+	stageflow_effect->SetPosition(VGet(0, 0, 0));
+	stageflow_effect->PlayEffect();
+	mode_game->effect_server_.Add(stageflow_effect);
 }
 
 void Stage::Process()
