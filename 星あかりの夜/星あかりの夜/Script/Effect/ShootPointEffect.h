@@ -12,14 +12,14 @@
 
 namespace starrynight
 {
-    namespace effect
-    {
-        class ShootPointEffect :
-            public effect::EffectBase
-        {
-        public:
-            ShootPointEffect();
-            ~ShootPointEffect();
+	namespace effect
+	{
+		class ShootPointEffect :
+			public effect::EffectBase
+		{
+		public:
+			ShootPointEffect();
+			~ShootPointEffect();
 
 			/**
 			 * @brief　初期化処理.
@@ -39,9 +39,10 @@ namespace starrynight
 		private:
 			//1frameのみ処理するためのフラグ
 			bool once_flag_;
-        };
-    }
+
+			float scale_y_;//y軸方向のスケール値
+			float min_scale_y_;//y軸方向のスケール最大値
+			float max_scale_y_;//y軸方向のスケール最小値
+		};
+	}
 }
-
-
-

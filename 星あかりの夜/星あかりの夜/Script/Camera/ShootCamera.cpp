@@ -25,7 +25,7 @@ void Camera::ShootCameraInit()
 	//プレイヤーの右後ろにカメラを設定
 	VECTOR shoot_camera_pos;
 	shoot_camera_pos = VAdd(player_positon, VScale(right, 80.0f));
-	shoot_camera_pos = VAdd(shoot_camera_pos, VScale(up, 10.0f));
+	shoot_camera_pos = VAdd(shoot_camera_pos, VScale(up,	5.0f));
 	shoot_camera_pos = VAdd(shoot_camera_pos, VScale(back, 150.0f));
 
 	position_ = shoot_camera_pos;
@@ -58,10 +58,11 @@ void Camera::ShootCamera()
 	rot_vertical_axis = VNorm(VCross(rot_vertical_axis, VGet(0, 1, 0)));
 
 	//カメラを上下に移動
-	if (stick_ry > ANALOG_MIN)
-		rot_vertical -= DEG2RAD(rot_speed_*0.5f) * stick_ry;
-	if (stick_ry < -ANALOG_MIN)
-		rot_vertical += DEG2RAD(rot_speed_*0.5f) * -stick_ry;
+	float analog_min = 0.1f;
+	if (stick_ry > analog_min)
+		rot_vertical -= DEG2RAD(rot_speed_*0.3f) * stick_ry;
+	if (stick_ry < -analog_min)
+		rot_vertical += DEG2RAD(rot_speed_*0.3f) * -stick_ry;
 
 	//回転行列を算出
 	MATRIX rot_v = MGetRotAxis(rot_vertical_axis, rot_vertical);
@@ -70,7 +71,7 @@ void Camera::ShootCamera()
 	target_.y = VTransform(target_, rot_v).y;
 
 	float target_y_min = 0.0f;
-	float target_y_max = 12500.0f;
+	float target_y_max = 10000.0f;
 
 	//カメラ角度の上下限を設定
 	if (target_.y < target_y_min)

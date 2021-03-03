@@ -127,11 +127,11 @@ void Player::HoldSlingShot()
 
 	float rot_horizon = 0.0f;
 	float rot_speed = 3.0f;
-
-	if (stick_rx > ANALOG_MIN)
-		rot_horizon += DEG2RAD(rot_speed) * stick_rx;
-	if (stick_rx < -ANALOG_MIN)
-		rot_horizon -= DEG2RAD(rot_speed) * -stick_rx;
+	float analog_min = 0.1f;
+	if (stick_rx > analog_min)
+		rot_horizon += DEG2RAD(rot_speed * 0.3f) * stick_rx;
+	if (stick_rx < -analog_min)
+		rot_horizon -= DEG2RAD(rot_speed * 0.3f) * -stick_rx;
 
 	//ƒvƒŒƒCƒ„[‚ÌŒü‚«‚ð‰ñ“]
 	rotation_.y += rot_horizon;

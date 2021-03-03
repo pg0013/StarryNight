@@ -1,25 +1,31 @@
 /**
- * @file    ShootEffect.h
- * @brief  射撃の流星エフェクト
+ * @file    ZodiacSignEffect.h
+ * @brief  星座エフェクトクラス
  *
  * @author Takuya Fujisawa
- * @date   2021/02/11
+ * @date    202103/02
  */
 
 #pragma once
 #include"appframe.h"
 #include "EffectBase.h"
+#include<string>
 
 namespace starrynight
 {
 	namespace effect
 	{
-		class ShootEffect :
-			public effect::EffectBase
+		class ZodiacSignEffect :
+			public EffectBase
 		{
 		public:
-			ShootEffect(VECTOR _target);
-			~ShootEffect();
+			/**
+			 * @brief 星座エフェクトを生成する.
+			 * 
+			 * @param _sign_name	星座名
+			 */
+			ZodiacSignEffect(std::string _sign_name);
+			~ZodiacSignEffect();
 
 			/**
 			 * @brief　初期化処理.
@@ -37,7 +43,8 @@ namespace starrynight
 			virtual void Render();
 
 		private:
-			VECTOR shoot_target_;
+			std::string skystar_name;
+			handle after_effect_resource_;
 		};
 	}
 }

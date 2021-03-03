@@ -13,8 +13,13 @@ using namespace starrynight::effect;
 
 ShootPointEffect::ShootPointEffect()
 {
-	effect_resource_ = LoadEffekseerEffect("Resource/Effect/shootpoint.efk", 30.0f);
+	effect_resource_ = LoadEffekseerEffect("Resource/Effect/shootpoint.efk", 1.0f);
 	effect_frame_ = 600;
+
+	scale_y_ = 30.0f;
+	min_scale_y_ = 25.0f;
+	max_scale_y_ = 60.0f;
+
 	once_flag_ = false;
 }
 
@@ -38,26 +43,38 @@ void ShootPointEffect::Process()
 	//プレイヤーとの距離が近くなったらエフェクトを停止
 	float turnoff_length = 200.0f;
 
-	if (VSize(distance) < turnoff_length)
+	Effekseer::Manager* manager = GetEffekseer3DManager();
+	Effekseer::Matrix43 matrix, rot_matrix;
+	rot_matrix.Indentity();
+	matrix = manager->GetBaseMatrix(playing_effect_);
+
+	//プレイヤーが星発射可能状態の時に発射ポイントに近づいたら、
+	//エフェクトを縦につぶす
+	if (VSize(distance) < turnoff_length &&
+		mode_game->GetPlayerStarNum() > 0)
 	{
-		//プレイヤーが星を持っていれば、エフェクトを停止
-		if (mode_game->GetPlayerStarNum() > 0)
-		{
-			StopEffekseer3DEffect(playing_effect_);
-			once_flag_ = true;
-		}
+		scale_y_--;
+		if (scale_y_ < min_scale_y_)
+			scale_y_ = min_scale_y_;
+
+		matrix.SetSRT(DXLibtoEffekseer(VGet(30.0f, scale_y_, 30.0f)),
+			rot_matrix,
+			DXLibtoEffekseer(position_));
+		manager->SetBaseMatrix(playing_effect_, matrix);
 	}
 	else
 	{
-		//1フレームだけ処理が行われるようにフラグで管理
-		if (once_flag_)
-		{
-			PlayEffect();
-			once_flag_ = false;
-		}
-	}
+		//プレイヤーが遠くにいるときには、発射ポイントが分かるように
+		//エフェクトを縦に伸ばす
+		scale_y_++;
+		if (scale_y_ > max_scale_y_)
+			scale_y_ = max_scale_y_;
 
-	SetPlayingEffectPosition();
+		matrix.SetSRT(DXLibtoEffekseer(VGet(30.0f, scale_y_, 30.0f)),
+			rot_matrix,
+			DXLibtoEffekseer(position_));
+		manager->SetBaseMatrix(playing_effect_, matrix);
+	}
 }
 
 void ShootPointEffect::Render()

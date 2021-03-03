@@ -77,8 +77,13 @@ void TimingGame_UI::Process()
 	case 3:	timing_exrate_ -= thirdstar_scale_speed_; break;
 	}
 
+	//ボタンを押さなかったら、拡大率0でボタンを押したことにする
 	if (timing_exrate_ < 0)
+	{
 		timing_exrate_ = 0;
+		shrink_circle_flag_ = false;
+		presssed_frame_ = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount();
+	}
 }
 
 void TimingGame_UI::Render()
@@ -104,8 +109,6 @@ void TimingGame_UI::CalcurateScore()
 	star_rate *= 10;
 	star_rate = floor(star_rate);
 	star_rate /= 10;
-
-	printfDx("%lf\n", star_rate);
 
 	//一度にすべてのスターを集めたら規定スコアの整数倍にする
 	if (mode_game->GetPlayerStarNum() == mode_game->GetStageStarNum())
@@ -174,13 +177,17 @@ void TimingGame_UI::CalcurateScore()
 
 TimingGame_UI::TIMING_STATUS TimingGame_UI::CheckTiming()
 {
-	if (timing_exrate_ <= 0.94 &&
-		timing_exrate_ >= 0.65)
+	if (timing_exrate_ == 0.53)
 	{
 		return TIMING_STATUS::EXCELLENT;
 	}
-	else if (timing_exrate_ < 0.65 &&
-		timing_exrate_ >= 0.45)
+	else if (timing_exrate_ <= 0.89 &&
+		timing_exrate_ >= 0.54)
+	{
+		return TIMING_STATUS::GOOD;
+	}
+	else if (timing_exrate_ < 0.52 &&
+		timing_exrate_ >= 0.34)
 	{
 		return TIMING_STATUS::GOOD;
 	}

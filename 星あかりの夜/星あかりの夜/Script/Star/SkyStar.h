@@ -58,6 +58,7 @@ namespace starrynight
 			 */
 			void SetRotationToPlayer();
 
+			std::string zodiac_name_;//êØç¿ñº
 			SkyStarParameter skystar_param_;
 		};
 	}

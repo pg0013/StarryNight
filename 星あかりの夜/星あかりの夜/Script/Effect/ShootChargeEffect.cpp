@@ -14,7 +14,7 @@ using namespace starrynight::effect;
 
 ShootChargeEffect::ShootChargeEffect()
 {
-	effect_resource_ = LoadEffekseerEffect("Resource/effect/set.efk", 10.0f);
+	effect_resource_ = LoadEffekseerEffect("Resource/effect/set.efk", 5.0f);
 	effect_frame_ = 120;
 }
 

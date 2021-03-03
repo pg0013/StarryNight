@@ -247,5 +247,7 @@ void Star::Render()
 	MV1SetPosition(handle_, position_);
 	MV1SetRotationXYZ(handle_, rotation_);
 
+	//SetUseLighting(FALSE);
 	MV1DrawModel(handle_);
+	SetUseLighting(TRUE);
 }

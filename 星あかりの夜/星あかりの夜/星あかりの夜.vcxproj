@@ -30,6 +30,7 @@
     <ClCompile Include="Script\Effect\ShootChargeEffect.cpp" />
     <ClCompile Include="Script\Effect\ShootEffect.cpp" />
     <ClCompile Include="Script\Effect\ShootPointEffect.cpp" />
+    <ClCompile Include="Script\Effect\ZodiacSignEffect.cpp" />
     <ClCompile Include="Script\Enemy\Attack.cpp" />
     <ClCompile Include="Script\Enemy\DecideMoveAmount.cpp" />
     <ClCompile Include="Script\Enemy\Enemy.cpp" />
@@ -70,6 +71,7 @@
     <ClInclude Include="Script\Effect\ShootChargeEffect.h" />
     <ClInclude Include="Script\Effect\ShootEffect.h" />
     <ClInclude Include="Script\Effect\ShootPointEffect.h" />
+    <ClInclude Include="Script\Effect\ZodiacSignEffect.h" />
     <ClInclude Include="Script\Enemy\Enemy.h" />
     <ClInclude Include="Script\Enemy\EnemyParameters.h" />
     <ClInclude Include="Script\Mode\ModeGame.h" />

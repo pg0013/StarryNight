@@ -20,6 +20,8 @@ void Player::SwitchPlayerAction()
 
 	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
 
+	int key = appframe::ApplicationBase::GetInstance()->GetKey();
+
 	mode::ModeGame* mode_game =
 		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 

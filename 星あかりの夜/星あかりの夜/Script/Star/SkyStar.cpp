@@ -7,12 +7,15 @@
  */
 
 #include "SkyStar.h"
+#include"../Mode/ModeGame.h"
+#include"../Effect/ZodiacSignEffect.h"
 
 using namespace starrynight::star;
 
 SkyStar::SkyStar(const std::string _name)
 {
-	SetModelHandle(resource::ResourceServer::GetModelHandle(_name));
+	zodiac_name_ = _name;
+	SetModelHandle(resource::ResourceServer::GetModelHandle(zodiac_name_));
 	position_ = MV1GetPosition(handle_);
 	rotation_ = MV1GetRotationXYZ(handle_);
 
@@ -27,7 +30,7 @@ SkyStar::~SkyStar()
 void SkyStar::Initialize()
 {
 	float radius = 10000.0f;
-	float height = 8000.0f;
+	float height = 6000.0f;
 	float degree = 45.0f;
 
 	position_.x = radius * cosf(DEG2RAD(degree));
@@ -36,11 +39,20 @@ void SkyStar::Initialize()
 
 	MV1SetPosition(handle_, position_);
 
+	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	effect::ZodiacSignEffect* zodiac_effect = NEW effect::ZodiacSignEffect(zodiac_name_);
+	zodiac_effect->PlayEffect();
+	zodiac_effect->SetPosition(VGet(0, 0, 0));
+	zodiac_effect->SetPlayingEffectPosition();
+	mode_game->effect_server_.Add(zodiac_effect);
+
+	MV1SetFrameVisible(handle_, 0, FALSE);
+
 	//1番星～3番星まで当たり判定をとる
 	for (int i = 1; i <= 3; i++)
 	{
 		MV1SetupCollInfo(handle_, i, 16, 16, 16);
-		MV1SetFrameVisible(handle_, i, TRUE);
+		MV1SetFrameVisible(handle_, i, FALSE);
 	}
 }
 
@@ -50,6 +62,25 @@ void SkyStar::Process()
 	{
 		MV1RefreshCollInfo(handle_, i);
 	}
+
+	MV1SetPosition(handle_, position_);
+	SetRotationToPlayer();
+
+	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
+	if (trigger_key & PAD_INPUT_3)
+	{
+		for (int i = 0; i <= 3; i++)
+		{
+			MV1SetFrameVisible(handle_, i, FALSE);
+		}
+	}
+	if (trigger_key & PAD_INPUT_5)
+	{
+		for (int i = 0; i <= 3; i++)
+		{
+			MV1SetFrameVisible(handle_, i, TRUE);
+		}
+	}
 }
 
 void SkyStar::SetRotationToPlayer()
@@ -57,15 +88,25 @@ void SkyStar::SetRotationToPlayer()
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 
 	//モデルが向くz軸とy軸を求める
-	VECTOR forward = VNorm(VNorm(VSub(player_position, position_)));
-	forward = VScale(forward, -1.0f);
+	VECTOR forward = VNorm(VSub(player_position, position_));
 	VECTOR up = VGet(0, 1, 0);
 	VECTOR right = VCross(forward, up);
 	up = VCross(right, forward);
+	//モデルがz軸の負の方向を向いているため、
+	std::swap(forward, right);
 
-	//モデルをプレイヤー方向に向ける
-	MV1SetRotationZYAxis(handle_, forward, up, 0.0f);
-	rotation_ = MV1GetRotationXYZ(handle_);
+	MATRIX rot_matrix;
+	rot_matrix = MGetIdent();
+	rot_matrix.m[0][0] = forward.x;
+	rot_matrix.m[0][1] = forward.y;
+	rot_matrix.m[0][2] = forward.z;
+	rot_matrix.m[1][0] = up.x;
+	rot_matrix.m[1][1] = up.y;
+	rot_matrix.m[1][2] = up.z;
+	rot_matrix.m[2][0] = right.x;
+	rot_matrix.m[2][1] = right.y;
+	rot_matrix.m[2][2] = right.z;
+	MV1SetRotationMatrix(handle_, rot_matrix);
 }
 
 MV1_COLL_RESULT_POLY SkyStar::GetHitToSkyStar(VECTOR _start, VECTOR _end)
@@ -87,9 +128,5 @@ MV1_COLL_RESULT_POLY SkyStar::GetHitToSkyStar(VECTOR _start, VECTOR _end)
 
 void SkyStar::Render()
 {
-	MV1SetPosition(handle_, position_);
-	SetRotationToPlayer();
-	MV1RefreshCollInfo(handle_, MV1SearchFrame(handle_, "wall_NavMesh"));
-
 	ObjectBase::Render();
 }

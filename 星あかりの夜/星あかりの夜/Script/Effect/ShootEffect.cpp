@@ -89,6 +89,8 @@ void ShootEffect::Process()
 			static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 		mode_game->effect_server_.Delete(this);
 	}
+
+
 }
 
 void ShootEffect::Render()

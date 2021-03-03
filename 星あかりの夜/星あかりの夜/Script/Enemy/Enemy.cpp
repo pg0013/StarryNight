@@ -58,17 +58,17 @@ void Enemy::Initialize()
 
 void Enemy::Process()
 {
-	//ANIM_STATUS old_anim_status = anim_status_;
+	ANIM_STATUS old_anim_status = anim_status_;
 
-	////状態遷移を行う
-	//SwitchStatus(old_anim_status);
+	//状態遷移を行う
+	SwitchStatus(old_anim_status);
 
-	////ステータスによって移動量を決定し、移動
-	//VECTOR move = DecideMoveAmount();
-	//Move(move);
+	//ステータスによって移動量を決定し、移動
+	VECTOR move = DecideMoveAmount();
+	Move(move);
 
-	////アニメーション切り替えを行う
-	//SwitchEnemyAnimation(old_anim_status);
+	//アニメーション切り替えを行う
+	SwitchEnemyAnimation(old_anim_status);
 }
 
 void Enemy::Render()

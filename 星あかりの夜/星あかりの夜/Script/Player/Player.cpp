@@ -125,10 +125,6 @@ void Player::Render()
 	VECTOR end = VAdd(start, VScale(VNorm(utility::GetForwardVector(rotation_.y)), 30.0f));
 	DrawLine3D(start, end, DEBUG_COLOR);
 
-	//ËŒ‚•W€‚Ì’n“_‚Ö‚Ìü•ª
-	end = hitposition;
-	DrawLine3D(start, end, DEBUG_COLOR);
-
 	int x, y;
 	x = 0; y = 12 * DEBUG_FONT_SIZE;
 	switch (status_)
