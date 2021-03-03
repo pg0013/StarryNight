@@ -31,6 +31,7 @@
     <ClCompile Include="Script\Effect\ShootChargeEffect.cpp" />
     <ClCompile Include="Script\Effect\ShootEffect.cpp" />
     <ClCompile Include="Script\Effect\ShootPointEffect.cpp" />
+    <ClCompile Include="Script\Effect\StageFlowEffect.cpp" />
     <ClCompile Include="Script\Effect\ZodiacSignEffect.cpp" />
     <ClCompile Include="Script\Enemy\Attack.cpp" />
     <ClCompile Include="Script\Enemy\DecideMoveAmount.cpp" />
@@ -41,6 +42,8 @@
     <ClCompile Include="Script\Enemy\SwitchStatus.cpp" />
     <ClCompile Include="Script\Enemy\Tracking.cpp" />
     <ClCompile Include="Script\Mode\ModeGame.cpp" />
+    <ClCompile Include="Script\Mode\ModeOverlay.cpp" />
+    <ClCompile Include="Script\Mode\ModeTitle.cpp" />
     <ClCompile Include="Script\Object\ObjectBase.cpp" />
     <ClCompile Include="Script\Object\ObjectServer.cpp" />
     <ClCompile Include="Script\Player\HoldSlingShot.cpp" />
@@ -58,6 +61,8 @@
     <ClCompile Include="Script\Star\SkyStarParameter.cpp" />
     <ClCompile Include="Script\Star\Star.cpp" />
     <ClCompile Include="Script\Star\StarParameter.cpp" />
+    <ClCompile Include="Script\UI\Hp_UI.cpp" />
+    <ClCompile Include="Script\UI\Score_UI.cpp" />
     <ClCompile Include="Script\UI\Shoot_UI.cpp" />
     <ClCompile Include="Script\UI\TimingGame_UI.cpp" />
     <ClCompile Include="Script\UI\UIManager.cpp" />
@@ -73,10 +78,13 @@
     <ClInclude Include="Script\Effect\ShootChargeEffect.h" />
     <ClInclude Include="Script\Effect\ShootEffect.h" />
     <ClInclude Include="Script\Effect\ShootPointEffect.h" />
+    <ClInclude Include="Script\Effect\StageFlowEffect.h" />
     <ClInclude Include="Script\Effect\ZodiacSignEffect.h" />
     <ClInclude Include="Script\Enemy\Enemy.h" />
     <ClInclude Include="Script\Enemy\EnemyParameters.h" />
     <ClInclude Include="Script\Mode\ModeGame.h" />
+    <ClInclude Include="Script\Mode\ModeOverlay.h" />
+    <ClInclude Include="Script\Mode\ModeTitle.h" />
     <ClInclude Include="Script\Object\ObjectBase.h" />
     <ClInclude Include="Script\Object\ObjectServer.h" />
     <ClInclude Include="Script\Player\Player.h" />
@@ -87,6 +95,8 @@
     <ClInclude Include="Script\Star\SkyStarParameter.h" />
     <ClInclude Include="Script\Star\Star.h" />
     <ClInclude Include="Script\Star\StarParameter.h" />
+    <ClInclude Include="Script\UI\Hp_UI.h" />
+    <ClInclude Include="Script\UI\Score_UI.h" />
     <ClInclude Include="Script\UI\Shoot_UI.h" />
     <ClInclude Include="Script\UI\TimingGame_UI.h" />
     <ClInclude Include="Script\UI\UIManager.h" />

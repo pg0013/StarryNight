@@ -6,7 +6,6 @@
  * @date    202012/09
  */
 #include "ModeGame.h"
-#include"../ApplicationMain.h"
 #include"../Player/Player.h"
 using namespace starrynight::mode;
 

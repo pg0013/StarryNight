@@ -1,0 +1,12 @@
+{
+  "star": [
+    {"filename" : "star","handlename" : "star8","tx" : 1354.052,"ty" : 0.682,"tz" : 532.475,"rx" : -0,"ry" : -182.818,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+    {"filename" : "star","handlename" : "star7","tx" : -675.482,"ty" : 296.609,"tz" : 2335.963,"rx" : -0,"ry" : -148.821,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+    {"filename" : "star","handlename" : "star5","tx" : -1382.381,"ty" : 327.13,"tz" : 679.618,"rx" : -0,"ry" : -148.821,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+    {"filename" : "star","handlename" : "star6","tx" : 407.81,"ty" : 456.584,"tz" : 1352.033,"rx" : -0,"ry" : -148.821,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+    {"filename" : "star","handlename" : "star4","tx" : -706.486,"ty" : 414.695,"tz" : 126.318,"rx" : -0,"ry" : -90.144,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+    {"filename" : "star","handlename" : "star3","tx" : 1308.361,"ty" : 1.986,"tz" : -1294.207,"rx" : -0,"ry" : -147.049,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+    {"filename" : "star","handlename" : "star2","tx" : 687.238,"ty" : 729.046,"tz" : -760.192,"rx" : -0,"ry" : -147.049,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+    {"filename" : "star","handlename" : "star1","tx" : -401.015,"ty" : 1167.306,"tz" : -569.82,"rx" : -0,"ry" : -59.787,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3}
+      ]
+}

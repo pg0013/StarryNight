@@ -46,6 +46,6 @@
         {"filename" : "tree_cherry_GEO","handlename" : "tree_cherry_GEO5","tx" : -1049.586,"ty" : 1189.069,"tz" : -1277.305,"rx" : -0,"ry" : -46.072,"rz" : 0,"sx" : 1,"sy" : 1,"sz" : 1},
         {"filename" : "tree_cherry_GEO","handlename" : "tree_cherry_GEO6","tx" : 713.314,"ty" : 301.059,"tz" : 1171.42,"rx" : -6.892,"ry" : -0,"rz" : -27.097,"sx" : 1,"sy" : 1,"sz" : 1},
         {"filename" : "island_GEO","handlename" : "island_GEO","tx" : 0,"ty" : 0,"tz" : -0,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1,"sy" : 1,"sz" : 1},
-        {"filename" : "skysphere","handlename" : "skysphere","tx" : 0,"ty" : 0,"tz" : -0,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3}
-]
+        {"filename" : "skysphere","handlename" : "skysphere","tx" : 0,"ty" : 20000,"tz" : -0,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1,"sy" : 1,"sz" : 1}
+    ]
 }

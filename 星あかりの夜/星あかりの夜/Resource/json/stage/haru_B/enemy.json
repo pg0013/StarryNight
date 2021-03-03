@@ -1,0 +1,10 @@
+{
+  "enemy": [
+    {"filename" : "enemy","handlename" : "enemy1","tx" : 616.034,"ty" : 457.501,"tz" : 940.682,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+    {"filename" : "enemy","handlename" : "enemy2","tx" : -1297.736,"ty" : 534.296,"tz" : 1676.332,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+    {"filename" : "enemy","handlename" : "enemy3","tx" : 2016.695,"ty" : 62.402,"tz" : 704.113,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+    {"filename" : "enemy","handlename" : "enemy4","tx" : -1820.511,"ty" : 722.517,"tz" : -162.184,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+    {"filename" : "enemy","handlename" : "enemy5","tx" : 167.222,"ty" : 575.421,"tz" : -2226.908,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+    {"filename" : "enemy","handlename" : "enemy6","tx" : -1635.26,"ty" : 12.047,"tz" : -1561.102,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3}
+      ]
+}

@@ -8,6 +8,7 @@
 
 #include "ApplicationMain.h"
 #include"Mode/ModeGame.h"
+#include"Mode/ModeTitle.h"
 
 using namespace starrynight;
 
@@ -17,8 +18,11 @@ bool ApplicationMain::Initialize(HINSTANCE _hinstance)
 {
 	if (!appbase::Initialize(_hinstance)) { return false; }
 
-	mode::ModeGame* mode_game = NEW mode::ModeGame();
-	::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
+	mode::ModeTitle* mode_title = NEW mode::ModeTitle();
+	::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");
+
+	//mode::ModeGame* mode_game = NEW mode::ModeGame();
+	//::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
 
 	return true;
 }

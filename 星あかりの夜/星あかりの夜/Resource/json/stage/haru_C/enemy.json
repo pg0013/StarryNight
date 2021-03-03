@@ -1,0 +1,7 @@
+{
+  "enemy": [
+    {"filename" : "enemy","handlename" : "enemy1","tx" : 0,"ty" : 0,"tz" : 600,"rx" : 0,"ry" : -182.818,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
+    {"filename" : "enemy","handlename" : "enemy2","tx" : -1405,"ty" : 290,"tz" : -984,"rx" : -0,"ry" : -182.818,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
+    {"filename" : "enemy","handlename" : "enemy3","tx" : 1250,"ty" : 0,"tz" : 500,"rx" : -0,"ry" : -182.818,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7}
+      ]
+}
