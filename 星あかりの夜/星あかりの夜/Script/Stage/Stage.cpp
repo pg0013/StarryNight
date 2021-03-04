@@ -125,12 +125,11 @@ void Stage::Initialize()
 	shootpoint_effect->PlayEffect();
 	mode_game->effect_server_.Add(shootpoint_effect);
 
-	//TODO
-	//エフェクトがめちゃくちゃ重いので修正
-	//effect::StageFlowEffect* stageflow_effect = NEW effect::StageFlowEffect();
-	//stageflow_effect->SetPosition(VGet(0, 0, 0));
-	//stageflow_effect->PlayEffect();
-	//mode_game->effect_server_.Add(stageflow_effect);
+	//花びらエフェクトの生成
+	effect::StageFlowEffect* stageflow_effect = NEW effect::StageFlowEffect();
+	stageflow_effect->SetPosition(VGet(0, 0, 0));
+	stageflow_effect->PlayEffect();
+	mode_game->effect_server_.Add(stageflow_effect);
 }
 
 void Stage::Process()

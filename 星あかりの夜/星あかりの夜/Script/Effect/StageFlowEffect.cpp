@@ -13,7 +13,7 @@ using namespace starrynight::effect;
 
 StageFlowEffect::StageFlowEffect()
 {
-	effect_resource_ = LoadEffekseerEffect("Resource/effect/flower_effect.efk", 0.1f);
+	effect_resource_ = LoadEffekseerEffect("Resource/effect/flower_effect.efk", 10.0f);
 	effect_frame_ = 360;
 }
 
