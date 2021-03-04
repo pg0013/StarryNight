@@ -42,26 +42,6 @@ void ZodiacSignEffect::Process()
 	//星座判定とポリゴンが被らないように星座判定の手前に配置
 	VECTOR distance = VSub(skystar_position, player_position);
 	position_ = VAdd(player_position, VScale(distance, 1.0f));
-	//position_ = VGet(500, 200, 500);
-
-	//エフェクトがx軸正方向に向いているので、ターゲットとx軸の
-	//xz平面の角度を求める
-	//VECTOR axis_x = VGet(0, 0, -1);
-	//VECTOR totarget = VNorm(VGet(player_position.x - position_.x, 0, player_position.z - position_.z));
-	//float theta = VDot(axis_x, totarget);
-	//theta = acosf(theta);
-
-	////フォワードベクトルとエフェクトからターゲットへ向くベクトルの角度を求める
-	//VECTOR forward = VNorm(VGet(player_position.x - position_.x, 0, player_position.z - position_.z));
-	//totarget = VNorm(VSub(position_, player_position));
-	//float phi = VDot(forward, totarget);
-	//phi = acosf(phi);
-
-	//printfDx("%f\n", theta);
-
-	//rotation_.x = phi;
-	//rotation_.y = -theta;
-	//rotation_.z = 0.0f;
 
 	VECTOR forward = VNorm(VSub(player_position, position_));
 	VECTOR up = VGet(0, 1, 0);
@@ -75,7 +55,6 @@ void ZodiacSignEffect::Process()
 	Effekseer::Manager* manager = GetEffekseer3DManager();
 	Effekseer::Matrix43 matrix, rot_matrix;
 	rot_matrix.Indentity();
-	//rot_matrix.RotationZXY(rotation_.z, rotation_.x, rotation_.y);
 	rot_matrix.Value[0][0] = forward.x;
 	rot_matrix.Value[0][1] = forward.y;
 	rot_matrix.Value[0][2] = forward.z;

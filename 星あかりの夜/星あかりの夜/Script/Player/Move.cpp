@@ -62,7 +62,7 @@ void Player::Move()
 	hit_poly_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
 
 	//プレイヤーのカプセル情報
- 	VECTOR capsule_positon1 = VAdd(position_, VGet(0, 100, 0));
+	VECTOR capsule_positon1 = VAdd(position_, VGet(0, 100, 0));
 	VECTOR capsule_positon2 = VAdd(position_, VGet(0, 45, 0));
 	float radius = 35.0f;
 

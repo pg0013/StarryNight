@@ -67,24 +67,13 @@ void ShootEffect::Render()
 
 void ShootEffect::SetRotationToTarget()
 {
+	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 	VECTOR player_rotation = MV1GetRotationXYZ(resource::ResourceServer::GetModelHandle("player"));
 
-	//エフェクトがx軸正方向に向いているので、ターゲットとx軸の
-	//xz平面の角度を求める
-	VECTOR axis_x = VGet(1, 0, 0);
-	VECTOR totarget = VNorm(VGet(shoot_target_.x - position_.x, 0, shoot_target_.z - position_.z));
-	float theta = VDot(axis_x, totarget);
-	theta = acosf(theta);
-
-	//フォワードベクトルとエフェクトからターゲットへ向くベクトルの角度を求める
-	VECTOR forward = VSub(VAdd(utility::GetForwardVector(player_rotation.y), position_), position_);
-	totarget = VNorm(VSub(shoot_target_, position_));
-	float phi = VDot(forward, totarget);
-	phi = acosf(phi);
-
-	rotation_.x = 0.0f;
-	rotation_.y = -theta;//反時計回りの回転をする行列なのでマイナス倍する
-	rotation_.z = phi;
+	VECTOR forward = VNorm(VSub(shoot_target_, position_));
+	VECTOR up = VGet(0, 1, 0);
+	VECTOR right = VCross(forward, up);
+	up = VCross(right, forward);
 
 	Effekseer_Sync3DSetting();
 
@@ -92,7 +81,15 @@ void ShootEffect::SetRotationToTarget()
 	Effekseer::Manager* manager = GetEffekseer3DManager();
 	Effekseer::Matrix43 matrix, rot_matrix;
 	rot_matrix.Indentity();
-	rot_matrix.RotationZXY(rotation_.z, rotation_.x, rotation_.y);
+	rot_matrix.Value[0][0] = forward.x;
+	rot_matrix.Value[0][1] = forward.y;
+	rot_matrix.Value[0][2] = forward.z;
+	rot_matrix.Value[1][0] = up.x;
+	rot_matrix.Value[1][1] = up.y;
+	rot_matrix.Value[1][2] = up.z;
+	rot_matrix.Value[2][0] = right.x;
+	rot_matrix.Value[2][1] = right.y;
+	rot_matrix.Value[2][2] = right.z;
 
 	//エフェクトの行列を取得し、回転行列をセットする
 	matrix = manager->GetBaseMatrix(playing_effect_);

@@ -9,18 +9,18 @@
 #pragma once
 #include"appframe.h"
 
+namespace
+{
+	constexpr int score_base_x = 0;
+	constexpr int score_base_y = 0;
+	constexpr int score_num_x = 1800;
+	constexpr int score_num_y = 100;
+}
+
 namespace starrynight
 {
 	namespace ui
 	{
-		namespace
-		{
-			constexpr int score_base_x = 0;
-			constexpr int score_base_y = 0;
-			constexpr int score_num_x = 1860;
-			constexpr int score_num_y = 100;
-		}
-
 		class Score_UI
 		{
 		public:
