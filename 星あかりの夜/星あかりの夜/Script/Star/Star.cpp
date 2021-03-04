@@ -255,7 +255,9 @@ void Star::Render()
 	MV1SetPosition(handle_, position_);
 	MV1SetRotationXYZ(handle_, rotation_);
 
-	//SetUseLighting(FALSE);
 	MV1DrawModel(handle_);
-	SetUseLighting(TRUE);
+
+#ifdef DEBUG_FUNCTION
+	DrawLine3D(position_, VAdd(position_, VGet(0, 2000, 0)), GetColor(255, 255, 0));
+#endif // debug_
 }

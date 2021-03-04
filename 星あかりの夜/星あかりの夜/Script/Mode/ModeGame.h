@@ -136,6 +136,17 @@ namespace starrynight
 			 */
 			int GetStageRegulationsScore() { return regulations_score_; }
 
+			/**
+			 * @brief　ステージクリアを満たしているかどうかを判定する.
+			 * 
+			 * @return ステージクリアの可否
+			 */
+			bool IsClearStage()
+			{
+				if (player_star_num_ >= stage_star_num_) { return true; }
+				else { return false; }
+			}
+
 		private:
 			bool stop_object_process_;//オブジェクトの処理をストップする
 			int player_star_num_;//プレイヤーが取得したスターの数

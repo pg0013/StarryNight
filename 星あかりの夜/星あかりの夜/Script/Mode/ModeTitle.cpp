@@ -68,9 +68,9 @@ bool ModeTitle::Render()
 
 	//ボタンが押されたら点滅速度を上げる
 	if (pushed_flag_ == false)
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sin(DX_PI_F / 180 * 2.125 * GetModeCount()))));
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125 * GetModeCount()))));
 	else
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sin(DX_PI_F / 180 * 10 * GetModeCount()))));
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 10 * GetModeCount()))));
 
 	DrawGraph(0, 0, start_graph_, TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);

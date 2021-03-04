@@ -37,9 +37,9 @@ Player::Player()
 	anim_rate_ = 1.0f;
 	anim_loop_flag_ = true;
 
+	slingshot_flag_ = false;
+	selected_skystar_flag_ = false;
 	shoot_charge_effect_flag_ = true;
-
-	hitposition = VGet(0, 0, 0);
 
 	Initialize();
 }

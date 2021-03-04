@@ -39,6 +39,9 @@ void Player::SwitchPlayerAction()
 		jump_flag_ == false &&
 		mode_game->GetPlayerStarNum() > 0 &&
 		hit_poly_shootpoint.HitFlag)
+		slingshot_flag_ = true;
+
+	if(slingshot_flag_)
 	{
 		//射撃アクションを行う
 		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::SHOOT);

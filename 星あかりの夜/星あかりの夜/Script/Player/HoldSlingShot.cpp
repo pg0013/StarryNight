@@ -18,13 +18,87 @@ using namespace starrynight::player;
 
 void Player::HoldSlingShot()
 {
-	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
 	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
+	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
 
 	mode::ModeGame* mode_game =
 		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
+	//射撃構え処理
+	SlingShotStance();
+
 	//星との当たり判定
+	MV1_COLL_RESULT_POLY hit_star = CheckHitStar();
+
+	//星選択前であれば、トリガーを離すと射撃状態を解除
+	if (x_input.RightTrigger != 255 &&
+		selected_skystar_flag_ == false)
+		slingshot_flag_ = false;
+
+	//星と標準があっていないので、次の処理に進まない
+	if (hit_star.HitFlag == 0)
+		return;
+
+	//Yボタンが押されたら、タイミングゲージを描画
+	if (trigger_key & PAD_INPUT_4)
+	{
+		mode_game->ui_.timing_ui_.SetSelectedStarNum(hit_star.FrameIndex);
+		mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
+		mode_game->ui_.timing_ui_.SetDrawTimingGuide(true);
+		selected_skystar_flag_ = true;
+	}
+
+	//星発射エフェクトを生成
+	Launch_Star(hit_star.HitPosition);
+
+	//射撃状態の終了
+	float shoot_anim_end = 80.0f;
+	if (anim_play_time_ == shoot_anim_end)
+	{
+		status_ = STATUS::WAIT;
+		slingshot_flag_ = false;
+		mode_game->SetPlayerStarNum(0);
+	}
+}
+
+void Player::SlingShotStance()
+{
+	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+
+	if (status_ == STATUS::SHOOT_END)
+		return;
+
+	status_ = STATUS::SHOOT_START;
+
+	if (anim_play_time_ == 0)
+	{
+		//射撃標準を描画
+		mode_game->ui_.shoot_ui_.SetDrawShootGuide(true);
+	}
+
+	//射撃溜めエフェクト生成
+	if (anim_play_time_ == anim_total_time_)
+	{
+		//1フレームだけ処理を行う
+		if (shoot_charge_effect_flag_)
+		{
+			effect::ShootChargeEffect* charge_effect = NEW effect::ShootChargeEffect();
+
+			charge_effect->PlayEffect();
+			mode_game->effect_server_.Add(charge_effect);
+			shoot_charge_effect_flag_ = false;
+			selected_skystar_flag_ = false;
+		}
+	}
+
+	//射撃標準の回転を行う
+	SetShootRotation();
+}
+
+MV1_COLL_RESULT_POLY Player::CheckHitStar()
+{
+	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+
 	MV1_COLL_RESULT_POLY hit_star;
 	hit_star.HitFlag = 0;
 
@@ -44,90 +118,50 @@ void Player::HoldSlingShot()
 		}
 	}
 
-	if (hit_star.HitFlag)
-	{
-		hitposition = hit_star.HitPosition;
+	return hit_star;
+}
 
-		//Yボタンが押されたら、タイミングゲージを描画
-		if (trigger_key & PAD_INPUT_4)
+void Player::Launch_Star(VECTOR _star_position)
+{
+	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+
+	if (mode_game->ui_.timing_ui_.GetLaunchStarShoot() == false)
+		return;
+
+	//射撃エフェクトの生成
+	effect::ShootEffect* shoot_effect = NEW effect::ShootEffect(_star_position);
+
+	shoot_effect->PlayEffect();
+	shoot_effect->Initialize();
+	mode_game->effect_server_.Add(shoot_effect);
+
+	//プレイヤーが連れていた星を削除する
+	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+	{
+		if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::STAGE_STAR)
 		{
-			mode_game->ui_.timing_ui_.SetSelectedStarNum(hit_star.FrameIndex);
-			mode_game->ui_.timing_ui_.SetDrawTimingGuide(true);
-			mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
-		}
-	}
-	else
-	{
-		if (status_ != STATUS::SHOOT_END)
-			status_ = STATUS::SHOOT_START;
-	}
-
-	if (mode_game->ui_.timing_ui_.GetLaunchStarShoot() == true)
-	{
-		effect::ShootEffect* shoot_effect = NEW effect::ShootEffect(hit_star.HitPosition);
-
-		shoot_effect->PlayEffect();
-		shoot_effect->Initialize();
-		mode_game->effect_server_.Add(shoot_effect);
-
-		//プレイヤーが連れていた星を削除する
-		for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
-		{
-			if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::STAGE_STAR)
-			{
-				star::Star* star = static_cast<star::Star*>(*iter);
-				if (star->GetPlayersStarNum() > 0)
-					mode_game->object_server_.Delete(*iter);
-			}
-		}
-
-		status_ = STATUS::SHOOT_END;
-
-		mode_game->ui_.timing_ui_.SetLaunchStarShoot(false);
-	}
-
-	//射撃溜めエフェクト生成
-	if (status_ == STATUS::SHOOT_START &&
-		anim_play_time_ == anim_total_time_)
-	{
-		//1フレームだけ処理を行う
-		if (shoot_charge_effect_flag_)
-		{
-			mode::ModeGame* modegame = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-			effect::ShootChargeEffect* charge_effect = NEW effect::ShootChargeEffect();
-
-			charge_effect->PlayEffect();
-			modegame->effect_server_.Add(charge_effect);
-			shoot_charge_effect_flag_ = false;
+			star::Star* star = static_cast<star::Star*>(*iter);
+			if (star->GetPlayersStarNum() > 0)
+				mode_game->object_server_.Delete(*iter);
 		}
 	}
 
-	//射撃溜めエフェクト生成
-	if (status_ == STATUS::SHOOT_START &&
-		anim_play_time_ == 0)
-	{
-		//射撃標準を描画
-		mode_game->ui_.shoot_ui_.SetDrawShootGuide(true);
-	}
+	status_ = STATUS::SHOOT_END;
+	mode_game->ui_.timing_ui_.SetLaunchStarShoot(false);
+}
 
-	float shoot_anim_end = 80.0f;
-
-	if (status_ == STATUS::SHOOT_END &&
-		anim_play_time_ == shoot_anim_end)
-	{
-		status_ = STATUS::WAIT;
-		mode::ModeGame* modegame = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-		modegame->SetPlayerStarNum(0);
-	}
-
-	float stick_rx;
+void Player::SetShootRotation()
+{
+	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
 
 	//右スティックの移動量
-	stick_rx = x_input.ThumbRX / THUMB_MAX;
+	float stick_rx = x_input.ThumbRX / THUMB_MAX;
 
 	float rot_horizon = 0.0f;
 	float rot_speed = 3.0f;
 	float analog_min = 0.1f;
+
+	//射撃の標準は通常より細かく移動できるように、速度を遅くする
 	if (stick_rx > analog_min)
 		rot_horizon += DEG2RAD(rot_speed * 0.3f) * stick_rx;
 	if (stick_rx < -analog_min)

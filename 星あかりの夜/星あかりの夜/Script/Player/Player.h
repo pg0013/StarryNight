@@ -104,7 +104,6 @@ namespace starrynight
 			 */
 			STATUS GetPlayerStatus() { return status_; }
 
-
 		private:
 			/**
 			 * @brief　 移動処理
@@ -117,9 +116,31 @@ namespace starrynight
 			void Jump();
 
 			/**
-			 * @brief	パチンコを構える処理.
+			 * @brief	パチンコを構えて星を撃つ処理.
 			 */
 			void HoldSlingShot();
+
+			/**
+			 * @brief パチンコを構える処理.
+			 */
+			void SlingShotStance();
+
+			/**
+			 * @brief 星を発射する処理.
+			 */
+			void Launch_Star(VECTOR _star_position);
+
+			/**
+			 * @brief 射撃構え時のプレイヤーの向きを設定する.
+			 */
+			void SetShootRotation();
+
+			/**
+			 * @brief. 星座との当たり判定を取得する
+			 *
+			 * @return 星座との当たり判定構造体
+			 */
+			MV1_COLL_RESULT_POLY CheckHitStar();
 
 			/**
 			 * @brief　 右スティック入力からプレイヤーの方向を決める
@@ -187,11 +208,11 @@ namespace starrynight
 			bool anim_loop_flag_;//アニメーションをループするかどうか
 
 			//エフェクト用変数
+			bool slingshot_flag_;//パチンコ射撃状態かどうかを判定するフラグ
+			bool selected_skystar_flag_;//射撃状態から星を選択したかどうか判定するフラグ
 			bool shoot_charge_effect_flag_;//射撃溜めエフェクト生成フラグ
 
 			STATUS status_;//プレイヤーの状態保持変数
-
-			VECTOR hitposition;
 		};
 	}
 }
