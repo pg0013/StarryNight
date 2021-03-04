@@ -250,11 +250,34 @@ void Star::Diffusion()
 	}
 }
 
+int Star::IsStageStarDraw()
+{
+	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+
+	bool stage_draw_flag = true;
+
+	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+	{
+		if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
+		{
+			player::Player* player = static_cast<player::Player*>(*iter);
+			stage_draw_flag = player->GetPlayerSlingShotStatus();
+			break;
+		}
+	}
+
+	if (stage_draw_flag)
+		return FALSE;
+	else
+		return TRUE;
+}
+
 void Star::Render()
 {
 	MV1SetPosition(handle_, position_);
 	MV1SetRotationXYZ(handle_, rotation_);
 
+	MV1SetVisible(handle_, IsStageStarDraw());
 	MV1DrawModel(handle_);
 
 #ifdef DEBUG_FUNCTION

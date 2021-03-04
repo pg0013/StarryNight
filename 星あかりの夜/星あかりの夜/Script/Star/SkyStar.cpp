@@ -30,8 +30,8 @@ SkyStar::~SkyStar()
 void SkyStar::Initialize()
 {
 	float radius = 10000.0f;
-	float height = 6000.0f;
-	float degree = 45.0f;
+	float height = 5000.0f;
+	float degree = 180.0f;
 
 	position_.x = radius * cosf(DEG2RAD(degree));
 	position_.z = radius * sinf(DEG2RAD(degree));

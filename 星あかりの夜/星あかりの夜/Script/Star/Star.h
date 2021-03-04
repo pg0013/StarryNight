@@ -71,6 +71,13 @@ namespace starrynight
 			void Diffusion();
 
 			/**
+			 * @brief@¯‚ğ•`‰æ‚·‚é‚©‚Ç‚¤‚©‚ğ”»’è‚·‚é.
+			 * 
+			 * @return TRUE‚Å•`‰æ‚·‚é
+			 */
+			int IsStageStarDraw();
+
+			/**
 			 * @brief ó‘Ô‘JˆÚ—p’è”
 			 */
 			enum class STATUS

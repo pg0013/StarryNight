@@ -66,6 +66,13 @@ namespace starrynight
 			void SetDamageAnimFlag(bool _flag) { damage_anim_flag_ = _flag; }
 
 			/**
+			 * @brief	射撃状態かどうかを判定するフラグを取得する.
+			 *
+			 * @return		trueで射撃状態中
+			 */
+			bool GetPlayerSlingShotStatus() { return slingshot_flag_; }
+
+			/**
 			 * @brief　 プレイヤーの残りHPを返す
 			 *
 			 * @return   HP
