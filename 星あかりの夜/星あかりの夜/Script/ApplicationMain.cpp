@@ -19,11 +19,11 @@ bool ApplicationMain::Initialize(HINSTANCE _hinstance)
 {
 	if (!appbase::Initialize(_hinstance)) { return false; }
 
-	//mode::ModeTitle* mode_title = NEW mode::ModeTitle();
-	//::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");
+	mode::ModeTitle* mode_title = NEW mode::ModeTitle();
+	::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");
 
-	mode::ModeGame* mode_game = NEW mode::ModeGame();
-	::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
+	//mode::ModeGame* mode_game = NEW mode::ModeGame();
+	//::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
 
 	//mode::ModeGameClear* mode_gameclear = NEW mode::ModeGameClear(35000);
 	//::mode::ModeServer::GetInstance()->Add(mode_gameclear, 0, "GameClear");

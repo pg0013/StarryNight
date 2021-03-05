@@ -46,6 +46,7 @@ bool ModeGame::Terminate()
 
 	object_server_.Clear();
 	effect_server_.Clear();
+	stage_.ClearHandle();
 	ui_.Terminate();
 
 	return true;

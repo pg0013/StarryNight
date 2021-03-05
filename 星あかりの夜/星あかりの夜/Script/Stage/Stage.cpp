@@ -32,10 +32,10 @@ Stage::~Stage()
 
 void Stage::Initialize()
 {
-	stage_param_.LoadStage("haru_A", false);
-	star_param_.LoadStageStar("haru_A", false);
-	skystar_param_.LoadSkyStar("haru_A", false);
-	enemy_param_.LoadStageEnemys("haru_A", false);
+	stage_param_.LoadStage("haru_test", false);
+	star_param_.LoadStageStar("haru_test", false);
+	skystar_param_.LoadSkyStar("haru_test", false);
+	enemy_param_.LoadStageEnemys("haru_test", false);
 
 	//Stageƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İ
 	auto handle_map = stage_param_.GetMapModelParam();
@@ -169,5 +169,6 @@ void Stage::ClearHandle()
 	{
 		MV1DeleteModel(iter);
 	}
+
 	stage_handle_.clear();
 }
