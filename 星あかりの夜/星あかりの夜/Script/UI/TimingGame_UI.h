@@ -88,7 +88,6 @@ namespace starrynight
 			 */
 			void SetSelectedStarNum(int _star_frame_num) { selected_star_num_ = _star_frame_num; }
 
-		private:
 			/**
 			 * @brief タイミングゲームのタイミング評価
 			 */
@@ -96,6 +95,7 @@ namespace starrynight
 			{
 				EXCELLENT,GOOD,BAD
 			};
+		private:
 
 			/**
 			 * @brief　 タイミングゲームのタイミングを評価する

@@ -13,6 +13,7 @@ using namespace starrynight::ui;
 UIManager::UIManager()
 {
 	param_.LoadImagParameters("ui");
+	draw_ui_flag_ = true;
 }
 
 UIManager::~UIManager()
@@ -24,6 +25,7 @@ void UIManager::Initialize()
 	shoot_ui_.Initialize();
 	timing_ui_.Initialize();
 	score_ui_.Initialize();
+	score_ui_.SetPosition(VGet(1800, 100, 0));
 	hp_ui_.Initialize();
 }
 
@@ -39,12 +41,16 @@ void UIManager::Process()
 {
 	shoot_ui_.Process();
 	timing_ui_.Process();
+	score_ui_.UpdatePlayerScore();
 	score_ui_.Process();
 	hp_ui_.Process();
 }
 
 void UIManager::Render()
 {
+	if (draw_ui_flag_ == false)
+		return;
+
 	shoot_ui_.Render();
 	timing_ui_.Render();
 	score_ui_.Render();

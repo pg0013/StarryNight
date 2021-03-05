@@ -39,6 +39,8 @@ void Camera::Initialize()
 	clip_.near_ = camera_param_.GetCameraParam("near");
 	clip_.far_ = camera_param_.GetCameraParam("far");
 	status_ = STATUS::MOVE;
+
+	old_target_ = VGet(0, 5000, 0);
 }
 
 void Camera::Input()
@@ -56,6 +58,10 @@ void Camera::Process()
 	case STATUS::SHOOT:
 		//射撃用カメラ処理
 		ShootCamera();
+		break;
+	case STATUS::SKYSTAR:
+		//星座完成時のカメラ処理
+		SkyStarCamera();
 		break;
 	}
 }

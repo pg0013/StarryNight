@@ -13,8 +13,6 @@ namespace
 {
 	constexpr int score_base_x = 0;
 	constexpr int score_base_y = 0;
-	constexpr int score_num_x = 1800;
-	constexpr int score_num_y = 100;
 }
 
 namespace starrynight
@@ -47,20 +45,47 @@ namespace starrynight
 			 */
 			void Render();
 
-		private:
+			void SetDrawScoreBaseFlag(bool _flag) { draw_scorebase_flag_ = _flag; }
+
+			/**
+			 * @brief　UIの位置を設定する.
+			 *
+			 * @param _positon 位置(x,y,z)のベクトル構造体,zは無効
+			 */
+			void SetPosition(VECTOR _positon) { position_ = _positon; }
+
+			/**
+			 * @brief　 拡大率を設定する
+			 *
+			 * @param  _rate	拡大率
+			 */
+			void SetEXRate(double _rate) { exrate_ = _rate; }
+
+			/**
+			 * @brief　 プレイヤースコアを設定する
+			 *
+			 * @param  _score　ゲームスコア
+			 */
+			void SetPlayerScore(int _score) { player_score_ = _score; }
+
 			/**
 			 * @brief　 プレイヤースコアを更新する
 			 */
 			void UpdatePlayerScore();
+		private:
 
 			/**
 			 * @brief　 スコアの桁の値を設定する
 			 */
 			void SetScoreRankNum();
 
+			VECTOR position_;//座標
+			double exrate_;//拡大率
+
 			int player_score_;//プレイヤースコア
 			int rank_value_[6] = { 0 };//スコアの桁の値 0が一の位
 			bool draw_rank_flag_[6] = { 0 };//桁を描画するか決めるフラグ　0が一の位
+			bool draw_scorebase_flag_;
 
 			handle score_base_graph_;
 			handle score_num_graph_[10] = { 0 };

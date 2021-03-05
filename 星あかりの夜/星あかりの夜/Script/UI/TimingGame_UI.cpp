@@ -8,6 +8,7 @@
 
 #include "TimingGame_UI.h"
 #include"../Mode/ModeGame.h"
+#include"../Effect/TimingRankEffect.h"
 
 using namespace starrynight::ui;
 
@@ -49,10 +50,27 @@ void TimingGame_UI::Process()
 	}
 
 	int elapsed_frame = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - presssed_frame_;
-	if (elapsed_frame > 60 * 1 &&
+
+	if (elapsed_frame == 30 &&
 		presssed_frame_ != 0)
 	{
 		//タイミングゲームUIの描画を停止し、星を発射するフラグを設定
+		VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
+		player_position = VAdd(player_position, VGet(0.0f, 50.0f, 0.0f));
+
+		//星獲得エフェクトを生成
+		effect::TimingRankEffect* timing_effect = NEW effect::TimingRankEffect(CheckTiming());
+		timing_effect->SetPosition(player_position);
+		timing_effect->Initialize();
+		timing_effect->PlayEffect();
+
+		mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		mode_game->effect_server_.Add(timing_effect);
+	}
+
+	if (elapsed_frame > 90 &&
+		presssed_frame_ != 0)
+	{
 		draw_timing_guide_ = false;
 		SetLaunchStarShoot(true);
 
@@ -177,19 +195,20 @@ void TimingGame_UI::CalcurateScore()
 
 TimingGame_UI::TIMING_STATUS TimingGame_UI::CheckTiming()
 {
-	if (timing_exrate_ == 0.53)
+	if (timing_exrate_ <= 0.43 &&
+		timing_exrate_ >= 0.37)
 	{
 		return TIMING_STATUS::EXCELLENT;
 	}
-	else if (timing_exrate_ <= 0.89 &&
-		timing_exrate_ >= 0.54)
+	else if (timing_exrate_ <= 0.6 &&
+		timing_exrate_ >= 0.44)
 	{
 		return TIMING_STATUS::GOOD;
 	}
-	else if (timing_exrate_ < 0.52 &&
-		timing_exrate_ >= 0.34)
+	else if (timing_exrate_ < 1.0 &&
+		timing_exrate_ >= 0.61)
 	{
-		return TIMING_STATUS::GOOD;
+		return TIMING_STATUS::BAD;
 	}
 	else
 	{

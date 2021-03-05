@@ -73,6 +73,13 @@ namespace starrynight
 			bool GetPlayerSlingShotStatus() { return slingshot_flag_; }
 
 			/**
+			 * @brief　 射撃構え時に星が選択されたかどうか取得するフラグ
+			 *
+			 * @return   trueで星選択済み
+			 */
+			bool GetSelectedStarFlag() { return selected_skystar_flag_; }
+
+			/**
 			 * @brief　 プレイヤーの残りHPを返す
 			 *
 			 * @return   HP

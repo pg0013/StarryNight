@@ -13,6 +13,8 @@
 #include"../Effect/ShootChargeEffect.h"
 #include"../Effect/ShootEffect.h"
 #include"../Mode/ModeGame.h"
+#include"../Mode/ModeOverlay.h"
+
 
 using namespace starrynight::player;
 
@@ -51,9 +53,27 @@ void Player::HoldSlingShot()
 	//星発射エフェクトを生成
 	Launch_Star(hit_star.HitPosition);
 
+	if (mode_game->IsClearStage() == true &&
+		anim_play_time_ == 70.0f)
+	{
+		mode::ModeOverlay* modeoverlay = NEW mode::ModeOverlay();
+		modeoverlay->Fade(11, FADE_OUT);
+		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
+	}
+
+
 	//射撃状態の終了
 	float shoot_anim_end = 80.0f;
-	if (anim_play_time_ == shoot_anim_end)
+	if (anim_play_time_ < shoot_anim_end)
+		return;
+
+	if (mode_game->IsClearStage() == true)
+	{
+		camera::Camera::GetInstance()->SkyStarCameraInit();
+		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::SKYSTAR);
+		mode_game->SetNextMode(420,40);
+	}
+	else
 	{
 		status_ = STATUS::WAIT;
 		slingshot_flag_ = false;
@@ -92,7 +112,8 @@ void Player::SlingShotStance()
 	}
 
 	//射撃標準の回転を行う
-	SetShootRotation();
+	if (selected_skystar_flag_ == false)
+		SetShootRotation();
 }
 
 MV1_COLL_RESULT_POLY Player::CheckHitStar()

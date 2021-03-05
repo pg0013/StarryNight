@@ -32,7 +32,6 @@ void EffectBase::Render()
 {
 	//3D表示設定を同期して、エフェクトを描画
 	Effekseer_Sync3DSetting();
-	DrawEffekseer3D();
 }
 
 void EffectBase::PlayEffect()

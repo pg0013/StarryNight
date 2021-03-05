@@ -14,6 +14,9 @@ using namespace starrynight::ui;
 Score_UI::Score_UI()
 {
 	player_score_ = 0;
+	position_ = VGet(0, 0, 0);
+	exrate_ = 1.0;
+	draw_scorebase_flag_ = true;
 }
 
 Score_UI::~Score_UI()
@@ -35,7 +38,6 @@ void Score_UI::Terminate()
 
 void Score_UI::Process()
 {
-	UpdatePlayerScore();
 	SetScoreRankNum();
 }
 
@@ -44,19 +46,19 @@ void Score_UI::UpdatePlayerScore()
 	mode::ModeGame* mode_game =
 		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
-	player_score_ = mode_game->GetGameScore();
+	SetPlayerScore(mode_game->GetGameScore());
 }
 
 void Score_UI::SetScoreRankNum()
 {
+	int score = player_score_;
+
 	//Œ…‚Ì’l‚ðŽæ“¾
 	for (int i = 5; i >= 0; i--)
 	{
-		rank_value_[i] = player_score_ / static_cast<int>(pow(10, i));
-		player_score_ -= rank_value_[i] * static_cast<int>(pow(10, i));
+		rank_value_[i] = score / static_cast<int>(pow(10, i));
+		score -= rank_value_[i] * static_cast<int>(pow(10, i));
 	}
-
-	//Œ…‚ð•`‰æ‚·‚é‚©•]‰¿
 
 	//Å‘åŒ…”‚ðŽæ“¾
 	int max_rank = 0;
@@ -71,6 +73,7 @@ void Score_UI::SetScoreRankNum()
 		}
 	}
 
+	//Œ…‚ð•`‰æ‚·‚é‚©•]‰¿
 	for (int i = 5; i >= 0; i--)
 	{
 		if (i > max_rank)
@@ -84,15 +87,18 @@ void Score_UI::SetScoreRankNum()
 
 void Score_UI::Render()
 {
-	DrawGraph(score_base_x, score_base_y, score_base_graph_, TRUE);
+	if (draw_scorebase_flag_)
+		DrawGraph(score_base_x, score_base_y, score_base_graph_, TRUE);
 
-	int x = score_num_x;
+	int x = static_cast<int>(position_.x);
+	int interval = 67;
+
 	for (int i = 0; i < 6; i++)
 	{
 		if (draw_rank_flag_[i] == false)
 			continue;
 
-		DrawRotaGraph(x, score_num_y,1.0,0.0, score_num_graph_[rank_value_[i]], TRUE);
-		x -= 79;
+		DrawRotaGraph(x, static_cast<int>(position_.y), exrate_, 0.0, score_num_graph_[rank_value_[i]], TRUE);
+		x -= interval;
 	}
 }

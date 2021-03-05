@@ -41,10 +41,16 @@ void Player::SwitchPlayerAction()
 		hit_poly_shootpoint.HitFlag)
 		slingshot_flag_ = true;
 
+	if (camera::Camera::GetInstance()->GetStatus() == camera::Camera::STATUS::SKYSTAR)
+	{
+		return;
+	}
+
 	if(slingshot_flag_)
 	{
-		//射撃アクションを行う
+		//射撃用のカメラに設定
 		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::SHOOT);
+		//射撃アクションを行う
 		HoldSlingShot();
 	}
 	else

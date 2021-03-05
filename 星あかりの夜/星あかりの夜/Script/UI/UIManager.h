@@ -51,6 +51,13 @@ namespace starrynight
 			 */
 			void Render();
 
+			/**
+			 * @brief　 UIの描画をするか設定するフラグ
+			 *
+			 * @param  _flag	UI描画フラグ　trueで描画
+			 */
+			void SetDrawUIFlag(bool _flag) { draw_ui_flag_ = _flag; }
+
 		public:
 			//射撃ガイド表示クラス
 			Shoot_UI shoot_ui_;
@@ -67,6 +74,9 @@ namespace starrynight
 		private:
 			//UIパラメータ管理クラス
 			parameters::Parameters param_;
+
+			//UI描画フラグ
+			bool draw_ui_flag_;
 		};
 	}
 }

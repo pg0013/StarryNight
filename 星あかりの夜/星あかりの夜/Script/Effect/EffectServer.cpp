@@ -98,4 +98,6 @@ void EffectServer::Render()
 	{
 		(*iter)->Render();
 	}
+	DrawEffekseer3D();
+
 }

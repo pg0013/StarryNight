@@ -51,14 +51,13 @@ void Stage::Initialize()
 			continue;
 		}
 
+		stage_handle_.push_back(handle);
+
 		//射撃ポイントは当たり判定のために個別で管理する
 		if (handle == resource::ResourceServer::GetModelHandle("ShootPoint_GEO1"))
 		{
 			shootpoint_ = handle;
-			continue;
 		}
-
-		stage_handle_.push_back(handle);
 
 		//壁や床の当たり判定があるオブジェクトは当たり判定用のコンテナにも格納する
 		if (MV1SearchFrame(handle, "floor_NavMesh") > 0)

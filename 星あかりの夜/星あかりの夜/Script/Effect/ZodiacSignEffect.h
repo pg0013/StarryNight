@@ -21,7 +21,7 @@ namespace starrynight
 		public:
 			/**
 			 * @brief 星座エフェクトを生成する.
-			 * 
+			 *
 			 * @param _sign_name	星座名
 			 */
 			ZodiacSignEffect(std::string _sign_name);
@@ -42,9 +42,16 @@ namespace starrynight
 			 */
 			virtual void Render();
 
+			/**
+			 * @brief　 星座完成エフェクトを描画する
+			 */
+			void DrawCompleteEffect();
 		private:
 			std::string skystar_name;
 			handle after_effect_resource_;
+
+			bool once_flag_;
+			int start_frame_;
 		};
 	}
 }

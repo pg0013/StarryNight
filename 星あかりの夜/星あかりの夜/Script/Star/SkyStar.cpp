@@ -65,22 +65,6 @@ void SkyStar::Process()
 
 	MV1SetPosition(handle_, position_);
 	SetRotationToPlayer();
-
-	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
-	if (trigger_key & PAD_INPUT_3)
-	{
-		for (int i = 0; i <= 3; i++)
-		{
-			MV1SetFrameVisible(handle_, i, FALSE);
-		}
-	}
-	if (trigger_key & PAD_INPUT_5)
-	{
-		for (int i = 0; i <= 3; i++)
-		{
-			MV1SetFrameVisible(handle_, i, TRUE);
-		}
-	}
 }
 
 void SkyStar::SetRotationToPlayer()

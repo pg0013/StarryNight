@@ -10,7 +10,6 @@
 #include"appframe.h"
 #include "EffectBase.h"
 
-
 namespace starrynight
 {
 	namespace effect

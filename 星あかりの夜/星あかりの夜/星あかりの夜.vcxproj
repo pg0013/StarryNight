@@ -24,6 +24,7 @@
     <ClCompile Include="Script\Camera\CameraParameters.cpp" />
     <ClCompile Include="Script\Camera\MoveCamera.cpp" />
     <ClCompile Include="Script\Camera\ShootCamera.cpp" />
+    <ClCompile Include="Script\Camera\SkyStarCamera.cpp" />
     <ClCompile Include="Script\Effect\DamageEffect.cpp" />
     <ClCompile Include="Script\Effect\EffectBase.cpp" />
     <ClCompile Include="Script\Effect\EffectServer.cpp" />
@@ -32,6 +33,7 @@
     <ClCompile Include="Script\Effect\ShootEffect.cpp" />
     <ClCompile Include="Script\Effect\ShootPointEffect.cpp" />
     <ClCompile Include="Script\Effect\StageFlowEffect.cpp" />
+    <ClCompile Include="Script\Effect\TimingRankEffect.cpp" />
     <ClCompile Include="Script\Effect\ZodiacSignEffect.cpp" />
     <ClCompile Include="Script\Enemy\Attack.cpp" />
     <ClCompile Include="Script\Enemy\DecideMoveAmount.cpp" />
@@ -42,6 +44,7 @@
     <ClCompile Include="Script\Enemy\SwitchStatus.cpp" />
     <ClCompile Include="Script\Enemy\Tracking.cpp" />
     <ClCompile Include="Script\Mode\ModeGame.cpp" />
+    <ClCompile Include="Script\Mode\ModeGameClear.cpp" />
     <ClCompile Include="Script\Mode\ModeOverlay.cpp" />
     <ClCompile Include="Script\Mode\ModeTitle.cpp" />
     <ClCompile Include="Script\Object\ObjectBase.cpp" />
@@ -79,10 +82,12 @@
     <ClInclude Include="Script\Effect\ShootEffect.h" />
     <ClInclude Include="Script\Effect\ShootPointEffect.h" />
     <ClInclude Include="Script\Effect\StageFlowEffect.h" />
+    <ClInclude Include="Script\Effect\TimingRankEffect.h" />
     <ClInclude Include="Script\Effect\ZodiacSignEffect.h" />
     <ClInclude Include="Script\Enemy\Enemy.h" />
     <ClInclude Include="Script\Enemy\EnemyParameters.h" />
     <ClInclude Include="Script\Mode\ModeGame.h" />
+    <ClInclude Include="Script\Mode\ModeGameClear.h" />
     <ClInclude Include="Script\Mode\ModeOverlay.h" />
     <ClInclude Include="Script\Mode\ModeTitle.h" />
     <ClInclude Include="Script\Object\ObjectBase.h" />

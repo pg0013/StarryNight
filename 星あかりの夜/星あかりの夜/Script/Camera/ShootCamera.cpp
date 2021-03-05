@@ -5,8 +5,11 @@
  * @author Takuya Fujisawa
  * @date   2021/02/05
  */
+
 #include "Camera.h"
 #include"../Stage/Stage.h"
+#include"../Mode/ModeGame.h"
+#include"../Player/Player.h"
 #include<cmath>
 using namespace starrynight::camera;
 
@@ -25,17 +28,41 @@ void Camera::ShootCameraInit()
 	//プレイヤーの右後ろにカメラを設定
 	VECTOR shoot_camera_pos;
 	shoot_camera_pos = VAdd(player_positon, VScale(right, 80.0f));
-	shoot_camera_pos = VAdd(shoot_camera_pos, VScale(up,	5.0f));
+	shoot_camera_pos = VAdd(shoot_camera_pos, VScale(up, -40.0f));
 	shoot_camera_pos = VAdd(shoot_camera_pos, VScale(back, 150.0f));
 
 	position_ = shoot_camera_pos;
 
-	//ターゲットはプレイヤーの向きに合わせる
 	target_ = VAdd(player_positon, VScale(VNorm(utility::GetForwardVector(player_rotation.y)), 10000));
+	target_ = VAdd(target_, VGet(0, 4000, 0));
+
+	target_.y = old_target_.y;
 }
 
 void Camera::ShootCamera()
 {
+	//カメラの位置とターゲットを初期化
+	//カメラの左右移動はプレイヤーの向きによって、移動処理を行う
+	ShootCameraInit();
+
+	mode::ModeGame* mode_game =
+		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+
+	bool selected_star_flag = false;
+	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+	{
+		if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
+		{
+			player::Player* player = static_cast<player::Player*>(*iter);
+			selected_star_flag = player->GetSelectedStarFlag();
+			break;
+		}
+	}
+
+	//星選択済みならカメラ移動しない
+	if (selected_star_flag == true)
+		return;
+
 	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
 
 	float stick_ry;//右アナログスティックの座標
@@ -44,14 +71,8 @@ void Camera::ShootCamera()
 
 	float rot_vertical = 0.0f;
 
-	VECTOR old_target = target_;
-
-	//カメラの位置とターゲットを初期化
-	//カメラの左右移動はプレイヤーの向きによって、移動処理を行う
-	ShootCameraInit();
-
 	//y座標を変更するために値を保持
-	target_.y = old_target.y;
+	target_.y = old_target_.y;
 
 	//回転軸を設定
 	VECTOR rot_vertical_axis = VSub(target_, position_);
@@ -60,9 +81,9 @@ void Camera::ShootCamera()
 	//カメラを上下に移動
 	float analog_min = 0.1f;
 	if (stick_ry > analog_min)
-		rot_vertical -= DEG2RAD(rot_speed_*0.3f) * stick_ry;
+		rot_vertical -= DEG2RAD(rot_speed_ * 0.3f) * stick_ry;
 	if (stick_ry < -analog_min)
-		rot_vertical += DEG2RAD(rot_speed_*0.3f) * -stick_ry;
+		rot_vertical += DEG2RAD(rot_speed_ * 0.3f) * -stick_ry;
 
 	//回転行列を算出
 	MATRIX rot_v = MGetRotAxis(rot_vertical_axis, rot_vertical);
@@ -78,4 +99,6 @@ void Camera::ShootCamera()
 		target_.y = target_y_min;
 	if (target_.y > target_y_max)
 		target_.y = target_y_max;
+
+	old_target_ = target_;
 }

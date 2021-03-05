@@ -138,16 +138,33 @@ namespace starrynight
 
 			/**
 			 * @brief　ステージクリアを満たしているかどうかを判定する.
-			 * 
+			 *
 			 * @return ステージクリアの可否
 			 */
 			bool IsClearStage()
 			{
-				if (player_star_num_ >= stage_star_num_) { return true; }
+				if (game_score_ >= regulations_score_) { return true; }
 				else { return false; }
 			}
 
+		  /**
+			* @brief　 次のモードに移行する設定を行う
+			*
+			* @param  _count　次のモードへ移行するまでのフレーム数
+			* @param  _fade_count　フェードを行うフレーム数
+			*/
+			void SetNextMode(int _count, int _fade_count);
+
 		private:
+			/**
+			 * @brief　 次のモードに遷移する処理
+			 */
+			void NextMode();
+
+			bool pushed_flag_;//ボタンが押されたときのフラグ
+			int nextmode_count_;//次のモードに遷移するまでの時間
+			int fade_count_;
+
 			bool stop_object_process_;//オブジェクトの処理をストップする
 			int player_star_num_;//プレイヤーが取得したスターの数
 
