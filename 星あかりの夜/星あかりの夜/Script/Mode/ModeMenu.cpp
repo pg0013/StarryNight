@@ -164,7 +164,7 @@ bool ModeMenu::Render()
 	DrawRotaGraph(icon_x, icon_y, 1.0, 0.0, spring_icon_, TRUE);
 	DrawRotaGraph(icon_x, icon_y, 1.0, 0.0, stage_num_graph_[cursol_], TRUE);
 
-	DrawRotaGraph(stage_icon_x, stage_icon_y, 0.4, 0.0, stage_graph_[cursol_], TRUE);
+	DrawRotaGraph(stage_icon_x, stage_icon_y, 0.4, 0.0, stage_graph_[cursol_], false);
 
 	return true;
 }

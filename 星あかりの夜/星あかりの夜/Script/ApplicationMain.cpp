@@ -10,6 +10,7 @@
 #include"Mode/ModeGame.h"
 #include"Mode/ModeTitle.h"
 #include"Mode/ModeGameClear.h"
+#include"Mode/ModeMenu.h"
 
 using namespace starrynight;
 
@@ -19,14 +20,17 @@ bool ApplicationMain::Initialize(HINSTANCE _hinstance)
 {
 	if (!appbase::Initialize(_hinstance)) { return false; }
 
-	mode::ModeTitle* mode_title = NEW mode::ModeTitle();
-	::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");
+	//mode::ModeTitle* mode_title = NEW mode::ModeTitle();
+	//::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");
 
 	//mode::ModeGame* mode_game = NEW mode::ModeGame();
 	//::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
 
 	//mode::ModeGameClear* mode_gameclear = NEW mode::ModeGameClear(35000);
 	//::mode::ModeServer::GetInstance()->Add(mode_gameclear, 0, "GameClear");
+
+	mode::ModeMenu* mode_menu = NEW mode::ModeMenu();
+	::mode::ModeServer::GetInstance()->Add(mode_menu, 0, "Menu");
 
 	return true;
 }

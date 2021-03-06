@@ -32,27 +32,12 @@ void Camera::MoveCamera()
 	if (stick_rx < -ANALOG_MIN)
 		camera_rad += DEG2RAD(rot_speed_) * -stick_rx;
 
-	//カメラの左右位置を更新
-	position_.x = target_.x + camera_distance_ * cos(camera_rad);
-	position_.z = target_.z + camera_distance_ * sin(camera_rad);
-
-	//カメラを上に移動する
 	if (stick_ry < -ANALOG_MIN)
 	{
 		position_.y += move_speed_;
 
-		//カメラの高さの上限を設定
-		float camera_max_y = MV1GetPosition(resource::ResourceServer::GetModelHandle("player")).y + 300.0f;
-		if (position_.y > camera_max_y)
-			position_.y = camera_max_y;
-
 		return;
 	}
-
-	//ステージの床との当たり判定
-	MV1_COLL_RESULT_POLY hit_stage;
-	VECTOR hit_end_line = VAdd(position_, VGet(0, -90, 0));
-	hit_stage = stage::Stage::GetInstance()->GetHitLineToFloor(position_, hit_end_line);
 
 	//カメラの高さを下に移動
 	if (stick_ry > ANALOG_MIN)
@@ -60,18 +45,20 @@ void Camera::MoveCamera()
 		position_.y -= move_speed_;
 	}
 
-	//床との当たり判定を検出
-	if (hit_stage.HitFlag)
+	if (x_input.LeftTrigger == 255)
 	{
-		float camera_position_min = hit_stage.HitPosition.y + 80;
-
-		//床よりカメラが下に行かない
-		//下りの傾斜でカメラが床に沿って移動しない
-		if (old_position.y > camera_position_min)
-			position_.y = old_position.y;
-		else
-			position_.y = camera_position_min;
-
-		return;
+		camera_distance_ -= move_speed_;
 	}
+	if (x_input.RightTrigger == 255)
+	{
+		camera_distance_ += move_speed_;
+	}
+
+
+	//カメラの左右位置を更新
+	position_.x = target_.x + camera_distance_ * cos(camera_rad);
+	position_.z = target_.z + camera_distance_ * sin(camera_rad);
+
+	//カメラを上に移動する
+
 }

@@ -36,12 +36,8 @@ bool ModeGame::Initialize()
 {
 	if (!::mode::ModeBase::Initialize()) { return false; }
 
-	object::ObjectBase* player = NEW player::Player();
-	object_server_.Add(player);
-
 	camera_.Initialize();
 	stage_.Initialize(stage_name_);
-	ui_.Initialize();
 
 	return true;
 }
@@ -52,7 +48,7 @@ bool ModeGame::Terminate()
 
 	object_server_.Clear();
 	effect_server_.Clear();
-	ui_.Terminate();
+	//ui_.Terminate();
 
 	return true;
 }
@@ -68,7 +64,7 @@ bool ModeGame::Process()
 	}
 
 	camera_.Process();
-	ui_.Process();
+	//ui_.Process();
 
 	Input();
 	NextMode();
@@ -77,6 +73,8 @@ bool ModeGame::Process()
 
 bool ModeGame::Render()
 {
+	clsDx();
+
 	::mode::ModeBase::Render();
 
 	SetUseZBuffer3D(TRUE);
@@ -89,7 +87,7 @@ bool ModeGame::Render()
 	stage_.Render();
 	object_server_.Render();
 	effect_server_.Render();
-	ui_.Render();
+	//ui_.Render();
 
 #ifdef DEBUG_FUNCTION
 	int x, y;
