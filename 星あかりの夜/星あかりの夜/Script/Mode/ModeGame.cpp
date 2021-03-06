@@ -26,6 +26,9 @@ ModeGame::ModeGame(std::string _stage_name)
 	pushed_flag_ = false;
 	pause_flag_ = false;
 	score_rank_ = SCORE_RANK::LOW;
+
+	stage_shadowmap_ = MakeShadowMap(4096, 4096);
+	object_shadowmap_ = MakeShadowMap(8192, 8192);
 }
 
 ModeGame::~ModeGame()
@@ -43,6 +46,14 @@ bool ModeGame::Initialize()
 	stage_.Initialize(stage_name_);
 	ui_.Initialize();
 
+	SetShadowMapDrawArea(stage_shadowmap_, VGet(-2500.0f, -1.0f, -2500.0f), VGet(2500.0f, 2500.0f, 2500.0f));
+	SetShadowMapDrawArea(object_shadowmap_, VGet(-2500.0f, -1.0f, -2500.0f), VGet(2500.0f, 2500.0f, 2500.0f));
+	VECTOR light_direction = VGet(0.5f, -0.5f, 0.5f);
+	SetLightDirection(light_direction);
+	SetShadowMapLightDirection(stage_shadowmap_, light_direction);
+	SetShadowMapLightDirection(object_shadowmap_, light_direction);
+	SetLightAmbColor(GetColorF(-0.05f, -0.05f, -0.05f, 0.0f));
+
 	return true;
 }
 
@@ -54,6 +65,8 @@ bool ModeGame::Terminate()
 	stage_.ClearHandle();
 	ui_.Terminate();
 
+	DeleteShadowMap(stage_shadowmap_);
+	DeleteShadowMap(object_shadowmap_);
 	return true;
 }
 
@@ -83,12 +96,25 @@ bool ModeGame::Render()
 	SetUseZBuffer3D(TRUE);
 	SetWriteZBuffer3D(TRUE);
 
-	SetLightAmbColor(GetColorF(0.2f, 0.2f, 0.2f, 0.0f));
-
 	camera_.Render();
 
+	if (GetModeCount() == 1)
+	{
+		ShadowMap_DrawSetup(stage_shadowmap_);
+		stage_.Render();
+		ShadowMap_DrawEnd();
+	}
+
+	ShadowMap_DrawSetup(object_shadowmap_);
+	object_server_.Render();
+	ShadowMap_DrawEnd();
+
+	SetUseShadowMap(0, stage_shadowmap_);
+	SetUseShadowMap(1, object_shadowmap_);
 	stage_.Render();
 	object_server_.Render();
+	SetUseShadowMap(1, -1);
+
 	effect_server_.Render();
 	ui_.Render();
 

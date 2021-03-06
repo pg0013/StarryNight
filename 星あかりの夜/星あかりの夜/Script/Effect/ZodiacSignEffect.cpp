@@ -130,7 +130,7 @@ void ZodiacSignEffect::DrawCompleteEffect()
 		SetSpeedPlayingEffekseer3DEffect(playing_effect_, 1.0f);
 	}
 
-	if (elapsed_frame == 150)
+	if (elapsed_frame == 160)
 	{
 		//星獲得エフェクトを生成
 		effect::TimingRankEffect* timing_effect = NEW effect::TimingRankEffect(mode_game->GetScoreRank());

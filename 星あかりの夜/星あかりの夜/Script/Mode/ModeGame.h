@@ -66,6 +66,8 @@ namespace starrynight
 			stage::Stage stage_;//ステージ管理クラス
 			ui::UIManager ui_;//UI管理クラス
 
+			handle stage_shadowmap_;
+			handle object_shadowmap_;
 		public:
 			/**
 			 * @brief　 プレイヤーが取得したステージスターの数を取得する
