@@ -30,6 +30,7 @@ namespace appframe
 		fps_count_ = 0;
 		x_input_ = { 0 };
 		d_input_ = { 0 };
+		exit_flag_ = false;
 	}
 
 	ApplicationBase::~ApplicationBase() {}

@@ -17,6 +17,7 @@ EnemyParameters::EnemyParameters()
 
 EnemyParameters::~EnemyParameters()
 {
+	map_enemy_param_.clear();
 }
 
 void EnemyParameters::LoadStageEnemys(std::string _stagename, bool _async_flag)

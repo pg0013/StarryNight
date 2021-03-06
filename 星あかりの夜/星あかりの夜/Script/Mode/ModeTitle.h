@@ -9,6 +9,12 @@
 #pragma once
 #include "appframe.h"
 
+namespace
+{
+	constexpr int MENU = 0;
+	constexpr int EXIT = 1;
+}
+
 namespace starrynight
 {
 	namespace mode
@@ -70,6 +76,7 @@ namespace starrynight
 
 			bool pushed_flag_;//ボタンが押されたときのフラグ
 			int nextmode_count_;//次のモードに遷移するまでの時間
+			int nextmode_;
 		};
 	}
 }

@@ -17,7 +17,7 @@ PlayerParameters::PlayerParameters()
 
 PlayerParameters::~PlayerParameters()
 {
-
+	map_player_param_.clear();
 }
 
 void PlayerParameters::LoadPlayerParameters(const std::vector<std::string>& _param_name)
@@ -44,7 +44,6 @@ void PlayerParameters::LoadPlayerParameters(const std::vector<std::string>& _par
 		printfDx("json file can not read\n");
 		return;
 	}
-
 	auto json_array = json_value.get<picojson::array>();
 	auto json_object = json_array[0].get<picojson::object>();
 

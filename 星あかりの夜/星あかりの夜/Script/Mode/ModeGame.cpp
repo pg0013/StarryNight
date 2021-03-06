@@ -35,12 +35,16 @@ ModeGame::~ModeGame()
 bool ModeGame::Initialize()
 {
 	if (!::mode::ModeBase::Initialize()) { return false; }
+	utility::CheckMemoryLeak();
 
 	object::ObjectBase* player = NEW player::Player();
-	object_server_.Add(player);
 
+	object_server_.Add(player);
 	camera_.Initialize();
+
+	new char[10];
 	stage_.Initialize(stage_name_);
+
 	ui_.Initialize();
 
 	return true;
@@ -52,6 +56,7 @@ bool ModeGame::Terminate()
 
 	object_server_.Clear();
 	effect_server_.Clear();
+	stage_.ClearHandle();
 	ui_.Terminate();
 
 	return true;
@@ -72,6 +77,7 @@ bool ModeGame::Process()
 
 	Input();
 	NextMode();
+
 	return true;
 }
 
@@ -141,7 +147,6 @@ void ModeGame::NextMode()
 		return;
 
 	nextmode_count_--;
-
 
 	if (nextmode_count_ == fade_count_ &&
 		pause_flag_ == false)

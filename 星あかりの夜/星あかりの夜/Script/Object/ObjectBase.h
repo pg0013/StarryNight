@@ -16,7 +16,7 @@ namespace starrynight
 		{
 		public:
 			ObjectBase();
-			~ObjectBase();
+			virtual ~ObjectBase();
 
 			/**
 			 * @brief　オブジェクトの種類検出用変数.
@@ -32,23 +32,6 @@ namespace starrynight
 			 * @return　オブジェクトの種類
 			 */
 			virtual OBJECT_TYPE GetObjectType() = 0;
-
-			/**
-			 * @brief　 ムーブコンストラクタ
-			 *
-			 * @param  _object
-			 * @return
-			 */
-			ObjectBase(ObjectBase&& _object) noexcept :
-				handle_(_object.handle_),
-				position_(_object.position_),
-				rotation_(_object.rotation_)
-			{
-			}
-
-			//オペレータ演算子
-			ObjectBase& operator=(const ObjectBase& _object);
-			ObjectBase& operator=(ObjectBase&& _object) noexcept;
 
 			/**
 			 * @fn	virtual void ObjectBase::Initialize();

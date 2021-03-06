@@ -122,6 +122,18 @@ namespace appframe
 		 */
 		void CalculateFPS();
 
+		/**
+		 * @brief　 プログラムを終了させる処理
+		 */
+		void ExitProgram() { exit_flag_ = true; }
+
+		/**
+		 * @brief　 プログラムを終了するかどうかを取得する
+		 *
+		 * @return   プログラム終了フラグ　trueで終了
+		 */
+		bool IsProgramExit() { return exit_flag_; }
+
 	protected:
 		static ApplicationBase* appbase_instance_;
 
@@ -136,5 +148,8 @@ namespace appframe
 		LONGLONG now_time_, fps_check_time_;
 		int fps_count_;
 		int fps_;
+
+		//プログラム終了フラグ
+		bool exit_flag_;
 	};
 }

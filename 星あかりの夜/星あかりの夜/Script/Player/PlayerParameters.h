@@ -23,7 +23,7 @@ namespace starrynight
 
             /**
              * @brief　 プレイヤーパラメータをjsonファイルから読み込む
-             * 
+             *
              * @param  _param_name　パラメータ名を格納したコンテナ
              */
             void LoadPlayerParameters(const std::vector<std::string>& _param_name);

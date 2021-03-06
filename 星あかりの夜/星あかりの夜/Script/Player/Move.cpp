@@ -106,7 +106,10 @@ void Player::Move()
 			hit_poly_wallpush = stage::Stage::GetInstance()->GetHitCapsuleToWall(capsule_positon1, capsule_positon2, radius);
 
 			if (hit_poly_wallpush.HitNum == 0)
+			{
+				MV1CollResultPolyDimTerminate(hit_poly_wallpush);
 				break;
+			}
 
 			VECTOR normal = { 0,0,0 };
 			for (int i = 0; i < hit_poly_wall.HitNum; i++)
@@ -132,6 +135,7 @@ void Player::Move()
 		//ƒJƒƒ‰‚ðˆÚ“®
 		camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, move));
 		camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
+		MV1CollResultPolyDimTerminate(hit_poly_wall);
 	}
 }
 

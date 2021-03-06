@@ -170,4 +170,11 @@ void Stage::ClearHandle()
 		MV1DeleteModel(iter);
 	}
 	stage_handle_.clear();
+
+	for (auto iter : navimesh_handle_)
+	{
+		MV1TerminateCollInfo(iter, MV1SearchFrame(iter, "floor_NavMesh"));
+		MV1TerminateCollInfo(iter, MV1SearchFrame(iter, "wall_NavMesh"));
+	}
+	navimesh_handle_.clear();
 }

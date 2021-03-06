@@ -110,7 +110,7 @@ void ModeGameClear::NextMode()
 
 	if (cursol_ == RETURN_MENU)
 	{
-		resource::ResourceServer::ClearMap();
+		resource::ResourceServer::Release();
 
 		ModeMenu* mode_menu = NEW ModeMenu();
 		::mode::ModeServer::GetInstance()->Add(mode_menu, 0, "Menu");
@@ -119,7 +119,7 @@ void ModeGameClear::NextMode()
 
 	if (cursol_ == RETURN_TITLE)
 	{
-		resource::ResourceServer::ClearMap();
+		resource::ResourceServer::Release();
 
 		ModeTitle* mode_title = NEW ModeTitle();
 		::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");

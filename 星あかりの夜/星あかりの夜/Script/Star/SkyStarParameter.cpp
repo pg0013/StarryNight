@@ -13,10 +13,12 @@ using namespace starrynight::star;
 
 SkyStarParameter::SkyStarParameter()
 {
+	map_skystar_param_.clear();
 }
 
 SkyStarParameter::~SkyStarParameter()
 {
+	map_skystar_param_.clear();
 }
 
 void SkyStarParameter::LoadSkyStar(std::string _stagename, bool _async_flag)

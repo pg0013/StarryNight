@@ -15,7 +15,6 @@ Player::Player()
 	player_param_.LoadModelParameters("player");
 	std::vector<std::string> param = { "walk_speed","run_speed","rot_speed" };
 	player_param_.LoadPlayerParameters(param);
-
 	handle_ = resource::ResourceServer::GetModelHandle("player");
 
 	walk_speed_ = player_param_.GetPlayerParam("walk_speed");

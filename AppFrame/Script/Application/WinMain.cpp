@@ -17,14 +17,12 @@ int WINAPI WinMain(HINSTANCE _hinstance, HINSTANCE _hprev_instance, LPSTR _lpcmd
 	if (appbase->Initialize(_hinstance) == false) { return 0; }
 
 	//メインループ
-	while (ProcessMessage() == 0)
+	while (ProcessMessage() == 0 &&
+		appbase->IsProgramExit() == false)
 	{
 		appbase->Input();
 		appbase->Process();
 		appbase->Render();
-
-		//Escを押すと終了
-		if (GetAsyncKeyState(VK_ESCAPE)){break;}
 	}
 
 	appbase->Terminate();

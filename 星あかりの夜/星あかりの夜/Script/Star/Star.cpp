@@ -223,14 +223,13 @@ void Star::Diffusion()
 		escape = VCross(normal, escape);
 
 		position_ = VAdd(position_, escape);
-
-		MV1CollResultPolyDimTerminate(hit_sphere_wall);
 	}
 	else
 	{
 		position_ = VAdd(position_, move);
 		position_.y += jump_speed_;
 	}
+	MV1CollResultPolyDimTerminate(hit_sphere_wall);
 
 	jump_speed_ -= gravity_ * 3.0f;
 

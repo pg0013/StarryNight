@@ -25,6 +25,7 @@ ModeTitle::ModeTitle()
 
 	pushed_flag_ = false;
 	nextmode_count_ = 0;
+	nextmode_ = MENU;
 }
 
 ModeTitle::~ModeTitle()
@@ -55,7 +56,6 @@ bool ModeTitle::Process()
 
 	Input();
 	NextMode();
-
 	return true;
 }
 
@@ -90,6 +90,18 @@ void ModeTitle::Input()
 		pushed_flag_ = true;
 
 		nextmode_count_ = 60;
+		nextmode_ = MENU;
+
+		ModeOverlay* modeoverlay = NEW ModeOverlay();
+		modeoverlay->Fade(nextmode_count_, FADE_OUT);
+		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
+	}
+	if (trigger_key & PAD_INPUT_2)
+	{
+		pushed_flag_ = true;
+
+		nextmode_count_ = 60;
+		nextmode_ = EXIT;
 
 		ModeOverlay* modeoverlay = NEW ModeOverlay();
 		modeoverlay->Fade(nextmode_count_, FADE_OUT);
@@ -107,7 +119,15 @@ void ModeTitle::NextMode()
 	if (nextmode_count_ > 0)
 		return;
 
-	ModeMenu* mode_menu = NEW ModeMenu();
-	::mode::ModeServer::GetInstance()->Add(mode_menu, 0, "Menu");
-	::mode::ModeServer::GetInstance()->Del(this);
+	if (nextmode_ == MENU)
+	{
+		ModeMenu* mode_menu = NEW ModeMenu();
+		::mode::ModeServer::GetInstance()->Add(mode_menu, 0, "Menu");
+		::mode::ModeServer::GetInstance()->Del(this);
+	}
+	else if (nextmode_ == EXIT)
+	{
+		::mode::ModeServer::GetInstance()->Del(this);
+		appframe::ApplicationBase::GetInstance()->ExitProgram();
+	}
 }
