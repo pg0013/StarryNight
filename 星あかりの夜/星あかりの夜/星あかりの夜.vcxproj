@@ -45,6 +45,7 @@
     <ClCompile Include="Script\Enemy\Tracking.cpp" />
     <ClCompile Include="Script\Mode\ModeGame.cpp" />
     <ClCompile Include="Script\Mode\ModeGameClear.cpp" />
+    <ClCompile Include="Script\Mode\ModeMenu.cpp" />
     <ClCompile Include="Script\Mode\ModeOverlay.cpp" />
     <ClCompile Include="Script\Mode\ModeTitle.cpp" />
     <ClCompile Include="Script\Object\ObjectBase.cpp" />
@@ -88,6 +89,7 @@
     <ClInclude Include="Script\Enemy\EnemyParameters.h" />
     <ClInclude Include="Script\Mode\ModeGame.h" />
     <ClInclude Include="Script\Mode\ModeGameClear.h" />
+    <ClInclude Include="Script\Mode\ModeMenu.h" />
     <ClInclude Include="Script\Mode\ModeOverlay.h" />
     <ClInclude Include="Script\Mode\ModeTitle.h" />
     <ClInclude Include="Script\Object\ObjectBase.h" />

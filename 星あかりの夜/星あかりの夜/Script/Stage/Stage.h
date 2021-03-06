@@ -29,8 +29,10 @@ namespace starrynight
 
 			/**
 			 * @brief　初期化処理.
+			 *
+			 * @param  _stage_name	ステージ名
 			 */
-			void Initialize();
+			void Initialize(std::string _stage_name);
 
 			/**
 			 * @brief　演算処理.

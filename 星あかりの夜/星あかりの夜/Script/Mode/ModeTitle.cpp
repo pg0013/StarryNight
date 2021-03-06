@@ -8,7 +8,7 @@
 
 #include "ModeTitle.h"
 #include"ModeOverlay.h"
-#include"ModeGame.h"
+#include"ModeMenu.h"
 
 using namespace starrynight::mode;
 
@@ -106,8 +106,8 @@ void ModeTitle::NextMode()
 
 	if (nextmode_count_ == 0)
 	{
-		ModeGame* mode_game = NEW ModeGame();
-		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
+		ModeMenu* mode_menu = NEW ModeMenu();
+		::mode::ModeServer::GetInstance()->Add(mode_menu, 0, "Menu");
 		::mode::ModeServer::GetInstance()->Del(this);
 	}
 }

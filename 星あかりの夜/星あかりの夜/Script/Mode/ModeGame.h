@@ -21,15 +21,14 @@ namespace starrynight
 			public ::mode::ModeBase
 		{
 		public:
-			ModeGame();
+			ModeGame(std::string _stage_name);
 			~ModeGame();
 
-			/**
-			 * @brief   初期化処理
-			 * モードサーバー登録時に一度だけ実行される
-			 *
-			 * @return 初期化成功の可否
-			 */
+			 /**
+			  * @brief　初期化処理.
+			  *
+			  * @return 初期化成功の可否
+			  */
 			virtual bool Initialize();
 
 			/**
@@ -160,6 +159,8 @@ namespace starrynight
 			 * @brief　 次のモードに遷移する処理
 			 */
 			void NextMode();
+
+			std::string stage_name_;
 
 			bool pushed_flag_;//ボタンが押されたときのフラグ
 			int nextmode_count_;//次のモードに遷移するまでの時間

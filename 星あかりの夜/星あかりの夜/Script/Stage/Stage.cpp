@@ -30,12 +30,12 @@ Stage::~Stage()
 	instance_ = nullptr;
 }
 
-void Stage::Initialize()
+void Stage::Initialize(std::string _stage_name)
 {
-	stage_param_.LoadStage("haru_A", false);
-	star_param_.LoadStageStar("haru_A", false);
-	skystar_param_.LoadSkyStar("haru_A", false);
-	enemy_param_.LoadStageEnemys("haru_A", false);
+	stage_param_.LoadStage(_stage_name, false);
+	star_param_.LoadStageStar(_stage_name, false);
+	skystar_param_.LoadSkyStar(_stage_name, false);
+	enemy_param_.LoadStageEnemys(_stage_name, false);
 
 	//Stageƒ‚ƒfƒ‹‚Ì“Ç‚İ‚İ
 	auto handle_map = stage_param_.GetMapModelParam();

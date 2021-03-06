@@ -1,0 +1,74 @@
+{
+    "image": [
+        {
+            "filename": "background.png",
+            "xnum": 1,
+            "ynum": 1,
+            "xsize": 1920,
+            "ysize": 1080
+        },
+        {
+            "filename": "cloud.png",
+            "xnum": 1,
+            "ynum": 1,
+            "xsize": 1920,
+            "ysize": 1080
+        },
+        {
+            "filename": "menu.png",
+            "xnum": 1,
+            "ynum": 1,
+            "xsize": 1920,
+            "ysize": 1080
+        },
+        {
+            "filename": "haru_A.png",
+            "xnum": 1,
+            "ynum": 1,
+            "xsize": 1920,
+            "ysize": 1080
+        },
+        {
+            "filename": "haru_B.png",
+            "xnum": 1,
+            "ynum": 1,
+            "xsize": 1920,
+            "ysize": 1080
+        },
+        {
+            "filename": "haru_C.png",
+            "xnum": 1,
+            "ynum": 1,
+            "xsize": 1920,
+            "ysize": 1080
+        },
+        {
+            "filename": "spring_icon.png",
+            "xnum": 1,
+            "ynum": 1,
+            "xsize": 206,
+            "ysize": 138
+        },
+        {
+            "filename": "1.png",
+            "xnum": 1,
+            "ynum": 1,
+            "xsize": 70,
+            "ysize": 100
+        },
+        {
+            "filename": "2.png",
+            "xnum": 1,
+            "ynum": 1,
+            "xsize": 68,
+            "ysize": 100
+        },
+        {
+            "filename": "3.png",
+            "xnum": 1,
+            "ynum": 1,
+            "xsize": 70,
+            "ysize": 100
+        }
+    ]
+}
