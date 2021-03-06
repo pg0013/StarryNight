@@ -32,6 +32,8 @@ Stage::~Stage()
 
 void Stage::Initialize(std::string _stage_name)
 {
+
+
 	stage_param_.LoadStage(_stage_name, false);
 	star_param_.LoadStageStar(_stage_name, false);
 	skystar_param_.LoadSkyStar(_stage_name, false);
@@ -105,7 +107,6 @@ void Stage::Initialize(std::string _stage_name)
 		skystar->Initialize();
 		mode_game->object_server_.Add(skystar);
 	}
-
 	//エネミーモデルの配置情報を読み込み
 	handle_map = enemy_param_.GetMapModelParam();
 
@@ -116,7 +117,6 @@ void Stage::Initialize(std::string _stage_name)
 		enemy->Initialize();
 		mode_game->object_server_.Add(enemy);
 	}
-
 	//射撃ポイントにエフェクトを配置
 	handle shootpoint = resource::ResourceServer::GetModelHandle("ShootPoint_GEO1");
 	effect::ShootPointEffect* shootpoint_effect = NEW effect::ShootPointEffect();

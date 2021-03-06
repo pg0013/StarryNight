@@ -18,17 +18,17 @@ SkyStar::SkyStar(const std::string _name)
 	SetModelHandle(resource::ResourceServer::GetModelHandle(zodiac_name_));
 	position_ = MV1GetPosition(handle_);
 	rotation_ = MV1GetRotationXYZ(handle_);
-
-	//std::vector<std::string> param = { "walk_speed","run_speed","rot_speed" };
-	//skystar_param_.LoadSkyStarParameter(_name);
 }
 
 SkyStar::~SkyStar()
 {
+	int i = 0;
 }
 
 void SkyStar::Initialize()
 {
+	utility::CheckMemoryLeak();
+
 	float radius = 10000.0f;
 	float height = 5000.0f;
 	float degree = 180.0f;

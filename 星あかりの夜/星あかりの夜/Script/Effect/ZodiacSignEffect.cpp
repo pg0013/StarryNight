@@ -28,10 +28,17 @@ ZodiacSignEffect::ZodiacSignEffect(std::string _sign_name)
 	effect_frame_ = 120;
 	once_flag_ = false;
 	start_frame_ = 0;
+	select_star_num_ = -1;
 }
 
 ZodiacSignEffect::~ZodiacSignEffect()
 {
+	for (int i = 0; i < 3; i++)
+	{
+		//使用したエフェクトは基底クラスで消す
+		if (i == select_star_num_) { continue; }
+		DeleteEffekseerEffect(after_effect_resource_[i]);
+	}
 }
 
 void ZodiacSignEffect::Initialize()
@@ -113,7 +120,8 @@ void ZodiacSignEffect::DrawCompleteEffect()
 		DeleteEffekseerEffect(effect_resource_);
 
 		//何番星が選択されたかでエフェクトを変える
-		effect_resource_ = after_effect_resource_[mode_game->ui_.timing_ui_.GetSelectedStarNum() - 1];
+		select_star_num_ = mode_game->ui_.timing_ui_.GetSelectedStarNum() - 1;
+		effect_resource_ = after_effect_resource_[select_star_num_];
 
 		PlayEffect();
 		SetPosition(VGet(0, 0, 0));

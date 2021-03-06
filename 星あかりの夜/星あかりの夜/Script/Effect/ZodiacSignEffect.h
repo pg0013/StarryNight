@@ -52,6 +52,7 @@ namespace starrynight
 
 			bool once_flag_;
 			int start_frame_;
+			int select_star_num_;
 		};
 	}
 }

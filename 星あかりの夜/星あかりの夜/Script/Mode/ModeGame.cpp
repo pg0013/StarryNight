@@ -35,16 +35,12 @@ ModeGame::~ModeGame()
 bool ModeGame::Initialize()
 {
 	if (!::mode::ModeBase::Initialize()) { return false; }
-	utility::CheckMemoryLeak();
 
 	object::ObjectBase* player = NEW player::Player();
-
 	object_server_.Add(player);
+
 	camera_.Initialize();
-
-	new char[10];
 	stage_.Initialize(stage_name_);
-
 	ui_.Initialize();
 
 	return true;
@@ -53,7 +49,6 @@ bool ModeGame::Initialize()
 bool ModeGame::Terminate()
 {
 	::mode::ModeBase::Terminate();
-
 	object_server_.Clear();
 	effect_server_.Clear();
 	stage_.ClearHandle();

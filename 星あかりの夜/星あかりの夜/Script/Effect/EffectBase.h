@@ -17,7 +17,7 @@ namespace starrynight
 		{
 		public:
 			EffectBase();
-			~EffectBase();
+			virtual ~EffectBase();
 
 			/**
 			 * @brief@ ‰Šú‰»ˆ—

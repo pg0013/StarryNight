@@ -46,7 +46,7 @@ namespace parameters
 	{
 	public:
 		Parameters();
-		virtual ~Parameters();
+		~Parameters();
 
 		/**
 		 * @brief ‰æ‘œƒpƒ‰ƒ[ƒ^‚ğjson‚©‚ç“Ç‚İ‚İ

@@ -19,9 +19,6 @@ StageFlowEffect::StageFlowEffect()
 
 StageFlowEffect::~StageFlowEffect()
 {
-	mode::ModeGame* mode_game =
-		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-	mode_game->effect_server_.Delete(this);
 }
 
 void StageFlowEffect::Initialize()
