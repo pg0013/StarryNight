@@ -62,7 +62,7 @@ bool ModeOverlay::Render()
 
 	if (fade_type_ == FADE_IN)
 		alpha = 255 * fade_count_ / all_fade_count_;
-	if(fade_type_ == FADE_OUT)
+	else
 		alpha = 255 - 255 * fade_count_ / all_fade_count_;
 
 	// ã‚É‰æ–Ê‚ğ”í‚¹‚é

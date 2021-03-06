@@ -45,7 +45,7 @@ namespace appframe
 		OutputDebugLog(TRUE);
 		AppWindowed(TRUE);
 		SetBackgroundColor(0, 0, 0, 255);
-		SetAlwaysRunFlag(TRUE);
+		//SetAlwaysRunFlag(TRUE);
 #else
 		OutputDebugLog(FALSE);
 		AppWindowed(FALSE);

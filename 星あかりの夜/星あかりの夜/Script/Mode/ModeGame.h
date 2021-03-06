@@ -156,6 +156,11 @@ namespace starrynight
 
 		private:
 			/**
+			 * @brief　 コントローラ入力処理
+			 */
+			void Input();
+
+			/**
 			 * @brief　 次のモードに遷移する処理
 			 */
 			void NextMode();
@@ -163,6 +168,7 @@ namespace starrynight
 			std::string stage_name_;
 
 			bool pushed_flag_;//ボタンが押されたときのフラグ
+			bool pause_flag_;
 			int nextmode_count_;//次のモードに遷移するまでの時間
 			int fade_count_;
 

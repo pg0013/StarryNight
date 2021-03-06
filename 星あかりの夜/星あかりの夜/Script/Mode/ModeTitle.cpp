@@ -104,10 +104,10 @@ void ModeTitle::NextMode()
 
 	nextmode_count_--;
 
-	if (nextmode_count_ == 0)
-	{
-		ModeMenu* mode_menu = NEW ModeMenu();
-		::mode::ModeServer::GetInstance()->Add(mode_menu, 0, "Menu");
-		::mode::ModeServer::GetInstance()->Del(this);
-	}
+	if (nextmode_count_ > 0)
+		return;
+
+	ModeMenu* mode_menu = NEW ModeMenu();
+	::mode::ModeServer::GetInstance()->Add(mode_menu, 0, "Menu");
+	::mode::ModeServer::GetInstance()->Del(this);
 }

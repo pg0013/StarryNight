@@ -9,6 +9,7 @@
 #include "ModeGame.h"
 #include"ModeGameClear.h"
 #include"ModeOverlay.h"
+#include"ModePauseMenu.h"
 #include"../Player/Player.h"
 
 using namespace starrynight::mode;
@@ -23,6 +24,7 @@ ModeGame::ModeGame(std::string _stage_name)
 	fade_count_ = 0;
 	nextmode_count_ = 0;
 	pushed_flag_ = false;
+	pause_flag_ = false;
 }
 
 ModeGame::~ModeGame()
@@ -67,6 +69,7 @@ bool ModeGame::Process()
 	camera_.Process();
 	ui_.Process();
 
+	Input();
 	NextMode();
 	return true;
 }
@@ -110,6 +113,27 @@ void ModeGame::SetNextMode(int _count, int _fade_count)
 	fade_count_ = _fade_count;
 }
 
+void ModeGame::Input()
+{
+	if (pushed_flag_ == true)
+		return;
+
+	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
+
+	//STARTボタンでポーズメニューを表示
+	if (trigger_key & PAD_INPUT_8)
+	{
+		pushed_flag_ = true;
+		pause_flag_ = true;
+
+		nextmode_count_ = 1;
+
+		//ModeOverlay* modeoverlay = NEW ModeOverlay();
+		//modeoverlay->Capture(nextmode_count_);
+		//::mode::ModeServer::GetInstance()->Add(modeoverlay, 2, "Overlay");
+	}
+}
+
 void ModeGame::NextMode()
 {
 	if (pushed_flag_ == false)
@@ -117,7 +141,9 @@ void ModeGame::NextMode()
 
 	nextmode_count_--;
 
-	if (nextmode_count_ == fade_count_)
+
+	if (nextmode_count_ == fade_count_ &&
+		pause_flag_ == false)
 	{
 		ModeOverlay* modeoverlay = NEW ModeOverlay();
 		modeoverlay->Fade(fade_count_, FADE_OUT);
@@ -126,6 +152,16 @@ void ModeGame::NextMode()
 
 	if (nextmode_count_ == 0)
 	{
+		if (pause_flag_)
+		{
+			ModePauseMenu* mode_pause_menu = NEW ModePauseMenu();
+			::mode::ModeServer::GetInstance()->Add(mode_pause_menu, 1, "PauseMenu");
+			ui_.SetDrawUIFlag(false);
+			pause_flag_ = false;
+			pushed_flag_ = false;
+			return;
+		}
+
 		ModeGameClear* mode_gameclear = NEW ModeGameClear(game_score_);
 		::mode::ModeServer::GetInstance()->Add(mode_gameclear, 0, "GameClear");
 		::mode::ModeServer::GetInstance()->Del(this);
