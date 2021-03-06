@@ -57,18 +57,9 @@ void TimingGame_UI::Process()
 		//タイミングゲームUIの描画を停止し、星を発射するフラグを設定
 		VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 		player_position = VAdd(player_position, VGet(0.0f, 50.0f, 0.0f));
-
-		//星獲得エフェクトを生成
-		effect::TimingRankEffect* timing_effect = NEW effect::TimingRankEffect(CheckTiming());
-		timing_effect->SetPosition(player_position);
-		timing_effect->Initialize();
-		timing_effect->PlayEffect();
-
-		mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-		mode_game->effect_server_.Add(timing_effect);
 	}
 
-	if (elapsed_frame > 90 &&
+	if (elapsed_frame > 60 &&
 		presssed_frame_ != 0)
 	{
 		draw_timing_guide_ = false;
@@ -135,25 +126,49 @@ void TimingGame_UI::CalcurateScore()
 		{
 		case 1:
 			if (CheckTiming() == TIMING_STATUS::EXCELLENT)
+			{
 				score = regulations_score * 5.0;
+				//スコア評価を設定
+				mode_game->SetScoreRank(mode::ModeGame::SCORE_RANK::HIGH);
+			}
 			else if (CheckTiming() == TIMING_STATUS::GOOD)
+			{
 				score = regulations_score * 4.0;
+				//スコア評価を設定
+				mode_game->SetScoreRank(mode::ModeGame::SCORE_RANK::MIDDLE);
+			}
 			else
 				score = regulations_score * 3.0;
 			break;
 		case 2:
 			if (CheckTiming() == TIMING_STATUS::EXCELLENT)
+			{
 				score = regulations_score * 4.0;
+				//スコア評価を設定
+				mode_game->SetScoreRank(mode::ModeGame::SCORE_RANK::HIGH);
+			}
 			else if (CheckTiming() == TIMING_STATUS::GOOD)
+			{
 				score = regulations_score * 2.0;
+				//スコア評価を設定
+				mode_game->SetScoreRank(mode::ModeGame::SCORE_RANK::MIDDLE);
+			}
 			else
 				score = regulations_score * 2.0;
 			break;
 		case 3:
 			if (CheckTiming() == TIMING_STATUS::EXCELLENT)
+			{
 				score = regulations_score * 3.0;
+				//スコア評価を設定
+				mode_game->SetScoreRank(mode::ModeGame::SCORE_RANK::HIGH);
+			}
 			else if (CheckTiming() == TIMING_STATUS::GOOD)
+			{
 				score = regulations_score * 1.5;
+				//スコア評価を設定
+				mode_game->SetScoreRank(mode::ModeGame::SCORE_RANK::MIDDLE);
+			}
 			else
 				score = regulations_score * 1.5;
 			break;
@@ -187,6 +202,13 @@ void TimingGame_UI::CalcurateScore()
 			else
 				score = regulations_score * (star_rate - 0.1);
 			break;
+		}
+
+		//星を5割以上集めてタイミングが合えば、スコア評価のMIDDLEが確定
+		if (mode_game->GetPlayerStarNum() >= mode_game->GetStageStarNum() / 2)
+		{
+			if (CheckTiming() == TIMING_STATUS::EXCELLENT)
+				mode_game->SetScoreRank(mode::ModeGame::SCORE_RANK::MIDDLE);
 		}
 	}
 

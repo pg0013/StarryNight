@@ -77,6 +77,7 @@ void Player::HoldSlingShot()
 	{
 		status_ = STATUS::WAIT;
 		slingshot_flag_ = false;
+		selected_skystar_flag_ = false;
 		mode_game->SetPlayerStarNum(0);
 	}
 }
@@ -107,7 +108,6 @@ void Player::SlingShotStance()
 			charge_effect->PlayEffect();
 			mode_game->effect_server_.Add(charge_effect);
 			shoot_charge_effect_flag_ = false;
-			selected_skystar_flag_ = false;
 		}
 	}
 

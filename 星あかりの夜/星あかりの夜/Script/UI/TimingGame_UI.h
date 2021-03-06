@@ -9,17 +9,17 @@
 #pragma once
 #include"appframe.h"
 
+namespace
+{
+	constexpr double firststar_scale_speed_ = 0.01 * 2.0;
+	constexpr double secondstar_scale_speed_ = 0.01 * 1.5;
+	constexpr double thirdstar_scale_speed_ = 0.01 * 1.0;
+}
+
 namespace starrynight
 {
 	namespace ui
 	{
-		namespace
-		{
-			constexpr double firststar_scale_speed_ = 0.01 * 2.0;
-			constexpr double secondstar_scale_speed_ = 0.01 * 1.5;
-			constexpr double thirdstar_scale_speed_ = 0.01 * 1.0;
-		}
-
 		class TimingGame_UI
 		{
 		public:
@@ -89,11 +89,18 @@ namespace starrynight
 			void SetSelectedStarNum(int _star_frame_num) { selected_star_num_ = _star_frame_num; }
 
 			/**
+			 * @brief　 プレイヤーが選択した星が何番星かを取得する
+			 *
+			 * @return   何番星か（1～３）
+			 */
+			int GetSelectedStarNum() { return selected_star_num_; }
+
+			/**
 			 * @brief タイミングゲームのタイミング評価
 			 */
 			enum class TIMING_STATUS
 			{
-				EXCELLENT,GOOD,BAD
+				EXCELLENT, GOOD, BAD
 			};
 		private:
 

@@ -154,6 +154,30 @@ namespace starrynight
 			*/
 			void SetNextMode(int _count, int _fade_count);
 
+			/**
+			 * @brief スコアの評価
+			 */
+			enum class SCORE_RANK
+			{
+				HIGH,MIDDLE,LOW
+			};
+
+			SCORE_RANK score_rank_;//スコア評価
+
+			/**
+			 * @brief　 スコア評価を取得する
+			 *
+			 * @return   スコア評価
+			 */
+			SCORE_RANK GetScoreRank() { return score_rank_; }
+
+			/**
+			 * @brief　 スコア評価を設定する
+			 *
+			 * @param  _rank	スコア評価
+			 */
+			void SetScoreRank(SCORE_RANK _rank) { score_rank_ = _rank; }
+
 		private:
 			/**
 			 * @brief　 コントローラ入力処理

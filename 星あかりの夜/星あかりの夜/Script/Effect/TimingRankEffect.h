@@ -9,6 +9,7 @@
 #pragma once
 #include"appframe.h"
 #include "EffectBase.h"
+#include"../Mode/ModeGame.h"
 #include"../UI/TimingGame_UI.h"
 
 namespace starrynight
@@ -19,7 +20,7 @@ namespace starrynight
 			public EffectBase
 		{
 		public:
-			TimingRankEffect(ui::TimingGame_UI::TIMING_STATUS _status);
+			TimingRankEffect(mode::ModeGame::SCORE_RANK _rank);
 			~TimingRankEffect();
 
 			/**

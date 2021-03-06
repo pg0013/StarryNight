@@ -48,7 +48,7 @@ namespace starrynight
 			void DrawCompleteEffect();
 		private:
 			std::string skystar_name;
-			handle after_effect_resource_;
+			handle after_effect_resource_[3];
 
 			bool once_flag_;
 			int start_frame_;

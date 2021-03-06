@@ -25,6 +25,7 @@ ModeGame::ModeGame(std::string _stage_name)
 	nextmode_count_ = 0;
 	pushed_flag_ = false;
 	pause_flag_ = false;
+	score_rank_ = SCORE_RANK::LOW;
 }
 
 ModeGame::~ModeGame()

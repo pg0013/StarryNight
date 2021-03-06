@@ -7,22 +7,21 @@
  */
 
 #include "TimingRankEffect.h"
-#include"../Mode/ModeGame.h"
 
 using namespace starrynight::effect;
 
-TimingRankEffect::TimingRankEffect(starrynight::ui::TimingGame_UI::TIMING_STATUS _status)
+TimingRankEffect::TimingRankEffect(mode::ModeGame::SCORE_RANK _rank)
 {
-	switch (_status)
+	switch (_rank)
 	{
-	case starrynight::ui::TimingGame_UI::TIMING_STATUS::EXCELLENT:
-		effect_resource_ = LoadEffekseerEffect("Resource/Effect/timing_excellent.efk", 10.0f);
+	case mode::ModeGame::SCORE_RANK::HIGH:
+		effect_resource_ = LoadEffekseerEffect("Resource/Effect/timing_excellent.efk", 400.0f);
 		break;
-	case starrynight::ui::TimingGame_UI::TIMING_STATUS::GOOD:
-		effect_resource_ = LoadEffekseerEffect("Resource/Effect/timing_good.efk", 10.0f);
+	case mode::ModeGame::SCORE_RANK::MIDDLE:
+		effect_resource_ = LoadEffekseerEffect("Resource/Effect/timing_good.efk", 400.0f);
 		break;
-	case starrynight::ui::TimingGame_UI::TIMING_STATUS::BAD:
-		effect_resource_ = LoadEffekseerEffect("Resource/Effect/timing_bad.efk", 10.0f);
+	case mode::ModeGame::SCORE_RANK::LOW:
+		effect_resource_ = LoadEffekseerEffect("Resource/Effect/timing_bad.efk", 400.0f);
 		break;
 	}
 	effect_frame_ = 240;
@@ -43,8 +42,8 @@ void TimingRankEffect::Process()
 {
 	EffectBase::Process();
 
-	position_ = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
-	position_ = VAdd(position_, VGet(0, 60, 0));
+	//position_ = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
+	//position_ = VAdd(position_, VGet(0, 60, 0));
 
 	int elapsed_frame = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - start_frame_;
 

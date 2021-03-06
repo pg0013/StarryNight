@@ -7,6 +7,7 @@
  */
 
 #include "ZodiacSignEffect.h"
+#include"TimingRankEffect.h"
 #include"../Camera/Camera.h"
 #include"../Mode/ModeGame.h"
 
@@ -17,8 +18,12 @@ ZodiacSignEffect::ZodiacSignEffect(std::string _sign_name)
 	skystar_name = _sign_name;
 	std::string filename = "Resource/effect/" + _sign_name + "/" + _sign_name + "_before.efk";
 	effect_resource_ = LoadEffekseerEffect(filename.c_str(), 1.0f);
-	filename = "Resource/effect/" + _sign_name + "/" + _sign_name + "_after.efk";
-	after_effect_resource_ = LoadEffekseerEffect(filename.c_str(), 1.0f);
+	filename = "Resource/effect/" + _sign_name + "/" + _sign_name + "_after01.efk";
+	after_effect_resource_[0] = LoadEffekseerEffect(filename.c_str(), 1.0f);
+	filename = "Resource/effect/" + _sign_name + "/" + _sign_name + "_after02.efk";
+	after_effect_resource_[1] = LoadEffekseerEffect(filename.c_str(), 1.0f);
+	filename = "Resource/effect/" + _sign_name + "/" + _sign_name + "_after03.efk";
+	after_effect_resource_[2] = LoadEffekseerEffect(filename.c_str(), 1.0f);
 
 	effect_frame_ = 120;
 	once_flag_ = false;
@@ -100,18 +105,31 @@ void ZodiacSignEffect::DrawCompleteEffect()
 
 	int elapsed_frame = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - start_frame_;
 
-	if (elapsed_frame > 120)
+	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+
+	if (elapsed_frame == 120)
 	{
 		StopEffekseer3DEffect(playing_effect_);
 		DeleteEffekseerEffect(effect_resource_);
-		effect_resource_ = after_effect_resource_;
+
+		//何番星が選択されたかでエフェクトを変える
+		effect_resource_ = after_effect_resource_[mode_game->ui_.timing_ui_.GetSelectedStarNum() - 1];
 
 		PlayEffect();
 		SetPosition(VGet(0, 0, 0));
 		SetPlayingEffectPosition();
 
-		SetSpeedPlayingEffekseer3DEffect(playing_effect_, 0.5f);
+		SetSpeedPlayingEffekseer3DEffect(playing_effect_, 1.0f);
+	}
 
+	if (elapsed_frame == 170)
+	{
+		//星獲得エフェクトを生成
+		effect::TimingRankEffect* timing_effect = NEW effect::TimingRankEffect(mode_game->GetScoreRank());
+		timing_effect->SetPosition(position_);
+		timing_effect->Initialize();
+		timing_effect->PlayEffect();
+		mode_game->effect_server_.Add(timing_effect);
 		once_flag_ = true;
 	}
 }
