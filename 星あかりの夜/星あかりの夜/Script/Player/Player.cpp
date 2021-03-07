@@ -30,6 +30,8 @@ Player::Player()
 	damage_flag_ = false;
 	damage_anim_flag_ = false;
 
+	gameover_flag_ = false;
+
 	status_ = STATUS::NONE;
 	anim_attach_index_ = -1;
 	old_anim_attach_index_ = anim_attach_index_;
@@ -59,6 +61,7 @@ void Player::Process()
 	SwitchPlayerAction();
 
 	OutOfStage();
+	GameOver();
 
 	SwitchPlayerAnimation(old_status);
 	PlayerAnimationBlend();
@@ -88,10 +91,34 @@ void Player::OutOfStage()
 {
 	if (position_.y < -100)
 	{
-		position_ = VGet(0, 100, 0);
-		camera::Camera::GetInstance()->SetPosition(VGet(0, 90.f, -300.f));
-		camera::Camera::GetInstance()->SetTarget(VGet(0.0f, 60.0f, 0.0f));
+		position_.y = 0;
+		position_ = VAdd(position_, VScale(VNorm(VSub(VGet(0, 0, 0), position_)), 400.0f));
+
+		damage_flag_ = true;
+		damage_anim_flag_ = true;
+		anim_play_time_ = 0;
+
+		AddPlayerHP(-1);
+
+		VECTOR camera_position = camera::Camera::GetInstance()->GetPosition();
+		camera::Camera::GetInstance()->SetPosition(VGet(camera_position.x, 100, camera_position.z));
+		camera::Camera::GetInstance()->SetTarget(position_);
 	}
+}
+
+void Player::GameOver()
+{
+	if (gameover_flag_)
+		return;
+
+	if (GetPlayerHP() > 0)
+		return;
+
+	gameover_flag_ = true;
+
+	mode::ModeGame* mode_game =
+		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode_game->SetNextMode(300, 60);
 }
 
 void Player::PlayerAnimationBlend()

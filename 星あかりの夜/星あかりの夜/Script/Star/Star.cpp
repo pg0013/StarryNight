@@ -145,19 +145,19 @@ void Star::Follow()
 				break;
 		}
 
-		if (player_position.y <= 0)
-		{
-			ground_position_y_ = position_.y;
-			modegame->SetPlayerStarNum(0);
+		//if (player_position.y <= 0)
+		//{
+		//	ground_position_y_ = position_.y;
+		//	modegame->SetPlayerStarNum(0);
 
-			//queueを初期化
-			std::queue<VECTOR> empty;
-			std::swap(player_pos_history_, empty);
+		//	//queueを初期化
+		//	std::queue<VECTOR> empty;
+		//	std::swap(player_pos_history_, empty);
 
-			//待機状態にする
-			status_ = STATUS::WAIT;
-			return;
-		}
+		//	//待機状態にする
+		//	status_ = STATUS::WAIT;
+		//	return;
+		//}
 
 		VECTOR star_move = VScale(VSub(que_position, position_), 0.1f);
 		position_ = VAdd(position_, star_move);
@@ -183,6 +183,12 @@ void Star::Follow()
 		status_ = STATUS::DIFFUSION;
 		star_num_ = 0;
 		jump_speed_ = jump_height_ * 3.0f;
+
+		modegame->SetPlayerStarNum(0);
+
+		//queueを初期化
+		std::queue<VECTOR> empty;
+		std::swap(player_pos_history_, empty);
 	}
 
 	rotation_.y += DEG2RAD(rot_speed_);
@@ -194,9 +200,9 @@ void Star::Diffusion()
 	move = VScale(move, 10.0f);
 
 	//ステージ範囲外まで到達したら、移動しない
-	float out_of_stage = 2500.0f;
+	float out_of_stage = 2300.0f;
 	if (VSize(VAdd(position_, move)) > out_of_stage)
-		move = { 0,0,0 };
+		move = VAdd(move, VScale(VNorm(VSub(VGet(0, 0, 0), position_)),50.0f));
 
 	//プレイヤーのカプセル情報
 	VECTOR sphere_positon = VAdd(position_, VGet(0, 50, 0));

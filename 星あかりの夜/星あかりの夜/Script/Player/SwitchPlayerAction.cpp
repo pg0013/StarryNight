@@ -46,7 +46,10 @@ void Player::SwitchPlayerAction()
 		return;
 	}
 
-	if(slingshot_flag_)
+	if (gameover_flag_)
+		return;
+
+	if (slingshot_flag_)
 	{
 		//ŽËŒ‚—p‚ÌƒJƒƒ‰‚ÉÝ’è
 		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::SHOOT);

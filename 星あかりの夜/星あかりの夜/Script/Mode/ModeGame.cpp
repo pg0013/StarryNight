@@ -155,10 +155,6 @@ void ModeGame::Input()
 		pause_flag_ = true;
 
 		nextmode_count_ = 1;
-
-		//ModeOverlay* modeoverlay = NEW ModeOverlay();
-		//modeoverlay->Capture(nextmode_count_);
-		//::mode::ModeServer::GetInstance()->Add(modeoverlay, 2, "Overlay");
 	}
 }
 

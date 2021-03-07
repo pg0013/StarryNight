@@ -173,6 +173,11 @@ namespace starrynight
 			void OutOfStage();
 
 			/**
+			 * @brief　 ゲームオーバー処理
+			 */
+			void GameOver();
+
+			/**
 			 * @brief　 プレイヤーのアクション切り替えを行う処理
 			 *
 			 */
@@ -212,6 +217,8 @@ namespace starrynight
 
 			bool damage_flag_;//ダメージを受けたことを記録するフラグ
 			bool damage_anim_flag_;//ダメージモーションを開始するフラグ
+
+			bool gameover_flag_;//ゲームオーバー状態を判定するフラグ
 
 			//モデルアニメーション用変数
 			int anim_attach_index_;//アニメーションアタッチ番号
