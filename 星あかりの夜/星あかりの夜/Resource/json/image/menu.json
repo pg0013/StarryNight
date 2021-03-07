@@ -53,22 +53,29 @@
             "filename": "1.png",
             "xnum": 1,
             "ynum": 1,
-            "xsize": 70,
-            "ysize": 100
+            "xsize": 62,
+            "ysize": 76
         },
         {
             "filename": "2.png",
             "xnum": 1,
             "ynum": 1,
-            "xsize": 68,
-            "ysize": 100
+            "xsize": 62,
+            "ysize": 76
         },
         {
             "filename": "3.png",
             "xnum": 1,
             "ynum": 1,
-            "xsize": 70,
-            "ysize": 100
+            "xsize": 62,
+            "ysize": 76
+        },
+        {
+            "filename": "stage_goal.png",
+            "xnum": 1,
+            "ynum": 1,
+            "xsize": 544,
+            "ysize": 75
         }
     ]
 }

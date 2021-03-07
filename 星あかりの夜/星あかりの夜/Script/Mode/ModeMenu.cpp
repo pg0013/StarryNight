@@ -28,6 +28,7 @@ ModeMenu::ModeMenu()
 	spring_icon_ = resource::ResourceServer::GetTexture("spring_icon.png");
 	cloud_graph_ = resource::ResourceServer::GetTexture("cloud.png");
 	menu_graph_ = resource::ResourceServer::GetTexture("menu.png");
+	stage_goal_graph_ = resource::ResourceServer::GetTexture("stage_goal.png");
 
 	cursol_ = 0;
 	menu_num_ = 3;
@@ -163,6 +164,7 @@ bool ModeMenu::Render()
 
 	DrawRotaGraph(icon_x, icon_y, 1.0, 0.0, spring_icon_, TRUE);
 	DrawRotaGraph(icon_x, icon_y, 1.0, 0.0, stage_num_graph_[cursol_], TRUE);
+	DrawRotaGraph(stage_goal_x, stage_goal_y, 1.0, 0.0, stage_goal_graph_, TRUE);
 
 	DrawRotaGraph(stage_icon_x, stage_icon_y, 0.35, 0.0, stage_graph_[cursol_], FALSE);
 

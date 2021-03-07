@@ -1,7 +1,9 @@
 {
-  "enemy": [
-    {"filename" : "enemy","handlename" : "enemy1","tx" : 0,"ty" : 0,"tz" : 600,"rx" : 0,"ry" : -182.818,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
-    {"filename" : "enemy","handlename" : "enemy2","tx" : -1405,"ty" : 290,"tz" : -984,"rx" : -0,"ry" : -182.818,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
-    {"filename" : "enemy","handlename" : "enemy3","tx" : 1250,"ty" : 0,"tz" : 500,"rx" : -0,"ry" : -182.818,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7}
-      ]
+"enemy" : [
+{"filename" : "rock_GEO","handlename" : "rock_GEO5","tx" : -2003.202,"ty" : 4.141,"tz" : 535.864,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
+{"filename" : "rock_GEO","handlename" : "rock_GEO4","tx" : 1861.546,"ty" : 3.181,"tz" : 121.284,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
+{"filename" : "rock_GEO","handlename" : "rock_GEO3","tx" : -1432.695,"ty" : 285.578,"tz" : -992.718,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
+{"filename" : "rock_GEO","handlename" : "rock_GEO2","tx" : -387.796,"ty" : 685.551,"tz" : 1704.321,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
+{"filename" : "rock_GEO","handlename" : "rock_GEO","tx" : 160.516,"ty" : 4.141,"tz" : 393.177,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7}
+]
 }

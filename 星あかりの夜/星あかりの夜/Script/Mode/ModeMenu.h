@@ -16,11 +16,12 @@ namespace
 	constexpr int HARU_C = 2;
 	constexpr int TITLE = 3;
 
-	constexpr int icon_x = 500;
-	constexpr int icon_y = 150;
+	constexpr int icon_x = 550;
+	constexpr int icon_y = 200;
 	constexpr int stage_icon_x = 1350;
 	constexpr int stage_icon_y = 350;
-
+	constexpr int stage_goal_x = 550;
+	constexpr int stage_goal_y = 500;
 }
 
 namespace starrynight
@@ -81,6 +82,7 @@ namespace starrynight
 			handle spring_icon_;
 			handle cloud_graph_;
 			handle menu_graph_;
+			handle stage_goal_graph_;
 
 			::parameters::Parameters param_;//パラメータ読み込みクラス
 
