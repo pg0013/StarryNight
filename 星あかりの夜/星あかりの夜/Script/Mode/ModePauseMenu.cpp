@@ -97,6 +97,8 @@ void ModePauseMenu::Input()
 			ModeOverlay* modeoverlay = NEW ModeOverlay();
 			modeoverlay->Fade(nextmode_count_, FADE_OUT);
 			::mode::ModeServer::GetInstance()->Add(modeoverlay, 2, "Overlay");
+
+			appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 1.0f);
 		}
 		else if (nextmode_ == RETURN || nextmode_ == TUTORIAL)
 		{

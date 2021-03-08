@@ -2,7 +2,7 @@
 #include"DxLib.h"
 
 #ifdef _DEBUG
-#define DEBUG_FUNCTION
+//#define DEBUG_FUNCTION
 #endif // _DEBUG
 
 
