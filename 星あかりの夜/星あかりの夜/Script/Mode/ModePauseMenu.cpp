@@ -19,7 +19,7 @@ ModePauseMenu::ModePauseMenu()
 	//画像パラメータを読み込み
 	param_.LoadImagParameters("pausemenu");
 
-	background_graph_ = resource::ResourceServer::GetTexture("background.png");
+	background_graph_ = resource::ResourceServer::GetTexture("background_pausemenu.png");
 	overlay_graph_ = resource::ResourceServer::GetTexture("overlay.png");
 	pause_graph_ = resource::ResourceServer::GetTexture("pause.png");
 	return_graph_[0] = resource::ResourceServer::GetTexture("return.png");
@@ -100,10 +100,26 @@ void ModePauseMenu::Input()
 
 			appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 1.0f);
 		}
-		else if (nextmode_ == RETURN || nextmode_ == TUTORIAL)
+		else if (nextmode_ == RETURN)
 		{
 			nextmode_count_ = 1;
 		}
+		else if (nextmode_ == TUTORIAL)
+		{
+			nextmode_count_ = 2;
+
+			ModeTutorial* mode_tutorial = NEW ModeTutorial();
+			::mode::ModeServer::GetInstance()->Add(mode_tutorial, 3, "Tutorial");
+		}
+	}
+
+	//STARTボタンでポーズメニューを表示
+	if (trigger_key & PAD_INPUT_8)
+	{
+		pushed_flag_ = true;
+		nextmode_ = RETURN;
+
+		nextmode_count_ = 1;
 	}
 }
 
@@ -134,9 +150,7 @@ void ModePauseMenu::NextMode()
 	}
 	else if (nextmode_ == TUTORIAL)
 	{
-		ModeTutorial* mode_tutorial = NEW ModeTutorial();
-		::mode::ModeServer::GetInstance()->Add(mode_tutorial, 3, "Tutorial");
-		::mode::ModeServer::GetInstance()->Del(this);
+		pushed_flag_ = false;
 	}
 }
 

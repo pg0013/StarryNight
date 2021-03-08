@@ -45,6 +45,7 @@ bool ModeTutorial::Process()
 {
 	::mode::ModeBase::Process();
 
+	//下のレイヤーにあるゲームシーンの処理を止める
 	::mode::ModeServer::GetInstance()->SkipProcessUnderLayer();
 
 	Input();
@@ -79,8 +80,6 @@ void ModeTutorial::NextMode()
 	if (nextmode_count_ > 0)
 		return;
 
-	ModePauseMenu* mode_pause_menu = NEW ModePauseMenu();
-	::mode::ModeServer::GetInstance()->Add(mode_pause_menu, 2, "PauseMenu");
 	::mode::ModeServer::GetInstance()->Del(this);
 }
 
