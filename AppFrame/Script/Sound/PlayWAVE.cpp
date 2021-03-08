@@ -293,24 +293,6 @@ namespace sound
 		FilterParams.OneOverQ = 1.4142f;
 
 		m_pSourceVoice->SetFilterParameters(&FilterParams);
-
-		//TODO : ƒmƒCƒY‚ªo‚é
-		//IUnknown* pXAPO;
-		//pXAPO = (IXAPO*)new MyLowPassFilterXAPO();
-
-		//XAUDIO2_EFFECT_DESCRIPTOR descriptor;
-		//descriptor.InitialState = true;
-		//descriptor.OutputChannels = 2;
-		//descriptor.pEffect = pXAPO;
-
-		//XAUDIO2_EFFECT_CHAIN chain;
-		//chain.EffectCount = 1;
-		//chain.pEffectDescriptors = &descriptor;
-
-		//m_pSourceVoice->SetEffectChain(&chain);
-		//pXAPO->Release();
-
-		//m_pSourceVoice->SetEffectParameters(0, &freq, sizeof(freq));
 	}
 
 	void PlayWAVE::HighPassFilter(const float _freqency)

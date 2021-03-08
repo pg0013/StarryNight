@@ -22,7 +22,7 @@ ModePauseMenu::ModePauseMenu()
 	background_graph_ = resource::ResourceServer::GetTexture("background_pausemenu.png");
 	overlay_graph_ = resource::ResourceServer::GetTexture("overlay.png");
 	pause_graph_ = resource::ResourceServer::GetTexture("pause.png");
-	return_graph_[0] = resource::ResourceServer::GetTexture("return.png");
+	return_graph_[0] = resource::ResourceServer::GetTexture("return_game.png");
 	return_graph_[1] = resource::ResourceServer::GetTexture("return_base.png");
 	return_title_graph_[0] = resource::ResourceServer::GetTexture("return_title.png");
 	return_title_graph_[1] = resource::ResourceServer::GetTexture("return_title_base.png");

@@ -74,4 +74,10 @@ void Camera::MoveCamera()
 
 		return;
 	}
+	else
+	{
+		float camera_y_min = 80;
+		if (position_.y < camera_y_min)
+			position_.y = camera_y_min;
+	}
 }

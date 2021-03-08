@@ -114,6 +114,7 @@ namespace starrynight
 			//画像用ハンドル
 			handle circle_guide_;
 			handle timing_circle_;
+			handle timing_judge_[3];
 
 			bool draw_timing_guide_;//trueでタイミングゲージを描画するフラグ
 			bool launch_star_shoot_;//trueでプレイヤーがスターを発射できるフラグ

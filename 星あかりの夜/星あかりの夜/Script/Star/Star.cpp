@@ -79,7 +79,7 @@ void Star::Wait()
 
 		VECTOR player_rotation = MV1GetRotationXYZ(resource::ResourceServer::GetModelHandle("player"));
 		player_position = VAdd(player_position, VGet(0.0f, 50.0f, 0.0f));
-		position_ = VAdd(player_position, VScale(VNorm(utility::GetForwardVector(player_rotation.y)), -0.5f * star_num_ * follow_interval_));
+		position_ = VAdd(player_position, VScale(VNorm(utility::GetForwardVector(player_rotation.y)), -0.5f * follow_interval_));
 
 		//星獲得エフェクトを生成
 		effect::GetStarEffect* getstar_effect = NEW effect::GetStarEffect();

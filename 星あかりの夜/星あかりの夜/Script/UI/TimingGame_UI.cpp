@@ -29,6 +29,9 @@ void TimingGame_UI::Initialize()
 {
 	circle_guide_ = resource::ResourceServer::GetTexture("circle_green.png");
 	timing_circle_ = resource::ResourceServer::GetTexture("circle_white.png");
+	timing_judge_[0] = resource::ResourceServer::GetTexture("excellent.png");
+	timing_judge_[1] = resource::ResourceServer::GetTexture("good.png");
+	timing_judge_[2] = resource::ResourceServer::GetTexture("bad.png");
 }
 
 void TimingGame_UI::Terminate()
@@ -105,6 +108,11 @@ void TimingGame_UI::Render()
 
 	DrawRotaGraph(appframe::SCREEN_WIDTH / 2, appframe::SCREEN_HEIGHT / 2, exrate, angle, circle_guide_, TRUE);
 	DrawRotaGraph(appframe::SCREEN_WIDTH / 2, appframe::SCREEN_HEIGHT / 2, timing_exrate_, angle, timing_circle_, TRUE);
+
+	if (shrink_circle_flag_)
+		return;
+
+	DrawRotaGraph(appframe::SCREEN_WIDTH / 2 + 500*timing_exrate_ + 250, appframe::SCREEN_HEIGHT / 2, exrate, angle, timing_judge_[static_cast<int>(CheckTiming())], TRUE);
 }
 
 void TimingGame_UI::CalcurateScore()
@@ -223,12 +231,12 @@ TimingGame_UI::TIMING_STATUS TimingGame_UI::CheckTiming()
 		return TIMING_STATUS::EXCELLENT;
 	}
 	else if (timing_exrate_ <= 0.6 &&
-		timing_exrate_ >= 0.44)
+		timing_exrate_ > 0.43)
 	{
 		return TIMING_STATUS::GOOD;
 	}
 	else if (timing_exrate_ < 1.0 &&
-		timing_exrate_ >= 0.61)
+		timing_exrate_ > 0.6)
 	{
 		return TIMING_STATUS::BAD;
 	}
