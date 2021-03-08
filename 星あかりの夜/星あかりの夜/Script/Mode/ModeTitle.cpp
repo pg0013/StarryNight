@@ -72,8 +72,8 @@ bool ModeTitle::Render()
 {
 	::mode::ModeBase::Render();
 	DrawGraph(0, 0, background_graph_, TRUE);
-	DrawGraph(0, 0, startline_graph_, TRUE);
 	DrawGraph(0, 0, charactor_graph_, TRUE);
+	DrawGraph(0, 0, start_graph_, TRUE);
 
 	//ボタンが押されたら点滅速度を上げる
 	if (pushed_flag_ == false)
@@ -81,7 +81,7 @@ bool ModeTitle::Render()
 	else
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 10 * GetModeCount()))));
 
-	DrawGraph(0, 0, start_graph_, TRUE);
+	DrawGraph(0, 0, startline_graph_, TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 
 	return true;

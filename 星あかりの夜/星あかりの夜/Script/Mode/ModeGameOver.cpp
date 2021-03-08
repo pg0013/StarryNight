@@ -1,45 +1,38 @@
 /**
- * @file    ModeGameClear.h
- * @brief  ゲームクリアシーン
+ * @file    ModeGameOver.cpp
+ * @brief  ゲームオーバーシーン
  *
  * @author Takuya Fujisawa
- * @date   2021/03/05
+ * @date   2021/03/08
  */
 
-#include "ModeGameClear.h"
+#include "ModeGameOver.h"
 #include"ModeOverlay.h"
 #include"ModeGame.h"
 #include"ModeTitle.h"
 
 using namespace starrynight::mode;
 
-ModeGameClear::ModeGameClear(int _score)
+ModeGameOver::ModeGameOver()
 {
-	score_ui_.SetPlayerScore(_score);
-	score_ui_.SetPosition(VGet(1100, 640, 0));
-	score_ui_.SetDrawScoreBaseFlag(false);
-
 	//画像パラメータを読み込み
-	param_.LoadImagParameters("gameclear");
+	param_.LoadImagParameters("gameover");
 
-	background_graph_ = resource::ResourceServer::GetTexture("background_gameclear.png");
-	gameclear_graph_ = resource::ResourceServer::GetTexture("gameclear.png");
-	next_graph_ = resource::ResourceServer::GetTexture("next.png");
-	next_base_graph_ = resource::ResourceServer::GetTexture("cursol.png");
-	return_graph_ = resource::ResourceServer::GetTexture("return.png");
-	return_base_graph_ = resource::ResourceServer::GetTexture("cursol.png");
+	background_graph_ = resource::ResourceServer::GetTexture("background_gameover.png");
+	again_graph_ = resource::ResourceServer::GetTexture("again.png");
+	return_graph_ = resource::ResourceServer::GetTexture("return_gameover.png");
 
-	cursol_ = NEXT_GAME;
+	cursol_ = AGAIN;
 	menu_num_ = 2;
 	nextmode_count_ = 0;
 	pushed_flag_ = false;
 }
 
-ModeGameClear::~ModeGameClear()
+ModeGameOver::~ModeGameOver()
 {
 }
 
-bool ModeGameClear::Initialize()
+bool ModeGameOver::Initialize()
 {
 	if (!::mode::ModeBase::Initialize()) { return false; }
 
@@ -47,9 +40,7 @@ bool ModeGameClear::Initialize()
 	modeoverlay->Fade(30, FADE_IN);
 	::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 
-	score_ui_.Initialize();
-
-	appframe::ApplicationBase::GetInstance()->bgm_.Load("Resource/sound/gameclear.wav");
+	appframe::ApplicationBase::GetInstance()->bgm_.Load("Resource/sound/gameover.wav");
 
 	appframe::ApplicationBase::GetInstance()->bgm_.SetVolume(1.0f);
 	appframe::ApplicationBase::GetInstance()->bgm_.SetLoopCount(0);
@@ -58,11 +49,9 @@ bool ModeGameClear::Initialize()
 	return true;
 }
 
-bool ModeGameClear::Terminate()
+bool ModeGameOver::Terminate()
 {
 	::mode::ModeBase::Terminate();
-
-	score_ui_.Terminate();
 
 	appframe::ApplicationBase::GetInstance()->bgm_.Pause();
 	appframe::ApplicationBase::GetInstance()->bgm_.Destroy();
@@ -70,19 +59,17 @@ bool ModeGameClear::Terminate()
 	return true;
 }
 
-bool ModeGameClear::Process()
+bool ModeGameOver::Process()
 {
 	::mode::ModeBase::Process();
 
 	Input();
 	NextMode();
 
-	score_ui_.Process();
-
 	return true;
 }
 
-void ModeGameClear::Input()
+void ModeGameOver::Input()
 {
 	if (pushed_flag_ == true)
 		return;
@@ -110,7 +97,7 @@ void ModeGameClear::Input()
 	}
 }
 
-void ModeGameClear::NextMode()
+void ModeGameOver::NextMode()
 {
 	if (pushed_flag_ == false)
 		return;
@@ -120,7 +107,7 @@ void ModeGameClear::NextMode()
 	if (nextmode_count_ != 0)
 		return;
 
-	if (cursol_ == NEXT_GAME)
+	if (cursol_ == AGAIN)
 	{
 		resource::ResourceServer::ClearModelMap();
 
@@ -129,7 +116,7 @@ void ModeGameClear::NextMode()
 		::mode::ModeServer::GetInstance()->Del(this);
 	}
 
-	if (cursol_ == RETURN_TITLE)
+	if (cursol_ == GIVEUP)
 	{
 		ModeTitle* mode_title = NEW ModeTitle();
 		::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");
@@ -137,42 +124,45 @@ void ModeGameClear::NextMode()
 	}
 }
 
-bool ModeGameClear::Render()
+bool ModeGameOver::Render()
 {
 	::mode::ModeBase::Render();
 
 	DrawGraph(0, 0, background_graph_, TRUE);
-	DrawGraph(0, 0, gameclear_graph_, TRUE);
 
 	//戻る
-	DrawRotaGraph(1380, 850, 1.0, 0.0, return_graph_, TRUE);
 
-	if (cursol_ == RETURN_TITLE)
+	if (cursol_ == GIVEUP)
 	{
 		//ボタンが押されたら点滅速度を上げる
 		if (pushed_flag_ == false)
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * GetModeCount()))));
 		else
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 10 * GetModeCount()))));
-		DrawRotaGraph(1380, 880, 1.0, 0.0, return_base_graph_, TRUE);
+		DrawRotaGraph(1380, 850, 1.0, 0.0, return_graph_, TRUE);
+	}
+	else
+	{
+		DrawRotaGraph(1380, 850, 1.0, 0.0, return_graph_, TRUE);
 	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 
 	//タイトルへ戻る
-	DrawRotaGraph(525, 850, 1.0, 0.0, next_graph_, TRUE);
 
-	if (cursol_ == NEXT_GAME)
+	if (cursol_ == AGAIN)
 	{
 		//ボタンが押されたら点滅速度を上げる
 		if (pushed_flag_ == false)
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * GetModeCount()))));
 		else
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 10 * GetModeCount()))));
-		DrawRotaGraph(550, 880, 1.0, 0.0, next_base_graph_, TRUE);
+		DrawRotaGraph(525, 850, 1.0, 0.0, again_graph_, TRUE);
+	}
+	else
+	{
+		DrawRotaGraph(525, 850, 1.0, 0.0, again_graph_, TRUE);
 	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-
-	score_ui_.Render();
 
 	return true;
 }

@@ -1,31 +1,30 @@
 /**
- * @file    ModeGameClear.h
- * @brief  ゲームクリアシーン
+ * @file    ModeGameOver.h
+ * @brief  ゲームオーバーシーン
  *
  * @author Takuya Fujisawa
- * @date   2021/03/05
+ * @date   2021/03/08
  */
 
 #pragma once
 #include "appframe.h"
-#include"../UI/Score_UI.h"
 
 namespace
 {
-	constexpr int RETURN_TITLE = 0;
-	constexpr int NEXT_GAME = 1;
+	constexpr int GIVEUP = 0;
+	constexpr int AGAIN = 1;
 }
 
 namespace starrynight
 {
 	namespace mode
 	{
-		class ModeGameClear :
+		class ModeGameOver :
 			public ::mode::ModeBase
 		{
 		public:
-			ModeGameClear(int _score);
-			~ModeGameClear();
+			ModeGameOver();
+			~ModeGameOver();
 
 			/**
 			 * @brief   初期化処理
@@ -70,22 +69,15 @@ namespace starrynight
 
 		private:
 			handle background_graph_;//背景画像
-			handle gameclear_graph_;//キャラクター画像
-			handle next_graph_;//キャラクター画像
-			handle next_base_graph_;//キャラクター画像
+			handle again_graph_;//キャラクター画像
 			handle return_graph_;//キャラクター画像
-			handle return_base_graph_;
 
 			::parameters::Parameters param_;//パラメータ読み込みクラス
-
-			ui::Score_UI score_ui_;
 
 			int cursol_;
 			int menu_num_;
 			int nextmode_count_;
 			bool pushed_flag_;
-
-			int result_;
 		};
 	}
 }

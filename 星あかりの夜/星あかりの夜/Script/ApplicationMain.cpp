@@ -7,9 +7,7 @@
  */
 
 #include "ApplicationMain.h"
-#include"Mode/ModeGame.h"
 #include"Mode/ModeTitle.h"
-#include"Mode/ModeGameClear.h"
 
 using namespace starrynight;
 

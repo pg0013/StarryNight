@@ -237,6 +237,9 @@
     <ClCompile Include="Script\Mode\ModeTutorial.cpp">
       <Filter>ソース ファイル\Mode</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Mode\ModeGameOver.cpp">
+      <Filter>ソース ファイル\Mode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h">
@@ -348,6 +351,9 @@
       <Filter>ヘッダー ファイル\Mode</Filter>
     </ClInclude>
     <ClInclude Include="Script\Mode\ModeTutorial.h">
+      <Filter>ヘッダー ファイル\Mode</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Mode\ModeGameOver.h">
       <Filter>ヘッダー ファイル\Mode</Filter>
     </ClInclude>
   </ItemGroup>

@@ -31,7 +31,7 @@ ModeMenu::ModeMenu()
 	stage_goal_graph_ = resource::ResourceServer::GetTexture("stage_goal.png");
 
 	cursol_ = 0;
-	menu_num_ = 3;
+	menu_num_ = 1;
 	nextmode_count_ = 0;
 	nextmode_ = HARU_A;
 	pushed_flag_ = false;

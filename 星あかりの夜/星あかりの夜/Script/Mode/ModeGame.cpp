@@ -8,6 +8,7 @@
 
 #include "ModeGame.h"
 #include"ModeGameClear.h"
+#include"ModeGameOver.h"
 #include"ModeOverlay.h"
 #include"ModePauseMenu.h"
 #include"../Player/Player.h"
@@ -198,8 +199,17 @@ void ModeGame::NextMode()
 			return;
 		}
 
-		ModeGameClear* mode_gameclear = NEW ModeGameClear(game_score_, result_);
-		::mode::ModeServer::GetInstance()->Add(mode_gameclear, 0, "GameClear");
-		::mode::ModeServer::GetInstance()->Del(this);
+		if (result_ == 0)
+		{
+			ModeGameClear* mode_gameclear = NEW ModeGameClear(game_score_);
+			::mode::ModeServer::GetInstance()->Add(mode_gameclear, 0, "GameClear");
+			::mode::ModeServer::GetInstance()->Del(this);
+		}
+		else if (result_ == 1)
+		{
+			mode::ModeGameOver* mode_gameover = NEW mode::ModeGameOver();
+			::mode::ModeServer::GetInstance()->Add(mode_gameover, 0, "GameOver");
+			::mode::ModeServer::GetInstance()->Del(this);
+		}
 	}
 }
