@@ -12,6 +12,9 @@
 
 namespace
 {
+	constexpr int GAME_CLEAR = 0;
+	constexpr int GAME_OVER = 1;
+
 	constexpr int RETURN_TITLE = 0;
 	constexpr int RETURN_MENU = 1;
 }
@@ -24,7 +27,7 @@ namespace starrynight
 			public ::mode::ModeBase
 		{
 		public:
-			ModeGameClear(int _score);
+			ModeGameClear(int _score,int _result);
 			~ModeGameClear();
 
 			/**
@@ -84,6 +87,8 @@ namespace starrynight
 			int menu_num_;
 			int nextmode_count_;
 			bool pushed_flag_;
+
+			int result_;
 		};
 	}
 }

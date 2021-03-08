@@ -165,7 +165,7 @@ namespace sound
 		 *
 		 * @param 	_targetVolume	フェードイン		:	1.0f
 		 * 											フェードアウト	:	0.0f
-		 * @param 	_targetTime  	フェード時間
+		 * @param 	_targetTime  	フェード時間[s]
 		 */
 		void Fade(const float _targetVolume, const float _targetTime);
 
@@ -176,7 +176,7 @@ namespace sound
 		 *
 		 * @param 	_targetVolume	フェードイン		:	1.0f
 		 * 											フェードアウト	:	0.0f
-		 * @param 	_targetTime  	フェード時間
+		 * @param 	_targetTime  	フェード時間[s]
 		 * @param 	_freqency			遮断周波数
 		 * @param 	_typeEQ		 	LPF	:	0
 		 * 											HPF	:	1

@@ -14,7 +14,7 @@ ObjectBase::ObjectBase()
 
 ObjectBase::~ObjectBase()
 {
-	MV1DeleteModel(handle_);
+	//MV1DeleteModel(handle_);
 }
 
 void ObjectBase::Initialize()

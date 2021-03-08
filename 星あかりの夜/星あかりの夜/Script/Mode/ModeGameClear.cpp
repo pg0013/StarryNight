@@ -8,13 +8,13 @@
 
 #include "ModeGameClear.h"
 #include"ModeOverlay.h"
-//#include"ModeGame.h"
+ //#include"ModeGame.h"
 #include"ModeMenu.h"
 #include"ModeTitle.h"
 
 using namespace starrynight::mode;
 
-ModeGameClear::ModeGameClear(int _score)
+ModeGameClear::ModeGameClear(int _score, int _result)
 {
 	score_ui_.SetPlayerScore(_score);
 	score_ui_.SetPosition(VGet(1500, 540, 0));
@@ -34,6 +34,8 @@ ModeGameClear::ModeGameClear(int _score)
 	menu_num_ = 2;
 	nextmode_count_ = 0;
 	pushed_flag_ = false;
+
+	result_ = _result;
 }
 
 ModeGameClear::~ModeGameClear()
@@ -50,6 +52,14 @@ bool ModeGameClear::Initialize()
 
 	score_ui_.Initialize();
 
+	if (result_ == GAME_CLEAR)
+		appframe::ApplicationBase::GetInstance()->bgm_.Load("Resource/sound/gameclear.wav");
+	else if (result_ == GAME_OVER)
+		appframe::ApplicationBase::GetInstance()->bgm_.Load("Resource/sound/gameover.wav");
+	appframe::ApplicationBase::GetInstance()->bgm_.SetVolume(1.0f);
+	appframe::ApplicationBase::GetInstance()->bgm_.SetLoopCount(0);
+	appframe::ApplicationBase::GetInstance()->bgm_.Play();
+
 	return true;
 }
 
@@ -58,6 +68,9 @@ bool ModeGameClear::Terminate()
 	::mode::ModeBase::Terminate();
 
 	score_ui_.Terminate();
+
+	appframe::ApplicationBase::GetInstance()->bgm_.Pause();
+	appframe::ApplicationBase::GetInstance()->bgm_.Destroy();
 
 	return true;
 }
@@ -95,6 +108,9 @@ void ModeGameClear::Input()
 		ModeOverlay* modeoverlay = NEW ModeOverlay();
 		modeoverlay->Fade(nextmode_count_, FADE_OUT);
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
+
+		appframe::ApplicationBase::GetInstance()->se_.Play();
+		appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 1.0f);
 	}
 }
 
@@ -110,8 +126,6 @@ void ModeGameClear::NextMode()
 
 	if (cursol_ == RETURN_MENU)
 	{
-		resource::ResourceServer::Release();
-
 		ModeMenu* mode_menu = NEW ModeMenu();
 		::mode::ModeServer::GetInstance()->Add(mode_menu, 0, "Menu");
 		::mode::ModeServer::GetInstance()->Del(this);
@@ -119,8 +133,6 @@ void ModeGameClear::NextMode()
 
 	if (cursol_ == RETURN_TITLE)
 	{
-		resource::ResourceServer::Release();
-
 		ModeTitle* mode_title = NEW ModeTitle();
 		::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");
 		::mode::ModeServer::GetInstance()->Del(this);
@@ -138,7 +150,13 @@ bool ModeGameClear::Render()
 	DrawRotaGraph(1080, 700, 0.5, 0.0, return_titlebase_graph_, TRUE);
 
 	if (cursol_ == RETURN_TITLE)
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 10 * GetModeCount()))));
+	{
+		//ボタンが押されたら点滅速度を上げる
+		if (pushed_flag_ == false)
+			SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * GetModeCount()))));
+		else
+			SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 10 * GetModeCount()))));
+	}
 	DrawRotaGraph(1080, 700, 0.5, 0.0, return_title_graph_, TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 
@@ -146,7 +164,13 @@ bool ModeGameClear::Render()
 	DrawRotaGraph(1780, 800, 0.5, 0.0, return_base_graph_, TRUE);
 
 	if (cursol_ == RETURN_MENU)
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 10 * GetModeCount()))));
+	{
+		//ボタンが押されたら点滅速度を上げる
+		if (pushed_flag_ == false)
+			SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * GetModeCount()))));
+		else
+			SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 10 * GetModeCount()))));
+	}
 	DrawRotaGraph(1780, 800, 0.5, 0.0, return_graph_, TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 

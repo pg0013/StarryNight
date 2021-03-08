@@ -26,7 +26,7 @@ namespace resource
 		ClearMap();
 	}
 
-	void ResourceServer::ClearMap()
+	void ResourceServer::ClearTextureMap()
 	{
 		for (auto iter : map_texture_)
 		{
@@ -34,19 +34,32 @@ namespace resource
 				DeleteGraph(handle);
 		}
 
+		map_texture_.clear();
+	}
+
+	void ResourceServer::ClearModelMap()
+	{
 		for (auto iter : map_model_)
 		{
 			MV1DeleteModel(iter.second);
 		}
+		map_model_.clear();
+	}
 
+	void ResourceServer::ClearSoundMap()
+	{
 		for (auto iter = map_sound_.begin(); iter != map_sound_.end(); iter++)
 		{
 			free(iter->second.GetpBuffer());
 		}
-
-		map_texture_.clear();
-		map_model_.clear();
 		map_sound_.clear();
+	}
+
+	void ResourceServer::ClearMap()
+	{
+		ClearTextureMap();
+		ClearModelMap();
+		ClearSoundMap();
 	}
 
 	int ResourceServer::LoadDivGraph(std::string _mode, std::string _filename, int _allnum,

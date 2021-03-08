@@ -1,7 +1,7 @@
-/** 
+/**
  * @file    ApplicationMain.h
  * @brief  このプロジェクトのメイン処理
- * 
+ *
  * @author Takuya Fujisawa
  * @date    20201021
  */

@@ -148,13 +148,15 @@ namespace starrynight
 				else { return false; }
 			}
 
-		  /**
+			/**
 			* @brief　 次のモードに移行する設定を行う
 			*
 			* @param  _count　次のモードへ移行するまでのフレーム数
 			* @param  _fade_count　フェードを行うフレーム数
-			*/
-			void SetNextMode(int _count, int _fade_count);
+			 * @param  _result	ゲームクリア判定　クリア : 0 ,ゲームオーバー : 1
+			 *
+			 */
+			void SetNextMode(int _count, int _fade_count,int _result);
 
 			/**
 			 * @brief スコアの評価
@@ -204,6 +206,7 @@ namespace starrynight
 			int game_score_;//ゲームのスコア
 			int stage_star_num_;//ステージのスター総数
 			int regulations_score_;//ステージの規定スコア
+			int result_;//ゲームクリアモードへクリア判定を渡すための変数
 		};
 	}
 }

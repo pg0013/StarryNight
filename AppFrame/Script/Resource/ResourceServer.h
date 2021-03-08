@@ -36,6 +36,21 @@ namespace resource
 		static void	Release();
 
 		/**
+		 * @brief　 テクスチャのデータを削除する
+		 */
+		static void	ClearTextureMap();
+
+		/**
+		 * @brief　 モデルデータを削除する
+		 */
+		static void	ClearModelMap();
+
+		/**
+		 * @brief　 サウンドデータを削除する
+		 */
+		static void	ClearSoundMap();
+
+		/**
 		 * @fn	static void ResourceServer::ClearMap();
 		 *
 		 * @brief	すべてのデータを削除

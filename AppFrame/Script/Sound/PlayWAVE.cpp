@@ -15,7 +15,7 @@ namespace sound
 	HRESULT PlayWAVE::hr;
 
 	PlayWAVE::PlayWAVE() {}
-	PlayWAVE::~PlayWAVE() { m_pSourceVoice->DestroyVoice(); }
+	PlayWAVE::~PlayWAVE() {}
 
 	void PlayWAVE::Init()
 	{
@@ -351,7 +351,6 @@ namespace sound
 			m_pSourceVoice->DestroyVoice();
 			std::string error = "can not submitting source buffer";
 			utility::DrawDebugError(error.c_str());
-
 		}
 
 		if (SUCCEEDED(hr = m_pSourceVoice->Start()))
@@ -385,6 +384,9 @@ namespace sound
 
 	bool PlayWAVE::CheckIsRunning()
 	{
+		if (m_pSourceVoice == nullptr)
+			return false;
+
 		XAUDIO2_VOICE_STATE state;
 		m_pSourceVoice->GetState(&state);
 		if (state.BuffersQueued > 0)
@@ -395,8 +397,8 @@ namespace sound
 
 	void PlayWAVE::Destroy()
 	{
-		if (CheckIsRunning() == true)
-			Pause();
+		m_pSourceVoice->DestroyVoice();
+		m_pSourceVoice = nullptr;
 	}
 
 	void PlayWAVE::PlayBackGround(PlayWAVE& _pw)

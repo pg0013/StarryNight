@@ -165,10 +165,6 @@ void Stage::Render()
 
 void Stage::ClearHandle()
 {
-	for (auto iter : stage_handle_)
-	{
-		MV1DeleteModel(iter);
-	}
 	stage_handle_.clear();
 
 	for (auto iter : navimesh_handle_)

@@ -22,11 +22,11 @@ bool ApplicationMain::Initialize(HINSTANCE _hinstance)
 	mode::ModeTitle* mode_title = NEW mode::ModeTitle();
 	::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");
 
-	//mode::ModeGame* mode_game = NEW mode::ModeGame();
-	//::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
+	resource::ResourceServer::LoadSound("Resource/sound/outgame_bgm.wav");
+	resource::ResourceServer::LoadSound("Resource/sound/se1.wav");
 
-	//mode::ModeGameClear* mode_gameclear = NEW mode::ModeGameClear(35000);
-	//::mode::ModeServer::GetInstance()->Add(mode_gameclear, 0, "GameClear");
+	bgm_.Load("Resource/sound/outgame_bgm.wav");
+	se_.Load("Resource/sound/se1.wav");
 
 	return true;
 }

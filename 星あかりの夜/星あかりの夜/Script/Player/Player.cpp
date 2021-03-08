@@ -118,7 +118,7 @@ void Player::GameOver()
 
 	mode::ModeGame* mode_game =
 		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-	mode_game->SetNextMode(300, 60);
+	mode_game->SetNextMode(300, 60, 1);
 }
 
 void Player::PlayerAnimationBlend()

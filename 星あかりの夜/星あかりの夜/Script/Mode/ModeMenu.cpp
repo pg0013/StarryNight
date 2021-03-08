@@ -49,6 +49,14 @@ bool ModeMenu::Initialize()
 	modeoverlay->Fade(30, FADE_IN);
 	::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 
+	if (appframe::ApplicationBase::GetInstance()->bgm_.CheckIsRunning() == false)
+	{
+		appframe::ApplicationBase::GetInstance()->bgm_.Load("Resource/sound/outgame_bgm.wav");
+		appframe::ApplicationBase::GetInstance()->bgm_.SetVolume(1.0f);
+		appframe::ApplicationBase::GetInstance()->bgm_.SetLoopCount(XAUDIO2_LOOP_INFINITE);
+		appframe::ApplicationBase::GetInstance()->bgm_.PlayWithLoop(0.0f, 125.0f);
+	}
+
 	return true;
 }
 
@@ -93,6 +101,11 @@ void ModeMenu::Input()
 		ModeOverlay* modeoverlay = NEW ModeOverlay();
 		modeoverlay->Fade(nextmode_count_, FADE_OUT);
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
+
+		appframe::ApplicationBase::GetInstance()->se_.Pitch(1.0f);
+		appframe::ApplicationBase::GetInstance()->se_.Play();
+		appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 1.0f);
+		appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 1.0f);
 	}
 
 	//Bボタンでタイトルに戻る
@@ -121,33 +134,34 @@ void ModeMenu::NextMode()
 
 	if (nextmode_ == HARU_A)
 	{
-		resource::ResourceServer::ClearMap();
+		resource::ResourceServer::ClearModelMap();
 
 		ModeGame* mode_game = NEW ModeGame("haru_A");
 		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
 		::mode::ModeServer::GetInstance()->Del(this);
+		appframe::ApplicationBase::GetInstance()->bgm_.Pause();
 	}
 	else if (nextmode_ == HARU_B)
 	{
-		resource::ResourceServer::ClearMap();
+		resource::ResourceServer::ClearModelMap();
 
 		ModeGame* mode_game = NEW ModeGame("haru_B");
 		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
 		::mode::ModeServer::GetInstance()->Del(this);
+		appframe::ApplicationBase::GetInstance()->bgm_.Pause();
 	}
 	else if (nextmode_ == HARU_C)
 	{
-		resource::ResourceServer::ClearMap();
+		resource::ResourceServer::ClearModelMap();
 
 		ModeGame* mode_game = NEW ModeGame("haru_C");
 		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
 		::mode::ModeServer::GetInstance()->Del(this);
+		appframe::ApplicationBase::GetInstance()->bgm_.Pause();
 	}
 
 	if (nextmode_ == TITLE)
 	{
-		resource::ResourceServer::ClearMap();
-
 		ModeTitle* mode_title = NEW ModeTitle();
 		::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");
 		::mode::ModeServer::GetInstance()->Del(this);

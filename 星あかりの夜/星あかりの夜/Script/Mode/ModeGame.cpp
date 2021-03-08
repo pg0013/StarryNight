@@ -26,6 +26,7 @@ ModeGame::ModeGame(std::string _stage_name)
 	pushed_flag_ = false;
 	pause_flag_ = false;
 	score_rank_ = SCORE_RANK::LOW;
+	result_ = -1;
 
 	stage_shadowmap_ = MakeShadowMap(4096, 4096);
 	object_shadowmap_ = MakeShadowMap(8192, 8192);
@@ -54,6 +55,11 @@ bool ModeGame::Initialize()
 	SetShadowMapLightDirection(object_shadowmap_, light_direction);
 	SetLightAmbColor(GetColorF(-0.05f, -0.05f, -0.05f, 0.0f));
 
+	appframe::ApplicationBase::GetInstance()->bgm_.Load("Resource/sound/ingame_bgm.wav");
+	appframe::ApplicationBase::GetInstance()->bgm_.SetVolume(1.0f);
+	appframe::ApplicationBase::GetInstance()->bgm_.SetLoopCount(XAUDIO2_LOOP_INFINITE);
+	appframe::ApplicationBase::GetInstance()->bgm_.PlayWithLoop(0.0f, 240.0f);
+
 	return true;
 }
 
@@ -67,6 +73,10 @@ bool ModeGame::Terminate()
 
 	DeleteShadowMap(stage_shadowmap_);
 	DeleteShadowMap(object_shadowmap_);
+
+	appframe::ApplicationBase::GetInstance()->bgm_.Pause();
+	appframe::ApplicationBase::GetInstance()->bgm_.Destroy();
+
 	return true;
 }
 
@@ -133,12 +143,13 @@ bool ModeGame::Render()
 	return true;
 }
 
-void ModeGame::SetNextMode(int _count, int _fade_count)
+void ModeGame::SetNextMode(int _count, int _fade_count, int _result)
 {
 	pushed_flag_ = true;
 
 	nextmode_count_ = _count;
 	fade_count_ = _fade_count;
+	result_ = _result;
 }
 
 void ModeGame::Input()
@@ -171,6 +182,8 @@ void ModeGame::NextMode()
 		ModeOverlay* modeoverlay = NEW ModeOverlay();
 		modeoverlay->Fade(fade_count_, FADE_OUT);
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
+
+		appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, static_cast<float>(fade_count_) / 60.0f);
 	}
 
 	if (nextmode_count_ == 0)
@@ -185,7 +198,7 @@ void ModeGame::NextMode()
 			return;
 		}
 
-		ModeGameClear* mode_gameclear = NEW ModeGameClear(game_score_);
+		ModeGameClear* mode_gameclear = NEW ModeGameClear(game_score_, result_);
 		::mode::ModeServer::GetInstance()->Add(mode_gameclear, 0, "GameClear");
 		::mode::ModeServer::GetInstance()->Del(this);
 	}

@@ -117,7 +117,7 @@ void ModePauseMenu::NextMode()
 
 	if (nextmode_ == TITLE)
 	{
-		resource::ResourceServer::ClearMap();
+		resource::ResourceServer::ClearModelMap();
 
 		ModeTitle* mode_title = NEW ModeTitle();
 		::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");

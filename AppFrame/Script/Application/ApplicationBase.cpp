@@ -90,6 +90,9 @@ namespace appframe
 	{
 		delete mode_server_;
 
+		bgm_.Pause();
+		se_.Pause();
+
 		resource::ResourceServer::Release();
 		sound::PlayWAVE::Release();
 

@@ -40,6 +40,14 @@ bool ModeTitle::Initialize()
 	modeoverlay->Fade(60, FADE_IN);
 	::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 
+	if (appframe::ApplicationBase::GetInstance()->bgm_.CheckIsRunning() == false)
+	{
+		appframe::ApplicationBase::GetInstance()->bgm_.Load("Resource/sound/outgame_bgm.wav");
+		appframe::ApplicationBase::GetInstance()->bgm_.SetVolume(1.0f);
+		appframe::ApplicationBase::GetInstance()->bgm_.SetLoopCount(XAUDIO2_LOOP_INFINITE);
+		appframe::ApplicationBase::GetInstance()->bgm_.PlayWithLoop(0.0f, 125.0f);
+	}
+
 	return true;
 }
 
@@ -47,6 +55,7 @@ bool ModeTitle::Terminate()
 {
 	::mode::ModeBase::Terminate();
 
+	appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 0.1f);
 	return true;
 }
 
@@ -95,6 +104,8 @@ void ModeTitle::Input()
 		ModeOverlay* modeoverlay = NEW ModeOverlay();
 		modeoverlay->Fade(nextmode_count_, FADE_OUT);
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
+
+		appframe::ApplicationBase::GetInstance()->se_.Play();
 	}
 	if (trigger_key & PAD_INPUT_2)
 	{
@@ -106,6 +117,10 @@ void ModeTitle::Input()
 		ModeOverlay* modeoverlay = NEW ModeOverlay();
 		modeoverlay->Fade(nextmode_count_, FADE_OUT);
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
+
+		appframe::ApplicationBase::GetInstance()->se_.Play();
+		appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 1.0f);
+		appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 1.0f);
 	}
 }
 
