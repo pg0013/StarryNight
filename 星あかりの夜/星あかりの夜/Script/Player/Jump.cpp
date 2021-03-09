@@ -104,14 +104,9 @@ void Player::Jump()
 			VECTOR escape = VCross(move, normal);
 			escape = VCross(normal, escape);
 
+			escape = VNorm(escape);
+
 			position_ = VAdd(position_, escape);
-
-			VECTOR camera_diff = camera_pos;
-			camera_diff.x = camera_tar.x + camera::Camera::GetInstance()->GetCameraLength() * cos(camera_rad);
-			camera_diff.z = camera_tar.z + camera::Camera::GetInstance()->GetCameraLength() * sin(camera_rad);
-
-			camera::Camera::GetInstance()->SetPosition(camera_diff);
-			camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
 
 			MV1CollResultPolyDimTerminate(hit_capsule_wall);
 		}
@@ -121,11 +116,16 @@ void Player::Jump()
 			position_ = VAdd(position_, move);
 			position_.y += jump_speed_;
 			move.y += jump_speed_;
-		}
 
-		//カメラを移動
-		camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, move));
-		camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
+			//カメラを移動
+			VECTOR camera_diff = camera_pos;
+			camera_diff.x = camera_tar.x + 300.0f * cos(camera_rad);
+			camera_diff.y = camera_pos.y + jump_speed_;
+			camera_diff.z = camera_tar.z + 300.0f * sin(camera_rad);
+
+			camera::Camera::GetInstance()->SetPosition(camera_diff);
+			camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
+		}
 
 		//ジャンプ加速処理
 		jump_speed_ -= gravity_;
