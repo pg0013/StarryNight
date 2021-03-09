@@ -23,11 +23,11 @@ VECTOR Enemy::Tracking(VECTOR _move)
 
 	if (VCross(VNorm(forward), VNorm(enemy_to_player)).y >= 0)
 	{
-		rotation_.y += DEG2RAD(rot_speed_) * VSize(VCross(forward, enemy_to_player)) * 0.01f;
+		rotation_.y += DEG2RAD(rot_speed_) * VSize(VCross(forward, enemy_to_player)) * 0.02f;
 	}
 	else
 	{
-		rotation_.y -= DEG2RAD(rot_speed_) * VSize(VCross(forward, enemy_to_player)) * 0.01f;
+		rotation_.y -= DEG2RAD(rot_speed_) * VSize(VCross(forward, enemy_to_player)) * 0.02f;
 	}
 
 	_move = VScale(VNorm(utility::GetForwardVector(rotation_.y)), run_speed_);

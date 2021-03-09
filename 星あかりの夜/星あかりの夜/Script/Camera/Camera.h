@@ -36,12 +36,6 @@ namespace starrynight
 			void Initialize();
 
 			/**
-			 * @brief “ü—Íˆ—.
-			 *
-			 */
-			void Input();
-
-			/**
 			 * @brief ‰‰Zˆ—.
 			 *
 			 */
