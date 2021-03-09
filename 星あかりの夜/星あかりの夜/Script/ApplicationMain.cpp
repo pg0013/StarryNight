@@ -8,6 +8,7 @@
 
 #include "ApplicationMain.h"
 #include"Mode/ModeTitle.h"
+#include"Mode/ModeMovie.h"
 
 using namespace starrynight;
 
@@ -17,8 +18,11 @@ bool ApplicationMain::Initialize(HINSTANCE _hinstance)
 {
 	if (!appbase::Initialize(_hinstance)) { return false; }
 
-	mode::ModeTitle* mode_title = NEW mode::ModeTitle();
-	::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");
+	//mode::ModeTitle* mode_title = NEW mode::ModeTitle();
+	//::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");
+
+	mode::ModeMovie* mode_movie = NEW mode::ModeMovie();
+	::mode::ModeServer::GetInstance()->Add(mode_movie, 0, "Movie");
 
 	resource::ResourceServer::LoadSound("Resource/sound/outgame_bgm.wav");
 	resource::ResourceServer::LoadSound("Resource/sound/se1.wav");

@@ -47,6 +47,7 @@
     <ClCompile Include="Script\Mode\ModeGameClear.cpp" />
     <ClCompile Include="Script\Mode\ModeGameOver.cpp" />
     <ClCompile Include="Script\Mode\ModeMenu.cpp" />
+    <ClCompile Include="Script\Mode\ModeMovie.cpp" />
     <ClCompile Include="Script\Mode\ModeOverlay.cpp" />
     <ClCompile Include="Script\Mode\ModePauseMenu.cpp" />
     <ClCompile Include="Script\Mode\ModeTitle.cpp" />
@@ -95,6 +96,7 @@
     <ClInclude Include="Script\Mode\ModeGameClear.h" />
     <ClInclude Include="Script\Mode\ModeGameOver.h" />
     <ClInclude Include="Script\Mode\ModeMenu.h" />
+    <ClInclude Include="Script\Mode\ModeMovie.h" />
     <ClInclude Include="Script\Mode\ModeOverlay.h" />
     <ClInclude Include="Script\Mode\ModePauseMenu.h" />
     <ClInclude Include="Script\Mode\ModeTitle.h" />
