@@ -104,7 +104,7 @@ void ModeGameClear::Input()
 
 	cursol_ = (cursol_ + menu_num_) % menu_num_;
 
-	if (trigger_key & PAD_INPUT_1)
+	if (trigger_key & PAD_INPUT_2)
 	{
 		pushed_flag_ = true;
 

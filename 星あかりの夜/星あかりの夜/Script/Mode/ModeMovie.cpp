@@ -69,7 +69,7 @@ void ModeMovie::Input()
 	if (pushed_flag_ == true)
 		return;
 
-	if (trigger_key & PAD_INPUT_1 ||
+	if (trigger_key & PAD_INPUT_2 ||
 		GetMovieStateToGraph(movie_) == 0)
 	{
 		pushed_flag_ = true;

@@ -94,7 +94,7 @@ void ModeTitle::Input()
 	if (pushed_flag_ == true)
 		return;
 
-	if (trigger_key & PAD_INPUT_1)
+	if (trigger_key & PAD_INPUT_2)
 	{
 		pushed_flag_ = true;
 
@@ -109,7 +109,7 @@ void ModeTitle::Input()
 		appframe::ApplicationBase::GetInstance()->se_.SetVolume(1.0f);
 		appframe::ApplicationBase::GetInstance()->se_.Play();
 	}
-	if (trigger_key & PAD_INPUT_2)
+	if (trigger_key & PAD_INPUT_1)
 	{
 		pushed_flag_ = true;
 

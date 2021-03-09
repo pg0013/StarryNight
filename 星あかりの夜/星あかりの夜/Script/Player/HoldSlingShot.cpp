@@ -42,11 +42,13 @@ void Player::HoldSlingShot()
 		return;
 
 	//Yボタンが押されたら、タイミングゲージを描画
-	if (trigger_key & PAD_INPUT_4)
+	if (trigger_key & PAD_INPUT_4 &&
+		selected_skystar_flag_ == false)
 	{
 		mode_game->ui_.timing_ui_.SetSelectedStarNum(hit_star.FrameIndex);
 		mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
 		mode_game->ui_.timing_ui_.SetDrawTimingGuide(true);
+		mode_game->ui_.timing_ui_.SetSelectStarFrame(mode_game->GetModeCount());
 		selected_skystar_flag_ = true;
 	}
 

@@ -26,7 +26,7 @@ void Player::Jump()
 	//ジャンプ開始処理
 	if (hit_poly_floor.HitFlag)
 	{
-		if (trigger_key & PAD_INPUT_1)
+		if (trigger_key & PAD_INPUT_2)
 		{
 			//床に接地している状態でAボタンが押されたら、ジャンプを開始する
 			jump_speed_ = 15.0f;

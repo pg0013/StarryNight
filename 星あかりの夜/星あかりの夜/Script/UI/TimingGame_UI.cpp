@@ -19,6 +19,7 @@ TimingGame_UI::TimingGame_UI()
 	shrink_circle_flag_ = true;
 	timing_exrate_ = 1.0f;
 	presssed_frame_ = 0;
+	select_star_frame_ = 0;
 }
 
 TimingGame_UI::~TimingGame_UI()
@@ -45,7 +46,9 @@ void TimingGame_UI::Process()
 
 	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
 
-	if (trigger_key & PAD_INPUT_2)
+	//¯‚ª‘I‘ğ‚³‚ê‚Ä‚©‚ç‚à‚¤ˆê“xYƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚çA‰~‚Ìûk‚ğ’â~‚·‚é
+	if (trigger_key & PAD_INPUT_4 &&
+		select_star_frame_ != ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount())
 	{
 		//‰~‚Ìk¬‚ğ’â~
 		shrink_circle_flag_ = false;

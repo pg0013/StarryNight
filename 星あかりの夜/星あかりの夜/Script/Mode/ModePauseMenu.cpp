@@ -34,6 +34,7 @@ ModePauseMenu::ModePauseMenu()
 	nextmode_count_ = 0;
 	nextmode_ = TUTORIAL;
 	pushed_flag_ = false;
+	select_frame_ = 0;
 }
 
 ModePauseMenu::~ModePauseMenu()
@@ -81,12 +82,14 @@ void ModePauseMenu::Input()
 	if (trigger_key & PAD_INPUT_UP)
 	{
 		cursol_--;
+		select_frame_ = GetModeCount();
 		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
 		appframe::ApplicationBase::GetInstance()->se_.Play();
 	}
 	if (trigger_key & PAD_INPUT_DOWN)
 	{
 		cursol_++;
+		select_frame_ = GetModeCount();
 		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
 		appframe::ApplicationBase::GetInstance()->se_.Play();
 	}
@@ -94,8 +97,8 @@ void ModePauseMenu::Input()
 	cursol_ = (cursol_ + menu_num_) % menu_num_;
 	nextmode_ = cursol_;
 
-	//Aボタンでゲームに進む
-	if (trigger_key & PAD_INPUT_1)
+	//Bボタンでゲームに進む
+	if (trigger_key & PAD_INPUT_2)
 	{
 		pushed_flag_ = true;
 
@@ -130,7 +133,8 @@ void ModePauseMenu::Input()
 	}
 
 	//STARTボタンでポーズメニューを表示
-	if (trigger_key & PAD_INPUT_8)
+	if (trigger_key & PAD_INPUT_8 ||
+		trigger_key & PAD_INPUT_1)
 	{
 		pushed_flag_ = true;
 		nextmode_ = RETURN;
@@ -186,21 +190,21 @@ bool ModePauseMenu::Render()
 	DrawGraph(0, 0, tutorial_graph_[1], TRUE);
 
 	if (cursol_ == TUTORIAL)
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * GetModeCount()))));
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * (GetModeCount()-select_frame_)))));
 	DrawGraph(0, 0, tutorial_graph_[0], TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 
 	DrawGraph(0, 0, return_graph_[1], TRUE);
 
 	if (cursol_ == RETURN)
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * GetModeCount()))));
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * (GetModeCount() - select_frame_)))));
 	DrawGraph(0, 0, return_graph_[0], TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 
 	DrawGraph(0, 0, return_title_graph_[1], TRUE);
 
 	if (cursol_ == TITLE)
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * GetModeCount()))));
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * (GetModeCount() - select_frame_)))));
 	DrawGraph(0, 0, return_title_graph_[0], TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 

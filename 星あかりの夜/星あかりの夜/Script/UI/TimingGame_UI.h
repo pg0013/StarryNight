@@ -96,6 +96,13 @@ namespace starrynight
 			int GetSelectedStarNum() { return selected_star_num_; }
 
 			/**
+			 * @brief　 星選択時にボタンを押したときのフレームを記録する
+			 *
+			 * @param  _frame	モードフレーム数
+			 */
+			void SetSelectStarFrame(int _frame) { select_star_frame_ = _frame; }
+
+			/**
 			 * @brief タイミングゲームのタイミング評価
 			 */
 			enum class TIMING_STATUS
@@ -122,6 +129,8 @@ namespace starrynight
 
 			int presssed_frame_;//タイミングゲームでBボタンが押された時のフレーム
 			int selected_star_num_;//選択されたスター番号
+
+			int select_star_frame_;//星が選択された時のフレーム数
 
 			double timing_exrate_;//縮小ゲージの拡大率
 		};

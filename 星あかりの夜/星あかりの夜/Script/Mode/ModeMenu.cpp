@@ -90,8 +90,8 @@ void ModeMenu::Input()
 	cursol_ = (cursol_ + menu_num_) % menu_num_;
 	nextmode_ = cursol_;
 
-	//Aボタンでゲームに進む
-	if (trigger_key & PAD_INPUT_1)
+	//Bボタンでゲームに進む
+	if (trigger_key & PAD_INPUT_2)
 	{
 		pushed_flag_ = true;
 
@@ -109,8 +109,8 @@ void ModeMenu::Input()
 		appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 1.0f);
 	}
 
-	//Bボタンでタイトルに戻る
-	if (trigger_key & PAD_INPUT_2)
+	//Aボタンでタイトルに戻る
+	if (trigger_key & PAD_INPUT_1)
 	{
 		pushed_flag_ = true;
 

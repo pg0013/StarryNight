@@ -82,6 +82,7 @@ namespace starrynight
 			int menu_num_;
 			int nextmode_count_;
 			bool pushed_flag_;
+			int select_frame_;
 		};
 
 	}

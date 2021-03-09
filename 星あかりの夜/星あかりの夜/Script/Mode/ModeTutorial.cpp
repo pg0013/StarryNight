@@ -62,7 +62,7 @@ void ModeTutorial::Input()
 	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
 
 	//Aボタンでゲームに進む
-	if (trigger_key & PAD_INPUT_2)
+	if (trigger_key & PAD_INPUT_1)
 	{
 		pushed_flag_ = true;
 
