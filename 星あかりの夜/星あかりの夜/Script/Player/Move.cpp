@@ -69,6 +69,7 @@ void Player::Move()
 	MV1_COLL_RESULT_POLY_DIM hit_poly_wall;
 	hit_poly_wall = stage::Stage::GetInstance()->GetHitCapsuleToWall(capsule_positon1, capsule_positon2, radius);
 
+	//壁ずり処理
 	if (hit_poly_wall.HitNum > 0)
 	{
 		VECTOR normal = { 0,0,0 };
@@ -81,6 +82,14 @@ void Player::Move()
 		VECTOR escape = VCross(move, normal);
 		escape = VCross(normal, escape);
 		escape.y = 0.0f;
+
+		if (status_ == STATUS::WALK)
+			escape = VScale(VNorm(escape), walk_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime());
+		else if (status_ == STATUS::RUN)
+			escape = VScale(VNorm(escape), run_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime());
+		else
+			escape = VNorm(escape);
+
 
 		position_ = old_position;
 		position_ = VAdd(position_, escape);
@@ -98,13 +107,6 @@ void Player::Move()
 			if (hit_poly_floor_wallpush.HitFlag)
 				position_.y = hit_poly_floor_wallpush.HitPosition.y;
 		}
-
-		VECTOR camera_diff = camera_pos;
-		camera_diff.x = camera_tar.x + camera::Camera::GetInstance()->GetCameraLength() * cos(camera_rad);
-		camera_diff.z = camera_tar.z + camera::Camera::GetInstance()->GetCameraLength() * sin(camera_rad);
-
-		camera::Camera::GetInstance()->SetPosition(camera_diff);
-		camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
 
 		//押し出し処理
 		while (1)
@@ -131,7 +133,9 @@ void Player::Move()
 
 			//壁に頭がぶつかるとき以外は、押し出しベクトルのy成分は0にする
 			if (normal.y > -1.0f)
+			{
 				normal.y = 0;
+			}
 
 			normal = VNorm(normal);
 
@@ -148,9 +152,6 @@ void Player::Move()
 		//キャラクターのy座標を調整
 		move.y += position_.y - old_position.y;
 
-		//カメラを移動
-		camera::Camera::GetInstance()->SetPosition(VAdd(camera_pos, move));
-		camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
 		MV1CollResultPolyDimTerminate(hit_poly_wall);
 	}
 }

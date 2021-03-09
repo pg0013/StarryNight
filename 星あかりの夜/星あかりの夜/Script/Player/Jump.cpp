@@ -75,57 +75,10 @@ void Player::Jump()
 		move.x = cos(rad + camera_rad) * length;
 		move.z = sin(rad + camera_rad) * length;
 
-		//腰から地面までの線分ベクトル
-		VECTOR start_line = VAdd(position_, VGet(0, 40.0f, 0));
-		VECTOR end_line = VAdd(position_, VGet(0, -10.0f, 0));
-
-		//プレイヤーのカプセル情報
-		VECTOR capsule_positon1 = VAdd(position_, VGet(0, 100, 0));
-		VECTOR capsule_positon2 = VAdd(position_, VGet(0, 45, 0));
-		float radius = 35.0f;
-
-		//乗れるオブジェクトとの当たり判定
-		MV1_COLL_RESULT_POLY_DIM hit_capsule_wall;
-		hit_capsule_wall = stage::Stage::GetInstance()->GetHitCapsuleToWall(capsule_positon1, capsule_positon2, radius);
-
-		//ジャンプ中の壁刷り処理
-		if (hit_capsule_wall.HitNum > 0)
-		{
-			VECTOR normal = { 0,0,0 };
-			for (int i = 0; i < hit_capsule_wall.HitNum; i++)
-			{
-				normal = VAdd(normal, hit_capsule_wall.Dim[i].Normal);
-			}
-			normal = VNorm(normal);
-			VECTOR fall = { 0 , jump_speed_ , 0 };
-
-			move = VAdd(move, fall);
-
-			VECTOR escape = VCross(move, normal);
-			escape = VCross(normal, escape);
-
-			escape = VNorm(escape);
-
-			position_ = VAdd(position_, escape);
-
-			MV1CollResultPolyDimTerminate(hit_capsule_wall);
-		}
-		else
-		{
-			//移動処理
-			position_ = VAdd(position_, move);
-			position_.y += jump_speed_;
-			move.y += jump_speed_;
-
-			//カメラを移動
-			VECTOR camera_diff = camera_pos;
-			camera_diff.x = camera_tar.x + 300.0f * cos(camera_rad);
-			camera_diff.y = camera_pos.y + jump_speed_;
-			camera_diff.z = camera_tar.z + 300.0f * sin(camera_rad);
-
-			camera::Camera::GetInstance()->SetPosition(camera_diff);
-			camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
-		}
+		//移動処理
+		position_ = VAdd(position_, move);
+		position_.y += jump_speed_;
+		move.y += jump_speed_;
 
 		//ジャンプ加速処理
 		jump_speed_ -= gravity_;

@@ -63,8 +63,21 @@ void Player::SwitchPlayerAction()
 		mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
 		shoot_charge_effect_flag_ = true;
 
+		VECTOR old_position = position_;
+
 		Jump();
 		Move();
+
+		//プレイヤー移動によるカメラ移動
+		VECTOR camera_diff = camera::Camera::GetInstance()->GetPosition();
+		VECTOR player_diff = VSub(position_, old_position);
+
+		if (VSize(player_diff) < 1.0f)
+			player_diff = { 0,0,0 };
+
+		camera_diff = VAdd(camera_diff, player_diff);
+		camera::Camera::GetInstance()->SetPosition(camera_diff);
+		camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
 
 		SwitchPlayerStatus();
 		DecideForwardDirection();

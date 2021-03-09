@@ -18,7 +18,7 @@ Star::Star()
 {
 	status_ = STATUS::WAIT;
 	rot_speed_ = 5.0f;
-	jump_height_ = 5.0f;
+	jump_height_ = 4.5f;
 	jump_speed_ = -jump_height_;
 	gravity_ = 0.1f;
 	star_num_ = 0;
