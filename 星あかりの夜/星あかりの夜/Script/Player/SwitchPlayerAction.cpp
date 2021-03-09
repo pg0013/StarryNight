@@ -63,8 +63,8 @@ void Player::SwitchPlayerAction()
 		mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
 		shoot_charge_effect_flag_ = true;
 
-		Move();
 		Jump();
+		Move();
 
 		SwitchPlayerStatus();
 		DecideForwardDirection();

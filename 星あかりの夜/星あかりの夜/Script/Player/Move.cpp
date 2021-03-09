@@ -56,7 +56,7 @@ void Player::Move()
 	MV1_COLL_RESULT_POLY hit_poly_floor;
 
 	//腰から地面までの線分ベクトル
-	VECTOR start_line = VAdd(position_, VGet(0, 40.0f, 0));
+	VECTOR start_line = VAdd(position_, VGet(0, 60.0f, 0));
 	VECTOR end_line = VAdd(position_, VGet(0, -30.0f, 0));
 
 	hit_poly_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
@@ -87,9 +87,21 @@ void Player::Move()
 
 		MV1CollResultPolyDimTerminate(hit_poly_wall);
 
+		if (jump_flag_ == false)
+		{
+			//腰から地面までの線分ベクトル
+			VECTOR start_line = VAdd(position_, VGet(0, 60.0f, 0));
+			VECTOR end_line = VAdd(position_, VGet(0, -30.0f, 0));
+
+			MV1_COLL_RESULT_POLY hit_poly_floor_wallpush = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
+
+			if (hit_poly_floor_wallpush.HitFlag)
+				position_.y = hit_poly_floor_wallpush.HitPosition.y;
+		}
+
 		VECTOR camera_diff = camera_pos;
-		camera_diff.x = camera_tar.x + 300.0f * cos(camera_rad);
-		camera_diff.z = camera_tar.z + 300.0f * sin(camera_rad);
+		camera_diff.x = camera_tar.x + camera::Camera::GetInstance()->GetCameraLength() * cos(camera_rad);
+		camera_diff.z = camera_tar.z + camera::Camera::GetInstance()->GetCameraLength() * sin(camera_rad);
 
 		camera::Camera::GetInstance()->SetPosition(camera_diff);
 		camera::Camera::GetInstance()->SetTarget(VAdd(position_, VGet(0.0f, 60.0f, 0.0f)));
@@ -116,8 +128,12 @@ void Player::Move()
 			{
 				normal = VAdd(normal, VNorm(hit_poly_wall.Dim[i].Normal));
 			}
+
+			//壁に頭がぶつかるとき以外は、押し出しベクトルのy成分は0にする
+			if (normal.y > -1.0f)
+				normal.y = 0;
+
 			normal = VNorm(normal);
-			//normal.y = 0;
 
 			position_ = VAdd(position_, VScale(normal, 0.5f));
 
