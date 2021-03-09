@@ -18,5 +18,8 @@
 #define TRIGGER_MAX (255.0f)
 #define THUMB_MAX (32767.0f)
 
+//パッド入力のトリガー用
+#define PAD_INPUT_ALL (0xffff)
+
 //アナログスティックのデッドスペース
 #define ANALOG_MIN (0.2f)

@@ -13,6 +13,12 @@
 #include"../Camera/Camera.h"
 #include"../UI/UIManager.h"
 
+namespace
+{
+	constexpr int GAME_CLEAR = 0;
+	constexpr int GAME_OVER = 1;
+}
+
 namespace starrynight
 {
 	namespace mode
@@ -24,11 +30,11 @@ namespace starrynight
 			ModeGame(std::string _stage_name);
 			~ModeGame();
 
-			 /**
-			  * @brief　初期化処理.
-			  *
-			  * @return 初期化成功の可否
-			  */
+			/**
+			 * @brief　初期化処理.
+			 *
+			 * @return 初期化成功の可否
+			 */
 			virtual bool Initialize();
 
 			/**
@@ -156,14 +162,14 @@ namespace starrynight
 			 * @param  _result	ゲームクリア判定　クリア : 0 ,ゲームオーバー : 1
 			 *
 			 */
-			void SetNextMode(int _count, int _fade_count,int _result);
+			void SetNextMode(int _count, int _fade_count, int _result);
 
 			/**
 			 * @brief スコアの評価
 			 */
 			enum class SCORE_RANK
 			{
-				HIGH,MIDDLE,LOW
+				HIGH, MIDDLE, LOW
 			};
 
 			SCORE_RANK score_rank_;//スコア評価
@@ -181,6 +187,13 @@ namespace starrynight
 			 * @param  _rank	スコア評価
 			 */
 			void SetScoreRank(SCORE_RANK _rank) { score_rank_ = _rank; }
+
+			/**
+			 * @brief　 ステージ名を取得する
+			 *
+			 * @return		ステージ名
+			 */
+			std::string GetStageName() { return stage_name_; }
 
 		private:
 			/**

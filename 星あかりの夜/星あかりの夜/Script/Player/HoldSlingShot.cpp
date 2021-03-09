@@ -15,7 +15,6 @@
 #include"../Mode/ModeGame.h"
 #include"../Mode/ModeOverlay.h"
 
-
 using namespace starrynight::player;
 
 void Player::HoldSlingShot()
@@ -63,7 +62,6 @@ void Player::HoldSlingShot()
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 	}
 
-
 	//射撃状態の終了
 	float shoot_anim_end = 80.0f;
 	if (anim_play_time_ < shoot_anim_end)
@@ -73,7 +71,14 @@ void Player::HoldSlingShot()
 	{
 		camera::Camera::GetInstance()->SkyStarCameraInit();
 		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::SKYSTAR);
-		mode_game->SetNextMode(420,40,0);
+
+		//星座によって完成エフェクトの時間が違うので、次のモードへ移行する時間をステージごとに設定する
+		if (mode_game->GetStageName() == "haru_A")
+			mode_game->SetNextMode(420, 40, GAME_CLEAR);
+		else if (mode_game->GetStageName() == "haru_B")
+			mode_game->SetNextMode(480, 40, GAME_CLEAR);
+		else if (mode_game->GetStageName() == "haru_C")
+			mode_game->SetNextMode(450, 40, GAME_CLEAR);
 	}
 	else
 	{

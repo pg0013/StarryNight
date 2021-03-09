@@ -32,8 +32,6 @@ Stage::~Stage()
 
 void Stage::Initialize(std::string _stage_name)
 {
-
-
 	stage_param_.LoadStage(_stage_name, false);
 	star_param_.LoadStageStar(_stage_name, false);
 	skystar_param_.LoadSkyStar(_stage_name, false);

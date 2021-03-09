@@ -27,11 +27,18 @@ SkyStar::~SkyStar()
 
 void SkyStar::Initialize()
 {
-	utility::CheckMemoryLeak();
+	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
 	float radius = 10000.0f;
 	float height = 5000.0f;
-	float degree = 180.0f;
+
+	float degree = 0.0f;
+	if (mode_game->GetStageName() == "haru_A")
+		degree = 180.0f;
+	else if (mode_game->GetStageName() == "haru_B")
+		degree = 180.0f;
+	else if (mode_game->GetStageName() == "haru_C")
+		degree = 180.0f;
 
 	position_.x = radius * cosf(DEG2RAD(degree));
 	position_.z = radius * sinf(DEG2RAD(degree));
@@ -39,7 +46,6 @@ void SkyStar::Initialize()
 
 	MV1SetPosition(handle_, position_);
 
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 	effect::ZodiacSignEffect* zodiac_effect = NEW effect::ZodiacSignEffect(zodiac_name_);
 	zodiac_effect->PlayEffect();
 	zodiac_effect->SetPosition(VGet(0, 0, 0));

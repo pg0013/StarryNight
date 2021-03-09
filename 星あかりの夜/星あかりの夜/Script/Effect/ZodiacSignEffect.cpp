@@ -16,19 +16,35 @@ using namespace starrynight::effect;
 ZodiacSignEffect::ZodiacSignEffect(std::string _sign_name)
 {
 	skystar_name = _sign_name;
-	std::string filename = "Resource/effect/" + _sign_name + "/" + _sign_name + "_before.efk";
+	std::string filename = "Resource/effect/" + _sign_name + "_before.efk";
 	effect_resource_ = LoadEffekseerEffect(filename.c_str(), 1.0f);
-	filename = "Resource/effect/" + _sign_name + "/" + _sign_name + "_after01.efk";
+	filename = "Resource/effect/" + _sign_name + "_after01.efk";
 	after_effect_resource_[0] = LoadEffekseerEffect(filename.c_str(), 1.0f);
-	filename = "Resource/effect/" + _sign_name + "/" + _sign_name + "_after02.efk";
+	filename = "Resource/effect/" + _sign_name + "_after02.efk";
 	after_effect_resource_[1] = LoadEffekseerEffect(filename.c_str(), 1.0f);
-	filename = "Resource/effect/" + _sign_name + "/" + _sign_name + "_after03.efk";
+	filename = "Resource/effect/" + _sign_name + "_after03.efk";
 	after_effect_resource_[2] = LoadEffekseerEffect(filename.c_str(), 1.0f);
+
+	resource::ResourceServer::LoadSound("Resource/sound/skystar_complete.wav");
 
 	effect_frame_ = 120;
 	once_flag_ = false;
 	start_frame_ = 0;
 	select_star_num_ = -1;
+
+	switch_effect_frame_ = 120;
+	if (_sign_name == "ohitsuji")
+	{
+		complete_effect_startframe_ = 50;
+	}
+	else if (_sign_name == "oushi")
+	{
+		complete_effect_startframe_ = 110;
+	}
+	else if (_sign_name == "futago")
+	{
+		complete_effect_startframe_ = 80;
+	}
 }
 
 ZodiacSignEffect::~ZodiacSignEffect()
@@ -38,6 +54,12 @@ ZodiacSignEffect::~ZodiacSignEffect()
 		//使用したエフェクトは基底クラスで消す
 		if (i == select_star_num_) { continue; }
 		DeleteEffekseerEffect(after_effect_resource_[i]);
+	}
+
+	if (se_.CheckIsRunning())
+	{
+		se_.Pause();
+		se_.Destroy();
 	}
 }
 
@@ -114,7 +136,7 @@ void ZodiacSignEffect::DrawCompleteEffect()
 
 	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
-	if (elapsed_frame == 120)
+	if (elapsed_frame == switch_effect_frame_)
 	{
 		StopEffekseer3DEffect(playing_effect_);
 		DeleteEffekseerEffect(effect_resource_);
@@ -130,7 +152,7 @@ void ZodiacSignEffect::DrawCompleteEffect()
 		SetSpeedPlayingEffekseer3DEffect(playing_effect_, 1.0f);
 	}
 
-	if (elapsed_frame == 160)
+	if (elapsed_frame == switch_effect_frame_ + complete_effect_startframe_)
 	{
 		//星獲得エフェクトを生成
 		effect::TimingRankEffect* timing_effect = NEW effect::TimingRankEffect(mode_game->GetScoreRank());
@@ -139,5 +161,9 @@ void ZodiacSignEffect::DrawCompleteEffect()
 		timing_effect->PlayEffect();
 		mode_game->effect_server_.Add(timing_effect);
 		once_flag_ = true;
+
+		se_.Load("Resource/sound/skystar_complete.wav");
+		se_.Play();
+		se_.Fade(0.0f, 2.0f);
 	}
 }

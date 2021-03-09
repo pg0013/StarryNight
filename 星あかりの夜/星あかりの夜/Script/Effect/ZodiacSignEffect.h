@@ -47,12 +47,17 @@ namespace starrynight
 			 */
 			void DrawCompleteEffect();
 		private:
+			sound::PlayWAVE se_;
+
 			std::string skystar_name;
 			handle after_effect_resource_[3];
 
 			bool once_flag_;
 			int start_frame_;
 			int select_star_num_;
+
+			int switch_effect_frame_;
+			int complete_effect_startframe_;
 		};
 	}
 }
