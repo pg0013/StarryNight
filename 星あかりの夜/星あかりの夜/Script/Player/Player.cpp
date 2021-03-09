@@ -47,6 +47,11 @@ Player::Player()
 
 Player::~Player()
 {
+	if (se_.CheckIsRunning())
+	{
+		se_.Pause();
+		se_.Destroy();
+	}
 }
 
 void Player::Initialize()
@@ -64,6 +69,8 @@ void Player::Process()
 	GameOver();
 
 	SwitchPlayerAnimation(old_status);
+	SwitchPlayerSound();
+
 	PlayerAnimationBlend();
 }
 

@@ -240,6 +240,9 @@
     <ClCompile Include="Script\Mode\ModeGameOver.cpp">
       <Filter>ソース ファイル\Mode</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Player\SwitchPlayerSound.cpp">
+      <Filter>ソース ファイル\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h">

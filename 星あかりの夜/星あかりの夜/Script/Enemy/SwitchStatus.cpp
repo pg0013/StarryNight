@@ -37,13 +37,17 @@ void Enemy::SwitchStatus(ANIM_STATUS _old_status)
 
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 	float player_distance = VSize(VSub(player_position, position_));
+	float player_distance_y = abs(player_position.y - position_.y);
 
 	//追跡距離範囲内であれば、追跡モードに移行
 	//逃げるモードの時にはプレイヤーから離れるために追跡しない
 	if (player_distance < detect_length_ &&
 		move_status_ != MOVE_STATUS::ESCAPE)
 	{
-		move_status_ = MOVE_STATUS::TRACKING;
+		if (player_distance_y < 200)
+			move_status_ = MOVE_STATUS::TRACKING;
+		else
+			move_status_ = MOVE_STATUS::WAIT;
 	}
 
 	//攻撃できる距離まで近づけば、攻撃モードに移行
@@ -70,7 +74,7 @@ void Enemy::SwitchStatus(ANIM_STATUS _old_status)
 			//プレイヤーのダメージエフェクトを描画
 			effect::DamageEffect* damage_effect = NEW effect::DamageEffect();
 			VECTOR damage_pos = VScale(VAdd(player_position, position_), 0.5f);
-			damage_pos = VAdd(damage_pos, VGet(0,50,0));
+			damage_pos = VAdd(damage_pos, VGet(0, 50, 0));
 
 			damage_effect->SetPosition(damage_pos);
 			damage_effect->SetRotation(VGet(0, 0, 0));

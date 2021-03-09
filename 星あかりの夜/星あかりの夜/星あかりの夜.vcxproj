@@ -60,6 +60,7 @@
     <ClCompile Include="Script\Player\PlayerParameters.cpp" />
     <ClCompile Include="Script\Player\SwitchPlayerAction.cpp" />
     <ClCompile Include="Script\Player\SwitchPlayerAnimation.cpp" />
+    <ClCompile Include="Script\Player\SwitchPlayerSound.cpp" />
     <ClCompile Include="Script\Player\SwitchPlayerStatus.cpp" />
     <ClCompile Include="Script\Stage\CollisionToStage.cpp" />
     <ClCompile Include="Script\Stage\Stage.cpp" />

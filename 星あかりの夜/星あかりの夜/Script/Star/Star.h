@@ -72,7 +72,7 @@ namespace starrynight
 
 			/**
 			 * @brief　星を描画するかどうかを判定する.
-			 * 
+			 *
 			 * @return TRUEで描画する
 			 */
 			int IsStageStarDraw();
@@ -89,6 +89,8 @@ namespace starrynight
 			};
 
 			STATUS status_;//状態遷移用変数
+
+			sound::PlayWAVE se_;
 
 			std::queue<VECTOR> player_pos_history_;//プレイヤーの位置ベクトル記録用コンテナ
 			VECTOR old_player_position_;//前フレームのプレイヤーの位置ベクトルを記録する

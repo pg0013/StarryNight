@@ -1,9 +1,9 @@
 #pragma once
 #include"DxLib.h"
 
-#ifdef _DEBUG
-//#define DEBUG_FUNCTION
-#endif // _DEBUG
+//#ifdef _DEBUG
+#define DEBUG_FUNCTION
+//#endif // _DEBUG
 
 
 #define DEBUG_COLOR GetColor(255,0,0)

@@ -76,8 +76,18 @@ void ModeGameOver::Input()
 
 	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
 
-	if (trigger_key & PAD_INPUT_LEFT) { cursol_--; }
-	if (trigger_key & PAD_INPUT_RIGHT) { cursol_++; }
+	if (trigger_key & PAD_INPUT_LEFT)
+	{
+		cursol_--;
+		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
+		appframe::ApplicationBase::GetInstance()->se_.Play();
+	}
+	if (trigger_key & PAD_INPUT_RIGHT)
+	{
+		cursol_++;
+		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
+		appframe::ApplicationBase::GetInstance()->se_.Play();
+	}
 
 	cursol_ = (cursol_ + menu_num_) % menu_num_;
 
@@ -91,10 +101,11 @@ void ModeGameOver::Input()
 		modeoverlay->Fade(nextmode_count_, FADE_OUT);
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 
-
+		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
 		appframe::ApplicationBase::GetInstance()->se_.SetVolume(1.0f);
 		appframe::ApplicationBase::GetInstance()->se_.Play();
 		appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 1.0f);
+
 		appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 1.0f);
 	}
 }

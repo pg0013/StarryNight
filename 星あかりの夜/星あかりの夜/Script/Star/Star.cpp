@@ -29,6 +29,11 @@ Star::Star()
 
 Star::~Star()
 {
+	if (se_.CheckIsRunning())
+	{
+		se_.Pause();
+		se_.Destroy();
+	}
 }
 
 void Star::Initialize()
@@ -87,6 +92,9 @@ void Star::Wait()
 		getstar_effect->Initialize();
 		getstar_effect->PlayEffect();
 		mode_game->effect_server_.Add(getstar_effect);
+
+		se_.Load("Resource/sound/getstar.wav");
+		se_.Play();
 	}
 
 	//プレイヤーとの距離が検出範囲であれば、飛び跳ねる

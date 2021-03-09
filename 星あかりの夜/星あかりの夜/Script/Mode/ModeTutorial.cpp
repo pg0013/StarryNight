@@ -67,6 +67,10 @@ void ModeTutorial::Input()
 		pushed_flag_ = true;
 
 		nextmode_count_ = 1;
+
+		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
+		appframe::ApplicationBase::GetInstance()->se_.Pitch(0.9f);
+		appframe::ApplicationBase::GetInstance()->se_.Play();
 	}
 }
 

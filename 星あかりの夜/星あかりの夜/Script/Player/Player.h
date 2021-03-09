@@ -118,6 +118,7 @@ namespace starrynight
 			 */
 			STATUS GetPlayerStatus() { return status_; }
 
+			sound::PlayWAVE se_;
 		private:
 			/**
 			 * @brief　 移動処理
@@ -200,6 +201,11 @@ namespace starrynight
 			 * @brief　 別のアニメーションに移行するときにアニメーションをブレンドする処理
 			 */
 			void PlayerAnimationBlend();
+
+			/**
+			 * @brief　 ステータスからサウンドを設定する
+			 */
+			void SwitchPlayerSound();
 
 		private:
 			//プレイヤーパラメータ保持クラス

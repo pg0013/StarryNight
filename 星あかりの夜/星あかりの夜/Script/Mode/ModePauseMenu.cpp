@@ -78,8 +78,18 @@ void ModePauseMenu::Input()
 
 	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
 
-	if (trigger_key & PAD_INPUT_UP) { cursol_--; }
-	if (trigger_key & PAD_INPUT_DOWN) { cursol_++; }
+	if (trigger_key & PAD_INPUT_UP)
+	{
+		cursol_--;
+		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
+		appframe::ApplicationBase::GetInstance()->se_.Play();
+	}
+	if (trigger_key & PAD_INPUT_DOWN)
+	{
+		cursol_++;
+		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
+		appframe::ApplicationBase::GetInstance()->se_.Play();
+	}
 
 	cursol_ = (cursol_ + menu_num_) % menu_num_;
 	nextmode_ = cursol_;
@@ -92,6 +102,8 @@ void ModePauseMenu::Input()
 		nextmode_count_ = 60;
 		nextmode_ = cursol_;
 
+		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
+
 		if (nextmode_ == TITLE)
 		{
 			ModeOverlay* modeoverlay = NEW ModeOverlay();
@@ -103,6 +115,8 @@ void ModePauseMenu::Input()
 		else if (nextmode_ == RETURN)
 		{
 			nextmode_count_ = 1;
+
+			appframe::ApplicationBase::GetInstance()->se_.Pitch(0.9f);
 		}
 		else if (nextmode_ == TUTORIAL)
 		{
@@ -111,6 +125,8 @@ void ModePauseMenu::Input()
 			ModeTutorial* mode_tutorial = NEW ModeTutorial();
 			::mode::ModeServer::GetInstance()->Add(mode_tutorial, 3, "Tutorial");
 		}
+
+		appframe::ApplicationBase::GetInstance()->se_.Play();
 	}
 
 	//STARTボタンでポーズメニューを表示
@@ -120,6 +136,11 @@ void ModePauseMenu::Input()
 		nextmode_ = RETURN;
 
 		nextmode_count_ = 1;
+
+		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
+		appframe::ApplicationBase::GetInstance()->se_.Pitch(0.9f);
+		appframe::ApplicationBase::GetInstance()->se_.Play();
+
 	}
 }
 
@@ -165,21 +186,21 @@ bool ModePauseMenu::Render()
 	DrawGraph(0, 0, tutorial_graph_[1], TRUE);
 
 	if (cursol_ == TUTORIAL)
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 10 * GetModeCount()))));
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * GetModeCount()))));
 	DrawGraph(0, 0, tutorial_graph_[0], TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 
 	DrawGraph(0, 0, return_graph_[1], TRUE);
 
 	if (cursol_ == RETURN)
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 10 * GetModeCount()))));
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * GetModeCount()))));
 	DrawGraph(0, 0, return_graph_[0], TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 
 	DrawGraph(0, 0, return_title_graph_[1], TRUE);
 
 	if (cursol_ == TITLE)
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 10 * GetModeCount()))));
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * GetModeCount()))));
 	DrawGraph(0, 0, return_title_graph_[0], TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 

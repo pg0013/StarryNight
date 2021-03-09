@@ -167,6 +167,9 @@ void ModeGame::Input()
 		pause_flag_ = true;
 
 		nextmode_count_ = 1;
+
+		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
+		appframe::ApplicationBase::GetInstance()->se_.Play();
 	}
 }
 

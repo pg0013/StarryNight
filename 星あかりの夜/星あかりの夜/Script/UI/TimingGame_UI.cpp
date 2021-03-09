@@ -112,7 +112,9 @@ void TimingGame_UI::Render()
 	if (shrink_circle_flag_)
 		return;
 
-	DrawRotaGraph(appframe::SCREEN_WIDTH / 2 + 500*timing_exrate_ + 250, appframe::SCREEN_HEIGHT / 2, exrate, angle, timing_judge_[static_cast<int>(CheckTiming())], TRUE);
+	//”»’è•\Ž¦‚ð•`‰æ
+	DrawRotaGraph(appframe::SCREEN_WIDTH / 2 + static_cast<int>(500 * timing_exrate_) + 250, appframe::SCREEN_HEIGHT / 2,
+		exrate, angle, timing_judge_[static_cast<int>(CheckTiming())], TRUE);
 }
 
 void TimingGame_UI::CalcurateScore()
