@@ -83,13 +83,9 @@ void Player::Move()
 		escape = VCross(normal, escape);
 		escape.y = 0.0f;
 
-		if (status_ == STATUS::WALK)
-			escape = VScale(VNorm(escape), walk_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime());
-		else if (status_ == STATUS::RUN)
-			escape = VScale(VNorm(escape), run_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime());
-		else
+		//ƒWƒƒƒ“ƒv’†‚Í•Çü‚è‚É‚æ‚éˆÚ“®¬•ª‚Ì‘‰Á‚ğ¬‚³‚­‚·‚é
+		if (jump_flag_)
 			escape = VNorm(escape);
-
 
 		position_ = old_position;
 		position_ = VAdd(position_, escape);
