@@ -50,7 +50,7 @@ bool ModeGame::Initialize()
 
 	SetShadowMapDrawArea(stage_shadowmap_, VGet(-2500.0f, -1.0f, -2500.0f), VGet(2500.0f, 2500.0f, 2500.0f));
 	SetShadowMapDrawArea(object_shadowmap_, VGet(-2500.0f, -1.0f, -2500.0f), VGet(2500.0f, 2500.0f, 2500.0f));
-	VECTOR light_direction = VGet(0.5f, -0.5f, 0.5f);
+	VECTOR light_direction = VGet(5.0f, -0.5f, 5.0f);
 	SetLightDirection(light_direction);
 	SetShadowMapLightDirection(stage_shadowmap_, light_direction);
 	SetShadowMapLightDirection(object_shadowmap_, light_direction);

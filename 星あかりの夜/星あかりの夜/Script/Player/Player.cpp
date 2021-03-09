@@ -98,8 +98,10 @@ void Player::OutOfStage()
 {
 	if (position_.y < -100)
 	{
-		position_.y = 0;
-		position_ = VAdd(position_, VScale(VNorm(VSub(VGet(0, 0, 0), position_)), 400.0f));
+		//ステージの際に配置
+		float angle = atan2(position_.z, position_.x);
+		float outstage_length = 2450.0f;
+		position_ = VGet(outstage_length * cosf(angle), 0, outstage_length * sinf(angle));
 
 		damage_flag_ = true;
 		damage_anim_flag_ = true;
