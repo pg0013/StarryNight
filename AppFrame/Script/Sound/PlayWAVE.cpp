@@ -140,7 +140,7 @@ namespace sound
 		out_channel = details.InputChannels;
 
 		//volumeが0.0f~1.0fの範囲であるため、-90～90から0~90度へ正規化し、度からラジアンへ変換
-		float rad = (((float)_PosX / (float)appframe::SCREEN_WIDTH) * 90.0f) * (M_PI / 180.0f);
+		float rad = (((float)_PosX / (float)appframe::SCREEN_WIDTH) * 90.0f) * (DX_PI_F / 180.0f);
 
 		/*
 			注:SetOutputMatrixの入出力チャンネルについて
