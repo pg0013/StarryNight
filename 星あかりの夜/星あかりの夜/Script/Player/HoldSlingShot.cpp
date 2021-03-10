@@ -112,6 +112,7 @@ void Player::SlingShotStance()
 		{
 			effect::ShootChargeEffect* charge_effect = NEW effect::ShootChargeEffect();
 
+			charge_effect->Initialize();
 			charge_effect->PlayEffect();
 			mode_game->effect_server_.Add(charge_effect);
 			shoot_charge_effect_flag_ = false;

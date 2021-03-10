@@ -48,6 +48,11 @@ Enemy::Enemy(std::string _handle_name)
 
 Enemy::~Enemy()
 {
+	if (se_.CheckIsRunning())
+	{
+		se_.Pause();
+		se_.Destroy();
+	}
 }
 
 void Enemy::Initialize()
@@ -69,6 +74,8 @@ void Enemy::Process()
 
 	//アニメーション切り替えを行う
 	SwitchEnemyAnimation(old_anim_status);
+	//サウンドの切り替えを行う
+	SwitchEnemySound();
 }
 
 void Enemy::Render()

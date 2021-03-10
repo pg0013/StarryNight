@@ -16,15 +16,25 @@ ShootChargeEffect::ShootChargeEffect()
 {
 	effect_resource_ = LoadEffekseerEffect("Resource/effect/set.efk", 5.0f);
 	effect_frame_ = 120;
+
 }
 
 ShootChargeEffect::~ShootChargeEffect()
 {
+	if (se_.CheckIsRunning())
+	{
+		se_.Pause();
+		se_.Destroy();
+	}
 }
 
 void ShootChargeEffect::Initialize()
 {
 	EffectBase::Initialize();
+
+	se_.Load("Resource/sound/star_charge.wav");
+	se_.SetLoopCount(XAUDIO2_LOOP_INFINITE);
+	se_.Play();
 }
 
 void ShootChargeEffect::Process()
@@ -52,21 +62,20 @@ void ShootChargeEffect::Process()
 
 	SetPlayingEffectPosition();
 
-
 	//プレイヤーが射撃モードでないとき、または星が発射されたらエフェクトを消す
-		mode::ModeGame* mode_game =
-			static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game =
+		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
-		for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+	{
+		if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 		{
-			if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
-			{
-				player::Player* player = static_cast<player::Player*>(*iter);
+			player::Player* player = static_cast<player::Player*>(*iter);
 
-				if (player->GetPlayerStatus() != player::Player::STATUS::SHOOT_START)
-					mode_game->effect_server_.Delete(this);
-			}
+			if (player->GetPlayerStatus() != player::Player::STATUS::SHOOT_START)
+				mode_game->effect_server_.Delete(this);
 		}
+	}
 }
 
 void ShootChargeEffect::Render()

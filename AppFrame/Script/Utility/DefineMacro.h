@@ -23,3 +23,5 @@
 
 //アナログスティックのデッドスペース
 #define ANALOG_MIN (0.2f)
+
+#define CLAMP(v,a,b)  (return min(max(v, a), b))

@@ -100,5 +100,15 @@ namespace utility
 	 */
 	float GetLeftStickRad();
 
+	/**
+	 * @brief ワールド座標をスクリーン座標に変換する
+	 *				画面幅を超えていたら、画面幅の値を返す.
+	 */
+	VECTOR GetScreenPosFromWorldPos(VECTOR& _world_pos);
 
+	/**
+	 * @brief　クランプ関数.
+	 */
+	template<typename T>
+	T clamp(T _value, T _min, T _max);
 }

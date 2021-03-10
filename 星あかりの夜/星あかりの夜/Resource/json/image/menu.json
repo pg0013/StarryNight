@@ -8,6 +8,27 @@
             "ysize": 1080
         },
         {
+            "filename": "menu_text1.png",
+            "xnum": 1,
+            "ynum": 1,
+            "xsize": 1920,
+            "ysize": 1080
+        },
+        {
+            "filename": "menu_text2.png",
+            "xnum": 1,
+            "ynum": 1,
+            "xsize": 1920,
+            "ysize": 1080
+        },
+        {
+            "filename": "menu_text3.png",
+            "xnum": 1,
+            "ynum": 1,
+            "xsize": 1920,
+            "ysize": 1080
+        },
+        {
             "filename": "cloud.png",
             "xnum": 1,
             "ynum": 1,

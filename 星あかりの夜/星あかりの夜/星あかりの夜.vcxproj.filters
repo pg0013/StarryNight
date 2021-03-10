@@ -246,6 +246,9 @@
     <ClCompile Include="Script\Mode\ModeMovie.cpp">
       <Filter>ソース ファイル\Mode</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Enemy\SwitchEnemySound.cpp">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h">

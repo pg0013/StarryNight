@@ -9,6 +9,7 @@
 #include "Star.h"
 #include"../Stage/Stage.h"
 #include"../Player/Player.h"
+#include"../Camera/Camera.h"
 #include"../Effect/GetStarEffect.h"
 #include"../Mode/ModeGame.h"
 
@@ -69,7 +70,7 @@ void Star::Wait()
 
 	VECTOR distance = VSub(player_position, position_);
 	float length = VSize(distance);
-	float detect_length = 500.0f;//検出範囲
+	float detect_length = 800.0f;//検出範囲
 	float touch_length = 100.0f;//取得範囲
 
 	//プレイヤーとの距離が取得範囲ないであれば、followモードへ遷移
@@ -107,6 +108,12 @@ void Star::Wait()
 		{
 			position_.y = ground_position_y_;
 			jump_speed_ = jump_height_;
+
+			se_.Load("Resource/sound/star_wait.wav");
+			se_.Pan(static_cast<int>(utility::GetScreenPosFromWorldPos(position_).x));
+			float volume = 1.0f - VSize(VSub(MV1GetPosition(resource::ResourceServer::GetModelHandle("player")), position_)) / detect_length;
+			se_.SetVolume(volume);
+			se_.Play();
 		}
 
 		position_.y += jump_speed_;

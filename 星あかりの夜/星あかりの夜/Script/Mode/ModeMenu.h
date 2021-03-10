@@ -79,6 +79,7 @@ namespace starrynight
 			handle background_graph_;//”wŒi‰æ‘œ
 			handle stage_num_graph_[3];
 			handle stage_graph_[3];
+			handle stage_text_[3];
 			handle spring_icon_;
 			handle cloud_graph_;
 			handle menu_graph_;
