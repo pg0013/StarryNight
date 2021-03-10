@@ -33,6 +33,8 @@ void Camera::SkyStarCameraInit()
 	mode::ModeOverlay* modeoverlay = NEW mode::ModeOverlay();
 	modeoverlay->Fade(fade_count, FADE_IN);
 	::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
+
+	appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 1.5f);
 }
 
 void Camera::SkyStarCamera()

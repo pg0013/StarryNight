@@ -15,7 +15,7 @@ using namespace starrynight::effect;
 
 ZodiacSignEffect::ZodiacSignEffect(std::string _sign_name)
 {
-	skystar_name = _sign_name;
+	skystar_name_ = _sign_name;
 	std::string filename = "Resource/effect/" + _sign_name + "_before.efk";
 	effect_resource_ = LoadEffekseerEffect(filename.c_str(), 1.0f);
 	filename = "Resource/effect/" + _sign_name + "_after01.efk";
@@ -56,10 +56,15 @@ ZodiacSignEffect::~ZodiacSignEffect()
 		DeleteEffekseerEffect(after_effect_resource_[i]);
 	}
 
-	if (se_.CheckIsRunning())
+	if (se1_.CheckIsRunning())
 	{
-		se_.Pause();
-		se_.Destroy();
+		se1_.Pause();
+		se1_.Destroy();
+	}
+	if (se2_.CheckIsRunning())
+	{
+		se2_.Pause();
+		se2_.Destroy();
 	}
 }
 
@@ -73,8 +78,9 @@ void ZodiacSignEffect::Process()
 	EffectBase::Process();
 
 	DrawCompleteEffect();
+	PlayEffectSound();
 
-	VECTOR skystar_position = MV1GetPosition(resource::ResourceServer::GetModelHandle(skystar_name));
+	VECTOR skystar_position = MV1GetPosition(resource::ResourceServer::GetModelHandle(skystar_name_));
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 	VECTOR player_rotation = MV1GetRotationXYZ(resource::ResourceServer::GetModelHandle("player"));
 
@@ -130,7 +136,9 @@ void ZodiacSignEffect::DrawCompleteEffect()
 		return;
 
 	if (start_frame_ == 0)
+	{
 		start_frame_ = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount();
+	}
 
 	int elapsed_frame = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - start_frame_;
 
@@ -161,9 +169,96 @@ void ZodiacSignEffect::DrawCompleteEffect()
 		timing_effect->PlayEffect();
 		mode_game->effect_server_.Add(timing_effect);
 		once_flag_ = true;
+	}
+}
 
-		se_.Load("Resource/sound/skystar_complete.wav");
-		se_.Play();
-		se_.Fade(0.0f, 2.0f);
+void ZodiacSignEffect::PlayEffectSound()
+{
+	if (camera::Camera::GetInstance()->GetStatus() != camera::Camera::STATUS::SKYSTAR)
+		return;
+
+	int elapsed_frame = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - start_frame_;
+
+	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+
+	if (elapsed_frame == switch_effect_frame_ + complete_effect_startframe_)
+	{
+		se1_.Load("Resource/sound/skystar_complete.wav");
+		se1_.Play();
+		se1_.Fade(0.0f, 2.0f);
+		appframe::ApplicationBase::GetInstance()->bgm_.Pause();
+	}
+
+	if (skystar_name_ == "ohitsuji")
+	{
+		if (elapsed_frame == switch_effect_frame_ + 0)
+		{
+			se2_.Load("Resource/sound/skystar_make.wav");
+			se2_.Play();
+		}
+		if (elapsed_frame == switch_effect_frame_ + 10)
+		{
+			se2_.Load("Resource/sound/skystar_make.wav");
+			se2_.Play();
+		}
+		if (elapsed_frame == switch_effect_frame_ + 30)
+		{
+			se2_.Load("Resource/sound/skystar_make.wav");
+			se2_.Play();
+		}
+		if (elapsed_frame == switch_effect_frame_ + complete_effect_startframe_ + 30)
+		{
+			se2_.Load("Resource/sound/skystar_particle.wav");
+			se2_.Play();
+			se1_.Fade(1.0f, 1.0f);
+		}
+	}
+	else if (skystar_name_ == "oushi")
+	{
+		if (elapsed_frame == switch_effect_frame_ + 0)
+		{
+			se2_.Load("Resource/sound/skystar_make.wav");
+			se2_.Play();
+		}
+		if (elapsed_frame == switch_effect_frame_ + 40)
+		{
+			se2_.Load("Resource/sound/skystar_make.wav");
+			se2_.Play();
+		}
+		if (elapsed_frame == switch_effect_frame_ + 50)
+		{
+			se2_.Load("Resource/sound/skystar_make.wav");
+			se2_.Play();
+		}
+		if (elapsed_frame == switch_effect_frame_ + complete_effect_startframe_ + 30)
+		{
+			se2_.Load("Resource/sound/skystar_particle.wav");
+			se2_.Play();
+			se1_.Fade(1.0f, 1.0f);
+		}
+	}
+	else if (skystar_name_ == "futago")
+	{
+		if (elapsed_frame == switch_effect_frame_ + 0)
+		{
+			se2_.Load("Resource/sound/skystar_make.wav");
+			se2_.Play();
+		}
+		if (elapsed_frame == switch_effect_frame_ + 10)
+		{
+			se2_.Load("Resource/sound/skystar_make.wav");
+			se2_.Play();
+		}
+		if (elapsed_frame == switch_effect_frame_ + 40)
+		{
+			se2_.Load("Resource/sound/skystar_make.wav");
+			se2_.Play();
+		}
+		if (elapsed_frame == switch_effect_frame_ + complete_effect_startframe_ + 30)
+		{
+			se2_.Load("Resource/sound/skystar_particle.wav");
+			se2_.Play();
+			se1_.Fade(1.0f, 1.0f);
+		}
 	}
 }
