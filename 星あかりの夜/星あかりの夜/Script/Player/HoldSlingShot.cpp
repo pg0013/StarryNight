@@ -85,7 +85,7 @@ void Player::HoldSlingShot()
 		status_ = STATUS::WAIT;
 		slingshot_flag_ = false;
 		selected_skystar_flag_ = false;
-		mode_game->SetPlayerStarNum(1);//todo
+		mode_game->SetPlayerStarNum(0);
 	}
 }
 

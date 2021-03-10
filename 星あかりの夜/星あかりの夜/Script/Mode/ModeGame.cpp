@@ -19,7 +19,7 @@ ModeGame::ModeGame(std::string _stage_name)
 {
 	stage_name_ = _stage_name;
 	stop_object_process_ = false;
-	player_star_num_ = 1;//todo
+	player_star_num_ = 0;
 	game_score_ = 0;
 	regulations_score_ = 30000;
 	fade_count_ = 0;
