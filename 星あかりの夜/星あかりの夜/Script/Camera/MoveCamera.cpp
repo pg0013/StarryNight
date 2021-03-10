@@ -13,6 +13,25 @@ using namespace starrynight::camera;
 void Camera::MoveCamera()
 {
 	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
+	int key = appframe::ApplicationBase::GetInstance()->GetKey();
+	//スティックの移動量と角度を計算
+	float camera_rad = camera::Camera::GetInstance()->GetCameraRad();
+	float length = utility::GetLeftStickLength();
+	float rad = utility::GetLeftStickRad();
+
+	length *= 5.0f;
+
+	VECTOR move = { 0,0,0 };
+
+	move.x = cos(rad + camera_rad) * length;
+	move.z = sin(rad + camera_rad) * length;
+
+		target_ = VAdd(target_, move);
+
+		if (key & PAD_INPUT_5)
+			target_.y -= 5.0f;
+		if (key & PAD_INPUT_6)
+			target_.y += 5.0f;
 
 	float stick_rx, stick_ry;//右アナログスティックの座標
 
@@ -21,7 +40,6 @@ void Camera::MoveCamera()
 	stick_ry = -x_input.ThumbRY / THUMB_MAX;
 
 	//カメラ角度を取得
-	float camera_rad = GetCameraRad();
 
 	//右スティックカメラ回転
 	VECTOR old_position = position_;
@@ -54,11 +72,9 @@ void Camera::MoveCamera()
 		camera_distance_ += move_speed_;
 	}
 
-
 	//カメラの左右位置を更新
 	position_.x = target_.x + camera_distance_ * cos(camera_rad);
 	position_.z = target_.z + camera_distance_ * sin(camera_rad);
 
 	//カメラを上に移動する
-
 }

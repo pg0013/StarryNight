@@ -71,7 +71,7 @@ void Player::HoldSlingShot()
 	{
 		camera::Camera::GetInstance()->SkyStarCameraInit();
 		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::SKYSTAR);
-		mode_game->SetNextMode(420,40);
+		//mode_game->SetNextMode(420,40);
 	}
 	else
 	{

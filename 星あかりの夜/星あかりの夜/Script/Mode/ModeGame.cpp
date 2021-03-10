@@ -8,6 +8,7 @@
 
 #include "ModeGame.h"
 #include"ModeGameClear.h"
+//#include"ModeGameOver.h"
 #include"ModeOverlay.h"
 #include"ModePauseMenu.h"
 #include"../Player/Player.h"
@@ -18,7 +19,7 @@ ModeGame::ModeGame(std::string _stage_name)
 {
 	stage_name_ = _stage_name;
 	stop_object_process_ = false;
-	player_star_num_ = 7;
+	player_star_num_ = 0;
 	game_score_ = 0;
 	regulations_score_ = 30000;
 	fade_count_ = 0;
@@ -26,6 +27,10 @@ ModeGame::ModeGame(std::string _stage_name)
 	pushed_flag_ = false;
 	pause_flag_ = false;
 	score_rank_ = SCORE_RANK::LOW;
+	result_ = -1;
+
+	stage_shadowmap_ = MakeShadowMap(8192, 8192);
+	object_shadowmap_ = MakeShadowMap(8192, 8192);
 }
 
 ModeGame::~ModeGame()
@@ -38,6 +43,15 @@ bool ModeGame::Initialize()
 
 	camera_.Initialize();
 	stage_.Initialize(stage_name_);
+	ui_.Initialize();
+
+	SetShadowMapDrawArea(stage_shadowmap_, VGet(-2500.0f, -1.0f, -2500.0f), VGet(2500.0f, 2500.0f, 2500.0f));
+	SetShadowMapDrawArea(object_shadowmap_, VGet(-2500.0f, -1.0f, -2500.0f), VGet(2500.0f, 2500.0f, 2500.0f));
+	VECTOR light_direction = VGet(-0.1f, -0.05f, 0.1f);
+	SetLightDirection(light_direction);
+	SetShadowMapLightDirection(stage_shadowmap_, light_direction);
+	SetShadowMapLightDirection(object_shadowmap_, light_direction);
+	SetLightAmbColor(GetColorF(-0.05f, -0.05f, -0.05f, 0.0f));
 
 	return true;
 }
@@ -45,10 +59,13 @@ bool ModeGame::Initialize()
 bool ModeGame::Terminate()
 {
 	::mode::ModeBase::Terminate();
-
 	object_server_.Clear();
 	effect_server_.Clear();
+	stage_.ClearHandle();
 	//ui_.Terminate();
+
+	DeleteShadowMap(stage_shadowmap_);
+	DeleteShadowMap(object_shadowmap_);
 
 	return true;
 }
@@ -68,24 +85,37 @@ bool ModeGame::Process()
 
 	Input();
 	NextMode();
+
 	return true;
 }
 
 bool ModeGame::Render()
 {
 	clsDx();
-
 	::mode::ModeBase::Render();
 
 	SetUseZBuffer3D(TRUE);
 	SetWriteZBuffer3D(TRUE);
 
-	SetLightAmbColor(GetColorF(0.2f, 0.2f, 0.2f, 0.0f));
-
 	camera_.Render();
 
+	if (GetModeCount() == 1)
+	{
+		ShadowMap_DrawSetup(stage_shadowmap_);
+		stage_.Render();
+		ShadowMap_DrawEnd();
+	}
+
+	ShadowMap_DrawSetup(object_shadowmap_);
+	object_server_.Render();
+	ShadowMap_DrawEnd();
+
+	SetUseShadowMap(0, stage_shadowmap_);
+	SetUseShadowMap(1, object_shadowmap_);
 	stage_.Render();
 	object_server_.Render();
+	SetUseShadowMap(1, -1);
+
 	effect_server_.Render();
 	//ui_.Render();
 
@@ -104,12 +134,13 @@ bool ModeGame::Render()
 	return true;
 }
 
-void ModeGame::SetNextMode(int _count, int _fade_count)
+void ModeGame::SetNextMode(int _count, int _fade_count, int _result)
 {
 	pushed_flag_ = true;
 
 	nextmode_count_ = _count;
 	fade_count_ = _fade_count;
+	result_ = _result;
 }
 
 void ModeGame::Input()
@@ -127,9 +158,6 @@ void ModeGame::Input()
 
 		nextmode_count_ = 1;
 
-		//ModeOverlay* modeoverlay = NEW ModeOverlay();
-		//modeoverlay->Capture(nextmode_count_);
-		//::mode::ModeServer::GetInstance()->Add(modeoverlay, 2, "Overlay");
 	}
 }
 
@@ -140,13 +168,13 @@ void ModeGame::NextMode()
 
 	nextmode_count_--;
 
-
 	if (nextmode_count_ == fade_count_ &&
 		pause_flag_ == false)
 	{
 		ModeOverlay* modeoverlay = NEW ModeOverlay();
 		modeoverlay->Fade(fade_count_, FADE_OUT);
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
+
 	}
 
 	if (nextmode_count_ == 0)
@@ -161,8 +189,17 @@ void ModeGame::NextMode()
 			return;
 		}
 
-		ModeGameClear* mode_gameclear = NEW ModeGameClear(game_score_);
-		::mode::ModeServer::GetInstance()->Add(mode_gameclear, 0, "GameClear");
-		::mode::ModeServer::GetInstance()->Del(this);
+		if (result_ == 0)
+		{
+			ModeGameClear* mode_gameclear = NEW ModeGameClear(game_score_);
+			::mode::ModeServer::GetInstance()->Add(mode_gameclear, 0, "GameClear");
+			::mode::ModeServer::GetInstance()->Del(this);
+		}
+		else if (result_ == 1)
+		{
+			//mode::ModeGameOver* mode_gameover = NEW mode::ModeGameOver();
+			//::mode::ModeServer::GetInstance()->Add(mode_gameover, 0, "GameOver");
+			//::mode::ModeServer::GetInstance()->Del(this);
+		}
 	}
 }
