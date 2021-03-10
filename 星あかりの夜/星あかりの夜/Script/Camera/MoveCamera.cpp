@@ -36,6 +36,34 @@ void Camera::MoveCamera()
 	position_.x = target_.x + camera_distance_ * cos(camera_rad);
 	position_.z = target_.z + camera_distance_ * sin(camera_rad);
 
+	//カメラと壁の押し出し処理
+	while (1)
+	{
+		//プレイヤーのカプセル情報
+		VECTOR sphere_position = position_;
+		float radius = 60.0f;
+
+		MV1_COLL_RESULT_POLY_DIM hit_poly_wallpush;
+		hit_poly_wallpush = stage::Stage::GetInstance()->GetHitSphereToWall(sphere_position, radius);
+
+		if (hit_poly_wallpush.HitNum == 0)
+		{
+			MV1CollResultPolyDimTerminate(hit_poly_wallpush);
+			break;
+		}
+
+		VECTOR normal = { 0,0,0 };
+		for (int i = 0; i < hit_poly_wallpush.HitNum; i++)
+		{
+			normal = VAdd(normal, VNorm(hit_poly_wallpush.Dim[i].Normal));
+		}
+		normal = VNorm(normal);
+
+		position_ = VAdd(position_, VScale(normal, 0.5f));
+
+		MV1CollResultPolyDimTerminate(hit_poly_wallpush);
+	}
+
 	//カメラを上に移動する
 	if (stick_ry < -ANALOG_MIN)
 	{

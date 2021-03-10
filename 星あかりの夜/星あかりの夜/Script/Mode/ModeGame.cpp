@@ -19,7 +19,7 @@ ModeGame::ModeGame(std::string _stage_name)
 {
 	stage_name_ = _stage_name;
 	stop_object_process_ = false;
-	player_star_num_ = 0;
+	player_star_num_ = 1;//todo
 	game_score_ = 0;
 	regulations_score_ = 30000;
 	fade_count_ = 0;
@@ -59,7 +59,7 @@ bool ModeGame::Initialize()
 	appframe::ApplicationBase::GetInstance()->bgm_.Load("Resource/sound/ingame_bgm.wav");
 	appframe::ApplicationBase::GetInstance()->bgm_.SetVolume(1.0f);
 	appframe::ApplicationBase::GetInstance()->bgm_.SetLoopCount(XAUDIO2_LOOP_INFINITE);
-	appframe::ApplicationBase::GetInstance()->bgm_.PlayWithLoop(0.0f, 240.0f);
+	appframe::ApplicationBase::GetInstance()->bgm_.PlayWithLoop(0.0f, 234.5f);
 
 	return true;
 }

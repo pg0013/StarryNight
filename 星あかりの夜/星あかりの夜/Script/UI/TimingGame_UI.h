@@ -110,7 +110,6 @@ namespace starrynight
 				EXCELLENT, GOOD, BAD
 			};
 		private:
-
 			/**
 			 * @brief　 タイミングゲームのタイミングを評価する
 			 *
@@ -122,6 +121,8 @@ namespace starrynight
 			handle circle_guide_;
 			handle timing_circle_;
 			handle timing_judge_[3];
+
+			sound::PlayWAVE se_;
 
 			bool draw_timing_guide_;//trueでタイミングゲージを描画するフラグ
 			bool launch_star_shoot_;//trueでプレイヤーがスターを発射できるフラグ

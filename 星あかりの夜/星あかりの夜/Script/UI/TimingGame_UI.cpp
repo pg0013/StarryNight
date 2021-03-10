@@ -20,10 +20,17 @@ TimingGame_UI::TimingGame_UI()
 	timing_exrate_ = 1.0f;
 	presssed_frame_ = 0;
 	select_star_frame_ = 0;
+
+	resource::ResourceServer::LoadSound("Resource/sound/timing_se.wav");
 }
 
 TimingGame_UI::~TimingGame_UI()
 {
+	if (se_.CheckIsRunning())
+	{
+		se_.Pause();
+		se_.Destroy();
+	}
 }
 
 void TimingGame_UI::Initialize()
@@ -53,6 +60,15 @@ void TimingGame_UI::Process()
 		//‰~‚Ìk¬‚ð’âŽ~
 		shrink_circle_flag_ = false;
 		presssed_frame_ = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount();
+
+		se_.Load("Resource/sound/timing_se.wav");
+		if (CheckTiming() == TIMING_STATUS::EXCELLENT)
+			se_.Pitch(1.0f);
+		else if (CheckTiming() == TIMING_STATUS::GOOD)
+			se_.Pitch(0.9f);
+		else
+			se_.Pitch(0.8f);
+		se_.Play();
 	}
 
 	int elapsed_frame = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - presssed_frame_;

@@ -122,9 +122,9 @@ void Player::Move()
 			}
 
 			VECTOR normal = { 0,0,0 };
-			for (int i = 0; i < hit_poly_wall.HitNum; i++)
+			for (int i = 0; i < hit_poly_wallpush.HitNum; i++)
 			{
-				normal = VAdd(normal, VNorm(hit_poly_wall.Dim[i].Normal));
+				normal = VAdd(normal, VNorm(hit_poly_wallpush.Dim[i].Normal));
 			}
 
 			//壁に頭がぶつかるとき以外は、押し出しベクトルのy成分は0にする
