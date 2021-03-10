@@ -41,6 +41,7 @@
     <ClCompile Include="Script\Enemy\EnemyParameters.cpp" />
     <ClCompile Include="Script\Enemy\Enemy_Move.cpp" />
     <ClCompile Include="Script\Enemy\SwitchEnemyAnimation.cpp" />
+    <ClCompile Include="Script\Enemy\SwitchEnemySound.cpp" />
     <ClCompile Include="Script\Enemy\SwitchStatus.cpp" />
     <ClCompile Include="Script\Enemy\Tracking.cpp" />
     <ClCompile Include="Script\Mode\ModeGame.cpp" />

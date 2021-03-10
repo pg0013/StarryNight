@@ -45,8 +45,6 @@ namespace starrynight
 			virtual void Render() override;
 
 		private:
-
-
 			/**
 			 * @brief　 エネミーのさまよう移動処理
 			 *
@@ -115,6 +113,10 @@ namespace starrynight
 			 */
 			void SwitchEnemyAnimation(ANIM_STATUS _old_status);
 
+			/**
+			 * @brief SEの切り替えを行う処理.
+			 */
+			void SwitchEnemySound();
 		private:
 			//エネミーパラメータ保持クラス
 			EnemyParameters enemy_param_;
@@ -142,6 +144,8 @@ namespace starrynight
 			float anim_total_time_;//アニメーション総再生時間
 			float anim_play_time_;//アニメーション再生時間
 			bool anim_loop_flag_;//アニメーションをループするかどうか
+
+			sound::PlayWAVE se_;//敵モーションSE
 		};
 	}
 }

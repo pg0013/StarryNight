@@ -112,4 +112,21 @@ namespace utility
 		float rad = static_cast<float>(atan2(stick_lx, stick_ly));
 		return rad;
 	}
+
+	VECTOR GetScreenPosFromWorldPos(VECTOR& _world_pos)
+	{
+		VECTOR screen_pos = ConvWorldPosToScreenPos(_world_pos);
+
+		//画面サイズに値を制限する
+		screen_pos.x = clamp(screen_pos.x, 0.0f, static_cast<float>(appframe::SCREEN_WIDTH));
+		screen_pos.y = clamp(screen_pos.y, 0.0f, static_cast<float>(appframe::SCREEN_HEIGHT));
+
+		return screen_pos;
+	}
+
+	template<typename T>
+	T clamp(T _value, T _min, T _max)
+	{
+		return min(max(_value, _min), _max);
+	}
 }
