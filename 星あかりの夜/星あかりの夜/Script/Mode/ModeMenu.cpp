@@ -178,6 +178,7 @@ bool ModeMenu::Render()
 
 	DrawGraph(0, 0, background_graph_, TRUE);
 	DrawGraph(0, 0, cloud_graph_, TRUE);
+	DrawRotaGraph(stage_icon_x, stage_icon_y, 0.35, 0.0, stage_graph_[cursol_], FALSE);
 	DrawGraph(0, 0, menu_graph_, TRUE);
 	DrawGraph(0, 0, stage_text_[cursol_], TRUE);
 
@@ -185,7 +186,6 @@ bool ModeMenu::Render()
 	DrawRotaGraph(icon_x, icon_y, 1.0, 0.0, stage_num_graph_[cursol_], TRUE);
 	DrawRotaGraph(stage_goal_x, stage_goal_y, 1.0, 0.0, stage_goal_graph_, TRUE);
 
-	DrawRotaGraph(stage_icon_x, stage_icon_y, 0.35, 0.0, stage_graph_[cursol_], FALSE);
 
 	return true;
 }
