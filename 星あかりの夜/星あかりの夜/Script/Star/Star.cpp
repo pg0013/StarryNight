@@ -93,6 +93,9 @@ void Star::Wait()
 		getstar_effect->PlayEffect();
 		mode_game->effect_server_.Add(getstar_effect);
 
+		//連れている星を見ると回転が少しずれているように、回転値を設定する
+		rotation_.y = DEG2RAD(45.0f * star_num_);
+
 		se_.Load("Resource/sound/getstar.wav");
 		se_.Play();
 	}
@@ -132,8 +135,8 @@ void Star::Follow()
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 	player_position = VAdd(player_position, VGet(0.0f, 50.0f, 0.0f));
 
+	float move_min_size = 0.05f;
 	//前フレームとの移動距離が小さい場合は、キューに追加しない
-	float move_min_size = 1.0f;
 	if (VSize(VSub(player_position, old_player_position_)) > move_min_size)
 		player_pos_history_.push(player_position);
 
@@ -153,29 +156,18 @@ void Star::Follow()
 				break;
 		}
 
-		//if (player_position.y <= 0)
-		//{
-		//	ground_position_y_ = position_.y;
-		//	modegame->SetPlayerStarNum(0);
-
-		//	//queueを初期化
-		//	std::queue<VECTOR> empty;
-		//	std::swap(player_pos_history_, empty);
-
-		//	//待機状態にする
-		//	status_ = STATUS::WAIT;
-		//	return;
-		//}
-
-		VECTOR star_move = VScale(VSub(que_position, position_), 0.1f);
+		//星の移動
+		VECTOR star_move = VScale(VSub(que_position, position_), move_min_size);
 		position_ = VAdd(position_, star_move);
 
+		//使用したプレイヤー座標を削除する
 		if (!player_pos_history_.empty())
 			player_pos_history_.pop();
 	}
 
 	old_player_position_ = player_position;
 
+	//プレイヤーがダメージを受けたかどうかを取得
 	bool player_damaged = false;
 	for (auto iter = modegame->object_server_.List()->begin(); iter != modegame->object_server_.List()->end(); iter++)
 	{
@@ -186,6 +178,8 @@ void Star::Follow()
 			break;
 		}
 	}
+
+	//プレイヤーのスター所持数を初期化し、拡散処理へ遷移
 	if (player_damaged)
 	{
 		status_ = STATUS::DIFFUSION;
@@ -210,7 +204,7 @@ void Star::Diffusion()
 	//ステージ範囲外まで到達したら、移動しない
 	float out_of_stage = 2300.0f;
 	if (VSize(VAdd(position_, move)) > out_of_stage)
-		move = VAdd(move, VScale(VNorm(VSub(VGet(0, 0, 0), position_)),50.0f));
+		move = VAdd(move, VScale(VNorm(VSub(VGet(0, 0, 0), position_)), 50.0f));
 
 	//プレイヤーのカプセル情報
 	VECTOR sphere_positon = VAdd(position_, VGet(0, 50, 0));
