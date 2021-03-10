@@ -6,6 +6,7 @@
 
 #include"PlayWAVE.h"
 #include"../Utility/Utility.h"
+#include"../Application/ApplicationBase.h"
 #include<DxLib.h>
 
 namespace sound
@@ -127,53 +128,53 @@ namespace sound
 		}
 	}
 
-	//void PlayWAVE::Pan(const int _PosX)
-	//{
-	//	int in_channel, out_channel;
-	//	XAUDIO2_VOICE_DETAILS details;
+	void PlayWAVE::Pan(const int _PosX)
+	{
+		int in_channel, out_channel;
+		XAUDIO2_VOICE_DETAILS details;
 
-	//	//入出力チャンネル数の取得
-	//	m_pSourceVoice->GetVoiceDetails(&details);
-	//	in_channel = details.InputChannels;
-	//	m_pMasteringVoice->GetVoiceDetails(&details);
-	//	out_channel = details.InputChannels;
+		//入出力チャンネル数の取得
+		m_pSourceVoice->GetVoiceDetails(&details);
+		in_channel = details.InputChannels;
+		m_pMasteringVoice->GetVoiceDetails(&details);
+		out_channel = details.InputChannels;
 
-	//	//volumeが0.0f~1.0fの範囲であるため、-90～90から0~90度へ正規化し、度からラジアンへ変換
-	//	float rad = (((float)_PosX / (float)illumism::SCREEN_WIDTH) * 90.0f) * (M_PI / 180.0f);
+		//volumeが0.0f~1.0fの範囲であるため、-90～90から0~90度へ正規化し、度からラジアンへ変換
+		float rad = (((float)_PosX / (float)appframe::SCREEN_WIDTH) * 90.0f) * (M_PI / 180.0f);
 
-	//	/*
-	//		注:SetOutputMatrixの入出力チャンネルについて
+		/*
+			注:SetOutputMatrixの入出力チャンネルについて
 
-	//		配列要素数 = 入力チャンネル数 * 出力チャンネル数
-	//		入力→Stereo 2ch 出力→Stereoの場合
-	//							<input>	|	要素番号
-	//		<output>		L		 R		|
-	//				L		   1.0   0.0	|	[0]	[1]
-	//				R		   0.0   1.0	|	[2]	[3]
-	//		のようになる。(行:Output,列:Input)
-	//	*/
+			配列要素数 = 入力チャンネル数 * 出力チャンネル数
+			入力→Stereo 2ch 出力→Stereoの場合
+								<input>	|	要素番号
+			<output>		L		 R		|
+					L		   1.0   0.0	|	[0]	[1]
+					R		   0.0   1.0	|	[2]	[3]
+			のようになる。(行:Output,列:Input)
+		*/
 
-	//	//モノラル
-	//	if (in_channel == 1)
-	//	{
-	//		float pan_volumes[2];
-	//		pan_volumes[0] = cosf(rad);			//Input L > Output L
-	//		pan_volumes[1] = sinf(rad);			//Input R > Output R
+		//モノラル
+		if (in_channel == 1)
+		{
+			float pan_volumes[2];
+			pan_volumes[0] = cosf(rad);			//Input L > Output L
+			pan_volumes[1] = sinf(rad);			//Input R > Output R
 
-	//		m_pSourceVoice->SetOutputMatrix(NULL, in_channel, out_channel, pan_volumes);
-	//	}
-	//	//ステレオ
-	//	if (in_channel == 2)
-	//	{
-	//		float pan_volumes[4];
-	//		pan_volumes[0] = cosf(rad);			//Input L > Output L
-	//		pan_volumes[1] = 0.0f;					//Input R > Output L(いらない)
-	//		pan_volumes[2] = 0.0f;					//Input L > Output R(いらない)
-	//		pan_volumes[3] = sinf(rad);			//Input R > Output R
+			m_pSourceVoice->SetOutputMatrix(NULL, in_channel, out_channel, pan_volumes);
+		}
+		//ステレオ
+		if (in_channel == 2)
+		{
+			float pan_volumes[4];
+			pan_volumes[0] = cosf(rad);			//Input L > Output L
+			pan_volumes[1] = 0.0f;					//Input R > Output L(いらない)
+			pan_volumes[2] = 0.0f;					//Input L > Output R(いらない)
+			pan_volumes[3] = sinf(rad);			//Input R > Output R
 
-	//		m_pSourceVoice->SetOutputMatrix(NULL, in_channel, out_channel, pan_volumes);
-	//	}
-	//}
+			m_pSourceVoice->SetOutputMatrix(NULL, in_channel, out_channel, pan_volumes);
+		}
+	}
 
 	void PlayWAVE::Pitch(const float _pitch)
 	{

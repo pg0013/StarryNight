@@ -27,7 +27,7 @@ void Enemy::SwitchEnemySound()
 
 			se_.RandomPitch(0.3f);
 			//スクリーン上の位置に対して、左右バランスを設定
-			se_.Pan(utility::GetScreenPosFromWorldPos(position_).x);
+			se_.Pan(static_cast<int>(utility::GetScreenPosFromWorldPos(position_).x));
 			//プレイヤーとの距離に対して、音量を設定
 			float volume = 1.0f - VSize(VSub(MV1GetPosition(resource::ResourceServer::GetModelHandle("player")), position_)) / detect_length_;
 			se_.SetVolume(volume);
