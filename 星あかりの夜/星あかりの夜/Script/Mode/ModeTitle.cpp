@@ -20,9 +20,12 @@ ModeTitle::ModeTitle()
 	//画像ハンドルを記録
 	background_graph_ = resource::ResourceServer::GetTexture("title_background.png");
 	start_graph_ = resource::ResourceServer::GetTexture("start.png");
+	exit_graph_ = resource::ResourceServer::GetTexture("exit.png");
 	startline_graph_ = resource::ResourceServer::GetTexture("start_line.png");
 	charactor_graph_ = resource::ResourceServer::GetTexture("charactor.png");
 
+	cursol_ = 0;
+	menu_num_ = 2;
 	pushed_flag_ = false;
 	nextmode_count_ = 0;
 	nextmode_ = MENU;
@@ -74,6 +77,7 @@ bool ModeTitle::Render()
 	DrawGraph(0, 0, background_graph_, TRUE);
 	DrawGraph(0, 0, charactor_graph_, TRUE);
 	DrawGraph(0, 0, start_graph_, TRUE);
+	DrawGraph(1170, 800, exit_graph_, TRUE);
 
 	//ボタンが押されたら点滅速度を上げる
 	if (pushed_flag_ == false)
@@ -81,7 +85,11 @@ bool ModeTitle::Render()
 	else
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 10 * GetModeCount()))));
 
-	DrawGraph(0, 0, startline_graph_, TRUE);
+	if (cursol_ == MENU)
+		DrawGraph(0, 0, startline_graph_, TRUE);
+	if (cursol_ == EXIT)
+		DrawGraph(0, 190, startline_graph_, TRUE);
+
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 
 	return true;
@@ -94,27 +102,28 @@ void ModeTitle::Input()
 	if (pushed_flag_ == true)
 		return;
 
+	if (trigger_key & PAD_INPUT_UP)
+	{
+		cursol_--;
+		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
+		appframe::ApplicationBase::GetInstance()->se_.Play();
+	}
+	if (trigger_key & PAD_INPUT_DOWN)
+	{
+		cursol_++;
+		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
+		appframe::ApplicationBase::GetInstance()->se_.Play();
+	}
+
+	cursol_ = (cursol_ + menu_num_) % menu_num_;
+	nextmode_ = cursol_;
+
 	if (trigger_key & PAD_INPUT_2)
 	{
 		pushed_flag_ = true;
 
 		nextmode_count_ = 60;
-		nextmode_ = MENU;
-
-		ModeOverlay* modeoverlay = NEW ModeOverlay();
-		modeoverlay->Fade(nextmode_count_, FADE_OUT);
-		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
-
-		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se1.wav");
-		appframe::ApplicationBase::GetInstance()->se_.SetVolume(1.0f);
-		appframe::ApplicationBase::GetInstance()->se_.Play();
-	}
-	if (trigger_key & PAD_INPUT_1)
-	{
-		pushed_flag_ = true;
-
-		nextmode_count_ = 60;
-		nextmode_ = EXIT;
+		nextmode_ = cursol_;
 
 		ModeOverlay* modeoverlay = NEW ModeOverlay();
 		modeoverlay->Fade(nextmode_count_, FADE_OUT);
@@ -124,8 +133,6 @@ void ModeTitle::Input()
 		appframe::ApplicationBase::GetInstance()->se_.SetVolume(1.0f);
 		appframe::ApplicationBase::GetInstance()->se_.Play();
 		appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 1.0f);
-
-		appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 1.0f);
 	}
 }
 

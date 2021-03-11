@@ -69,11 +69,14 @@ namespace starrynight
 
 			handle background_graph_;//背景画像
 			handle start_graph_;//スタートボタン画像
+			handle exit_graph_;//おわる画像
 			handle startline_graph_;//ボタン下のライン画像
 			handle charactor_graph_;//キャラクター画像
 
 			::parameters::Parameters param_;//パラメータ読み込みクラス
 
+			int cursol_;
+			int menu_num_;
 			bool pushed_flag_;//ボタンが押されたときのフラグ
 			int nextmode_count_;//次のモードに遷移するまでの時間
 			int nextmode_;
