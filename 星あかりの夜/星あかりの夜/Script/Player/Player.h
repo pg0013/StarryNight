@@ -220,6 +220,7 @@ namespace starrynight
 			float jump_speed_;//ジャンプ速度
 			float gravity_;//重力
 			bool jump_flag_;//ジャンプ状態記録用フラグ
+			int floor_type_;//床の材質
 
 			bool damage_flag_;//ダメージを受けたことを記録するフラグ
 			bool damage_anim_flag_;//ダメージモーションを開始するフラグ

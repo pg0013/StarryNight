@@ -67,8 +67,8 @@ void Star::Process()
 void Star::Wait()
 {
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
+	VECTOR distance = VSub(VAdd(player_position, VGet(0, 80, 0)), VAdd(position_,VGet(0,40,0)));
 
-	VECTOR distance = VSub(player_position, position_);
 	float length = VSize(distance);
 	float detect_length = 800.0f;//検出範囲
 	float touch_length = 100.0f;//取得範囲
@@ -150,7 +150,7 @@ void Star::Follow()
 	//プレイヤーとの距離が設定した間隔より大きい
 	if (VSize(VSub(player_position, position_)) > star_num_ * follow_interval_)
 	{
-		VECTOR que_position;
+		VECTOR que_position = position_;
 
 		while (!player_pos_history_.empty())
 		{

@@ -38,11 +38,6 @@ void Enemy::SwitchEnemySound()
 	case ANIM_STATUS::RUSH:
 		break;
 	case ANIM_STATUS::ATTACK:
-		if (anim_play_time_ == 20)
-		{
-			se_.Load("Resource/sound/enemy_se2.wav");
-			se_.Play();
-		}
 		break;
 	}
 }

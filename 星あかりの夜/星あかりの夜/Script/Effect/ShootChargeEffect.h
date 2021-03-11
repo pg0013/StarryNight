@@ -38,6 +38,7 @@ namespace starrynight
 
 		private:
 			sound::PlayWAVE se_;
+			int frame_;
 		};
 	}
 }

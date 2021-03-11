@@ -167,3 +167,35 @@ MV1_COLL_RESULT_POLY Stage::GetHitLineToShootPoint(VECTOR& _startline, VECTOR& _
 
 	return hit_poly;
 }
+
+int Stage::GetHitFloorType(VECTOR& _startline, VECTOR& _endline)
+{
+	MV1_COLL_RESULT_POLY hit_poly;
+	hit_poly.HitFlag = 0;
+
+	for (auto iter = navimesh_handle_.begin(); iter != navimesh_handle_.end(); iter++)
+	{
+		//床ポリゴンがあるオブジェクトと当たり判定をとる
+		if (MV1SearchFrame((*iter), "floor_NavMesh") > 0)
+		{
+			hit_poly = MV1CollCheck_Line(
+				(*iter),
+				MV1SearchFrame((*iter), "floor_NavMesh"),
+				_startline, _endline);
+		}
+
+		if (!hit_poly.HitFlag)
+			continue;
+		else
+		{
+			// キーの検索
+			auto type = map_floortype_.find((*iter));
+			if (type != map_floortype_.end())
+			{
+				//登録済みなので終了
+				return (*type).second;
+			}
+		}
+	}
+	return -1;
+}

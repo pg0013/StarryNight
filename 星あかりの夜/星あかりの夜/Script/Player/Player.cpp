@@ -26,6 +26,7 @@ Player::Player()
 	jump_speed_ = 0.0f;
 	gravity_ = 0.5f;
 	jump_flag_ = false;
+	floor_type_ = -1;
 
 	damage_flag_ = false;
 	damage_anim_flag_ = false;
@@ -79,7 +80,32 @@ void Player::Damage()
 	if (damage_anim_flag_ == false)
 		return;
 
+	if (status_ != STATUS::DAMAGE)
+		anim_play_time_ = 0;
+
 	status_ = STATUS::DAMAGE;
+
+	if (jump_flag_)
+	{
+		position_.y += jump_speed_;
+
+		//腰から地面までの線分ベクトル
+		VECTOR start_line = VAdd(position_, VGet(0, 40.0f, 0));
+		VECTOR end_line = VAdd(position_, VGet(0, -5.0f, 0));
+
+		//Navimeshとの当たり判定
+		MV1_COLL_RESULT_POLY hit_poly_floor;
+		hit_poly_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
+
+		//ジャンプ開始処理
+		if (hit_poly_floor.HitFlag)
+		{
+			position_.y = hit_poly_floor.HitPosition.y;
+			jump_flag_ = false;
+		}
+		//ジャンプ加速処理
+		jump_speed_ -= gravity_;
+	}
 
 	//所持しているスターの数をリセットする
 	mode::ModeGame* mode_game =

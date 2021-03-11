@@ -56,6 +56,10 @@ bool ModeGame::Initialize()
 	SetShadowMapLightDirection(object_shadowmap_, light_direction);
 	SetLightAmbColor(GetColorF(-0.05f, -0.05f, -0.05f, 0.0f));
 
+	ModeOverlay* modeoverlay = NEW ModeOverlay();
+	modeoverlay->Fade(30, FADE_IN);
+	::mode::ModeServer::GetInstance()->Add(modeoverlay, 1, "Overlay");
+
 	appframe::ApplicationBase::GetInstance()->bgm_.Load("Resource/sound/ingame_bgm.wav");
 	appframe::ApplicationBase::GetInstance()->bgm_.SetVolume(1.0f);
 	appframe::ApplicationBase::GetInstance()->bgm_.SetLoopCount(XAUDIO2_LOOP_INFINITE);

@@ -176,6 +176,10 @@ void Player::Launch_Star(VECTOR _star_position)
 	}
 
 	status_ = STATUS::SHOOT_END;
+
+	se_.Load("Resource/sound/shoot_voice.wav");
+	se_.Play();
+
 	mode_game->ui_.timing_ui_.SetLaunchStarShoot(false);
 }
 

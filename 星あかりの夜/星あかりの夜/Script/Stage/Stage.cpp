@@ -12,6 +12,7 @@
 #include"../Enemy/Enemy.h"
 #include"../Effect/ShootPointEffect.h"
 #include"../Effect/StageFlowEffect.h"
+#include<algorithm>
 
 using namespace starrynight::stage;
 
@@ -22,6 +23,7 @@ Stage::Stage()
 	instance_ = this;
 	stage_handle_.clear();
 	navimesh_handle_.clear();
+	map_floortype_.clear();
 }
 
 Stage::~Stage()
@@ -64,6 +66,9 @@ void Stage::Initialize(std::string _stage_name)
 		{
 			MV1SetupCollInfo(handle, MV1SearchFrame(handle, "floor_NavMesh"), 16, 16, 16);
 			MV1SetFrameVisible(handle, MV1SearchFrame(handle, "floor_NavMesh"), FALSE);
+
+			map_floortype_.emplace(handle, CheckFloorType((*iter).second.filename_));
+
 			navmesh_count++;
 		}
 		if (MV1SearchFrame(handle, "wall_NavMesh") > 0)
@@ -171,4 +176,21 @@ void Stage::ClearHandle()
 		MV1TerminateCollInfo(iter, MV1SearchFrame(iter, "wall_NavMesh"));
 	}
 	navimesh_handle_.clear();
+	map_floortype_.clear();
+}
+
+int Stage::CheckFloorType(std::string _filename)
+{
+	//ファイル名を小文字に変更
+	std::transform(_filename.begin(), _filename.end(), _filename.begin(), tolower);
+
+	if (std::equal(_filename.begin(), _filename.begin() + 3, "rock"))
+		return ROCK;
+	else if (std::equal(_filename.begin(), _filename.begin() + 4, "stone") ||
+		std::equal(_filename.begin(), _filename.begin() + 5, "stairs"))
+		return ROCK;
+	else if (std::equal(_filename.begin(), _filename.begin() + 5, "bridge"))
+		return WOOD;
+	else
+		return GRASS;
 }

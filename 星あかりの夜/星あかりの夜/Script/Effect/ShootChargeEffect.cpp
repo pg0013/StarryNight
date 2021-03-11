@@ -16,7 +16,7 @@ ShootChargeEffect::ShootChargeEffect()
 {
 	effect_resource_ = LoadEffekseerEffect("Resource/effect/set.efk", 5.0f);
 	effect_frame_ = 120;
-
+	frame_ = 0;
 }
 
 ShootChargeEffect::~ShootChargeEffect()
@@ -31,15 +31,18 @@ ShootChargeEffect::~ShootChargeEffect()
 void ShootChargeEffect::Initialize()
 {
 	EffectBase::Initialize();
-
-	se_.Load("Resource/sound/star_charge.wav");
-	se_.SetLoopCount(XAUDIO2_LOOP_INFINITE);
-	se_.Play();
 }
 
 void ShootChargeEffect::Process()
 {
 	EffectBase::Process();
+
+	if (frame_ % 30 == 0)
+	{
+		se_.Load("Resource/sound/star_charge.wav");
+		se_.SetVolume_dB(-20.0f);
+		se_.Play();
+	}
 
 	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
 
@@ -76,6 +79,8 @@ void ShootChargeEffect::Process()
 				mode_game->effect_server_.Delete(this);
 		}
 	}
+
+	frame_++;
 }
 
 void ShootChargeEffect::Render()

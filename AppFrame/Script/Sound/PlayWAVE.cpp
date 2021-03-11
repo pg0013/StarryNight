@@ -7,7 +7,7 @@
 #include"PlayWAVE.h"
 #include"../Utility/Utility.h"
 #include"../Application/ApplicationBase.h"
-#include<DxLib.h>
+#include"DxLib.h"
 
 namespace sound
 {
@@ -316,6 +316,51 @@ namespace sound
 		WAVEFORMATEX wfx = m_WaveReader.Getwfx();
 		float freq = 2.0f * sinf(static_cast<float>(M_PI) * _freqency / wfx.nSamplesPerSec);
 		m_pSourceVoice->SetEffectParameters(0, &freq, sizeof(freq));
+	}
+
+	void PlayWAVE::Echo(float _wetdrymix, float _delay, float _feedback)
+	{
+		IUnknown* pXAPO;
+		::CreateFX(__uuidof(::FXEcho), &pXAPO);
+
+		XAUDIO2_EFFECT_DESCRIPTOR descriptor;
+		descriptor.InitialState = true;
+		descriptor.OutputChannels = 2;
+		descriptor.pEffect = pXAPO;
+
+		XAUDIO2_EFFECT_CHAIN chain;
+		chain.EffectCount = 1;
+		chain.pEffectDescriptors = &descriptor;
+
+		m_pSourceVoice->SetEffectChain(&chain);
+		pXAPO->Release();
+
+		//エコーパラメータ
+		FXECHO_PARAMETERS EchoParam;
+		EchoParam.WetDryMix = _wetdrymix;
+		EchoParam.Delay = _delay;
+		EchoParam.Feedback = _feedback;
+
+		//エフェクトを挿入
+		m_pSourceVoice->SetEffectParameters(0, &EchoParam, sizeof(EchoParam));
+	}
+
+	void PlayWAVE::Reverb()
+	{
+		IUnknown* pXAPO;
+		CreateAudioReverb(&pXAPO);
+
+		XAUDIO2_EFFECT_DESCRIPTOR descriptor;
+		descriptor.InitialState = true;
+		descriptor.OutputChannels = 2;
+		descriptor.pEffect = pXAPO;
+
+		XAUDIO2_EFFECT_CHAIN chain;
+		chain.EffectCount = 1;
+		chain.pEffectDescriptors = &descriptor;
+
+		m_pSourceVoice->SetEffectChain(&chain);
+		pXAPO->Release();
 	}
 
 	void PlayWAVE::Play()

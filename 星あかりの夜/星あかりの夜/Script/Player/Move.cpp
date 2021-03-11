@@ -60,6 +60,7 @@ void Player::Move()
 	VECTOR end_line = VAdd(position_, VGet(0, -30.0f, 0));
 
 	hit_poly_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
+	floor_type_ = stage::Stage::GetInstance()->GetHitFloorType(start_line, end_line);
 
 	//プレイヤーのカプセル情報
 	VECTOR capsule_positon1 = VAdd(position_, VGet(0, 100, 0));

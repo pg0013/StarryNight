@@ -67,7 +67,6 @@ void Enemy::SwitchStatus(ANIM_STATUS _old_status)
 					player::Player* player = static_cast<player::Player*>(*iter);
 					player->SetRotation(VGet(0.0f, rotation_.y + DEG2RAD(180.0f), 0.0f));
 					player->SetDamageFlag(true);
-
 					break;
 				}
 			}
@@ -82,6 +81,10 @@ void Enemy::SwitchStatus(ANIM_STATUS _old_status)
 
 			damage_effect->PlayEffect();
 			mode_game->effect_server_.Add(damage_effect);
+
+			se_.Load("Resource/sound/enemy_se2.wav");
+			se_.Play();
+			se_.Fade(0.0f, 1.5f);
 
 			attacked_flag_ = true;
 		}

@@ -7,6 +7,7 @@
  */
 
 #include "Player.h"
+#include"../Stage/Stage.h"
 using namespace starrynight::player;
 
 void Player::SwitchPlayerSound()
@@ -24,7 +25,16 @@ void Player::SwitchPlayerSound()
 		if (anim_play_time_ == 0 ||
 			anim_play_time_ == 40)
 		{
-			se_.Load("Resource/sound/grass_walk.wav");
+			switch (floor_type_)
+			{
+			case GRASS:
+				se_.Load("Resource/sound/grass_walk.wav"); break;
+			case ROCK:
+				se_.Load("Resource/sound/rock_walk.wav"); break;
+			case WOOD:
+				se_.Load("Resource/sound/wood_walk.wav"); break;
+			}
+			se_.SetVolume_dB(-12.0f);
 			se_.RandomPitch(0.3f);
 			se_.Play();
 		}
@@ -33,7 +43,16 @@ void Player::SwitchPlayerSound()
 		if (anim_play_time_ == 8 ||
 			anim_play_time_ == 30)
 		{
-			se_.Load("Resource/sound/grass_run.wav");
+			switch (floor_type_)
+			{
+			case GRASS:
+				se_.Load("Resource/sound/grass_run.wav"); break;
+			case ROCK:
+				se_.Load("Resource/sound/rock_run.wav"); break;
+			case WOOD:
+				se_.Load("Resource/sound/wood_walk.wav"); break;
+			}
+			se_.SetVolume_dB(-12.0f);
 			se_.RandomPitch(0.3f);
 			se_.Play();
 		}
@@ -57,10 +76,9 @@ void Player::SwitchPlayerSound()
 		else
 		{
 			se_.Load("Resource/sound/shirimoti.wav");
+			se_.SetVolume_dB(-12.0f);
 			se_.Play();
 		}
-		break;
-	case STATUS::SHOOT_START:
 		break;
 	case STATUS::SHOOT_END:
 		if (anim_play_time_ == 0)

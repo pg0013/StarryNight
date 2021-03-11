@@ -33,10 +33,17 @@ ModeGameClear::ModeGameClear(int _score)
 	menu_num_ = 2;
 	nextmode_count_ = 0;
 	pushed_flag_ = false;
+
+	se_.Load("Resource/sound/success_voice.wav");
 }
 
 ModeGameClear::~ModeGameClear()
 {
+	if (se_.CheckIsRunning())
+	{
+		se_.Pause();
+		se_.Destroy();
+	}
 }
 
 bool ModeGameClear::Initialize()
@@ -54,6 +61,7 @@ bool ModeGameClear::Initialize()
 	appframe::ApplicationBase::GetInstance()->bgm_.SetVolume(1.0f);
 	appframe::ApplicationBase::GetInstance()->bgm_.SetLoopCount(0);
 	appframe::ApplicationBase::GetInstance()->bgm_.Play();
+
 
 	return true;
 }
@@ -73,6 +81,11 @@ bool ModeGameClear::Terminate()
 bool ModeGameClear::Process()
 {
 	::mode::ModeBase::Process();
+
+	if (GetModeCount() == 60)
+	{
+		se_.Play();
+	}
 
 	Input();
 	NextMode();

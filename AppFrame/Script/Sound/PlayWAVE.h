@@ -13,11 +13,15 @@
 #include<ctime>
 #include<thread>
 #include<xaudio2.h>
+#include<xaudio2fx.h>
+#include"xapofx.h"
 #include"MyFadeXAPO.h"
 #include"MyLowPassFilterXAPO.h"
 #include"MyHighPassFilter.h"
 #include"MyPeakMeterXAPO.h"
 #include"../Resource/ResourceServer.h"
+#pragma comment(lib,"xaudio2.lib")
+
 
 namespace sound
 {
@@ -200,6 +204,16 @@ namespace sound
 		 * @param 	_freqency	遮断周波数
 		 */
 		void HighPassFilter(const float _freqency);
+
+		/**
+		 * @brief　 エコー
+		 *
+		 */
+		void Echo(float _wetdrymix = FXECHO_DEFAULT_WETDRYMIX,
+			float _delay = FXECHO_DEFAULT_DELAY,
+			float _feedback = FXECHO_DEFAULT_FEEDBACK);
+
+		void Reverb();
 
 		/**
 		 * @fn	void PlayWAVE::Play();

@@ -89,8 +89,16 @@ namespace appframe
 	{
 		delete mode_server_;
 
-		bgm_.Pause();
-		se_.Pause();
+		if (bgm_.CheckIsRunning())
+		{
+			bgm_.Pause();
+			bgm_.Destroy();
+		}
+		if (se_.CheckIsRunning())
+		{
+			se_.Pause();
+			se_.Destroy();
+		}
 
 		resource::ResourceServer::Release();
 		sound::PlayWAVE::Release();

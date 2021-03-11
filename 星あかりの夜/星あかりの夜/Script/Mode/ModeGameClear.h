@@ -80,6 +80,8 @@ namespace starrynight
 
 			ui::Score_UI score_ui_;
 
+			sound::PlayWAVE se_;
+
 			int cursol_;
 			int menu_num_;
 			int nextmode_count_;

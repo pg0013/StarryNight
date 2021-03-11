@@ -68,19 +68,12 @@ void Camera::MoveCamera()
 	if (stick_ry < -ANALOG_MIN)
 	{
 		position_.y += move_speed_;
-
-		//カメラの高さの上限を設定
-		float camera_max_y = MV1GetPosition(resource::ResourceServer::GetModelHandle("player")).y + 300.0f;
-		if (position_.y > camera_max_y)
-			position_.y = camera_max_y;
-
-		return;
 	}
 
-	//ステージの床との当たり判定
-	MV1_COLL_RESULT_POLY hit_stage;
-	VECTOR hit_end_line = VAdd(position_, VGet(0, -90, 0));
-	hit_stage = stage::Stage::GetInstance()->GetHitLineToFloor(position_, hit_end_line);
+	//カメラの高さの上限を設定
+	float camera_max_y = MV1GetPosition(resource::ResourceServer::GetModelHandle("player")).y + 300.0f;
+	if (position_.y > camera_max_y)
+		position_.y = camera_max_y;
 
 	//カメラの高さを下に移動
 	if (stick_ry > ANALOG_MIN)
@@ -88,24 +81,36 @@ void Camera::MoveCamera()
 		position_.y -= move_speed_;
 	}
 
-	//床との当たり判定を検出
-	if (hit_stage.HitFlag)
-	{
-		float camera_position_min = hit_stage.HitPosition.y + 80;
+	//カメラの高さの下限を設定
+	float camera_y_min = 80;
+	if (position_.y < camera_y_min)
+		position_.y = camera_y_min;
 
-		//床よりカメラが下に行かない
-		//下りの傾斜でカメラが床に沿って移動しない
-		if (old_position.y > camera_position_min)
-			position_.y = old_position.y;
-		else
-			position_.y = camera_position_min;
-
-		return;
-	}
-	else
+	//カメラと床の押し出し処理
+	while (1)
 	{
-		float camera_y_min = 80;
-		if (position_.y < camera_y_min)
-			position_.y = camera_y_min;
+		//プレイヤーのカプセル情報
+		VECTOR sphere_position = position_;
+		float radius = 60.0f;
+
+		MV1_COLL_RESULT_POLY_DIM hit_poly_floorpush;
+		hit_poly_floorpush = stage::Stage::GetInstance()->GetHitSphereToFloor(sphere_position, radius);
+
+		if (hit_poly_floorpush.HitNum == 0)
+		{
+			MV1CollResultPolyDimTerminate(hit_poly_floorpush);
+			break;
+		}
+
+		VECTOR normal = { 0,0,0 };
+		for (int i = 0; i < hit_poly_floorpush.HitNum; i++)
+		{
+			normal = VAdd(normal, VNorm(hit_poly_floorpush.Dim[i].Normal));
+		}
+		normal = VNorm(normal);
+
+		position_ = VAdd(position_, VScale(normal, 0.5f));
+
+		MV1CollResultPolyDimTerminate(hit_poly_floorpush);
 	}
 }

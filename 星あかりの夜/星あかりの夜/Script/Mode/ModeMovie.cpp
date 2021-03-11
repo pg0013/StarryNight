@@ -21,6 +21,7 @@ ModeMovie::ModeMovie()
 
 ModeMovie::~ModeMovie()
 {
+	DeleteGraph(movie_);
 }
 
 bool ModeMovie::Initialize()

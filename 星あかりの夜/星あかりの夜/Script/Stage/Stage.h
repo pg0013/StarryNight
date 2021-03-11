@@ -14,6 +14,13 @@
 #include"../Enemy/EnemyParameters.h"
 #include<vector>
 
+namespace
+{
+	constexpr int GRASS = 0;
+	constexpr int ROCK = 1;
+	constexpr int WOOD = 2;
+}
+
 namespace starrynight
 {
 	namespace stage
@@ -114,7 +121,27 @@ namespace starrynight
 			 */
 			MV1_COLL_RESULT_POLY GetHitLineToShootPoint(VECTOR& _startline, VECTOR& _endline);
 
+			/**
+			 * @brief　 床と線分の当たり判定をし、判定があれば床の材質を返す
+			 *
+			 * @param  _startline　	線分の開始地点
+			 * @param  _endline		線分の終了地点
+			 * @return   床の材質
+			 *				GRASS = 0;
+			 *				ROCK = 1;
+			 *				WOOD = 2;
+			 *				当たり判定がない　-1
+			 */
+			int GetHitFloorType(VECTOR& _startline, VECTOR& _endline);
 		private:
+			/**
+			 * @brief　 ファイル名から床の材質を返す
+			 *
+			 * @param  _filename　モデルのファイル名
+			 * @return   材質のタイプ
+			 */
+			int CheckFloorType(std::string _filename);
+
 			StageParameters stage_param_;//ステージパラメータ管理クラス
 			star::StarParameter star_param_;//スターパラメータ管理クラス
 			star::SkyStarParameter skystar_param_;//星座パラメータ管理クラス
@@ -122,6 +149,7 @@ namespace starrynight
 
 			std::vector<handle> stage_handle_;//ステージモデルのハンドル管理コンテナ
 			std::vector<handle> navimesh_handle_;//ステージの当たり判定管理コンテナ
+			std::unordered_map<handle, int> map_floortype_;//床の材質を格納するコンテナ
 
 			handle skysphere_;//天球用ハンドル
 			handle shootpoint_;//射撃ポイントのハンドル

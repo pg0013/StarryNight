@@ -133,6 +133,8 @@ void ModeTitle::Input()
 		appframe::ApplicationBase::GetInstance()->se_.SetVolume(1.0f);
 		appframe::ApplicationBase::GetInstance()->se_.Play();
 		appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 1.0f);
+		if (cursol_ == EXIT)
+			appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 1.0f);
 	}
 }
 
