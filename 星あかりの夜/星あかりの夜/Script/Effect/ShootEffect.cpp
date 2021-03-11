@@ -20,6 +20,11 @@ ShootEffect::ShootEffect(VECTOR _target)
 
 ShootEffect::~ShootEffect()
 {
+	if (se_.CheckIsRunning())
+	{
+		se_.Pause();
+		se_.Destroy();
+	}
 }
 
 void ShootEffect::Initialize()
@@ -43,6 +48,10 @@ void ShootEffect::Initialize()
 
 	SetPosition(effect_pos);
 	SetRotationToTarget();
+
+	se_.Load("Resource/sound/star_shoot.wav");
+	se_.Play();
+	se_.Fade(0.0f, 1.0f);
 }
 
 void ShootEffect::Process()
