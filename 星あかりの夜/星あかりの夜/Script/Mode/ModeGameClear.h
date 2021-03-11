@@ -24,7 +24,7 @@ namespace starrynight
 			public ::mode::ModeBase
 		{
 		public:
-			ModeGameClear(int _score);
+			ModeGameClear(int _score, std::string _stage_name);
 			~ModeGameClear();
 
 			/**
@@ -86,6 +86,7 @@ namespace starrynight
 			int menu_num_;
 			int nextmode_count_;
 			bool pushed_flag_;
+			std::string stage_name_;
 		};
 	}
 }

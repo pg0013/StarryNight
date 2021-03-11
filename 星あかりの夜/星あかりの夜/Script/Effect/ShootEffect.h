@@ -44,6 +44,7 @@ namespace starrynight
 			void SetRotationToTarget();
 
 			VECTOR shoot_target_;//ËŒ‚‘ÎÛ‚ÌÀ•W
+			sound::PlayWAVE se_;
 		};
 	}
 }

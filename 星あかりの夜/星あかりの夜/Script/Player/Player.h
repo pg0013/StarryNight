@@ -19,7 +19,7 @@ namespace starrynight
 			public object::ObjectBase
 		{
 		public:
-			Player();
+			Player(std::string _stage_name);
 			~Player();
 
 			/**

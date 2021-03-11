@@ -10,12 +10,26 @@
 #include<vector>
 using namespace starrynight::player;
 
-Player::Player()
+Player::Player(std::string _stage_name)
 {
 	player_param_.LoadModelParameters("player");
+
 	std::vector<std::string> param = { "walk_speed","run_speed","rot_speed" };
 	player_param_.LoadPlayerParameters(param);
 	handle_ = resource::ResourceServer::GetModelHandle("player");
+
+	if (std::equal(_stage_name.begin(), _stage_name.end(), "haru_A"))
+	{
+		SetPosition(VGet(-607, 0, -2048));
+	}
+	else if (std::equal(_stage_name.begin(), _stage_name.end(), "haru_B"))
+	{
+		SetPosition(VGet(-85, 0, 2200));
+	}
+	else if (std::equal(_stage_name.begin(), _stage_name.end(), "haru_C"))
+	{
+		SetPosition(VGet(1101, 0, -2020));
+	}
 
 	walk_speed_ = player_param_.GetPlayerParam("walk_speed");
 	run_speed_ = player_param_.GetPlayerParam("run_speed");

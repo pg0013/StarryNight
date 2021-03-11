@@ -10,10 +10,11 @@
 #include"ModeOverlay.h"
 #include"ModeGame.h"
 #include"ModeTitle.h"
+#include<algorithm>
 
 using namespace starrynight::mode;
 
-ModeGameClear::ModeGameClear(int _score)
+ModeGameClear::ModeGameClear(int _score, std::string _stage_name)
 {
 	score_ui_.SetPlayerScore(_score);
 	score_ui_.SetPosition(VGet(1100, 640, 0));
@@ -33,6 +34,8 @@ ModeGameClear::ModeGameClear(int _score)
 	menu_num_ = 2;
 	nextmode_count_ = 0;
 	pushed_flag_ = false;
+
+	stage_name_ = _stage_name;
 
 	se_.Load("Resource/sound/success_voice.wav");
 }
@@ -61,7 +64,6 @@ bool ModeGameClear::Initialize()
 	appframe::ApplicationBase::GetInstance()->bgm_.SetVolume(1.0f);
 	appframe::ApplicationBase::GetInstance()->bgm_.SetLoopCount(0);
 	appframe::ApplicationBase::GetInstance()->bgm_.Play();
-
 
 	return true;
 }
@@ -149,7 +151,19 @@ void ModeGameClear::NextMode()
 	{
 		resource::ResourceServer::ClearModelMap();
 
-		ModeGame* mode_game = NEW ModeGame("haru_A");
+		ModeGame* mode_game;
+		if (std::equal(stage_name_.begin(), stage_name_.end(), "haru_A"))
+		{
+			mode_game = NEW ModeGame("haru_B");
+		}
+		else if (std::equal(stage_name_.begin(), stage_name_.end(), "haru_B"))
+		{
+			mode_game = NEW ModeGame("haru_C");
+		}
+		else
+		{
+			mode_game = NEW ModeGame("haru_A");
+		}
 		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
 		::mode::ModeServer::GetInstance()->Del(this);
 	}

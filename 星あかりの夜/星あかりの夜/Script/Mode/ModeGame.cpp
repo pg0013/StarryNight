@@ -41,7 +41,7 @@ bool ModeGame::Initialize()
 {
 	if (!::mode::ModeBase::Initialize()) { return false; }
 
-	object::ObjectBase* player = NEW player::Player();
+	object::ObjectBase* player = NEW player::Player(stage_name_);
 	object_server_.Add(player);
 
 	camera_.Initialize();
@@ -51,6 +51,11 @@ bool ModeGame::Initialize()
 	SetShadowMapDrawArea(stage_shadowmap_, VGet(-2500.0f, -1.0f, -2500.0f), VGet(2500.0f, 2500.0f, 2500.0f));
 	SetShadowMapDrawArea(object_shadowmap_, VGet(-2500.0f, -1.0f, -2500.0f), VGet(2500.0f, 2500.0f, 2500.0f));
 	VECTOR light_direction = VGet(0.1f, -0.05f, -0.1f);
+	if (std::equal(stage_name_.begin(), stage_name_.end(), "haru_C"))
+	{
+		light_direction = VGet(-0.1f, -0.05f, 0.1f);
+	}
+
 	SetLightDirection(light_direction);
 	SetShadowMapLightDirection(stage_shadowmap_, light_direction);
 	SetShadowMapLightDirection(object_shadowmap_, light_direction);
@@ -208,7 +213,7 @@ void ModeGame::NextMode()
 
 		if (result_ == 0)
 		{
-			ModeGameClear* mode_gameclear = NEW ModeGameClear(game_score_);
+			ModeGameClear* mode_gameclear = NEW ModeGameClear(game_score_, stage_name_);
 			::mode::ModeServer::GetInstance()->Add(mode_gameclear, 0, "GameClear");
 			::mode::ModeServer::GetInstance()->Del(this);
 		}
