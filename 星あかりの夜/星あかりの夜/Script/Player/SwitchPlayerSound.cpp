@@ -34,7 +34,7 @@ void Player::SwitchPlayerSound()
 			case WOOD:
 				se_.Load("Resource/sound/wood_walk.wav"); break;
 			}
-			se_.SetVolume_dB(-12.0f);
+			se_.SetVolume_dB(-8.0f);
 			se_.RandomPitch(0.3f);
 			se_.Play();
 		}
@@ -52,7 +52,7 @@ void Player::SwitchPlayerSound()
 			case WOOD:
 				se_.Load("Resource/sound/wood_walk.wav"); break;
 			}
-			se_.SetVolume_dB(-12.0f);
+			se_.SetVolume_dB(-8.0f);
 			se_.RandomPitch(0.3f);
 			se_.Play();
 		}

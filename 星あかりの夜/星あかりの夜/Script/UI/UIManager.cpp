@@ -14,6 +14,7 @@ UIManager::UIManager()
 {
 	param_.LoadImagParameters("ui");
 	draw_ui_flag_ = true;
+	draw_player_ui_flag_ = true;
 }
 
 UIManager::~UIManager()
@@ -53,6 +54,10 @@ void UIManager::Render()
 
 	shoot_ui_.Render();
 	timing_ui_.Render();
+
+	if (draw_player_ui_flag_ == false)
+		return;
+
 	score_ui_.Render();
 	hp_ui_.Render();
 }

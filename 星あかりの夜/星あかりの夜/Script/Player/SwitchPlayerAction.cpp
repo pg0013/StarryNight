@@ -53,12 +53,14 @@ void Player::SwitchPlayerAction()
 	{
 		//射撃用のカメラに設定
 		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::SHOOT);
+		mode_game->ui_.SetDrawPlayerUIFlag(false);
 		//射撃アクションを行う
 		HoldSlingShot();
 	}
 	else
 	{
 		//移動、ジャンプアクションを行う
+		mode_game->ui_.SetDrawPlayerUIFlag(true);
 		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::MOVE);
 		mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
 		shoot_charge_effect_flag_ = true;

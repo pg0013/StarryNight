@@ -67,7 +67,7 @@ void Star::Process()
 void Star::Wait()
 {
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
-	VECTOR distance = VSub(VAdd(player_position, VGet(0, 80, 0)), VAdd(position_,VGet(0,40,0)));
+	VECTOR distance = VSub(VAdd(player_position, VGet(0, 80, 0)), VAdd(position_, VGet(0, 40, 0)));
 
 	float length = VSize(distance);
 	float detect_length = 800.0f;//åüèoîÕàÕ
@@ -291,10 +291,8 @@ void Star::Render()
 	MV1SetPosition(handle_, position_);
 	MV1SetRotationXYZ(handle_, rotation_);
 
-	SetUseLighting(FALSE);
 	MV1SetVisible(handle_, IsStageStarDraw());
 	MV1DrawModel(handle_);
-	SetUseLighting(TRUE);
 
 #ifdef DEBUG_FUNCTION
 	DrawLine3D(position_, VAdd(position_, VGet(0, 2000, 0)), GetColor(255, 255, 0));

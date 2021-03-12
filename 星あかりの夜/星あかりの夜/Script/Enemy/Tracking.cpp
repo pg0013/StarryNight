@@ -8,6 +8,7 @@
 
 #include "Enemy.h"
 #include"../Mode/ModeGame.h"
+#include"../Player/Player.h"
 
 using namespace starrynight::enemy;
 

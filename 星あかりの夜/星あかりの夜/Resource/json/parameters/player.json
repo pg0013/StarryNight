@@ -2,7 +2,7 @@
 	{
 		"player": {
 			"walk_speed": 75,
-			"run_speed": 300,
+			"run_speed": 350,
 			"rot_speed": 10
 		}
 	}

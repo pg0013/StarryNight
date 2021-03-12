@@ -36,9 +36,9 @@ void SkyStar::Initialize()
 	if (mode_game->GetStageName() == "haru_A")
 		degree = 180.0f;
 	else if (mode_game->GetStageName() == "haru_B")
-		degree = 180.0f;
+		degree = 0.0f;
 	else if (mode_game->GetStageName() == "haru_C")
-		degree = 180.0f;
+		degree = 90.0f;
 
 	position_.x = radius * cosf(DEG2RAD(degree));
 	position_.z = radius * sinf(DEG2RAD(degree));

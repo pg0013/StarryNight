@@ -49,6 +49,10 @@ void Player::HoldSlingShot()
 		mode_game->ui_.timing_ui_.SetDrawTimingGuide(true);
 		mode_game->ui_.timing_ui_.SetSelectStarFrame(mode_game->GetModeCount());
 		selected_skystar_flag_ = true;
+
+		se_.Load("Resource/sound/star_select.wav");
+		se_.Play();
+		se_.Fade(0.0f, 1.0f);
 	}
 
 	//星発射エフェクトを生成
@@ -82,9 +86,19 @@ void Player::HoldSlingShot()
 	}
 	else
 	{
+		if (mode_game->GetStageStarNum() == 0)
+		{
+			gameover_flag_ = true;
+
+			mode::ModeGame* mode_game =
+				static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+			mode_game->SetNextMode(300, 60, GAME_OVER);
+		}
+
 		status_ = STATUS::WAIT;
 		slingshot_flag_ = false;
 		selected_skystar_flag_ = false;
+		mode_game->AddStageStarNum(-1 * mode_game->GetPlayerStarNum());
 		mode_game->SetPlayerStarNum(0);
 	}
 }

@@ -22,6 +22,13 @@
             "ysize": 1000
         },
         {
+            "filename": "circle_red.png",
+            "xnum": 1,
+            "ynum": 1,
+            "xsize": 1000,
+            "ysize": 1000
+        },
+        {
             "filename": "score_base.png",
             "xnum": 1,
             "ynum": 1,

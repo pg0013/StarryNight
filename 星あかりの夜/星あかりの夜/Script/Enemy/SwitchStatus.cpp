@@ -17,6 +17,16 @@ void Enemy::SwitchStatus(ANIM_STATUS _old_status)
 {
 	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 	int elapsed_frame = mode_game->GetModeCount() - start_frame_;
+	bool player_damaged = false;
+	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+	{
+		if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
+		{
+			player::Player* player = static_cast<player::Player*>(*iter);
+			player_damaged = player->GetDamageFlag();
+			break;
+		}
+	}
 
 	MOVE_STATUS  old_status = move_status_;
 
@@ -44,7 +54,8 @@ void Enemy::SwitchStatus(ANIM_STATUS _old_status)
 	if (player_distance < detect_length_ &&
 		move_status_ != MOVE_STATUS::ESCAPE)
 	{
-		if (player_distance_y < 200)
+		if (player_distance_y < 200 &&
+			player_damaged == false)
 			move_status_ = MOVE_STATUS::TRACKING;
 		else
 			move_status_ = MOVE_STATUS::WAIT;

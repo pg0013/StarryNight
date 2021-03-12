@@ -46,7 +46,7 @@ void Score_UI::UpdatePlayerScore()
 	mode::ModeGame* mode_game =
 		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
-	SetPlayerScore(mode_game->GetGameScore());
+	SetPlayerScore(mode_game->GetStageStarNum() - mode_game->GetPlayerStarNum());
 }
 
 void Score_UI::SetScoreRankNum()

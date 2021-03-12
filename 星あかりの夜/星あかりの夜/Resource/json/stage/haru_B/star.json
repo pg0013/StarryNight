@@ -1,10 +1,10 @@
 {
-  "star": [
-    {"filename" : "star_GEO","handlename" : "star_GEO1","tx" : 616.034,"ty" : 457.501,"tz" : 940.682,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
-    {"filename" : "star_GEO","handlename" : "star_GEO2","tx" : -1297.736,"ty" : 534.296,"tz" : 1676.332,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
-    {"filename" : "star_GEO","handlename" : "star_GEO3","tx" : 2016.695,"ty" : 62.402,"tz" : 704.113,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
-    {"filename" : "star_GEO","handlename" : "star_GEO4","tx" : -1820.511,"ty" : 722.517,"tz" : -162.184,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
-    {"filename" : "star_GEO","handlename" : "star_GEO5","tx" : 167.222,"ty" : 575.421,"tz" : -2226.908,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
-    {"filename" : "star_GEO","handlename" : "star_GEO6","tx" : -1635.26,"ty" : 12.047,"tz" : -1561.102,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3}
-          ]
+"star" : [
+{"filename" : "star_GEO","handlename" : "star_GEO1","tx" : 616.034,"ty" : 457.501,"tz" : 940.682,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+{"filename" : "star_GEO","handlename" : "star_GEO2","tx" : -1297.736,"ty" : 534.296,"tz" : 1686.558,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+{"filename" : "star_GEO","handlename" : "star_GEO4","tx" : -1820.511,"ty" : 828.72,"tz" : -213.644,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+{"filename" : "star_GEO","handlename" : "star_GEO5","tx" : 167.222,"ty" : 575.421,"tz" : -2226.908,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+{"filename" : "star_GEO","handlename" : "star_GEO6","tx" : -1621.262,"ty" : 1.346,"tz" : -1712.492,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
+{"filename" : "star_GEO","handlename" : "star_GEO3","tx" : 1529.159,"ty" : 62.402,"tz" : -1404.176,"rx" : -0,"ry" : -92.936,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3}
+]
 }

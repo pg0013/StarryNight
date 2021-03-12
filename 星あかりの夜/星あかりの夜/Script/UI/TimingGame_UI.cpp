@@ -17,9 +17,10 @@ TimingGame_UI::TimingGame_UI()
 	draw_timing_guide_ = false;
 	launch_star_shoot_ = false;
 	shrink_circle_flag_ = true;
-	timing_exrate_ = 1.0f;
+	timing_exrate_ = 1.3f;
 	presssed_frame_ = 0;
 	select_star_frame_ = 0;
+	player_star_num_ = 0;
 
 	resource::ResourceServer::LoadSound("Resource/sound/timing_se.wav");
 }
@@ -37,6 +38,8 @@ void TimingGame_UI::Initialize()
 {
 	circle_guide_ = resource::ResourceServer::GetTexture("circle_green.png");
 	timing_circle_ = resource::ResourceServer::GetTexture("circle_white.png");
+	timing_circle_white_ = timing_circle_;
+	timing_circle_red_ = resource::ResourceServer::GetTexture("circle_red.png");
 	timing_judge_[0] = resource::ResourceServer::GetTexture("excellent.png");
 	timing_judge_[1] = resource::ResourceServer::GetTexture("good.png");
 	timing_judge_[2] = resource::ResourceServer::GetTexture("bad.png");
@@ -49,7 +52,18 @@ void TimingGame_UI::Terminate()
 void TimingGame_UI::Process()
 {
 	if (draw_timing_guide_ == false)
+	{
+		mode::ModeGame* mode_game =
+			static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+
+		player_star_num_ = mode_game->GetPlayerStarNum() - 1;
 		return;
+	}
+
+	if (player_star_num_ > 0)
+		timing_circle_ = timing_circle_white_;
+	else
+		timing_circle_ = timing_circle_red_;
 
 	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
 
@@ -91,7 +105,7 @@ void TimingGame_UI::Process()
 		CalcurateScore();
 
 		//拡大率とボタンを押したフレームを初期化
-		timing_exrate_ = 1.0;
+		timing_exrate_ = 1.3;
 		presssed_frame_ = 0;
 		shrink_circle_flag_ = true;
 		return;
@@ -109,11 +123,17 @@ void TimingGame_UI::Process()
 	}
 
 	//ボタンを押さなかったら、拡大率0でボタンを押したことにする
-	if (timing_exrate_ < 0)
+	if (timing_exrate_ < 0 &&
+		player_star_num_ == 0)
 	{
 		timing_exrate_ = 0;
 		shrink_circle_flag_ = false;
 		presssed_frame_ = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount();
+	}
+	else if (timing_exrate_ < 0)
+	{
+		timing_exrate_ = 1.3;
+		player_star_num_--;
 	}
 }
 

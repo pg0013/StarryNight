@@ -11,7 +11,7 @@
 
 namespace
 {
-	constexpr double firststar_scale_speed_ = 0.01 * 2.0;
+	constexpr double firststar_scale_speed_ = 0.01 * 2.5;
 	constexpr double secondstar_scale_speed_ = 0.01 * 1.5;
 	constexpr double thirdstar_scale_speed_ = 0.01 * 1.0;
 }
@@ -120,6 +120,8 @@ namespace starrynight
 			//画像用ハンドル
 			handle circle_guide_;
 			handle timing_circle_;
+			handle timing_circle_white_;
+			handle timing_circle_red_;
 			handle timing_judge_[3];
 
 			sound::PlayWAVE se_;
@@ -130,6 +132,7 @@ namespace starrynight
 
 			int presssed_frame_;//タイミングゲームでBボタンが押された時のフレーム
 			int selected_star_num_;//選択されたスター番号
+			int player_star_num_;
 
 			int select_star_frame_;//星が選択された時のフレーム数
 

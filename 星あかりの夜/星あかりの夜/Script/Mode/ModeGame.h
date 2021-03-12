@@ -130,6 +130,13 @@ namespace starrynight
 			int GetStageStarNum() { return stage_star_num_; }
 
 			/**
+			 * @brief  ステージのフィールドスター総数を変更する
+			 *
+			 * @param _add_starnum　ステージのフィールドスター数
+			 */
+			void AddStageStarNum(int _add_starnum) { stage_star_num_ += _add_starnum; }
+
+			/**
 			 * @brief　 ステージの規定スコアを設定する
 			 *
 			 * @param  _regulations_score	ステージの規定スコア
