@@ -58,7 +58,6 @@ bool ModeTitle::Terminate()
 {
 	::mode::ModeBase::Terminate();
 
-	appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 0.1f);
 	return true;
 }
 
