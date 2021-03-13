@@ -1,4 +1,6 @@
 # 星あかりの夜  
+## 実行ファイル
+[こちら](https://drive.google.com/file/d/1NXlrxWzzzGZNLk-WYZDDJ56J1APE2MNq/view?usp=sharing "作品リンク")からダウンロードしてください。 
 ## ジャンル  
 1人プレイのアクションゲーム  
 ## 開発期間  
