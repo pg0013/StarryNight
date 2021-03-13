@@ -13,7 +13,7 @@ using namespace starrynight::effect;
 
 PlayerTrailEffect::PlayerTrailEffect()
 {
-	effect_resource_ = LoadEffekseerEffect("Resource/Effect/Trail_Test.efk", 20.0f);
+	effect_resource_ = LoadEffekseerEffect("Resource/Effect/player_trail.efk", 30.0f);
 	effect_frame_ = 60;
 	pause_flag_ = false;
 }
@@ -30,18 +30,30 @@ void PlayerTrailEffect::Process()
 {
 	EffectBase::Process();
 
+	//スティックの移動量と角度を計算
+	float length = utility::GetLeftStickLength();
+
+	//スティックの傾ける量で移動速度を変更
+	if (length < ANALOG_MIN)
+		length = 0.0f;
+
 	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 	//プレイヤーが星を持っていなければ、エフェクトを再生しない
-	if (mode_game->GetPlayerStarNum() == 0)
+	if (mode_game->GetPlayerStarNum() == 0 ||
+		length == 0.0f)
 	{
-		StopEffekseer3DEffect(playing_effect_);
+		//Effekseerの動的パラメータで、エフェクト生成時間を0に設定
+		SetDynamicInput3DEffect(playing_effect_, 1, 0.0f);
+		SetDynamicInput3DEffect(playing_effect_, 2, 0.0f);
 		pause_flag_ = true;
 	}
 	else
 	{
 		if (pause_flag_)
 		{
-			PlayEffect();
+			//Effekseerの動的パラメータで、エフェクト生成時間を初期化
+			SetDynamicInput3DEffect(playing_effect_, 1, 40.0f);
+			SetDynamicInput3DEffect(playing_effect_, 2, 30.0f);
 			pause_flag_ = false;
 		}
 	}

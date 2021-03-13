@@ -73,6 +73,8 @@ void Player::Initialize()
 	ObjectBase::Initialize();
 
 	effect::PlayerTrailEffect* trail_effect = NEW effect::PlayerTrailEffect();
+	trail_effect->PlayEffect();
+	trail_effect->SetPosition(position_);
 	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 	mode_game->effect_server_.Add(trail_effect);
 }
