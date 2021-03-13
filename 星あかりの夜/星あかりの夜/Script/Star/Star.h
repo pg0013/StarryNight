@@ -56,11 +56,6 @@ namespace starrynight
 			void Wait();
 
 			/**
-			 * @brief　 単振動挙動処理
-			 */
-			void Vibration();
-
-			/**
 			 * @brief　プレイヤーの後ろをついてくる処理.
 			 */
 			void Follow();
@@ -84,13 +79,12 @@ namespace starrynight
 			{
 				WAIT,
 				FOLLOW,
-				DIFFUSION,
-				_EOT_
+				DIFFUSION
 			};
 
 			STATUS status_;//状態遷移用変数
 
-			sound::PlayWAVE se_;
+			sound::PlayWAVE se_;//効果音
 
 			std::queue<VECTOR> player_pos_history_;//プレイヤーの位置ベクトル記録用コンテナ
 			VECTOR old_player_position_;//前フレームのプレイヤーの位置ベクトルを記録する

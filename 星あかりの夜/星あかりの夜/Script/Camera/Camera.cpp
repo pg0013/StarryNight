@@ -34,8 +34,12 @@ void Camera::Initialize()
 	camera_distance_ = camera_param_.GetCameraParam("camera_distance");
 
 	//カメラ設定を初期化
-	target_ = VAdd(VGet(0.0f, 60.0f, 0.0f), MV1GetPosition(resource::ResourceServer::GetModelHandle("player")));
-	position_ = VAdd(MV1GetPosition(resource::ResourceServer::GetModelHandle("player")), VGet(0, 90.f, -1.0f * camera_distance_));
+	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
+	VECTOR player_rotation = MV1GetRotationXYZ(resource::ResourceServer::GetModelHandle("player"));
+	target_ = VAdd(VGet(0.0f, 60.0f, 0.0f), player_position);
+	position_ = VAdd(VAdd(player_position, VGet(0, 90, 0)),
+		VScale(utility::GetForwardVector(player_rotation.y), camera_distance_));
+	//VGet(0, 90.f, -1.0f * camera_distance_));
 	clip_.near_ = camera_param_.GetCameraParam("near");
 	clip_.far_ = camera_param_.GetCameraParam("far");
 	status_ = STATUS::MOVE;

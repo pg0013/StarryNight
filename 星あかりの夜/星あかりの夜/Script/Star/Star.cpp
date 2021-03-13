@@ -57,10 +57,6 @@ void Star::Process()
 	case starrynight::star::Star::STATUS::DIFFUSION:
 		Diffusion();
 		break;
-	case starrynight::star::Star::STATUS::_EOT_:
-		break;
-	default:
-		break;
 	}
 }
 
@@ -70,7 +66,7 @@ void Star::Wait()
 	VECTOR distance = VSub(VAdd(player_position, VGet(0, 80, 0)), VAdd(position_, VGet(0, 40, 0)));
 
 	float length = VSize(distance);
-	float detect_length = 800.0f;//検出範囲
+	float detect_length = 1000.0f;//検出範囲
 	float touch_length = 100.0f;//取得範囲
 
 	//プレイヤーとの距離が取得範囲ないであれば、followモードへ遷移

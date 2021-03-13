@@ -25,10 +25,12 @@ Player::Player(std::string _stage_name)
 	else if (std::equal(_stage_name.begin(), _stage_name.end(), "haru_B"))
 	{
 		SetPosition(VGet(-85, 0, 2200));
+		SetRotation(VGet(0, DEG2RAD(180.0f), 0));
 	}
 	else if (std::equal(_stage_name.begin(), _stage_name.end(), "haru_C"))
 	{
-		SetPosition(VGet(1101, 0, -2020));
+		SetPosition(VGet(823, 0, -2143));
+		SetRotation(VGet(0, DEG2RAD(-13.65f), 0));
 	}
 
 	walk_speed_ = player_param_.GetPlayerParam("walk_speed");
