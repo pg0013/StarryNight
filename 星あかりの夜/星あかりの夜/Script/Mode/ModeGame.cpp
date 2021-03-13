@@ -9,6 +9,7 @@
 #include "ModeGame.h"
 #include"ModeGameClear.h"
 #include"ModeGameOver.h"
+#include"ModeLoading.h"
 #include"ModeOverlay.h"
 #include"ModePauseMenu.h"
 #include"../Player/Player.h"
@@ -64,14 +65,13 @@ bool ModeGame::Initialize()
 	SetShadowMapLightDirection(object_shadowmap_, light_direction);
 	SetLightAmbColor(GetColorF(-0.05f, -0.05f, -0.05f, 0.0f));
 
-	ModeOverlay* modeoverlay = NEW ModeOverlay();
-	modeoverlay->Fade(30, FADE_IN);
-	::mode::ModeServer::GetInstance()->Add(modeoverlay, 1, "Overlay");
-
 	appframe::ApplicationBase::GetInstance()->bgm_.Load("Resource/sound/ingame_bgm.wav");
 	appframe::ApplicationBase::GetInstance()->bgm_.SetVolume(1.0f);
 	appframe::ApplicationBase::GetInstance()->bgm_.SetLoopCount(XAUDIO2_LOOP_INFINITE);
 	appframe::ApplicationBase::GetInstance()->bgm_.PlayWithLoop(0.0f, 234.5f);
+
+	mode::ModeLoading* mode_loading = static_cast<mode::ModeLoading*>(::mode::ModeServer::GetInstance()->Get("Loading"));
+	mode_loading->SetNextMode();
 
 	return true;
 }

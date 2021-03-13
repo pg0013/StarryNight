@@ -9,6 +9,7 @@
 #include "ModeMenu.h"
 #include"ModeOverlay.h"
 #include"ModeGame.h"
+#include"ModeLoading.h"
 #include"ModeTitle.h"
 
 using namespace starrynight::mode;
@@ -110,7 +111,7 @@ void ModeMenu::Input()
 	{
 		pushed_flag_ = true;
 
-		nextmode_count_ = 60;
+		nextmode_count_ = 30;
 		nextmode_ = cursol_;
 
 		ModeOverlay* modeoverlay = NEW ModeOverlay();
@@ -122,6 +123,9 @@ void ModeMenu::Input()
 		appframe::ApplicationBase::GetInstance()->se_.Play();
 		appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 1.0f);
 		appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 1.0f);
+
+		ModeLoading* mode_loading = NEW ModeLoading();
+		::mode::ModeServer::GetInstance()->Add(mode_loading, 10, "Loading");
 	}
 
 	//Aボタンでタイトルに戻る
@@ -155,6 +159,7 @@ void ModeMenu::NextMode()
 		ModeGame* mode_game = NEW ModeGame("haru_A");
 		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
 		::mode::ModeServer::GetInstance()->Del(this);
+
 		appframe::ApplicationBase::GetInstance()->bgm_.Pause();
 	}
 	else if (nextmode_ == HARU_B)
@@ -164,6 +169,7 @@ void ModeMenu::NextMode()
 		ModeGame* mode_game = NEW ModeGame("haru_B");
 		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
 		::mode::ModeServer::GetInstance()->Del(this);
+
 		appframe::ApplicationBase::GetInstance()->bgm_.Pause();
 	}
 	else if (nextmode_ == HARU_C)
@@ -173,6 +179,7 @@ void ModeMenu::NextMode()
 		ModeGame* mode_game = NEW ModeGame("haru_C");
 		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
 		::mode::ModeServer::GetInstance()->Del(this);
+
 		appframe::ApplicationBase::GetInstance()->bgm_.Pause();
 	}
 

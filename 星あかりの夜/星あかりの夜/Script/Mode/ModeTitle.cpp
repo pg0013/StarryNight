@@ -1,6 +1,6 @@
 /**
  * @file    ModeTitle.cpp
- * @brief
+ * @brief　タイトルモードクラスの処理
  *
  * @author Takuya Fujisawa
  * @date   2021/03/03

@@ -267,6 +267,12 @@
     <ClCompile Include="Script\Star\SkyStarParameter.cpp">
       <Filter>ソース ファイル\SkyStar</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Mode\ModeLoading.cpp">
+      <Filter>ソース ファイル\Mode</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Effect\PlayerTrailEffect.cpp">
+      <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h">
@@ -385,6 +391,12 @@
     </ClInclude>
     <ClInclude Include="Script\Mode\ModeMovie.h">
       <Filter>ヘッダー ファイル\Mode</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Mode\ModeLoading.h">
+      <Filter>ヘッダー ファイル\Mode</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Effect\PlayerTrailEffect.h">
+      <Filter>ヘッダー ファイル\Effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

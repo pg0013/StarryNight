@@ -1,0 +1,45 @@
+/**
+ * @file    PlayerTrailEffect.h
+ * @brief  プレイヤーの軌跡エフェクト
+ *
+ * @author Takuya Fujisawa
+ * @date   2021/03/13
+ */
+
+#pragma once
+#include"appframe.h"
+#include "EffectBase.h"
+
+namespace starrynight
+{
+	namespace effect
+	{
+		class PlayerTrailEffect :
+			public EffectBase
+		{
+		public:
+			PlayerTrailEffect();
+			~PlayerTrailEffect();
+
+			/**
+			 * @brief　初期化処理.
+			 */
+			virtual void Initialize();
+
+			/**
+			 * @brief　演算処理.
+			 */
+			virtual void Process();
+
+			/**
+			 * @brief　描画処理.
+			 */
+			virtual void Render();
+
+		private:
+			bool pause_flag_;//エフェクト一時停止フラグ
+		};
+	}
+}
+
+

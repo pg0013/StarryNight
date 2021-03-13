@@ -7,6 +7,7 @@
  */
 #include "Player.h"
 #include"../Mode/ModeGame.h"
+#include"../Effect/PlayerTrailEffect.h"
 #include<vector>
 using namespace starrynight::player;
 
@@ -70,6 +71,10 @@ Player::~Player()
 void Player::Initialize()
 {
 	ObjectBase::Initialize();
+
+	effect::PlayerTrailEffect* trail_effect = NEW effect::PlayerTrailEffect();
+	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode_game->effect_server_.Add(trail_effect);
 }
 
 void Player::Process()
