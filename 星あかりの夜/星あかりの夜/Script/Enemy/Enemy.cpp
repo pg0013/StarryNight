@@ -48,11 +48,6 @@ Enemy::Enemy(std::string _handle_name)
 
 Enemy::~Enemy()
 {
-	if (se_.CheckIsRunning())
-	{
-		se_.Pause();
-		se_.Destroy();
-	}
 }
 
 void Enemy::Initialize()

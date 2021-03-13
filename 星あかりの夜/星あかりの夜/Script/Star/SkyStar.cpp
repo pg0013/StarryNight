@@ -22,7 +22,6 @@ SkyStar::SkyStar(const std::string _name)
 
 SkyStar::~SkyStar()
 {
-	int i = 0;
 }
 
 void SkyStar::Initialize()
@@ -32,6 +31,7 @@ void SkyStar::Initialize()
 	float radius = 10000.0f;
 	float height = 5000.0f;
 
+	//ステージによって星の配置場所を設定
 	float degree = 0.0f;
 	if (mode_game->GetStageName() == "haru_A")
 		degree = 180.0f;
@@ -46,6 +46,7 @@ void SkyStar::Initialize()
 
 	MV1SetPosition(handle_, position_);
 
+	//星座エフェクトを生成、配置
 	effect::ZodiacSignEffect* zodiac_effect = NEW effect::ZodiacSignEffect(zodiac_name_);
 	zodiac_effect->PlayEffect();
 	zodiac_effect->SetPosition(VGet(0, 0, 0));
@@ -85,6 +86,7 @@ void SkyStar::SetRotationToPlayer()
 	//モデルがz軸の負の方向を向いているため、
 	std::swap(forward, right);
 
+	//プレイヤーに向く回転行列を生成
 	MATRIX rot_matrix;
 	rot_matrix = MGetIdent();
 	rot_matrix.m[0][0] = forward.x;

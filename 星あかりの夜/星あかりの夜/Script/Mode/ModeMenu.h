@@ -77,24 +77,21 @@ namespace starrynight
 			void NextMode();
 
 			handle background_graph_;//背景画像
-			handle stage_num_graph_[3];
-			handle stage_graph_[3];
-			handle stage_text_[3];
-			handle spring_icon_;
-			handle cloud_graph_;
-			handle menu_graph_;
-			handle stage_goal_graph_;
+			handle stage_num_graph_[3];//ステージ数
+			handle stage_graph_[3];//ステージサムネイル
+			handle stage_text_[3];//ステージ補足テキスト画像
+			handle spring_icon_;//春アイコン
+			handle cloud_graph_;//下地の雲
+			handle menu_graph_;//下地の本
+			handle stage_goal_graph_;//ステージサムネイル
 
 			::parameters::Parameters param_;//パラメータ読み込みクラス
 
-			int cursol_;
-			int nextmode_;
-			int menu_num_;
-			int nextmode_count_;
-			bool pushed_flag_;
-
+			int cursol_;//メニュー選択カーソル
+			int nextmode_;//次に遷移するモード
+			int menu_num_;//メニュー項目数
+			int nextmode_count_;//次のモードへ移行するカウンタ
+			bool pushed_flag_;//メニュー選択済みフラグ
 		};
-
 	}
 }
-

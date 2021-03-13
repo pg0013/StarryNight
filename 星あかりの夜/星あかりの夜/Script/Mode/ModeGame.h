@@ -116,18 +116,32 @@ namespace starrynight
 			int GetGameScore() { return game_score_; }
 
 			/**
-			 * @brief　 ステージのフィールドスター総数を設定する
+			 * @brief　 ステージのフィールドスター数を設定する
 			 *
 			 * @param  _stage_star_num	　ステージのフィールドスター総数
 			 */
 			void SetStageStarNum(int _stage_star_num) { stage_star_num_ = _stage_star_num; }
 
 			/**
+			 * @brief　 ステージのフィールドスター総数を設定する
+			 *
+			 * @param  _stage_star_num	　ステージのフィールドスター総数
+			 */
+			void SetStageStarNumAll(int _stage_star_num_all) { stage_star_num_all_ = _stage_star_num_all; }
+
+			/**
+			 * @brief　 ステージのフィールドスター数を取得する
+			 *
+			 * @return   ステージのフィールドスター数
+			 */
+			int GetStageStarNum() { return stage_star_num_; }
+
+			/**
 			 * @brief　 ステージのフィールドスター総数を取得する
 			 *
 			 * @return   ステージのフィールドスター総数
 			 */
-			int GetStageStarNum() { return stage_star_num_; }
+			int GetStageStarNumAll() { return stage_star_num_all_; }
 
 			/**
 			 * @brief  ステージのフィールドスター総数を変更する
@@ -213,18 +227,19 @@ namespace starrynight
 			 */
 			void NextMode();
 
-			std::string stage_name_;
+			std::string stage_name_;//選択されたステージ名
 
 			bool pushed_flag_;//ボタンが押されたときのフラグ
-			bool pause_flag_;
+			bool pause_flag_;//ゲームを一時停止を行うフラグ
 			int nextmode_count_;//次のモードに遷移するまでの時間
-			int fade_count_;
+			int fade_count_;//次のモードへ移行するときのフェードフレーム数
 
 			bool stop_object_process_;//オブジェクトの処理をストップする
 			int player_star_num_;//プレイヤーが取得したスターの数
 
 			int game_score_;//ゲームのスコア
-			int stage_star_num_;//ステージのスター総数
+			int stage_star_num_;//ステージのスター数
+			int stage_star_num_all_;//ステージのスター総数
 			int regulations_score_;//ステージの規定スコア
 			int result_;//ゲームクリアモードへクリア判定を渡すための変数
 		};

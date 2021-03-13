@@ -22,10 +22,8 @@
 #include"../Resource/ResourceServer.h"
 #pragma comment(lib,"xaudio2.lib")
 
-
 namespace sound
 {
-
 	namespace
 	{
 		constexpr float PAN_LEFT = -90.0f;
@@ -206,13 +204,25 @@ namespace sound
 		void HighPassFilter(const float _freqency);
 
 		/**
-		 * @brief　 エコー
+		 * @brief　 エコーエフェクト
 		 *
+		 * @param  _wetdrymix　原音とエフェクト音の比率
+		 *	min FXECHO_MIN_WETDRYMIX
+		 *	max FXECHO_MAX_WETDRYMIX
+		 * @param  _delay　遅延時間
+		 *	min FXECHO_MIN_DELAY
+		 *	max FXECHO_MAX_DELAY
+		 * * @param  _feedback　残響音をどれだけ残すか
+		 *	min FXECHO_MIN_FEEDBACK
+		 *	max FXECHO_MAX_FEEDBACK
 		 */
 		void Echo(float _wetdrymix = FXECHO_DEFAULT_WETDRYMIX,
 			float _delay = FXECHO_DEFAULT_DELAY,
 			float _feedback = FXECHO_DEFAULT_FEEDBACK);
 
+		/**
+		 * @brief　 リバーブエフェクト
+　		 */
 		void Reverb();
 
 		/**

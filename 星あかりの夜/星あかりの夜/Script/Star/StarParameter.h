@@ -26,9 +26,6 @@ namespace starrynight
              * @param _async_flag@”ñ“¯Šú“Ç‚İ‚İƒtƒ‰ƒO
              */
             void LoadStageStar(std::string _stagename, bool _async_flag = false);
-
-        private:
-            
         };
     }
 }

@@ -12,6 +12,7 @@ using namespace starrynight::player;
 
 void Player::SwitchPlayerSound()
 {
+	//アニメーションのタイミングにあったサウンドを再生
 	switch (status_)
 	{
 	case STATUS::WAIT:
@@ -25,6 +26,7 @@ void Player::SwitchPlayerSound()
 		if (anim_play_time_ == 0 ||
 			anim_play_time_ == 40)
 		{
+			//床の種類によって音を変える
 			switch (floor_type_)
 			{
 			case GRASS:
@@ -34,7 +36,7 @@ void Player::SwitchPlayerSound()
 			case WOOD:
 				se_.Load("Resource/sound/wood_walk.wav"); break;
 			}
-			se_.SetVolume_dB(-8.0f);
+			se_.SetVolume_dB(-10.0f);
 			se_.RandomPitch(0.3f);
 			se_.Play();
 		}
@@ -43,6 +45,7 @@ void Player::SwitchPlayerSound()
 		if (anim_play_time_ == 8 ||
 			anim_play_time_ == 30)
 		{
+			//床の種類によって音を変える
 			switch (floor_type_)
 			{
 			case GRASS:
@@ -52,7 +55,7 @@ void Player::SwitchPlayerSound()
 			case WOOD:
 				se_.Load("Resource/sound/wood_walk.wav"); break;
 			}
-			se_.SetVolume_dB(-8.0f);
+			se_.SetVolume_dB(-10.0f);
 			se_.RandomPitch(0.3f);
 			se_.Play();
 		}
@@ -68,6 +71,7 @@ void Player::SwitchPlayerSound()
 		if (anim_play_time_ != 0)
 			break;
 
+		//高い音から落ちたらボイスを再生する
 		if (jump_speed_ < -20)
 		{
 			se_.Load("Resource/sound/landing_voice.wav");

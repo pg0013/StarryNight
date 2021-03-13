@@ -18,9 +18,6 @@ bool ApplicationMain::Initialize(HINSTANCE _hinstance)
 {
 	if (!appbase::Initialize(_hinstance)) { return false; }
 
-	//mode::ModeTitle* mode_title = NEW mode::ModeTitle();
-	//::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");
-
 	mode::ModeMovie* mode_movie = NEW mode::ModeMovie();
 	::mode::ModeServer::GetInstance()->Add(mode_movie, 0, "Movie");
 

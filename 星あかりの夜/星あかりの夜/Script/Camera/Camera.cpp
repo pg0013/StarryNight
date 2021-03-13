@@ -33,17 +33,17 @@ void Camera::Initialize()
 	rot_speed_ = camera_param_.GetCameraParam("rot_speed");
 	camera_distance_ = camera_param_.GetCameraParam("camera_distance");
 
-	//カメラ設定を初期化
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 	VECTOR player_rotation = MV1GetRotationXYZ(resource::ResourceServer::GetModelHandle("player"));
+
+	//カメラ設定を初期化
 	target_ = VAdd(VGet(0.0f, 60.0f, 0.0f), player_position);
 	position_ = VAdd(VAdd(player_position, VGet(0, 90, 0)),
 		VScale(utility::GetForwardVector(player_rotation.y), camera_distance_));
-	//VGet(0, 90.f, -1.0f * camera_distance_));
 	clip_.near_ = camera_param_.GetCameraParam("near");
 	clip_.far_ = camera_param_.GetCameraParam("far");
-	status_ = STATUS::MOVE;
 
+	status_ = STATUS::MOVE;
 	old_target_ = VGet(0, 5000, 0);
 }
 
@@ -59,16 +59,14 @@ void Camera::Process()
 		//射撃用カメラ処理
 		ShootCamera();
 		break;
-	case STATUS::SKYSTAR:
-		//星座完成時のカメラ処理
-		SkyStarCamera();
-		break;
 	}
 }
 
 void Camera::Render()
 {
+	//カメラの位置とターゲットを設定
 	SetCameraPositionAndTarget_UpVecY(position_, target_);
+	//描画距離を設定
 	SetCameraNearFar(clip_.near_, clip_.far_);
 }
 

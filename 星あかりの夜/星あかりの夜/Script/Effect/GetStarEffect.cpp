@@ -25,6 +25,7 @@ GetStarEffect::~GetStarEffect()
 
 void GetStarEffect::Initialize()
 {
+	//エフェクト生成時のフレームを取得
 	start_frame_ = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount();
 }
 

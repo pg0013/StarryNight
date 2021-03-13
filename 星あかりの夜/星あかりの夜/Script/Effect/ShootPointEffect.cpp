@@ -18,7 +18,7 @@ ShootPointEffect::ShootPointEffect()
 
 	scale_y_ = 30.0f;
 	min_scale_y_ = 25.0f;
-	max_scale_y_ = 60.0f;
+	max_scale_y_ = 80.0f;
 
 	once_flag_ = false;
 }
@@ -48,8 +48,7 @@ void ShootPointEffect::Process()
 	rot_matrix.Indentity();
 	matrix = manager->GetBaseMatrix(playing_effect_);
 
-	//プレイヤーが星発射可能状態の時に発射ポイントに近づいたら、
-	//エフェクトを縦につぶす
+	//プレイヤーが星発射可能状態の時に発射ポイントに近づいたら、エフェクトを縦につぶす
 	if (VSize(distance) < turnoff_length &&
 		mode_game->GetPlayerStarNum() > 0)
 	{

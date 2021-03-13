@@ -6,7 +6,6 @@
  * @date   2021/03/03
  */
 
-
 #pragma once
 #include"appframe.h"
 
@@ -49,11 +48,7 @@ namespace starrynight
 			handle hp_graph_;//画像ハンドル
 			int player_hp_;//プレイヤー残りHP
 
-			int hp_x = 60;
-			int hp_y = 60;
+			int interval;//画面右上からの間隔
 		};
-
 	}
 }
-
-

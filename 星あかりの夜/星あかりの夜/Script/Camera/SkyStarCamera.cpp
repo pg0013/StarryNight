@@ -36,7 +36,3 @@ void Camera::SkyStarCameraInit()
 
 	appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 1.5f);
 }
-
-void Camera::SkyStarCamera()
-{
-}

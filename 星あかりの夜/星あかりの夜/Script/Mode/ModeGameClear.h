@@ -70,23 +70,24 @@ namespace starrynight
 
 		private:
 			handle background_graph_;//背景画像
-			handle gameclear_graph_;//キャラクター画像
-			handle next_graph_;//キャラクター画像
-			handle next_base_graph_;//キャラクター画像
-			handle return_graph_;//キャラクター画像
-			handle return_base_graph_;
+			handle gameclear_graph_;//ゲームクリア画像
+			handle next_graph_;//つぎへ
+			handle next_base_graph_;//つぎへ下地
+			handle return_graph_;//タイトルへ戻る
+			handle return_base_graph_;//タイトルへ戻る下地
 
 			::parameters::Parameters param_;//パラメータ読み込みクラス
 
-			ui::Score_UI score_ui_;
+			ui::Score_UI score_ui_;//スコア表示クラス
 
-			sound::PlayWAVE se_;
+			std::string stage_name_;//ステージ名
 
-			int cursol_;
-			int menu_num_;
-			int nextmode_count_;
-			bool pushed_flag_;
-			std::string stage_name_;
+			sound::PlayWAVE se_;//効果音
+
+			int cursol_;//メニュー選択カーソル
+			int menu_num_;//メニュー項目数
+			int nextmode_count_;//次のモードへ移行するカウンタ
+			bool pushed_flag_;//メニュー選択済みフラグ
 		};
 	}
 }

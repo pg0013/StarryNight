@@ -23,6 +23,7 @@ DamageEffect::~DamageEffect()
 
 void DamageEffect::Initialize()
 {
+	//エフェクト生成時のフレームを取得
 	start_frame_ = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount();
 }
 
@@ -35,6 +36,7 @@ void DamageEffect::Process()
 
 	int elapsed_frame = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - start_frame_;
 
+	//再生が完了したらエフェクトを消去
 	if (elapsed_frame > effect_frame_)
 	{
 		mode::ModeGame* mode_game =

@@ -75,11 +75,11 @@ namespace starrynight
 
 			::parameters::Parameters param_;//パラメータ読み込みクラス
 
-			int cursol_;
-			int menu_num_;
-			bool pushed_flag_;//ボタンが押されたときのフラグ
-			int nextmode_count_;//次のモードに遷移するまでの時間
-			int nextmode_;
+			int cursol_;//メニュー選択カーソル
+			int nextmode_;//次に遷移するモード
+			int menu_num_;//メニュー項目数
+			int nextmode_count_;//次のモードへ移行するカウンタ
+			bool pushed_flag_;//メニュー選択済みフラグ
 		};
 	}
 }

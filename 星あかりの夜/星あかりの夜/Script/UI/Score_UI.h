@@ -45,6 +45,11 @@ namespace starrynight
 			 */
 			void Render();
 
+			/**
+			 * @brief　 スコア画面の下地を描画するか設定する
+			 *
+			 * @param  _flag　trueで下地を描画する
+			 */
 			void SetDrawScoreBaseFlag(bool _flag) { draw_scorebase_flag_ = _flag; }
 
 			/**
@@ -72,8 +77,8 @@ namespace starrynight
 			 * @brief　 プレイヤースコアを更新する
 			 */
 			void UpdatePlayerScore();
-		private:
 
+		private:
 			/**
 			 * @brief　 スコアの桁の値を設定する
 			 */
@@ -82,13 +87,13 @@ namespace starrynight
 			VECTOR position_;//座標
 			double exrate_;//拡大率
 
+			handle score_num_graph_[10] = { 0 };//数字画像
+			handle score_base_graph_;//下地画像
+
 			int player_score_;//プレイヤースコア
 			int rank_value_[6] = { 0 };//スコアの桁の値 0が一の位
 			bool draw_rank_flag_[6] = { 0 };//桁を描画するか決めるフラグ　0が一の位
-			bool draw_scorebase_flag_;
-
-			handle score_base_graph_;
-			handle score_num_graph_[10] = { 0 };
+			bool draw_scorebase_flag_;//スコアの下地画像を描画するフラグ
 		};
 	}
 }

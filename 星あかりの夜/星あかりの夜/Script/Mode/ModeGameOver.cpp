@@ -147,9 +147,10 @@ bool ModeGameOver::Render()
 
 	if (cursol_ == GIVEUP)
 	{
-		//ボタンが押されたら点滅速度を上げる
+		//選択されたら点滅する
 		if (pushed_flag_ == false)
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * GetModeCount()))));
+
 		DrawRotaGraph(1380, 850, 1.0, 0.0, return_graph_, TRUE);
 	}
 	else
@@ -159,12 +160,12 @@ bool ModeGameOver::Render()
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 
 	//タイトルへ戻る
-
 	if (cursol_ == AGAIN)
 	{
-		//ボタンが押されたら点滅速度を上げる
+		//選択されたら点滅する
 		if (pushed_flag_ == false)
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * GetModeCount()))));
+
 		DrawRotaGraph(525, 850, 1.0, 0.0, again_graph_, TRUE);
 	}
 	else

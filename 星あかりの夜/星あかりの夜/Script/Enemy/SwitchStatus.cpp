@@ -17,6 +17,8 @@ void Enemy::SwitchStatus(ANIM_STATUS _old_status)
 {
 	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 	int elapsed_frame = mode_game->GetModeCount() - start_frame_;
+
+	//プレイヤーがダメージを受けたかどうか取得
 	bool player_damaged = false;
 	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
 	{

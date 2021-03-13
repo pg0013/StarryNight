@@ -86,6 +86,7 @@ bool ModeGameClear::Process()
 
 	if (GetModeCount() == 60)
 	{
+		//やったね大成功を再生
 		se_.Play();
 	}
 
@@ -151,7 +152,9 @@ void ModeGameClear::NextMode()
 	{
 		resource::ResourceServer::ClearModelMap();
 
-		ModeGame* mode_game;
+		ModeGame* mode_game = nullptr;
+
+		//プレイしたステージによって、次に進むステージを設定する
 		if (std::equal(stage_name_.begin(), stage_name_.end(), "haru_A"))
 		{
 			mode_game = NEW ModeGame("haru_B");
@@ -164,6 +167,7 @@ void ModeGameClear::NextMode()
 		{
 			mode_game = NEW ModeGame("haru_A");
 		}
+
 		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
 		::mode::ModeServer::GetInstance()->Del(this);
 	}
@@ -188,9 +192,10 @@ bool ModeGameClear::Render()
 
 	if (cursol_ == RETURN_TITLE)
 	{
-		//ボタンが押されたら点滅速度を上げる
+		//選択されたら点滅する
 		if (pushed_flag_ == false)
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * GetModeCount()))));
+
 		DrawRotaGraph(1380, 880, 1.0, 0.0, return_base_graph_, TRUE);
 	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
@@ -200,9 +205,10 @@ bool ModeGameClear::Render()
 
 	if (cursol_ == NEXT_GAME)
 	{
-		//ボタンが押されたら点滅速度を上げる
+		//選択されたら点滅する
 		if (pushed_flag_ == false)
 			SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * GetModeCount()))));
+
 		DrawRotaGraph(550, 880, 1.0, 0.0, next_base_graph_, TRUE);
 	}
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);

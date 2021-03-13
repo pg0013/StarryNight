@@ -43,9 +43,6 @@
     <Filter Include="ヘッダー ファイル\Camera">
       <UniqueIdentifier>{52c89068-034e-4431-b461-1922d0f7daa3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Star">
-      <UniqueIdentifier>{f8ca9e54-db2b-40bc-be30-8d391d8ba240}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\Star">
       <UniqueIdentifier>{ce2778e6-610d-4229-8aff-fc9677c48e79}</UniqueIdentifier>
     </Filter>
@@ -75,6 +72,15 @@
     </Filter>
     <Filter Include="ソース ファイル\Server">
       <UniqueIdentifier>{0fa298f1-4c20-48f6-a7e5-8ab09b30d6f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\StageStar">
+      <UniqueIdentifier>{f8ca9e54-db2b-40bc-be30-8d391d8ba240}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\StageStar\StarAction">
+      <UniqueIdentifier>{35d1c950-3c26-428d-a69e-c5d7749ab74e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SkyStar">
+      <UniqueIdentifier>{33cfde7d-f7a5-410b-ae93-dfcf02e3ff70}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -109,10 +115,10 @@
       <Filter>ソース ファイル\Stage</Filter>
     </ClCompile>
     <ClCompile Include="Script\Star\Star.cpp">
-      <Filter>ソース ファイル\Star</Filter>
+      <Filter>ソース ファイル\StageStar</Filter>
     </ClCompile>
     <ClCompile Include="Script\Star\StarParameter.cpp">
-      <Filter>ソース ファイル\Star</Filter>
+      <Filter>ソース ファイル\StageStar</Filter>
     </ClCompile>
     <ClCompile Include="Script\Camera\MoveCamera.cpp">
       <Filter>ソース ファイル\Camera</Filter>
@@ -189,12 +195,6 @@
     <ClCompile Include="Script\Effect\DamageEffect.cpp">
       <Filter>ソース ファイル\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Star\SkyStar.cpp">
-      <Filter>ソース ファイル\Star</Filter>
-    </ClCompile>
-    <ClCompile Include="Script\Star\SkyStarParameter.cpp">
-      <Filter>ソース ファイル\Star</Filter>
-    </ClCompile>
     <ClCompile Include="Script\UI\TimingGame_UI.cpp">
       <Filter>ソース ファイル\UI</Filter>
     </ClCompile>
@@ -248,6 +248,24 @@
     </ClCompile>
     <ClCompile Include="Script\Enemy\SwitchEnemySound.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Stage\StageInitialize.cpp">
+      <Filter>ソース ファイル\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Star\Wait.cpp">
+      <Filter>ソース ファイル\StageStar\StarAction</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Star\Follow.cpp">
+      <Filter>ソース ファイル\StageStar\StarAction</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Star\Diffusion.cpp">
+      <Filter>ソース ファイル\StageStar\StarAction</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Star\SkyStar.cpp">
+      <Filter>ソース ファイル\SkyStar</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Star\SkyStarParameter.cpp">
+      <Filter>ソース ファイル\SkyStar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

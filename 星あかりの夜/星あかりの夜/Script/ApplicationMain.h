@@ -13,6 +13,7 @@ namespace starrynight
 		public appframe::ApplicationBase
 	{
 		typedef appframe::ApplicationBase appbase;
+
 	public:
 		/**
 		 * @brief   ‰Šú‰»ˆ—

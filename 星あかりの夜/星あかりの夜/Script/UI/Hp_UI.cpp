@@ -15,6 +15,7 @@ using namespace starrynight::ui;
 Hp_UI::Hp_UI()
 {
 	player_hp_ = 0;
+	interval = 80;
 }
 
 Hp_UI::~Hp_UI()
@@ -40,7 +41,7 @@ void Hp_UI::Render()
 {
 	for (int i = 0; i < player_hp_; i++)
 	{
-		DrawRotaGraph(hp_x + 120*i, hp_y, 0.5, 0.0, hp_graph_, TRUE);
+		DrawRotaGraph(interval + 120 * i, interval, 0.5, 0.0, hp_graph_, TRUE);
 	}
 }
 

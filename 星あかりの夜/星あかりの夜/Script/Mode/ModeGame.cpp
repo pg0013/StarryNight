@@ -41,13 +41,16 @@ bool ModeGame::Initialize()
 {
 	if (!::mode::ModeBase::Initialize()) { return false; }
 
+	//プレイヤーを生成
 	object::ObjectBase* player = NEW player::Player(stage_name_);
 	object_server_.Add(player);
 
+	//カメラ、ステージ、UIの初期化
 	camera_.Initialize();
 	stage_.Initialize(stage_name_);
 	ui_.Initialize();
 
+	//ライトとシャドウマップの設定
 	SetShadowMapDrawArea(stage_shadowmap_, VGet(-2500.0f, -1.0f, -2500.0f), VGet(2500.0f, 2500.0f, 2500.0f));
 	SetShadowMapDrawArea(object_shadowmap_, VGet(-2500.0f, -1.0f, -2500.0f), VGet(2500.0f, 2500.0f, 2500.0f));
 	VECTOR light_direction = VGet(0.1f, -0.05f, -0.1f);
@@ -113,11 +116,13 @@ bool ModeGame::Render()
 {
 	::mode::ModeBase::Render();
 
+	//Zバッファの設定
 	SetUseZBuffer3D(TRUE);
 	SetWriteZBuffer3D(TRUE);
 
 	camera_.Render();
 
+	//動かないステージを一度だけシャドウマップに描画
 	if (GetModeCount() == 1)
 	{
 		ShadowMap_DrawSetup(stage_shadowmap_);
@@ -125,10 +130,12 @@ bool ModeGame::Render()
 		ShadowMap_DrawEnd();
 	}
 
+	//動くオブジェクトをシャドウマップに描画
 	ShadowMap_DrawSetup(object_shadowmap_);
 	object_server_.Render();
 	ShadowMap_DrawEnd();
 
+	//ステージとオブジェクトを描画
 	SetUseShadowMap(0, stage_shadowmap_);
 	SetUseShadowMap(1, object_shadowmap_);
 	stage_.Render();
@@ -189,6 +196,7 @@ void ModeGame::NextMode()
 
 	nextmode_count_--;
 
+	//カウンタがフェード開始時間になったら、オーバーレイを生成しBGMをフェード
 	if (nextmode_count_ == fade_count_ &&
 		pause_flag_ == false)
 	{
@@ -203,22 +211,26 @@ void ModeGame::NextMode()
 	{
 		if (pause_flag_)
 		{
+			//ポーズメニューへ移行
 			ModePauseMenu* mode_pause_menu = NEW ModePauseMenu();
 			::mode::ModeServer::GetInstance()->Add(mode_pause_menu, 1, "PauseMenu");
 			ui_.SetDrawUIFlag(false);
+			//モードを削除しないので、フラグを初期化
 			pause_flag_ = false;
 			pushed_flag_ = false;
 			return;
 		}
 
-		if (result_ == 0)
+		if (result_ == GAME_CLEAR)
 		{
+			//ゲームクリアへ移行し、モードを削除
 			ModeGameClear* mode_gameclear = NEW ModeGameClear(game_score_, stage_name_);
 			::mode::ModeServer::GetInstance()->Add(mode_gameclear, 0, "GameClear");
 			::mode::ModeServer::GetInstance()->Del(this);
 		}
-		else if (result_ == 1)
+		else if (result_ == GAME_OVER)
 		{
+			//ゲームオーバー並行し、モードを削除
 			mode::ModeGameOver* mode_gameover = NEW mode::ModeGameOver();
 			::mode::ModeServer::GetInstance()->Add(mode_gameover, 0, "GameOver");
 			::mode::ModeServer::GetInstance()->Del(this);

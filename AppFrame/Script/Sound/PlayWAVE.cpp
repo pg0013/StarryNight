@@ -16,7 +16,14 @@ namespace sound
 	HRESULT PlayWAVE::hr;
 
 	PlayWAVE::PlayWAVE() {}
-	PlayWAVE::~PlayWAVE() {}
+	PlayWAVE::~PlayWAVE()
+	{
+		if (CheckIsRunning() == false)
+			return;
+
+		Pause();
+		Destroy();
+	}
 
 	void PlayWAVE::Init()
 	{

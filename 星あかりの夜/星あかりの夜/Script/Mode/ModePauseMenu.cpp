@@ -119,6 +119,7 @@ void ModePauseMenu::Input()
 		{
 			nextmode_count_ = 1;
 
+			//戻るので低い音にする
 			appframe::ApplicationBase::GetInstance()->se_.Pitch(0.9f);
 		}
 		else if (nextmode_ == TUTORIAL)
@@ -132,7 +133,7 @@ void ModePauseMenu::Input()
 		appframe::ApplicationBase::GetInstance()->se_.Play();
 	}
 
-	//STARTボタンでポーズメニューを表示
+	//STARTボタンかAボタンでゲームに戻る
 	if (trigger_key & PAD_INPUT_8 ||
 		trigger_key & PAD_INPUT_1)
 	{
@@ -144,7 +145,6 @@ void ModePauseMenu::Input()
 		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
 		appframe::ApplicationBase::GetInstance()->se_.Pitch(0.9f);
 		appframe::ApplicationBase::GetInstance()->se_.Play();
-
 	}
 }
 
@@ -189,13 +189,15 @@ bool ModePauseMenu::Render()
 
 	DrawGraph(0, 0, tutorial_graph_[1], TRUE);
 
+	//選択されたメニューは点滅する
 	if (cursol_ == TUTORIAL)
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * (GetModeCount()-select_frame_)))));
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * (GetModeCount() - select_frame_)))));
 	DrawGraph(0, 0, tutorial_graph_[0], TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 
 	DrawGraph(0, 0, return_graph_[1], TRUE);
 
+	//選択されたメニューは点滅する
 	if (cursol_ == RETURN)
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * (GetModeCount() - select_frame_)))));
 	DrawGraph(0, 0, return_graph_[0], TRUE);
@@ -203,6 +205,7 @@ bool ModePauseMenu::Render()
 
 	DrawGraph(0, 0, return_title_graph_[1], TRUE);
 
+	//選択されたメニューは点滅する
 	if (cursol_ == TITLE)
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * (GetModeCount() - select_frame_)))));
 	DrawGraph(0, 0, return_title_graph_[0], TRUE);

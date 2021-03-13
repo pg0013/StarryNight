@@ -16,6 +16,8 @@ using namespace starrynight::effect;
 ZodiacSignEffect::ZodiacSignEffect(std::string _sign_name)
 {
 	skystar_name_ = _sign_name;
+
+	//1～3番星から始まるエフェクトを読み込む
 	std::string filename = "Resource/effect/" + _sign_name + "_before.efk";
 	effect_resource_ = LoadEffekseerEffect(filename.c_str(), 1.0f);
 	filename = "Resource/effect/" + _sign_name + "_after01.efk";
@@ -33,6 +35,8 @@ ZodiacSignEffect::ZodiacSignEffect(std::string _sign_name)
 	select_star_num_ = -1;
 
 	switch_effect_frame_ = 120;
+
+	//星座完成時の完成時間を星座によって初期化
 	if (_sign_name == "ohitsuji")
 	{
 		complete_effect_startframe_ = 50;
@@ -55,17 +59,6 @@ ZodiacSignEffect::~ZodiacSignEffect()
 		if (i == select_star_num_) { continue; }
 		DeleteEffekseerEffect(after_effect_resource_[i]);
 	}
-
-	if (se1_.CheckIsRunning())
-	{
-		se1_.Pause();
-		se1_.Destroy();
-	}
-	if (se2_.CheckIsRunning())
-	{
-		se2_.Pause();
-		se2_.Destroy();
-	}
 }
 
 void ZodiacSignEffect::Initialize()
@@ -80,6 +73,16 @@ void ZodiacSignEffect::Process()
 	DrawCompleteEffect();
 	PlayEffectSound();
 
+	SetEffectRotationToPlayer();
+}
+
+void ZodiacSignEffect::Render()
+{
+	EffectBase::Render();
+}
+
+void ZodiacSignEffect::SetEffectRotationToPlayer()
+{
 	VECTOR skystar_position = MV1GetPosition(resource::ResourceServer::GetModelHandle(skystar_name_));
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 	VECTOR player_rotation = MV1GetRotationXYZ(resource::ResourceServer::GetModelHandle("player"));
@@ -122,11 +125,6 @@ void ZodiacSignEffect::Process()
 	manager->SetBaseMatrix(playing_effect_, matrix);
 }
 
-void ZodiacSignEffect::Render()
-{
-	EffectBase::Render();
-}
-
 void ZodiacSignEffect::DrawCompleteEffect()
 {
 	if (once_flag_ == true)
@@ -135,6 +133,7 @@ void ZodiacSignEffect::DrawCompleteEffect()
 	if (camera::Camera::GetInstance()->GetStatus() != camera::Camera::STATUS::SKYSTAR)
 		return;
 
+	//星座切り替え時のフレームを取得
 	if (start_frame_ == 0)
 	{
 		start_frame_ = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount();
@@ -144,8 +143,10 @@ void ZodiacSignEffect::DrawCompleteEffect()
 
 	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
+	//経過フレームが星座エフェクト切り替え時であれば
 	if (elapsed_frame == switch_effect_frame_)
 	{
+		//再生しているエフェクトの削除
 		StopEffekseer3DEffect(playing_effect_);
 		DeleteEffekseerEffect(effect_resource_);
 
@@ -153,13 +154,13 @@ void ZodiacSignEffect::DrawCompleteEffect()
 		select_star_num_ = mode_game->ui_.timing_ui_.GetSelectedStarNum() - 1;
 		effect_resource_ = after_effect_resource_[select_star_num_];
 
+		//星座完成エフェクトの再生
 		PlayEffect();
 		SetPosition(VGet(0, 0, 0));
 		SetPlayingEffectPosition();
-
-		SetSpeedPlayingEffekseer3DEffect(playing_effect_, 1.0f);
 	}
 
+	//星座完成エフェクトの星座が完成したら
 	if (elapsed_frame == switch_effect_frame_ + complete_effect_startframe_)
 	{
 		//星獲得エフェクトを生成
@@ -168,6 +169,7 @@ void ZodiacSignEffect::DrawCompleteEffect()
 		timing_effect->Initialize();
 		timing_effect->PlayEffect();
 		mode_game->effect_server_.Add(timing_effect);
+
 		once_flag_ = true;
 	}
 }

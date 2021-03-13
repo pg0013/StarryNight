@@ -19,6 +19,11 @@ namespace starrynight
 			public object::ObjectBase
 		{
 		public:
+			/**
+			 * @brief@ ¯Àƒ‚ƒfƒ‹‚ğ¶¬‚·‚é
+			 *
+			 * @param  _name@¯À–¼
+			 */
 			SkyStar(const std::string _name);
 			~SkyStar();
 

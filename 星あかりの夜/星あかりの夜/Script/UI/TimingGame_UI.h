@@ -117,14 +117,13 @@ namespace starrynight
 			 */
 			TIMING_STATUS CheckTiming();
 
-			//画像用ハンドル
-			handle circle_guide_;
-			handle timing_circle_;
-			handle timing_circle_white_;
-			handle timing_circle_red_;
-			handle timing_judge_[3];
+			handle circle_guide_;//タイミング判定画像
+			handle timing_circle_;//タイミング判定の円
+			handle timing_circle_white_;//タイミング判定の円
+			handle timing_circle_red_;//残り一回の時のタイミング判定の円
+			handle timing_judge_[3];//判定画像
 
-			sound::PlayWAVE se_;
+			sound::PlayWAVE se_;//効果音
 
 			bool draw_timing_guide_;//trueでタイミングゲージを描画するフラグ
 			bool launch_star_shoot_;//trueでプレイヤーがスターを発射できるフラグ
@@ -132,7 +131,7 @@ namespace starrynight
 
 			int presssed_frame_;//タイミングゲームでBボタンが押された時のフレーム
 			int selected_star_num_;//選択されたスター番号
-			int player_star_num_;
+			int player_star_num_;//プレイヤー所持スター数
 
 			int select_star_frame_;//星が選択された時のフレーム数
 

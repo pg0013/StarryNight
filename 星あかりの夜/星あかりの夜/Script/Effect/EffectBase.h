@@ -64,19 +64,16 @@ namespace starrynight
 
 			/**
 			 * @brief　 エフェクトを再生する
-			 *
 			 */
 			void PlayEffect();
 
 			/**
 			 * @brief　 再生中のエフェクト座標を更新する
-			 *
 			 */
 			void SetPlayingEffectPosition();
 
 			/**
 			 * @brief　 再生中のエフェクト回転角度を更新する
-			 *
 			 */
 			void SetPlayingEffectRotation();
 

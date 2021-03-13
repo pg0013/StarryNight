@@ -22,6 +22,7 @@ VECTOR Enemy::Tracking(VECTOR _move)
 
 	VECTOR cross = VCross(forward, enemy_to_player);
 
+	//プレイヤーがエネミーに対して左右どちらかにいるか判定する
 	if (VCross(VNorm(forward), VNorm(enemy_to_player)).y >= 0)
 	{
 		rotation_.y += DEG2RAD(rot_speed_) * VSize(VCross(forward, enemy_to_player)) * 0.02f;
@@ -33,6 +34,7 @@ VECTOR Enemy::Tracking(VECTOR _move)
 
 	_move = VScale(VNorm(utility::GetForwardVector(rotation_.y)), run_speed_);
 
+	//プレイヤー検出範囲を超えたら追うのをやめる
 	if (player_distance > detect_length_)
 	{
 		move_status_ = MOVE_STATUS::WAIT;

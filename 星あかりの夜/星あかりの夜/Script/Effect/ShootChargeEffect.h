@@ -37,8 +37,7 @@ namespace starrynight
 			virtual void Render();
 
 		private:
-			sound::PlayWAVE se_;
-			int frame_;
+			sound::PlayWAVE se_;//Œø‰Ê‰¹
 		};
 	}
 }

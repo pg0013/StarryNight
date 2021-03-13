@@ -60,6 +60,7 @@ void TimingGame_UI::Process()
 		return;
 	}
 
+	//タイミング回数が残り一回の時には、判定円の色を赤にする
 	if (player_star_num_ > 0)
 		timing_circle_ = timing_circle_white_;
 	else
@@ -75,6 +76,7 @@ void TimingGame_UI::Process()
 		shrink_circle_flag_ = false;
 		presssed_frame_ = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount();
 
+		//判定によって音の高さを変える
 		se_.Load("Resource/sound/timing_se.wav");
 		if (CheckTiming() == TIMING_STATUS::EXCELLENT)
 			se_.Pitch(1.0f);
@@ -163,7 +165,9 @@ void TimingGame_UI::CalcurateScore()
 
 	double score = static_cast<double>(mode_game->GetGameScore());
 	int regulations_score = mode_game->GetStageRegulationsScore();
-	double star_rate = static_cast<double>(mode_game->GetPlayerStarNum()) / static_cast<double>(mode_game->GetStageStarNum());
+
+	//スター
+	double star_rate = static_cast<double>(mode_game->GetPlayerStarNum()) / static_cast<double>(mode_game->GetStageStarNumAll());
 	star_rate *= 10;
 	star_rate = floor(star_rate);
 	star_rate /= 10;
@@ -225,6 +229,7 @@ void TimingGame_UI::CalcurateScore()
 	}
 	else
 	{
+		//一度に集めきらなければ、仕様書の通りにスコアを設定
 		switch (selected_star_num_)
 		{
 		case 1:
@@ -266,6 +271,7 @@ void TimingGame_UI::CalcurateScore()
 
 TimingGame_UI::TIMING_STATUS TimingGame_UI::CheckTiming()
 {
+	//拡大率によってタイミングの判定を返す
 	if (timing_exrate_ <= 0.43 &&
 		timing_exrate_ >= 0.37)
 	{

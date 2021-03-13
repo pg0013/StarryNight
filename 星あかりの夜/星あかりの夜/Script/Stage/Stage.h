@@ -32,6 +32,12 @@ namespace starrynight
 			~Stage();
 
 			static Stage* instance_;
+
+			/**
+			 * @brief　 インスタンスを返す
+			 *
+			 * @return   インスタンス
+			 */
 			static Stage* GetInstance() { return instance_; }
 
 			/**
@@ -134,6 +140,36 @@ namespace starrynight
 			 */
 			int GetHitFloorType(VECTOR& _startline, VECTOR& _endline);
 		private:
+			/**
+			 * @brief　 ステージモデルを初期化、配置する
+			 *
+			 */
+			void InitStageModel();
+
+			/**
+			 * @brief　 ステージスターを初期化、配置する
+			 *
+			 */
+			void InitStageStar();
+
+			/**
+			 * @brief　 星座を初期化、配置する
+			 *
+			 */
+			void InitSkyStar();
+
+			/**
+			 * @brief　 敵を初期化、配置する
+			 *
+			 */
+			void InitEnemy();
+
+			/**
+			 * @brief　 ステージのエフェクトを初期化、配置する
+			 *
+			 */
+			void InitStageEffect();
+
 			/**
 			 * @brief　 ファイル名から床の材質を返す
 			 *

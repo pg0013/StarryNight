@@ -35,17 +35,17 @@ void Player::SwitchPlayerAction()
 
 	hit_poly_shootpoint = stage::Stage::GetInstance()->GetHitLineToShootPoint(start_line, end_line);
 
-	if (x_input.RightTrigger == 255 &&
-		jump_flag_ == false &&
-		mode_game->GetPlayerStarNum() > 0 &&
-		hit_poly_shootpoint.HitFlag)
+	if (x_input.RightTrigger == 255 &&//Rトリガー押し込み
+		jump_flag_ == false &&//ジャンプ中でない
+		mode_game->GetPlayerStarNum() > 0 &&//スターを所持している
+		hit_poly_shootpoint.HitFlag)//射撃地点にいる
 		slingshot_flag_ = true;
 
+	//星座カメラモードであれば、プレイヤーの処理を行わない
 	if (camera::Camera::GetInstance()->GetStatus() == camera::Camera::STATUS::SKYSTAR)
-	{
 		return;
-	}
 
+	//ゲームオーバーであれば、プレイヤーの処理を行わない
 	if (gameover_flag_)
 		return;
 
@@ -59,14 +59,18 @@ void Player::SwitchPlayerAction()
 	}
 	else
 	{
-		//移動、ジャンプアクションを行う
+		//UIを表示
 		mode_game->ui_.SetDrawPlayerUIFlag(true);
-		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::MOVE);
+		//射撃ガイドを非表示
 		mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
+		//射撃チャージエフェクトのフラグを初期化
 		shoot_charge_effect_flag_ = true;
+		//移動カメラに設定
+		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::MOVE);
 
 		VECTOR old_position = position_;
 
+		//移動、ジャンプアクションを行う
 		Jump();
 		Move();
 

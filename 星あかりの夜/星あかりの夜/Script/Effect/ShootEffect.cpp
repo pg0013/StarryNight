@@ -20,11 +20,6 @@ ShootEffect::ShootEffect(VECTOR _target)
 
 ShootEffect::~ShootEffect()
 {
-	if (se_.CheckIsRunning())
-	{
-		se_.Pause();
-		se_.Destroy();
-	}
 }
 
 void ShootEffect::Initialize()
@@ -79,6 +74,7 @@ void ShootEffect::SetRotationToTarget()
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 	VECTOR player_rotation = MV1GetRotationXYZ(resource::ResourceServer::GetModelHandle("player"));
 
+	//ターゲットに向かうベクトルの軸を算出
 	VECTOR forward = VNorm(VSub(shoot_target_, position_));
 	VECTOR up = VGet(0, 1, 0);
 	VECTOR right = VCross(forward, up);

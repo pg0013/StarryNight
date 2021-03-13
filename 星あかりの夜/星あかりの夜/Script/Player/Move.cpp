@@ -21,6 +21,7 @@ void Player::Move()
 	float length = utility::GetLeftStickLength();
 	float rad = utility::GetLeftStickRad();
 
+	//スティックの傾ける量で移動速度を変更
 	if (length < ANALOG_MIN)
 		length = 0.0f;
 	else if (length < 0.6f)
@@ -67,6 +68,7 @@ void Player::Move()
 	VECTOR capsule_positon2 = VAdd(position_, VGet(0, 45, 0));
 	float radius = 35.0f;
 
+	//壁との当たり判定を取得
 	MV1_COLL_RESULT_POLY_DIM hit_poly_wall;
 	hit_poly_wall = stage::Stage::GetInstance()->GetHitCapsuleToWall(capsule_positon1, capsule_positon2, radius);
 
@@ -80,6 +82,7 @@ void Player::Move()
 		}
 		normal = VNorm(normal);
 
+		//壁ずりベクトルの算出
 		VECTOR escape = VCross(move, normal);
 		escape = VCross(normal, escape);
 		escape.y = 0.0f;
@@ -136,6 +139,7 @@ void Player::Move()
 
 			normal = VNorm(normal);
 
+			//押し出し
 			position_ = VAdd(position_, VScale(normal, 0.5f));
 
 			MV1CollResultPolyDimTerminate(hit_poly_wallpush);

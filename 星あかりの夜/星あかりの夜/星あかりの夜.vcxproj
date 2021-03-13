@@ -66,11 +66,15 @@
     <ClCompile Include="Script\Player\SwitchPlayerStatus.cpp" />
     <ClCompile Include="Script\Stage\CollisionToStage.cpp" />
     <ClCompile Include="Script\Stage\Stage.cpp" />
+    <ClCompile Include="Script\Stage\StageInitialize.cpp" />
     <ClCompile Include="Script\Stage\StageParameters.cpp" />
+    <ClCompile Include="Script\Star\Diffusion.cpp" />
+    <ClCompile Include="Script\Star\Follow.cpp" />
     <ClCompile Include="Script\Star\SkyStar.cpp" />
     <ClCompile Include="Script\Star\SkyStarParameter.cpp" />
     <ClCompile Include="Script\Star\Star.cpp" />
     <ClCompile Include="Script\Star\StarParameter.cpp" />
+    <ClCompile Include="Script\Star\Wait.cpp" />
     <ClCompile Include="Script\UI\Hp_UI.cpp" />
     <ClCompile Include="Script\UI\Score_UI.cpp" />
     <ClCompile Include="Script\UI\Shoot_UI.cpp" />

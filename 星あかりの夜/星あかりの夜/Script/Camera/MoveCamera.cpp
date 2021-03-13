@@ -43,15 +43,18 @@ void Camera::MoveCamera()
 		VECTOR sphere_position = position_;
 		float radius = 60.0f;
 
+		//壁との当たり判定をとる
 		MV1_COLL_RESULT_POLY_DIM hit_poly_wallpush;
 		hit_poly_wallpush = stage::Stage::GetInstance()->GetHitSphereToWall(sphere_position, radius);
 
+		//判定がなければ終了
 		if (hit_poly_wallpush.HitNum == 0)
 		{
 			MV1CollResultPolyDimTerminate(hit_poly_wallpush);
 			break;
 		}
 
+		//法線ベクトルを算出
 		VECTOR normal = { 0,0,0 };
 		for (int i = 0; i < hit_poly_wallpush.HitNum; i++)
 		{
@@ -59,6 +62,7 @@ void Camera::MoveCamera()
 		}
 		normal = VNorm(normal);
 
+		//押し出し
 		position_ = VAdd(position_, VScale(normal, 0.5f));
 
 		MV1CollResultPolyDimTerminate(hit_poly_wallpush);
@@ -71,7 +75,7 @@ void Camera::MoveCamera()
 	}
 
 	//カメラの高さの上限を設定
-	float camera_max_y = MV1GetPosition(resource::ResourceServer::GetModelHandle("player")).y + 300.0f;
+	float camera_max_y = MV1GetPosition(resource::ResourceServer::GetModelHandle("player")).y + 400.0f;
 	if (position_.y > camera_max_y)
 		position_.y = camera_max_y;
 
@@ -93,15 +97,18 @@ void Camera::MoveCamera()
 		VECTOR sphere_position = position_;
 		float radius = 60.0f;
 
+		//床との当たり判定をとる
 		MV1_COLL_RESULT_POLY_DIM hit_poly_floorpush;
 		hit_poly_floorpush = stage::Stage::GetInstance()->GetHitSphereToFloor(sphere_position, radius);
 
+		//判定がなければ終了
 		if (hit_poly_floorpush.HitNum == 0)
 		{
 			MV1CollResultPolyDimTerminate(hit_poly_floorpush);
 			break;
 		}
 
+		//法線ベクトルを算出
 		VECTOR normal = { 0,0,0 };
 		for (int i = 0; i < hit_poly_floorpush.HitNum; i++)
 		{
@@ -109,6 +116,7 @@ void Camera::MoveCamera()
 		}
 		normal = VNorm(normal);
 
+		//押し出し
 		position_ = VAdd(position_, VScale(normal, 0.5f));
 
 		MV1CollResultPolyDimTerminate(hit_poly_floorpush);

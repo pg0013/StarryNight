@@ -84,6 +84,7 @@ bool ModeTitle::Render()
 	else
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 10 * GetModeCount()))));
 
+	//カーソル画像の位置を移動
 	if (cursol_ == MENU)
 		DrawGraph(0, 0, startline_graph_, TRUE);
 	if (cursol_ == EXIT)
@@ -132,6 +133,8 @@ void ModeTitle::Input()
 		appframe::ApplicationBase::GetInstance()->se_.SetVolume(1.0f);
 		appframe::ApplicationBase::GetInstance()->se_.Play();
 		appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 1.0f);
+
+		//プログラムを終了するときはBGMをフェードアウトする
 		if (cursol_ == EXIT)
 			appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 1.0f);
 	}

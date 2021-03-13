@@ -69,20 +69,20 @@ namespace starrynight
 			void NextMode();
 
 			handle background_graph_;//背景画像
-			handle overlay_graph_;//背景画像
-			handle pause_graph_;
-			handle return_title_graph_[2];
-			handle return_graph_[2];
-			handle tutorial_graph_[2];
+			handle overlay_graph_;//オーバーレイ用画像
+			handle pause_graph_;//ポーズ画像
+			handle return_title_graph_[2];//タイトルへ戻る
+			handle return_graph_[2];//ゲームへ戻る
+			handle tutorial_graph_[2];//チュートリアルへ移行
 
 			::parameters::Parameters param_;//パラメータ読み込みクラス
 
-			int cursol_;
-			int nextmode_;
-			int menu_num_;
-			int nextmode_count_;
-			bool pushed_flag_;
-			int select_frame_;
+			int cursol_;//メニュー選択カーソル
+			int nextmode_;//次に遷移するモード
+			int menu_num_;//メニュー項目数
+			int nextmode_count_;//次のモードへ移行するカウンタ
+			bool pushed_flag_;//メニュー選択済みフラグ
+			int select_frame_;//カーソルを動かしたときのフレーム
 		};
 
 	}

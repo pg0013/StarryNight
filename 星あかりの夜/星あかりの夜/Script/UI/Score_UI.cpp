@@ -93,8 +93,10 @@ void Score_UI::Render()
 	int x = static_cast<int>(position_.x);
 	int interval = 67;
 
+	//’l‚ð•`‰æ
 	for (int i = 0; i < 6; i++)
 	{
+		//•`‰æ‚·‚é•K—v‚Ì‚È‚¢Œ…‚Í•`‰æ‚µ‚È‚¢
 		if (draw_rank_flag_[i] == false)
 			continue;
 

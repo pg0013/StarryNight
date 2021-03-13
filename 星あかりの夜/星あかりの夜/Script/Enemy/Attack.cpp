@@ -30,12 +30,15 @@ VECTOR Enemy::Attack(VECTOR _move)
 		}
 	}
 
+	//ダメージモーションの再生が完了したら
 	if (anim_play_time_ >= anim_total_time_)
 	{
+		//向きを180度かえて、プレイヤーのもとを去る
 		rotation_.y -= DEG2RAD(180.0f);
 		move_status_ = MOVE_STATUS::ESCAPE;
 		anim_status_ = ANIM_STATUS::MOVE;
 		attacked_flag_ = false;
+
 		_move = VScale(VNorm(utility::GetForwardVector(rotation_.y)), run_speed_);
 	}
 

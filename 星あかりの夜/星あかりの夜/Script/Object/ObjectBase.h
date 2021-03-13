@@ -23,7 +23,7 @@ namespace starrynight
 			 */
 			enum class OBJECT_TYPE
 			{
-				PLAYER,ENEMY,SKY_STAR,STAGE_STAR,EFFECT
+				PLAYER, ENEMY, SKY_STAR, STAGE_STAR, EFFECT
 			};
 
 			/**
@@ -83,6 +83,11 @@ namespace starrynight
 			 */
 			inline VECTOR GetRotation() { return MV1GetRotationXYZ(handle_); }
 
+			/**
+			 * @brief　 モデルのハンドルを設定する
+			 *
+			 * @param  _handle　モデルハンドル
+			 */
 			inline void SetModelHandle(const handle _handle) { handle_ = _handle; }
 
 			/**

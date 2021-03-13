@@ -15,10 +15,6 @@ void Enemy::SwitchEnemySound()
 	//ステータスに合わせてアニメーションを変更
 	switch (anim_status_)
 	{
-	case ANIM_STATUS::MOVE:
-		break;
-	case ANIM_STATUS::WAIT:
-		break;
 	case ANIM_STATUS::RUN:
 		if (anim_play_time_ == 0 ||
 			anim_play_time_ == 25)
@@ -34,10 +30,6 @@ void Enemy::SwitchEnemySound()
 
 			se_.Play();
 		}
-		break;
-	case ANIM_STATUS::RUSH:
-		break;
-	case ANIM_STATUS::ATTACK:
 		break;
 	}
 }

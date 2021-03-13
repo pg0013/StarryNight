@@ -15,17 +15,11 @@ using namespace starrynight::effect;
 ShootChargeEffect::ShootChargeEffect()
 {
 	effect_resource_ = LoadEffekseerEffect("Resource/effect/set.efk", 5.0f);
-	effect_frame_ = 120;
-	frame_ = 0;
+	effect_frame_ = 0;
 }
 
 ShootChargeEffect::~ShootChargeEffect()
 {
-	if (se_.CheckIsRunning())
-	{
-		se_.Pause();
-		se_.Destroy();
-	}
 }
 
 void ShootChargeEffect::Initialize()
@@ -37,7 +31,8 @@ void ShootChargeEffect::Process()
 {
 	EffectBase::Process();
 
-	if (frame_ % 30 == 0)
+	//一定間隔でSEを再生
+	if (effect_frame_ % 30 == 0)
 	{
 		se_.Load("Resource/sound/star_charge.wav");
 		se_.SetVolume_dB(-20.0f);
@@ -62,7 +57,6 @@ void ShootChargeEffect::Process()
 	effect_pos = VAdd(effect_pos, VScale(back, 10.0f));
 
 	SetPosition(effect_pos);
-
 	SetPlayingEffectPosition();
 
 	//プレイヤーが射撃モードでないとき、または星が発射されたらエフェクトを消す
@@ -80,7 +74,7 @@ void ShootChargeEffect::Process()
 		}
 	}
 
-	frame_++;
+	effect_frame_++;
 }
 
 void ShootChargeEffect::Render()

@@ -78,7 +78,10 @@ void Enemy::Move(VECTOR _move)
 	VECTOR start_line = VAdd(position_, VGet(0, 10.0f, 0));
 	VECTOR end_line = VAdd(position_, VGet(0, -10.0f, 0));
 
+	//°‚Æ‚Ì“–‚½‚è”»’è‚ğæ“¾
 	hit_poly_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
+
+	//°‚Æ‚Ì”»’è‚ª‚ ‚ê‚ÎÚ’n‚µA–³‚¯‚ê‚ÎˆÚ“®‚¹‚¸‘Ò‹@
 	if (hit_poly_floor.HitFlag)
 		position_.y = hit_poly_floor.HitPosition.y;
 	else

@@ -70,6 +70,7 @@ void ModeMovie::Input()
 	if (pushed_flag_ == true)
 		return;
 
+	//何かしらのボタンが押された、もしくはムービーの再生が停止したら、タイトルへ移行
 	if (trigger_key & PAD_INPUT_ALL ||
 		GetMovieStateToGraph(movie_) == 0)
 	{

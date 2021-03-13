@@ -19,6 +19,7 @@ VECTOR Enemy::DecideMoveAmount()
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 	float player_distance = VSize(VSub(player_position, position_));
 
+	//ó‘Ô‚É‚æ‚Á‚ÄˆÚ“®‚·‚é•ûŒü‚â—Ê‚ðŒˆ’è‚·‚é
 	switch (move_status_)
 	{
 	case MOVE_STATUS::WAIT:
@@ -44,7 +45,7 @@ VECTOR Enemy::DecideMoveAmount()
 	case MOVE_STATUS::ESCAPE:
 		anim_status_ = ANIM_STATUS::MOVE;
 
-		if (player_distance > detect_length_ + 100.0f)
+		if (player_distance > detect_length_ + 300.0f)
 			move_status_ = MOVE_STATUS::WAIT;
 		else
 			move = VScale(VNorm(utility::GetForwardVector(rotation_.y)), run_speed_);

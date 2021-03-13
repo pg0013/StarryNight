@@ -7,11 +7,6 @@
  */
 #include "Stage.h"
 #include"../Mode/ModeGame.h"
-#include"../Star/Star.h"
-#include"../Star/SkyStar.h"
-#include"../Enemy/Enemy.h"
-#include"../Effect/ShootPointEffect.h"
-#include"../Effect/StageFlowEffect.h"
 #include<algorithm>
 
 using namespace starrynight::stage;
@@ -39,99 +34,11 @@ void Stage::Initialize(std::string _stage_name)
 	skystar_param_.LoadSkyStar(_stage_name, false);
 	enemy_param_.LoadStageEnemys(_stage_name, false);
 
-	//Stageモデルの読み込み
-	auto handle_map = stage_param_.GetMapModelParam();
-	for (auto iter = handle_map.begin(); iter != handle_map.end(); iter++)
-	{
-		auto navmesh_count = 0;//ナビメッシュがあるオブジェクトかを確認するカウンタ
-		auto handle = resource::ResourceServer::GetModelHandle((*iter).second.handlename_);
-
-		//天球は初めに描画するために個別で管理する
-		if (handle == resource::ResourceServer::GetModelHandle("skysphere"))
-		{
-			skysphere_ = handle;
-			continue;
-		}
-
-		stage_handle_.push_back(handle);
-
-		//射撃ポイントは当たり判定のために個別で管理する
-		if (handle == resource::ResourceServer::GetModelHandle("ShootPoint_GEO1"))
-		{
-			shootpoint_ = handle;
-		}
-
-		//壁や床の当たり判定があるオブジェクトは当たり判定用のコンテナにも格納する
-		if (MV1SearchFrame(handle, "floor_NavMesh") > 0)
-		{
-			MV1SetupCollInfo(handle, MV1SearchFrame(handle, "floor_NavMesh"), 16, 16, 16);
-			MV1SetFrameVisible(handle, MV1SearchFrame(handle, "floor_NavMesh"), FALSE);
-
-			map_floortype_.emplace(handle, CheckFloorType((*iter).second.filename_));
-
-			navmesh_count++;
-		}
-		if (MV1SearchFrame(handle, "wall_NavMesh") > 0)
-		{
-			MV1SetupCollInfo(handle, MV1SearchFrame(handle, "wall_NavMesh"), 16, 16, 16);
-			MV1SetFrameVisible(handle, MV1SearchFrame(handle, "wall_NavMesh"), FALSE);
-			navmesh_count++;
-		}
-
-		if (navmesh_count > 0)
-			navimesh_handle_.push_back(handle);
-	}
-
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-
-	//Starモデルの配置情報を読み込み
-	handle_map = star_param_.GetMapModelParam();
-
-	//StageにStarモデルを配置する
-	int stage_star_num = 0;
-	for (auto iter = handle_map.begin(); iter != handle_map.end(); iter++)
-	{
-		star::Star* star = NEW star::Star();
-		star->SetModelHandle(resource::ResourceServer::GetModelHandle((*iter).second.handlename_));
-		star->Initialize();
-		mode_game->object_server_.Add(star);
-		stage_star_num++;
-	}
-	//ステージのフィールドスター総数を設定
-	mode_game->SetStageStarNum(stage_star_num);
-
-	//星座の情報を読み込み
-	handle_map = skystar_param_.GetMapModelParam();
-
-	//星座モデルを配置する
-	for (auto iter = handle_map.begin(); iter != handle_map.end(); iter++)
-	{
-		star::SkyStar* skystar = NEW star::SkyStar((*iter).second.filename_);
-		skystar->Initialize();
-		mode_game->object_server_.Add(skystar);
-	}
-	//エネミーモデルの配置情報を読み込み
-	handle_map = enemy_param_.GetMapModelParam();
-
-	//Stageにエネミーモデルを配置する
-	for (auto iter = handle_map.begin(); iter != handle_map.end(); iter++)
-	{
-		enemy::Enemy* enemy = NEW enemy::Enemy((*iter).second.handlename_);
-		enemy->Initialize();
-		mode_game->object_server_.Add(enemy);
-	}
-	//射撃ポイントにエフェクトを配置
-	handle shootpoint = resource::ResourceServer::GetModelHandle("ShootPoint_GEO1");
-	effect::ShootPointEffect* shootpoint_effect = NEW effect::ShootPointEffect();
-	shootpoint_effect->SetPosition(MV1GetPosition(shootpoint));
-	shootpoint_effect->PlayEffect();
-	mode_game->effect_server_.Add(shootpoint_effect);
-
-	//花びらエフェクトの生成
-	effect::StageFlowEffect* stageflow_effect = NEW effect::StageFlowEffect();
-	stageflow_effect->SetPosition(VGet(0, 0, 0));
-	stageflow_effect->PlayEffect();
-	mode_game->effect_server_.Add(stageflow_effect);
+	InitStageModel();
+	InitStageStar();
+	InitSkyStar();
+	InitEnemy();
+	InitStageEffect();
 }
 
 void Stage::Process()

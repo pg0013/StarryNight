@@ -138,11 +138,6 @@ namespace starrynight
 			void SkyStarCameraInit();
 
 			/**
-			 * @brief　 星座エフェクト完成を見せるカメラ
-			 */
-			void SkyStarCamera();
-
-			/**
 			 * @brief 状態遷移用変数
 			 */
 			enum class STATUS
@@ -180,7 +175,7 @@ namespace starrynight
 			float rot_speed_;//回転速度
 			float camera_distance_;//カメラ距離
 
-			VECTOR old_target_;
+			VECTOR old_target_;//前フレームのプレイヤー座標
 		};
 	}
 }

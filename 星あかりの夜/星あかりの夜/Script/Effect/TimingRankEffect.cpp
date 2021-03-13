@@ -12,6 +12,7 @@ using namespace starrynight::effect;
 
 TimingRankEffect::TimingRankEffect(mode::ModeGame::SCORE_RANK _rank)
 {
+	//判定ランクによって読み込むエフェクトを変更する
 	switch (_rank)
 	{
 	case mode::ModeGame::SCORE_RANK::HIGH:
@@ -34,6 +35,7 @@ TimingRankEffect::~TimingRankEffect()
 
 void TimingRankEffect::Initialize()
 {
+	//エフェクト生成時のフレームを取得
 	start_frame_ = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount();
 	SetSpeedPlayingEffekseer3DEffect(playing_effect_, 2.0f);
 }
@@ -41,9 +43,6 @@ void TimingRankEffect::Initialize()
 void TimingRankEffect::Process()
 {
 	EffectBase::Process();
-
-	//position_ = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
-	//position_ = VAdd(position_, VGet(0, 60, 0));
 
 	int elapsed_frame = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - start_frame_;
 

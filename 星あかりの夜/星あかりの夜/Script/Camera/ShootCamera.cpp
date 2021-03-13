@@ -33,6 +33,7 @@ void Camera::ShootCameraInit()
 
 	position_ = shoot_camera_pos;
 
+	//ターゲットを星空に設定
 	target_ = VAdd(player_positon, VScale(VNorm(utility::GetForwardVector(player_rotation.y)), 10000));
 	target_ = VAdd(target_, VGet(0, 4000, 0));
 
@@ -48,6 +49,7 @@ void Camera::ShootCamera()
 	mode::ModeGame* mode_game =
 		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
+	//プレイヤーが星を選択したかどうかを取得
 	bool selected_star_flag = false;
 	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
 	{

@@ -65,8 +65,8 @@ namespace starrynight
 
 			::parameters::Parameters param_;//パラメータ読み込みクラス
 
-			int nextmode_count_;
-			bool pushed_flag_;
+			int nextmode_count_;//次のモードへ移行するカウンタ
+			bool pushed_flag_;//メニュー選択済みフラグ
 		};
 	}
 }

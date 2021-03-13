@@ -58,6 +58,7 @@ void Player::HoldSlingShot()
 	//星発射エフェクトを生成
 	Launch_Star(hit_star.HitPosition);
 
+	//星発射後にゲームクリアしていれば、星座カメラに移行するのでフェードアウト
 	if (mode_game->IsClearStage() == true &&
 		anim_play_time_ == 70.0f)
 	{
@@ -67,40 +68,7 @@ void Player::HoldSlingShot()
 	}
 
 	//射撃状態の終了
-	float shoot_anim_end = 80.0f;
-	if (anim_play_time_ < shoot_anim_end)
-		return;
-
-	if (mode_game->IsClearStage() == true)
-	{
-		camera::Camera::GetInstance()->SkyStarCameraInit();
-		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::SKYSTAR);
-
-		//星座によって完成エフェクトの時間が違うので、次のモードへ移行する時間をステージごとに設定する
-		if (mode_game->GetStageName() == "haru_A")
-			mode_game->SetNextMode(420, 40, GAME_CLEAR);
-		else if (mode_game->GetStageName() == "haru_B")
-			mode_game->SetNextMode(480, 40, GAME_CLEAR);
-		else if (mode_game->GetStageName() == "haru_C")
-			mode_game->SetNextMode(450, 40, GAME_CLEAR);
-	}
-	else
-	{
-		if (mode_game->GetStageStarNum() == 0)
-		{
-			gameover_flag_ = true;
-
-			mode::ModeGame* mode_game =
-				static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-			mode_game->SetNextMode(300, 60, GAME_OVER);
-		}
-
-		status_ = STATUS::WAIT;
-		slingshot_flag_ = false;
-		selected_skystar_flag_ = false;
-		mode_game->AddStageStarNum(-1 * mode_game->GetPlayerStarNum());
-		mode_game->SetPlayerStarNum(0);
-	}
+	SlingShotEnd();
 }
 
 void Player::SlingShotStance()
@@ -216,4 +184,47 @@ void Player::SetShootRotation()
 
 	//プレイヤーの向きを回転
 	rotation_.y += rot_horizon;
+}
+
+void Player::SlingShotEnd()
+{
+	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+
+	float shoot_anim_end = 80.0f;
+	if (anim_play_time_ < shoot_anim_end)
+		return;
+
+	if (mode_game->IsClearStage() == true)
+	{
+		//星座カメラモードへ移行
+		camera::Camera::GetInstance()->SkyStarCameraInit();
+		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::SKYSTAR);
+
+		//星座によって完成エフェクトの時間が違うので、次のモードへ移行する時間をステージごとに設定する
+		if (mode_game->GetStageName() == "haru_A")
+			mode_game->SetNextMode(420, 40, GAME_CLEAR);
+		else if (mode_game->GetStageName() == "haru_B")
+			mode_game->SetNextMode(480, 40, GAME_CLEAR);
+		else if (mode_game->GetStageName() == "haru_C")
+			mode_game->SetNextMode(450, 40, GAME_CLEAR);
+	}
+	else
+	{
+		//星を発射しつくしてゲームクリア判定がなければゲームオーバー並行
+		if (mode_game->GetStageStarNum() == 0)
+		{
+			gameover_flag_ = true;
+
+			mode::ModeGame* mode_game =
+				static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+			mode_game->SetNextMode(300, 60, GAME_OVER);
+		}
+
+		//待機モーションへ移動し、ステージのスター総数とプレイヤーの所持スター数を設定
+		status_ = STATUS::WAIT;
+		slingshot_flag_ = false;
+		selected_skystar_flag_ = false;
+		mode_game->AddStageStarNum(-1 * mode_game->GetPlayerStarNum());
+		mode_game->SetPlayerStarNum(0);
+	}
 }

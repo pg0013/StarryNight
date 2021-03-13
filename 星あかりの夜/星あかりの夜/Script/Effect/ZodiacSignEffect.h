@@ -52,18 +52,23 @@ namespace starrynight
 			 */
 			void PlayEffectSound();
 
-			sound::PlayWAVE se1_;
-			sound::PlayWAVE se2_;
+			/**
+			 * @brief　 エフェクトをプレイヤーの方向に向ける
+			 */
+			void SetEffectRotationToPlayer();
 
-			std::string skystar_name_;
-			handle after_effect_resource_[3];
+			sound::PlayWAVE se1_;//効果音
+			sound::PlayWAVE se2_;//効果音
 
-			bool once_flag_;
-			int start_frame_;
-			int select_star_num_;
+			std::string skystar_name_;//生成する星座名
+			handle after_effect_resource_[3];//完成星座エフェクトのリソースハンドル
 
-			int switch_effect_frame_;
-			int complete_effect_startframe_;
+			bool once_flag_;//一度処理するためのフラグ
+			int start_frame_;//星座カメラモードに変更された時のフレーム
+			int select_star_num_;//プレイヤーが選択した星番号（何番星か）
+
+			int switch_effect_frame_;//完成星座エフェクトに切り替えるフレーム
+			int complete_effect_startframe_;//完成エフェクトを生成するフレーム
 		};
 	}
 }

@@ -35,8 +35,6 @@ namespace starrynight
 			 * @brief@•`‰æˆ—.
 			 */
 			virtual void Render();
-
-		private:
 		};
 	}
 }

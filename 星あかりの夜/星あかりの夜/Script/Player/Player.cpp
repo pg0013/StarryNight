@@ -40,6 +40,7 @@ Player::Player(std::string _stage_name)
 	player_hp_ = 3;
 
 	jump_speed_ = 0.0f;
+	jump_height_ = 15.0f;
 	gravity_ = 0.5f;
 	jump_flag_ = false;
 	floor_type_ = -1;
@@ -64,11 +65,6 @@ Player::Player(std::string _stage_name)
 
 Player::~Player()
 {
-	if (se_.CheckIsRunning())
-	{
-		se_.Pause();
-		se_.Destroy();
-	}
 }
 
 void Player::Initialize()
@@ -128,6 +124,7 @@ void Player::Damage()
 		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 	mode_game->SetPlayerStarNum(0);
 
+	//ダメージモーションが終了したら、待機へ移行
 	if (anim_play_time_ >= anim_total_time_)
 	{
 		damage_flag_ = false;
@@ -138,7 +135,7 @@ void Player::Damage()
 
 void Player::OutOfStage()
 {
-	if (position_.y < -100)
+	if (position_.y < -200.0f)
 	{
 		//ステージの際に配置
 		float angle = atan2(position_.z, position_.x);
@@ -148,8 +145,6 @@ void Player::OutOfStage()
 		damage_flag_ = true;
 		damage_anim_flag_ = true;
 		anim_play_time_ = 0;
-
-		AddPlayerHP(-1);
 
 		VECTOR camera_position = camera::Camera::GetInstance()->GetPosition();
 		camera::Camera::GetInstance()->SetPosition(VGet(camera_position.x, 100, camera_position.z));
@@ -167,6 +162,7 @@ void Player::GameOver()
 
 	gameover_flag_ = true;
 
+	//ゲームオーバーへ移行
 	mode::ModeGame* mode_game =
 		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 	mode_game->SetNextMode(300, 60, GAME_OVER);

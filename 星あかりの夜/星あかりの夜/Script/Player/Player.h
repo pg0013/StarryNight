@@ -146,6 +146,11 @@ namespace starrynight
 			void Launch_Star(VECTOR _star_position);
 
 			/**
+			 * @brief　 射撃状態の終了処理
+			 */
+			void SlingShotEnd();
+
+			/**
 			 * @brief 射撃構え時のプレイヤーの向きを設定する.
 			 */
 			void SetShootRotation();
@@ -218,6 +223,7 @@ namespace starrynight
 			float rot_speed_;//回転速度
 
 			float jump_speed_;//ジャンプ速度
+			float jump_height_;//ジャンプ高さ
 			float gravity_;//重力
 			bool jump_flag_;//ジャンプ状態記録用フラグ
 			int floor_type_;//床の材質

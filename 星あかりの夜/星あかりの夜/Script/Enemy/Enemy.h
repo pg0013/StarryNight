@@ -121,6 +121,7 @@ namespace starrynight
 			//エネミーパラメータ保持クラス
 			EnemyParameters enemy_param_;
 
+			//現在の状態を保持する変数
 			ANIM_STATUS anim_status_;
 			MOVE_STATUS move_status_;
 

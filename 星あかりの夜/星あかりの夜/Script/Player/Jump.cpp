@@ -29,7 +29,7 @@ void Player::Jump()
 		if (trigger_key & PAD_INPUT_2)
 		{
 			//床に接地している状態でAボタンが押されたら、ジャンプを開始する
-			jump_speed_ = 15.0f;
+			jump_speed_ = jump_height_;
 			status_ = STATUS::JUMP_START;
 			jump_flag_ = true;
 		}
@@ -63,6 +63,7 @@ void Player::Jump()
 		float length = utility::GetLeftStickLength();
 		float rad = utility::GetLeftStickRad();
 
+		//スティックの傾ける量で移動速度を変更
 		if (length < ANALOG_MIN)
 			length = 0.0f;
 		else if (length < 0.6f)

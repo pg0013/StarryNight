@@ -61,7 +61,7 @@ namespace starrynight
 			 */
 			void NextMode();
 
-			handle movie_;
+			handle movie_;//映像ハンドル
 
 			bool pushed_flag_;//ボタンが押されたときのフラグ
 			int nextmode_count_;//次のモードに遷移するまでの時間
