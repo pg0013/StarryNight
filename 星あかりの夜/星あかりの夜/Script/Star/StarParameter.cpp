@@ -108,7 +108,7 @@ void StarParameter::LoadStageStar(std::string _stagename, bool _async_flag)
 		}
 
 		//ResourceServerにハンドルを保存
-		resource::ResourceServer::RegisterModel("Star", "star", param.handlename_, _async_flag);
+		resource::ResourceServer::RegisterModel("Star", "models/star", param.handlename_, _async_flag);
 
 		//モデルの初期パラメータをそれぞれセット
 		handle model_handle = resource::ResourceServer::GetModelHandle(param.handlename_);
