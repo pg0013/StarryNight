@@ -133,6 +133,7 @@ namespace starrynight
 			float attack_length_;//攻撃開始距離
 
 			int start_frame_;//生成フレーム記録用変数
+			int track_start_frame_;//敵の追跡開始フレーム
 
 			bool attacked_flag_;//攻撃したことを記録するフラグ
 
@@ -147,6 +148,7 @@ namespace starrynight
 			bool anim_loop_flag_;//アニメーションをループするかどうか
 
 			sound::PlayWAVE se_;//敵モーションSE
+			sound::PlayWAVE attention_se_;//敵プレイヤー発見SE
 		};
 	}
 }

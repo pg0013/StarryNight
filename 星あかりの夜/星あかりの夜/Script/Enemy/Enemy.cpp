@@ -32,6 +32,7 @@ Enemy::Enemy(std::string _handle_name)
 	attacked_flag_ = false;
 	random_rot_direction_ = 1.0f;
 	attack_length_ = 70.0f;
+	track_start_frame_ = 0;
 
 	//ó‘Ô‘JˆÚ—p•Ï”‚ğ‰Šú‰»
 	anim_status_ = ANIM_STATUS::WAIT;
