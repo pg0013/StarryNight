@@ -14,6 +14,23 @@ using namespace starrynight::enemy;
 
 VECTOR Enemy::Tracking(VECTOR _move)
 {
+	//プレイヤーを発見してから、ワンモーションは移動しない
+	if (::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - track_start_frame_ < 25)
+	{
+		if (::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - track_start_frame_ == 1)
+		{
+			//プレイヤー発見SEを再生
+			attention_se_.Load("Resource/sound/enemy_se3.wav");
+			//スクリーン上の位置に対して、左右バランスを設定
+			attention_se_.Pan(static_cast<int>(utility::GetScreenPosFromWorldPos(position_).x));
+			attention_se_.Play();
+		}
+
+		//移動しないでその場で足踏み
+		_move = { 0,0,0 };
+		return _move;
+	}
+
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 	float player_distance = VSize(VSub(player_position, position_));
 

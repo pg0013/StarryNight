@@ -58,9 +58,17 @@ void Enemy::SwitchStatus(ANIM_STATUS _old_status)
 	{
 		if (player_distance_y < 200 &&
 			player_damaged == false)
+		{
+			//追跡開始フレームを記録
+			if (old_status != MOVE_STATUS::TRACKING)
+				track_start_frame_ = mode_game->GetModeCount();
+
 			move_status_ = MOVE_STATUS::TRACKING;
+		}
 		else
+		{
 			move_status_ = MOVE_STATUS::WAIT;
+		}
 	}
 
 	//攻撃できる距離まで近づけば、攻撃モードに移行
