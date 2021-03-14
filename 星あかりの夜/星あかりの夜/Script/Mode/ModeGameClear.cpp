@@ -10,6 +10,7 @@
 #include"ModeOverlay.h"
 #include"ModeGame.h"
 #include"ModeTitle.h"
+#include"ModeLoading.h"
 #include<algorithm>
 
 using namespace starrynight::mode;
@@ -133,8 +134,15 @@ void ModeGameClear::Input()
 		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se1.wav");
 		appframe::ApplicationBase::GetInstance()->se_.SetVolume(1.0f);
 		appframe::ApplicationBase::GetInstance()->se_.Play();
-		appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 1.0f);
-		appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 1.0f);
+		appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 0.8f);
+
+		appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 0.8f);
+
+		if (cursol_ == NEXT_GAME)
+		{
+			ModeLoading* mode_loading = NEW ModeLoading();
+			::mode::ModeServer::GetInstance()->Add(mode_loading, 10, "Loading");
+		}
 	}
 }
 

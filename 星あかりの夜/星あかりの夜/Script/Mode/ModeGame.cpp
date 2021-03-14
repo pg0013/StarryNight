@@ -231,7 +231,7 @@ void ModeGame::NextMode()
 		else if (result_ == GAME_OVER)
 		{
 			//ゲームオーバー並行し、モードを削除
-			mode::ModeGameOver* mode_gameover = NEW mode::ModeGameOver();
+			mode::ModeGameOver* mode_gameover = NEW mode::ModeGameOver(stage_name_);
 			::mode::ModeServer::GetInstance()->Add(mode_gameover, 0, "GameOver");
 			::mode::ModeServer::GetInstance()->Del(this);
 		}

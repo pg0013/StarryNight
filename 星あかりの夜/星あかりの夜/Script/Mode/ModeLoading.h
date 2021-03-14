@@ -61,8 +61,7 @@ namespace starrynight
 			 */
 			void NextMode();
 
-			handle tutorial1_graph_;//”wŒi‰æ‘œ
-			handle tutorial2_graph_;//”wŒi‰æ‘œ
+			handle tutorial_graph_;//”wŒi‰æ‘œ
 
 			::parameters::Parameters param_;//ƒpƒ‰ƒ[ƒ^“Ç‚İ‚İƒNƒ‰ƒX
 

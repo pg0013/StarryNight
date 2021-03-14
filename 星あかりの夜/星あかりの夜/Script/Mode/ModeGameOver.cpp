@@ -9,11 +9,12 @@
 #include "ModeGameOver.h"
 #include"ModeOverlay.h"
 #include"ModeGame.h"
+#include"ModeLoading.h"
 #include"ModeTitle.h"
 
 using namespace starrynight::mode;
 
-ModeGameOver::ModeGameOver()
+ModeGameOver::ModeGameOver(std::string _stage_name)
 {
 	//‰æ‘œƒpƒ‰ƒ[ƒ^‚ð“Ç‚Ýž‚Ý
 	param_.LoadImagParameters("gameover");
@@ -26,6 +27,8 @@ ModeGameOver::ModeGameOver()
 	menu_num_ = 2;
 	nextmode_count_ = 0;
 	pushed_flag_ = false;
+
+	stage_name_ = _stage_name;
 }
 
 ModeGameOver::~ModeGameOver()
@@ -104,9 +107,15 @@ void ModeGameOver::Input()
 		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
 		appframe::ApplicationBase::GetInstance()->se_.SetVolume(1.0f);
 		appframe::ApplicationBase::GetInstance()->se_.Play();
-		appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 1.0f);
+		appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 0.8f);
 
-		appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 1.0f);
+		appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 0.8f);
+
+		if (cursol_ == AGAIN)
+		{
+			ModeLoading* mode_loading = NEW ModeLoading();
+			::mode::ModeServer::GetInstance()->Add(mode_loading, 10, "Loading");
+		}
 	}
 }
 
@@ -124,7 +133,7 @@ void ModeGameOver::NextMode()
 	{
 		resource::ResourceServer::ClearModelMap();
 
-		ModeGame* mode_game = NEW ModeGame("haru_A");
+		ModeGame* mode_game = NEW ModeGame(stage_name_);
 		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
 		::mode::ModeServer::GetInstance()->Del(this);
 	}

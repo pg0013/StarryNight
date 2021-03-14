@@ -17,8 +17,7 @@ ModeLoading::ModeLoading()
 	param_.LoadImagParameters("loading");
 
 	//‰æ‘œƒnƒ“ƒhƒ‹‚ð‹L˜^
-	tutorial1_graph_ = resource::ResourceServer::GetTexture("loading.png");
-	//tutorial2_graph_ = resource::ResourceServer::GetTexture("loading.png");
+	tutorial_graph_ = resource::ResourceServer::GetTexture("loading.png");
 
 	pushed_flag_ = false;
 	nextmode_count_ = 0;
@@ -58,8 +57,7 @@ bool ModeLoading::Render()
 {
 	::mode::ModeBase::Render();
 
-	DrawGraph(0, 0, tutorial1_graph_, TRUE);
-	//DrawGraph(0, 0, tutorial2_graph_, TRUE);
+	DrawGraph(0, 0, tutorial_graph_, FALSE);
 
 	return true;
 }
@@ -73,7 +71,6 @@ void ModeLoading::SetNextMode()
 	ModeOverlay* modeoverlay = NEW ModeOverlay();
 	modeoverlay->Fade(nextmode_count_, FADE_OUT);
 	::mode::ModeServer::GetInstance()->Add(modeoverlay, 11, "Overlay");
-
 }
 
 void ModeLoading::NextMode()

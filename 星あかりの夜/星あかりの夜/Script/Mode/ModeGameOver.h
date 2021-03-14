@@ -23,7 +23,7 @@ namespace starrynight
 			public ::mode::ModeBase
 		{
 		public:
-			ModeGameOver();
+			ModeGameOver(std::string _stage_name);
 			~ModeGameOver();
 
 			/**
@@ -78,6 +78,8 @@ namespace starrynight
 			int menu_num_;//メニュー項目数
 			int nextmode_count_;//次のモードへ移行するカウンタ
 			bool pushed_flag_;//メニュー選択済みフラグ
+
+			std::string stage_name_;//ステージ名
 		};
 	}
 }
