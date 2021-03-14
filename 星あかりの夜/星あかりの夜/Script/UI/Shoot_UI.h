@@ -53,12 +53,22 @@ namespace starrynight
 			 * @param  _flag	trueで射撃ガイド表示
 			 */
 			void SetDrawShootGuide(bool _flag) { draw_shoot_guide_ = _flag; }
+
+			/**
+			 * @brief　 星座を狙えを表示するフラグを設定する
+			 *
+			 * @param  _flag	trueで射撃ガイド表示
+			 */
+			void SetDrawChooseSkystarGuide(bool _flag) { draw_choose_skystar_guide_ = _flag; }
 		private:
 			//射撃用ガイドを表示するフラグ
 			bool draw_shoot_guide_;
+			//星座を狙えを表示するフラグ
+			bool draw_choose_skystar_guide_;
 
 			//画像用ハンドル
 			handle shoot_guide_;
+			handle choose_skystar_;
 		};
 	}
 }

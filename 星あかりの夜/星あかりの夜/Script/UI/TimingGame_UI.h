@@ -122,6 +122,7 @@ namespace starrynight
 			handle timing_circle_white_;//タイミング判定の円
 			handle timing_circle_red_;//残り一回の時のタイミング判定の円
 			handle timing_judge_[3];//判定画像
+			handle aim_middle_;//真ん中を狙え画像
 
 			sound::PlayWAVE se_;//効果音
 

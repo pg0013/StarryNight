@@ -26,7 +26,7 @@ void UIManager::Initialize()
 	shoot_ui_.Initialize();
 	timing_ui_.Initialize();
 	score_ui_.Initialize();
-	score_ui_.SetPosition(VGet(1800, 100, 0));
+	score_ui_.SetPosition(VGet(1700, 95, 0));
 	hp_ui_.Initialize();
 }
 

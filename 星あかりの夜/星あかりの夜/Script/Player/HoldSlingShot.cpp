@@ -28,6 +28,9 @@ void Player::HoldSlingShot()
 	//射撃構え処理
 	SlingShotStance();
 
+	//星を選べ画像を描画
+	mode_game->ui_.shoot_ui_.SetDrawChooseSkystarGuide(true);
+
 	//星との当たり判定
 	MV1_COLL_RESULT_POLY hit_star = CheckHitStar();
 
@@ -39,6 +42,9 @@ void Player::HoldSlingShot()
 	//星と標準があっていないので、次の処理に進まない
 	if (hit_star.HitFlag == 0)
 		return;
+
+	//星と当たり判定があれば、星を選べ画像を表示しない
+	mode_game->ui_.shoot_ui_.SetDrawChooseSkystarGuide(false);
 
 	//Yボタンが押されたら、タイミングゲージを描画
 	if (trigger_key & PAD_INPUT_4 &&
@@ -226,5 +232,7 @@ void Player::SlingShotEnd()
 		selected_skystar_flag_ = false;
 		mode_game->AddStageStarNum(-1 * mode_game->GetPlayerStarNum());
 		mode_game->SetPlayerStarNum(0);
+		//残り星数を点滅表示
+		mode_game->ui_.score_ui_.SetBlinkingFlag(true);
 	}
 }

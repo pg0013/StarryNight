@@ -15,6 +15,7 @@ using namespace starrynight::ui;
 Shoot_UI::Shoot_UI()
 {
 	draw_shoot_guide_ = false;
+	draw_choose_skystar_guide_ = false;
 }
 
 Shoot_UI::~Shoot_UI()
@@ -24,6 +25,7 @@ Shoot_UI::~Shoot_UI()
 void Shoot_UI::Initialize()
 {
 	shoot_guide_ = resource::ResourceServer::GetTexture("shoot_guide.png");
+	choose_skystar_ = resource::ResourceServer::GetTexture("choose_skystar.png");
 }
 
 void Shoot_UI::Terminate()
@@ -32,7 +34,6 @@ void Shoot_UI::Terminate()
 
 void Shoot_UI::Process()
 {
-
 }
 
 void Shoot_UI::Render()
@@ -42,5 +43,8 @@ void Shoot_UI::Render()
 		double angle = 0.0;
 		double exrate = 1.0f;
 		DrawRotaGraph(appframe::SCREEN_WIDTH / 2, appframe::SCREEN_HEIGHT / 2, exrate, angle, shoot_guide_, TRUE);
+
+		if (draw_choose_skystar_guide_)
+			DrawRotaGraph(appframe::SCREEN_WIDTH / 2, appframe::SCREEN_HEIGHT / 5, exrate, angle, choose_skystar_, TRUE);
 	}
 }

@@ -53,6 +53,17 @@ namespace starrynight
 			void SetDrawScoreBaseFlag(bool _flag) { draw_scorebase_flag_ = _flag; }
 
 			/**
+			 * @brief　 スコアを点滅表示するフラグを設定する
+			 *
+			 * @param  _flag　点滅表示フラグ
+			 */
+			void SetBlinkingFlag(bool _flag)
+			{
+				blinking_flag_ = _flag;
+				blink_startframe_ = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount();
+			}
+
+			/**
 			 * @brief　UIの位置を設定する.
 			 *
 			 * @param _positon 位置(x,y,z)のベクトル構造体,zは無効
@@ -89,11 +100,16 @@ namespace starrynight
 
 			handle score_num_graph_[10] = { 0 };//数字画像
 			handle score_base_graph_;//下地画像
+			handle star_count_graph_;//残り何個画像
+
+			sound::PlayWAVE se_;//効果音
 
 			int player_score_;//プレイヤースコア
 			int rank_value_[6] = { 0 };//スコアの桁の値 0が一の位
 			bool draw_rank_flag_[6] = { 0 };//桁を描画するか決めるフラグ　0が一の位
 			bool draw_scorebase_flag_;//スコアの下地画像を描画するフラグ
+			bool blinking_flag_;//点滅表示フラグ
+			int blink_startframe_;//点滅開始フレーム
 		};
 	}
 }

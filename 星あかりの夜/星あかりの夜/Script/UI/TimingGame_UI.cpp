@@ -43,6 +43,7 @@ void TimingGame_UI::Initialize()
 	timing_judge_[0] = resource::ResourceServer::GetTexture("excellent.png");
 	timing_judge_[1] = resource::ResourceServer::GetTexture("good.png");
 	timing_judge_[2] = resource::ResourceServer::GetTexture("bad.png");
+	aim_middle_ = resource::ResourceServer::GetTexture("aim_middle.png");
 }
 
 void TimingGame_UI::Terminate()
@@ -51,6 +52,7 @@ void TimingGame_UI::Terminate()
 
 void TimingGame_UI::Process()
 {
+	//縮小回数を更新する
 	if (draw_timing_guide_ == false)
 	{
 		mode::ModeGame* mode_game =
@@ -65,6 +67,10 @@ void TimingGame_UI::Process()
 		timing_circle_ = timing_circle_white_;
 	else
 		timing_circle_ = timing_circle_red_;
+
+	//タイミングゲーム開始から縮小するまでの間を設ける
+	if (::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - select_star_frame_ < 60)
+		return;
 
 	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
 
@@ -109,10 +115,12 @@ void TimingGame_UI::Process()
 		//拡大率とボタンを押したフレームを初期化
 		timing_exrate_ = 1.3;
 		presssed_frame_ = 0;
+		select_star_frame_ = 0;
 		shrink_circle_flag_ = true;
 		return;
 	}
 
+	//以下縮小中の処理
 	if (shrink_circle_flag_ == false)
 		return;
 
@@ -151,11 +159,16 @@ void TimingGame_UI::Render()
 	DrawRotaGraph(appframe::SCREEN_WIDTH / 2, appframe::SCREEN_HEIGHT / 2, timing_exrate_, angle, timing_circle_, TRUE);
 
 	if (shrink_circle_flag_)
-		return;
-
-	//判定表示を描画
-	DrawRotaGraph(appframe::SCREEN_WIDTH / 2 + static_cast<int>(500 * timing_exrate_) + 250, appframe::SCREEN_HEIGHT / 2,
-		exrate, angle, timing_judge_[static_cast<int>(CheckTiming())], TRUE);
+	{
+		//縮小が停止していなければ、真ん中を狙え画像を描画
+		DrawRotaGraph(appframe::SCREEN_WIDTH / 2, appframe::SCREEN_HEIGHT / 5, exrate, angle, aim_middle_, TRUE);
+	}
+	else
+	{
+		//判定表示を描画
+		DrawRotaGraph(appframe::SCREEN_WIDTH / 2 + static_cast<int>(500 * timing_exrate_) + 250, appframe::SCREEN_HEIGHT / 2,
+			exrate, angle, timing_judge_[static_cast<int>(CheckTiming())], TRUE);
+	}
 }
 
 void TimingGame_UI::CalcurateScore()

@@ -17,6 +17,12 @@ Score_UI::Score_UI()
 	position_ = VGet(0, 0, 0);
 	exrate_ = 1.0;
 	draw_scorebase_flag_ = true;
+	blinking_flag_ = false;
+	blink_startframe_ = 0;
+
+	resource::ResourceServer::LoadSound("Resource/sound/star_remain.wav");
+	resource::ResourceServer::LoadSound("Resource/sound/star_remain_voice.wav");
+	resource::ResourceServer::LoadSound("Resource/sound/lastone_voice.wav");
 }
 
 Score_UI::~Score_UI()
@@ -26,6 +32,8 @@ Score_UI::~Score_UI()
 void Score_UI::Initialize()
 {
 	score_base_graph_ = resource::ResourceServer::GetTexture("score_base.png");
+	star_count_graph_ = resource::ResourceServer::GetTexture("star_count.png");
+
 	for (int i = 0; i < 10; i++)
 	{
 		score_num_graph_[i] = resource::ResourceServer::GetTexture("score_number.png", i);
@@ -39,6 +47,33 @@ void Score_UI::Terminate()
 void Score_UI::Process()
 {
 	SetScoreRankNum();
+
+	if (blinking_flag_ == false)
+		return;
+
+	int elapsed_frame = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - blink_startframe_;
+
+	if (elapsed_frame == 30 ||
+		elapsed_frame == 90)
+	{
+		se_.Load("Resource/sound/star_remain.wav");
+		se_.Pan(sound::PAN_RIGHT);
+		se_.Play();
+	}
+
+	if (elapsed_frame > 120)
+	{
+		blinking_flag_ = false;
+		blink_startframe_ = 0;
+
+		mode::ModeGame* mode_game =
+			static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		if (mode_game->GetStageStarNum() == 1)
+			se_.Load("Resource/sound/lastone_voice.wav");
+		else
+			se_.Load("Resource/sound/star_remain_voice.wav");
+		se_.Play();
+	}
 }
 
 void Score_UI::UpdatePlayerScore()
@@ -87,8 +122,14 @@ void Score_UI::SetScoreRankNum()
 
 void Score_UI::Render()
 {
+	if (blinking_flag_)
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(abs(255 * sinf(DX_PI_F / 180 * 2.125f * (::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - blink_startframe_)))));
+
 	if (draw_scorebase_flag_)
+	{
 		DrawGraph(score_base_x, score_base_y, score_base_graph_, TRUE);
+		DrawGraph(1300, 50, star_count_graph_, TRUE);
+	}
 
 	int x = static_cast<int>(position_.x);
 	int interval = 67;
@@ -103,4 +144,6 @@ void Score_UI::Render()
 		DrawRotaGraph(x, static_cast<int>(position_.y), exrate_, 0.0, score_num_graph_[rank_value_[i]], TRUE);
 		x -= interval;
 	}
+
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 }
