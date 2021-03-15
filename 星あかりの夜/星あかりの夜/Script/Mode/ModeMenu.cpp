@@ -118,12 +118,6 @@ void ModeMenu::Input()
 		modeoverlay->Fade(nextmode_count_, FADE_OUT);
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 
-		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se1.wav");
-		appframe::ApplicationBase::GetInstance()->se_.SetVolume(1.0f);
-		appframe::ApplicationBase::GetInstance()->se_.Play();
-		appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 0.8f);
-		appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 0.8f);
-
 		ModeLoading* mode_loading = NEW ModeLoading();
 		::mode::ModeServer::GetInstance()->Add(mode_loading, 10, "Loading");
 	}
@@ -160,6 +154,7 @@ void ModeMenu::NextMode()
 		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
 		::mode::ModeServer::GetInstance()->Del(this);
 
+		appframe::ApplicationBase::GetInstance()->se_.Pause();
 		appframe::ApplicationBase::GetInstance()->bgm_.Pause();
 	}
 	else if (nextmode_ == HARU_B)
@@ -170,6 +165,7 @@ void ModeMenu::NextMode()
 		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
 		::mode::ModeServer::GetInstance()->Del(this);
 
+		appframe::ApplicationBase::GetInstance()->se_.Pause();
 		appframe::ApplicationBase::GetInstance()->bgm_.Pause();
 	}
 	else if (nextmode_ == HARU_C)
@@ -180,6 +176,7 @@ void ModeMenu::NextMode()
 		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
 		::mode::ModeServer::GetInstance()->Del(this);
 
+		appframe::ApplicationBase::GetInstance()->se_.Pause();
 		appframe::ApplicationBase::GetInstance()->bgm_.Pause();
 	}
 

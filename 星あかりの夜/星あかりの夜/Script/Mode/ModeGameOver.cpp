@@ -104,17 +104,19 @@ void ModeGameOver::Input()
 		modeoverlay->Fade(nextmode_count_, FADE_OUT);
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 
-		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
-		appframe::ApplicationBase::GetInstance()->se_.SetVolume(1.0f);
-		appframe::ApplicationBase::GetInstance()->se_.Play();
-		appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 0.8f);
-
-		appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 0.8f);
-
 		if (cursol_ == AGAIN)
 		{
 			ModeLoading* mode_loading = NEW ModeLoading();
 			::mode::ModeServer::GetInstance()->Add(mode_loading, 10, "Loading");
+		}
+		else
+		{
+			appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
+			appframe::ApplicationBase::GetInstance()->se_.SetVolume(1.0f);
+			appframe::ApplicationBase::GetInstance()->se_.Play();
+			appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 0.8f);
+
+			appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 0.8f);
 		}
 	}
 }

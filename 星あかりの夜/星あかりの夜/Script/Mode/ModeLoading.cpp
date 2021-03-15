@@ -35,6 +35,12 @@ bool ModeLoading::Initialize()
 	modeoverlay->Fade(30, FADE_IN);
 	::mode::ModeServer::GetInstance()->Add(modeoverlay, 11, "Overlay");
 
+	appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se1.wav");
+	appframe::ApplicationBase::GetInstance()->se_.SetVolume(1.0f);
+	appframe::ApplicationBase::GetInstance()->se_.Play();
+	appframe::ApplicationBase::GetInstance()->se_.Fade(0.0f, 0.5f);
+	appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, 0.5f);
+
 	return true;
 }
 
