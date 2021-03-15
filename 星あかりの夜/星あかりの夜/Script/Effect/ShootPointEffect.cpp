@@ -18,7 +18,7 @@ ShootPointEffect::ShootPointEffect()
 
 	scale_y_ = 30.0f;
 	min_scale_y_ = 25.0f;
-	max_scale_y_ = 80.0f;
+	max_scale_y_ = 90.0f;
 
 	once_flag_ = false;
 }
