@@ -48,7 +48,7 @@ bool ModeTitle::Initialize()
 		appframe::ApplicationBase::GetInstance()->bgm_.Load("Resource/sound/outgame_bgm.wav");
 		appframe::ApplicationBase::GetInstance()->bgm_.SetVolume(1.0f);
 		appframe::ApplicationBase::GetInstance()->bgm_.SetLoopCount(XAUDIO2_LOOP_INFINITE);
-		appframe::ApplicationBase::GetInstance()->bgm_.PlayWithLoop(0.0f, 125.0f);
+		appframe::ApplicationBase::GetInstance()->bgm_.PlayWithLoop(0.0f, 144.0f);
 	}
 
 	return true;
