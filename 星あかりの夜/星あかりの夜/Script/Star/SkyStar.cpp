@@ -29,7 +29,7 @@ void SkyStar::Initialize()
 	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
 	float radius = 10000.0f;
-	float height = 5000.0f;
+	float height = 6500.0f;
 
 	//ステージによって星の配置場所を設定
 	float degree = 0.0f;
@@ -38,7 +38,7 @@ void SkyStar::Initialize()
 	else if (mode_game->GetStageName() == "haru_B")
 		degree = 0.0f;
 	else if (mode_game->GetStageName() == "haru_C")
-		degree = 90.0f;
+		degree = 100.0f;
 
 	position_.x = radius * cosf(DEG2RAD(degree));
 	position_.z = radius * sinf(DEG2RAD(degree));
