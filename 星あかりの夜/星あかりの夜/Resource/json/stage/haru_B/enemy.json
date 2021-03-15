@@ -1,11 +1,11 @@
 {
 "enemy" : [
-{"filename" : "rock_GEO","handlename" : "rock_GEO9","tx" : -1041.996,"ty" : 1141.758,"tz" : -648.639,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
-{"filename" : "rock_GEO","handlename" : "rock_GEO4","tx" : 620.241,"ty" : 562.454,"tz" : -1737.22,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
-{"filename" : "enemy|rock_GEO","handlename" : "enemy|rock_GEO","tx" : 1606.234,"ty" : 0,"tz" : -215.581,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
+{"filename" : "rock_GEO","handlename" : "rock_GEO9","tx" : -947.767,"ty" : 1151.84,"tz" : -648.639,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
 {"filename" : "rock_GEO","handlename" : "rock_GEO8","tx" : 143.214,"ty" : -5.85,"tz" : 483.394,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
 {"filename" : "rock_GEO","handlename" : "rock_GEO7","tx" : -521.33,"ty" : -5.85,"tz" : -582.628,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
 {"filename" : "rock_GEO","handlename" : "rock_GEO6","tx" : 1288.441,"ty" : 243.733,"tz" : 1162.069,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
-{"filename" : "rock_GEO","handlename" : "rock_GEO5","tx" : -1404.084,"ty" : 1.462,"tz" : 952.346,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7}
+{"filename" : "rock_GEO","handlename" : "rock_GEO5","tx" : -1404.084,"ty" : 1.462,"tz" : 952.346,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
+{"filename" : "rock_GEO","handlename" : "rock_GEO4","tx" : 620.241,"ty" : 562.454,"tz" : -1737.22,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7},
+{"filename" : "rock_GEO","handlename" : "rock_GEO","tx" : 1606.234,"ty" : 0,"tz" : -215.581,"rx" : -0,"ry" : -0,"rz" : 0,"sx" : 1.7,"sy" : 1.7,"sz" : 1.7}
 ]
 }
