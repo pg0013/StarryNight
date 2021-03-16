@@ -1,9 +1,0 @@
-{
-"star" : [
-{"filename" : "star_GEO","handlename" : "star_GEO6","tx" : 512.646,"ty" : 947.136,"tz" : 737.892,"rx" : -0,"ry" : -17.589,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
-{"filename" : "star_GEO","handlename" : "star_GEO5","tx" : 2210.162,"ty" : 365.466,"tz" : -705.555,"rx" : -0,"ry" : 17.159,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
-{"filename" : "star_GEO","handlename" : "star_GEO4","tx" : -2174.564,"ty" : 6.261,"tz" : 274,"rx" : -0,"ry" : 17.159,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
-{"filename" : "star_GEO","handlename" : "star_GEO2","tx" : -1617.04,"ty" : 751.196,"tz" : -1486.764,"rx" : -0,"ry" : 17.159,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3},
-{"filename" : "star_GEO","handlename" : "star_GEO","tx" : 575.467,"ty" : 0,"tz" : 1732.927,"rx" : -0,"ry" : 17.159,"rz" : 0,"sx" : 3,"sy" : 3,"sz" : 3}
-]
-}

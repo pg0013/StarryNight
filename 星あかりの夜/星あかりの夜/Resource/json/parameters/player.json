@@ -1,9 +1,0 @@
-[
-	{
-		"player": {
-			"walk_speed": 75,
-			"run_speed": 350,
-			"rot_speed": 10
-		}
-	}
-]
