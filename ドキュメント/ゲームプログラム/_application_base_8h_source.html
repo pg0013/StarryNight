@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>アプリケーションフレーム: Application/ApplicationBase.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">アプリケーションフレーム
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_application_base_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ApplicationBase.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_application_base_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include&quot;DxLib.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include&lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include&lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include&lt;time.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include&quot;EffekseerForDXLib.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include&quot;../Mode/ModeServer.h&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include&quot;../Sound/PlayWAVE.h&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">namespace </span>appframe</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">namespace</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        constexpr <span class="keywordtype">int</span> SCREEN_WIDTH = 1920;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        constexpr <span class="keywordtype">int</span> SCREEN_HEIGHT = 1080;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        constexpr <span class="keywordtype">int</span> SCREEN_DEPTH = 32;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classappframe_1_1_application_base.html">   30</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classappframe_1_1_application_base.html">ApplicationBase</a></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <a class="code" href="classappframe_1_1_application_base.html">ApplicationBase</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        ~<a class="code" href="classappframe_1_1_application_base.html">ApplicationBase</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classappframe_1_1_application_base.html#a273dee41eeaad3fffce1260e25fe7321">Initialize</a>(HINSTANCE _hinstance);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classappframe_1_1_application_base.html#a7e36d5c126ca0604f37c09ddb9ade08a">Terminate</a>();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classappframe_1_1_application_base.html#aa478241df9126a24441cf4a0ce2ff796">Input</a>();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classappframe_1_1_application_base.html#a124d7a2cb64049560ad123e860beebe8">Process</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classappframe_1_1_application_base.html#ab4d02cc53433ff1a45e3ec25bc36ddbd">Render</a>();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classappframe_1_1_application_base.html#a27236c43fd2d782728d299cc8daab352">AppWindowed</a>(<span class="keywordtype">bool</span> _window_mode);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classappframe_1_1_application_base.html#a67406dfb7a9ece4fd7ef2ac24e6cc650">OutputDebugLog</a>(<span class="keywordtype">bool</span> _window_mode);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="classappframe_1_1_application_base.html#a30c52ba9197358082ab352ff8dcb43cf">   94</a></span>&#160;        <span class="keyword">static</span> <a class="code" href="classappframe_1_1_application_base.html">ApplicationBase</a>* <a class="code" href="classappframe_1_1_application_base.html#a30c52ba9197358082ab352ff8dcb43cf">GetInstance</a>() { <span class="keywordflow">return</span> appbase_instance_; }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="classappframe_1_1_application_base.html#aee510f4aea15e0c9323a8e2987025dad">  101</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classappframe_1_1_application_base.html#aee510f4aea15e0c9323a8e2987025dad">GetKey</a>() { <span class="keywordflow">return</span> <a class="code" href="classappframe_1_1_application_base.html#a868d88db86bfb4896fef996d3165c9df">key_</a>; }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="classappframe_1_1_application_base.html#a2ec5d3f385135feb185299949a46b070">  108</a></span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classappframe_1_1_application_base.html#a2ec5d3f385135feb185299949a46b070">GetTriggerKey</a>() { <span class="keywordflow">return</span> <a class="code" href="classappframe_1_1_application_base.html#a4fd60c15cc01f897ac7b1ba4276dcf8a">trigger_key_</a>; }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="classappframe_1_1_application_base.html#a6fcc789eb2708ee3472e34d9f945f436">  115</a></span>&#160;        <span class="keyword">virtual</span> XINPUT_STATE <a class="code" href="classappframe_1_1_application_base.html#a6fcc789eb2708ee3472e34d9f945f436">GetXInputState</a>() { <span class="keywordflow">return</span> <a class="code" href="classappframe_1_1_application_base.html#a24f0d69029c2656d04271d1f3f826a40">x_input_</a>; }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="classappframe_1_1_application_base.html#a6c4ff1b8965f3de7d973703e3ce5e15a">  122</a></span>&#160;        <span class="keyword">virtual</span> DINPUT_JOYSTATE <a class="code" href="classappframe_1_1_application_base.html#a6c4ff1b8965f3de7d973703e3ce5e15a">GetDInputState</a>() { <span class="keywordflow">return</span> <a class="code" href="classappframe_1_1_application_base.html#a300105fcaec2c94902f49cc1ca174606">d_input_</a>; }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classappframe_1_1_application_base.html#a3bfd86cc8ea76235af13908e51b4ecba">CalculateFPS</a>();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="classappframe_1_1_application_base.html#a2914e412c9739886201bd07dc56a11c1">  132</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classappframe_1_1_application_base.html#a2914e412c9739886201bd07dc56a11c1">ExitProgram</a>() { exit_flag_ = <span class="keyword">true</span>; }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="classappframe_1_1_application_base.html#aee3641683a60cd826bbe98b43bf9be60">  139</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classappframe_1_1_application_base.html#aee3641683a60cd826bbe98b43bf9be60">IsProgramExit</a>() { <span class="keywordflow">return</span> exit_flag_; }</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <a class="code" href="classsound_1_1_play_w_a_v_e.html">sound::PlayWAVE</a> bgm_;<span class="comment">//BGM再生用</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <a class="code" href="classsound_1_1_play_w_a_v_e.html">sound::PlayWAVE</a> se_;<span class="comment">//BGM再生用</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="keyword">static</span> <a class="code" href="classappframe_1_1_application_base.html">ApplicationBase</a>* appbase_instance_;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="classappframe_1_1_application_base.html#a868d88db86bfb4896fef996d3165c9df">  147</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classappframe_1_1_application_base.html#a868d88db86bfb4896fef996d3165c9df">key_</a>; </div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="classappframe_1_1_application_base.html#a4fd60c15cc01f897ac7b1ba4276dcf8a">  148</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classappframe_1_1_application_base.html#a4fd60c15cc01f897ac7b1ba4276dcf8a">trigger_key_</a>; </div>
+<div class="line"><a name="l00149"></a><span class="lineno"><a class="line" href="classappframe_1_1_application_base.html#a24f0d69029c2656d04271d1f3f826a40">  149</a></span>&#160;        XINPUT_STATE <a class="code" href="classappframe_1_1_application_base.html#a24f0d69029c2656d04271d1f3f826a40">x_input_</a>;</div>
+<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="classappframe_1_1_application_base.html#a300105fcaec2c94902f49cc1ca174606">  150</a></span>&#160;        DINPUT_JOYSTATE <a class="code" href="classappframe_1_1_application_base.html#a300105fcaec2c94902f49cc1ca174606">d_input_</a>;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="classappframe_1_1_application_base.html#a93de0519ede6c44e0ccc314e0bbf0c2a">  152</a></span>&#160;        <a class="code" href="classmode_1_1_mode_server.html">mode::ModeServer</a>* <a class="code" href="classappframe_1_1_application_base.html#a93de0519ede6c44e0ccc314e0bbf0c2a">mode_server_</a>;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="comment">//FPS計測用変数</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        LONGLONG now_time_, fps_check_time_;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <span class="keywordtype">int</span> fps_count_;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keywordtype">int</span> fps_;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="comment">//プログラム終了フラグ</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="keywordtype">bool</span> exit_flag_;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    };</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;}</div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html"><div class="ttname"><a href="classappframe_1_1_application_base.html">appframe::ApplicationBase</a></div><div class="ttdoc">アプリケーションの基底クラス</div><div class="ttdef"><b>Definition:</b> ApplicationBase.h:31</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_a124d7a2cb64049560ad123e860beebe8"><div class="ttname"><a href="classappframe_1_1_application_base.html#a124d7a2cb64049560ad123e860beebe8">appframe::ApplicationBase::Process</a></div><div class="ttdeci">virtual bool Process()</div><div class="ttdoc">演算処理</div><div class="ttdef"><b>Definition:</b> ApplicationBase.cpp:125</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_a24f0d69029c2656d04271d1f3f826a40"><div class="ttname"><a href="classappframe_1_1_application_base.html#a24f0d69029c2656d04271d1f3f826a40">appframe::ApplicationBase::x_input_</a></div><div class="ttdeci">XINPUT_STATE x_input_</div><div class="ttdoc">XINPUT用コントローラ入力</div><div class="ttdef"><b>Definition:</b> ApplicationBase.h:149</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_a27236c43fd2d782728d299cc8daab352"><div class="ttname"><a href="classappframe_1_1_application_base.html#a27236c43fd2d782728d299cc8daab352">appframe::ApplicationBase::AppWindowed</a></div><div class="ttdeci">virtual void AppWindowed(bool _window_mode)</div><div class="ttdoc">ウィンドウモードでアプリケーションを実行するかを決定</div><div class="ttdef"><b>Definition:</b> ApplicationBase.cpp:151</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_a273dee41eeaad3fffce1260e25fe7321"><div class="ttname"><a href="classappframe_1_1_application_base.html#a273dee41eeaad3fffce1260e25fe7321">appframe::ApplicationBase::Initialize</a></div><div class="ttdeci">virtual bool Initialize(HINSTANCE _hinstance)</div><div class="ttdoc">初期化処理</div><div class="ttdef"><b>Definition:</b> ApplicationBase.cpp:38</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_a2914e412c9739886201bd07dc56a11c1"><div class="ttname"><a href="classappframe_1_1_application_base.html#a2914e412c9739886201bd07dc56a11c1">appframe::ApplicationBase::ExitProgram</a></div><div class="ttdeci">void ExitProgram()</div><div class="ttdoc">　 プログラムを終了させる処理</div><div class="ttdef"><b>Definition:</b> ApplicationBase.h:132</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_a2ec5d3f385135feb185299949a46b070"><div class="ttname"><a href="classappframe_1_1_application_base.html#a2ec5d3f385135feb185299949a46b070">appframe::ApplicationBase::GetTriggerKey</a></div><div class="ttdeci">virtual int GetTriggerKey()</div><div class="ttdoc">　 キーボードとコントローラのトリガー入力を返す</div><div class="ttdef"><b>Definition:</b> ApplicationBase.h:108</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_a300105fcaec2c94902f49cc1ca174606"><div class="ttname"><a href="classappframe_1_1_application_base.html#a300105fcaec2c94902f49cc1ca174606">appframe::ApplicationBase::d_input_</a></div><div class="ttdeci">DINPUT_JOYSTATE d_input_</div><div class="ttdoc">DIRECTINPUT用コントローラ入力</div><div class="ttdef"><b>Definition:</b> ApplicationBase.h:150</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_a30c52ba9197358082ab352ff8dcb43cf"><div class="ttname"><a href="classappframe_1_1_application_base.html#a30c52ba9197358082ab352ff8dcb43cf">appframe::ApplicationBase::GetInstance</a></div><div class="ttdeci">static ApplicationBase * GetInstance()</div><div class="ttdoc">インスタンスを取得</div><div class="ttdef"><b>Definition:</b> ApplicationBase.h:94</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_a3bfd86cc8ea76235af13908e51b4ecba"><div class="ttname"><a href="classappframe_1_1_application_base.html#a3bfd86cc8ea76235af13908e51b4ecba">appframe::ApplicationBase::CalculateFPS</a></div><div class="ttdeci">void CalculateFPS()</div><div class="ttdoc">現在のFPSを算出する処理.</div><div class="ttdef"><b>Definition:</b> ApplicationBase.cpp:161</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_a4fd60c15cc01f897ac7b1ba4276dcf8a"><div class="ttname"><a href="classappframe_1_1_application_base.html#a4fd60c15cc01f897ac7b1ba4276dcf8a">appframe::ApplicationBase::trigger_key_</a></div><div class="ttdeci">int trigger_key_</div><div class="ttdoc">コントローラーのトリガー入力</div><div class="ttdef"><b>Definition:</b> ApplicationBase.h:148</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_a67406dfb7a9ece4fd7ef2ac24e6cc650"><div class="ttname"><a href="classappframe_1_1_application_base.html#a67406dfb7a9ece4fd7ef2ac24e6cc650">appframe::ApplicationBase::OutputDebugLog</a></div><div class="ttdeci">virtual void OutputDebugLog(bool _window_mode)</div><div class="ttdoc">デバッグログを実行時に出力するかどうか</div><div class="ttdef"><b>Definition:</b> ApplicationBase.cpp:156</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_a6c4ff1b8965f3de7d973703e3ce5e15a"><div class="ttname"><a href="classappframe_1_1_application_base.html#a6c4ff1b8965f3de7d973703e3ce5e15a">appframe::ApplicationBase::GetDInputState</a></div><div class="ttdeci">virtual DINPUT_JOYSTATE GetDInputState()</div><div class="ttdoc">　 DIRECTINPUTコントローラの入力を返す</div><div class="ttdef"><b>Definition:</b> ApplicationBase.h:122</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_a6fcc789eb2708ee3472e34d9f945f436"><div class="ttname"><a href="classappframe_1_1_application_base.html#a6fcc789eb2708ee3472e34d9f945f436">appframe::ApplicationBase::GetXInputState</a></div><div class="ttdeci">virtual XINPUT_STATE GetXInputState()</div><div class="ttdoc">　 XINPUTコントローラの入力を返す</div><div class="ttdef"><b>Definition:</b> ApplicationBase.h:115</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_a7e36d5c126ca0604f37c09ddb9ade08a"><div class="ttname"><a href="classappframe_1_1_application_base.html#a7e36d5c126ca0604f37c09ddb9ade08a">appframe::ApplicationBase::Terminate</a></div><div class="ttdeci">virtual bool Terminate()</div><div class="ttdoc">終了処理 プログラム終了時の解放処理を行う</div><div class="ttdef"><b>Definition:</b> ApplicationBase.cpp:88</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_a868d88db86bfb4896fef996d3165c9df"><div class="ttname"><a href="classappframe_1_1_application_base.html#a868d88db86bfb4896fef996d3165c9df">appframe::ApplicationBase::key_</a></div><div class="ttdeci">int key_</div><div class="ttdoc">コントローラーの入力</div><div class="ttdef"><b>Definition:</b> ApplicationBase.h:147</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_a93de0519ede6c44e0ccc314e0bbf0c2a"><div class="ttname"><a href="classappframe_1_1_application_base.html#a93de0519ede6c44e0ccc314e0bbf0c2a">appframe::ApplicationBase::mode_server_</a></div><div class="ttdeci">mode::ModeServer * mode_server_</div><div class="ttdoc">モード管理用サーバ</div><div class="ttdef"><b>Definition:</b> ApplicationBase.h:152</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_aa478241df9126a24441cf4a0ce2ff796"><div class="ttname"><a href="classappframe_1_1_application_base.html#aa478241df9126a24441cf4a0ce2ff796">appframe::ApplicationBase::Input</a></div><div class="ttdeci">virtual bool Input()</div><div class="ttdoc">入力処理 ゲームコントローラーの入力を検知する</div><div class="ttdef"><b>Definition:</b> ApplicationBase.cpp:112</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_ab4d02cc53433ff1a45e3ec25bc36ddbd"><div class="ttname"><a href="classappframe_1_1_application_base.html#ab4d02cc53433ff1a45e3ec25bc36ddbd">appframe::ApplicationBase::Render</a></div><div class="ttdeci">virtual bool Render()</div><div class="ttdoc">描画処理</div><div class="ttdef"><b>Definition:</b> ApplicationBase.cpp:135</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_aee3641683a60cd826bbe98b43bf9be60"><div class="ttname"><a href="classappframe_1_1_application_base.html#aee3641683a60cd826bbe98b43bf9be60">appframe::ApplicationBase::IsProgramExit</a></div><div class="ttdeci">bool IsProgramExit()</div><div class="ttdoc">　 プログラムを終了するかどうかを取得する</div><div class="ttdef"><b>Definition:</b> ApplicationBase.h:139</div></div>
+<div class="ttc" id="aclassappframe_1_1_application_base_html_aee510f4aea15e0c9323a8e2987025dad"><div class="ttname"><a href="classappframe_1_1_application_base.html#aee510f4aea15e0c9323a8e2987025dad">appframe::ApplicationBase::GetKey</a></div><div class="ttdeci">virtual int GetKey()</div><div class="ttdoc">　 キーボードとコントローラのkey入力を返す</div><div class="ttdef"><b>Definition:</b> ApplicationBase.h:101</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html"><div class="ttname"><a href="classmode_1_1_mode_server.html">mode::ModeServer</a></div><div class="ttdoc">モード管理クラス</div><div class="ttdef"><b>Definition:</b> ModeServer.h:18</div></div>
+<div class="ttc" id="aclasssound_1_1_play_w_a_v_e_html"><div class="ttname"><a href="classsound_1_1_play_w_a_v_e.html">sound::PlayWAVE</a></div><div class="ttdoc">wavファイルの再生</div><div class="ttdef"><b>Definition:</b> PlayWAVE.h:41</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_eb1463819d84903762eb6f59cc0c4383.html">Application</a></li><li class="navelem"><a class="el" href="_application_base_8h.html">ApplicationBase.h</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

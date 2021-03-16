@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>星あかりの夜: Effect/EffectBase.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">星あかりの夜
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_effect_base_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">EffectBase.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_effect_base_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include&quot;appframe.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>starrynight</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">namespace </span>effect</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classstarrynight_1_1effect_1_1_effect_base.html">   19</a></span>&#160;        <span class="keyword">class </span><a class="code" href="classstarrynight_1_1effect_1_1_effect_base.html">EffectBase</a></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <a class="code" href="classstarrynight_1_1effect_1_1_effect_base.html">EffectBase</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keyword">virtual</span> ~<a class="code" href="classstarrynight_1_1effect_1_1_effect_base.html">EffectBase</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1effect_1_1_effect_base.html#a0223abb92bab7e435e683faf33d9bf57">Initialize</a>();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1effect_1_1_effect_base.html#aad8c18282c24f3ea0402b7da874c5598">Process</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1effect_1_1_effect_base.html#a5a9eded21e3eb2508a39973fe7411181">Render</a>();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classstarrynight_1_1effect_1_1_effect_base.html#ab2e3245b052061c8bb4e3ae075e715ab">   45</a></span>&#160;            <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1effect_1_1_effect_base.html#ab2e3245b052061c8bb4e3ae075e715ab">SetPosition</a>(VECTOR _positon) { position_ = _positon; }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classstarrynight_1_1effect_1_1_effect_base.html#a990703600d8d416f5bc08c36f627d823">   52</a></span>&#160;            <span class="keyword">inline</span> VECTOR <a class="code" href="classstarrynight_1_1effect_1_1_effect_base.html#a990703600d8d416f5bc08c36f627d823">GetPosition</a>() { <span class="keywordflow">return</span> position_; }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classstarrynight_1_1effect_1_1_effect_base.html#a577e3385a394ea2850efa37df07d0d27">   59</a></span>&#160;            <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1effect_1_1_effect_base.html#a577e3385a394ea2850efa37df07d0d27">SetRotation</a>(VECTOR _rotation) { rotation_ = _rotation; }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classstarrynight_1_1effect_1_1_effect_base.html#a6e0852684b8b8e3251857783d9c64b20">   66</a></span>&#160;            <span class="keyword">inline</span> VECTOR <a class="code" href="classstarrynight_1_1effect_1_1_effect_base.html#a6e0852684b8b8e3251857783d9c64b20">GetRotation</a>() { <span class="keywordflow">return</span> rotation_; }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1effect_1_1_effect_base.html#a6da03c0be153002c4c8cb9ff6ced54d1">PlayEffect</a>();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1effect_1_1_effect_base.html#a6e9de33e1db3ecf547c7fd8a780e48b0">SetPlayingEffectPosition</a>();</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1effect_1_1_effect_base.html#adbef1871b961b5fec687cb905003b5a6">SetPlayingEffectRotation</a>();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="classstarrynight_1_1effect_1_1_effect_base.html#a745b028fe8f866412dceb0f22a7fb530">   90</a></span>&#160;            Effekseer::Vector3D <a class="code" href="classstarrynight_1_1effect_1_1_effect_base.html#a745b028fe8f866412dceb0f22a7fb530">DXLibtoEffekseer</a>(VECTOR _vector)</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="keywordflow">return</span> Effekseer::Vector3D(_vector.x, _vector.y, _vector.z);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            VECTOR position_;<span class="comment">//座標ベクトル</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            VECTOR rotation_;<span class="comment">//回転ベクトル</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            handle effect_resource_;<span class="comment">//エフェクトファイルをロードするハンドル</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            handle playing_effect_;<span class="comment">//ロードしたファイルからエフェクトを生成したもの</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keywordtype">int</span> effect_frame_;<span class="comment">//エフェクトの総再生時間</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        };</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;}</div>
+<div class="ttc" id="aclassstarrynight_1_1effect_1_1_effect_base_html"><div class="ttname"><a href="classstarrynight_1_1effect_1_1_effect_base.html">starrynight::effect::EffectBase</a></div><div class="ttdoc">エフェクトの基底クラス</div><div class="ttdef"><b>Definition:</b> EffectBase.h:20</div></div>
+<div class="ttc" id="aclassstarrynight_1_1effect_1_1_effect_base_html_a0223abb92bab7e435e683faf33d9bf57"><div class="ttname"><a href="classstarrynight_1_1effect_1_1_effect_base.html#a0223abb92bab7e435e683faf33d9bf57">starrynight::effect::EffectBase::Initialize</a></div><div class="ttdeci">virtual void Initialize()</div><div class="ttdoc">　 初期化処理</div><div class="ttdef"><b>Definition:</b> EffectBase.cpp:23</div></div>
+<div class="ttc" id="aclassstarrynight_1_1effect_1_1_effect_base_html_a577e3385a394ea2850efa37df07d0d27"><div class="ttname"><a href="classstarrynight_1_1effect_1_1_effect_base.html#a577e3385a394ea2850efa37df07d0d27">starrynight::effect::EffectBase::SetRotation</a></div><div class="ttdeci">void SetRotation(VECTOR _rotation)</div><div class="ttdoc">　オブジェクトの回転角度を設定する.</div><div class="ttdef"><b>Definition:</b> EffectBase.h:59</div></div>
+<div class="ttc" id="aclassstarrynight_1_1effect_1_1_effect_base_html_a5a9eded21e3eb2508a39973fe7411181"><div class="ttname"><a href="classstarrynight_1_1effect_1_1_effect_base.html#a5a9eded21e3eb2508a39973fe7411181">starrynight::effect::EffectBase::Render</a></div><div class="ttdeci">virtual void Render()</div><div class="ttdoc">　 描画処理</div><div class="ttdef"><b>Definition:</b> EffectBase.cpp:31</div></div>
+<div class="ttc" id="aclassstarrynight_1_1effect_1_1_effect_base_html_a6da03c0be153002c4c8cb9ff6ced54d1"><div class="ttname"><a href="classstarrynight_1_1effect_1_1_effect_base.html#a6da03c0be153002c4c8cb9ff6ced54d1">starrynight::effect::EffectBase::PlayEffect</a></div><div class="ttdeci">void PlayEffect()</div><div class="ttdoc">　 エフェクトを再生する</div><div class="ttdef"><b>Definition:</b> EffectBase.cpp:37</div></div>
+<div class="ttc" id="aclassstarrynight_1_1effect_1_1_effect_base_html_a6e0852684b8b8e3251857783d9c64b20"><div class="ttname"><a href="classstarrynight_1_1effect_1_1_effect_base.html#a6e0852684b8b8e3251857783d9c64b20">starrynight::effect::EffectBase::GetRotation</a></div><div class="ttdeci">VECTOR GetRotation()</div><div class="ttdoc">　オブジェクトの回転角度を返す.</div><div class="ttdef"><b>Definition:</b> EffectBase.h:66</div></div>
+<div class="ttc" id="aclassstarrynight_1_1effect_1_1_effect_base_html_a6e9de33e1db3ecf547c7fd8a780e48b0"><div class="ttname"><a href="classstarrynight_1_1effect_1_1_effect_base.html#a6e9de33e1db3ecf547c7fd8a780e48b0">starrynight::effect::EffectBase::SetPlayingEffectPosition</a></div><div class="ttdeci">void SetPlayingEffectPosition()</div><div class="ttdoc">　 再生中のエフェクト座標を更新する</div><div class="ttdef"><b>Definition:</b> EffectBase.cpp:42</div></div>
+<div class="ttc" id="aclassstarrynight_1_1effect_1_1_effect_base_html_a745b028fe8f866412dceb0f22a7fb530"><div class="ttname"><a href="classstarrynight_1_1effect_1_1_effect_base.html#a745b028fe8f866412dceb0f22a7fb530">starrynight::effect::EffectBase::DXLibtoEffekseer</a></div><div class="ttdeci">Effekseer::Vector3D DXLibtoEffekseer(VECTOR _vector)</div><div class="ttdoc">　 DXライブラリのベクトルをEffekseerのベクトルに変換する</div><div class="ttdef"><b>Definition:</b> EffectBase.h:90</div></div>
+<div class="ttc" id="aclassstarrynight_1_1effect_1_1_effect_base_html_a990703600d8d416f5bc08c36f627d823"><div class="ttname"><a href="classstarrynight_1_1effect_1_1_effect_base.html#a990703600d8d416f5bc08c36f627d823">starrynight::effect::EffectBase::GetPosition</a></div><div class="ttdeci">VECTOR GetPosition()</div><div class="ttdoc">　オブジェクトの位置を返す.</div><div class="ttdef"><b>Definition:</b> EffectBase.h:52</div></div>
+<div class="ttc" id="aclassstarrynight_1_1effect_1_1_effect_base_html_aad8c18282c24f3ea0402b7da874c5598"><div class="ttname"><a href="classstarrynight_1_1effect_1_1_effect_base.html#aad8c18282c24f3ea0402b7da874c5598">starrynight::effect::EffectBase::Process</a></div><div class="ttdeci">virtual void Process()</div><div class="ttdoc">　毎フレーム呼ばれる演算処理</div><div class="ttdef"><b>Definition:</b> EffectBase.cpp:27</div></div>
+<div class="ttc" id="aclassstarrynight_1_1effect_1_1_effect_base_html_ab2e3245b052061c8bb4e3ae075e715ab"><div class="ttname"><a href="classstarrynight_1_1effect_1_1_effect_base.html#ab2e3245b052061c8bb4e3ae075e715ab">starrynight::effect::EffectBase::SetPosition</a></div><div class="ttdeci">void SetPosition(VECTOR _positon)</div><div class="ttdoc">　オブジェクトの位置を設定する.</div><div class="ttdef"><b>Definition:</b> EffectBase.h:45</div></div>
+<div class="ttc" id="aclassstarrynight_1_1effect_1_1_effect_base_html_adbef1871b961b5fec687cb905003b5a6"><div class="ttname"><a href="classstarrynight_1_1effect_1_1_effect_base.html#adbef1871b961b5fec687cb905003b5a6">starrynight::effect::EffectBase::SetPlayingEffectRotation</a></div><div class="ttdeci">void SetPlayingEffectRotation()</div><div class="ttdoc">　 再生中のエフェクト回転角度を更新する</div><div class="ttdef"><b>Definition:</b> EffectBase.cpp:47</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_2f87403d69880c44a8ea7e418531fbf1.html">Effect</a></li><li class="navelem"><a class="el" href="_effect_base_8h.html">EffectBase.h</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>アプリケーションフレームワーク: Mode/ModeServer.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">アプリケーションフレームワーク
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_mode_server_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ModeServer.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_mode_server_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include&lt;list&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include&quot;<a class="code" href="_mode_base_8h.html">ModeBase.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>mode</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classmode_1_1_mode_server.html">   17</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classmode_1_1_mode_server.html">ModeServer</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="classmode_1_1_mode_server.html">ModeServer</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="classmode_1_1_mode_server.html">ModeServer</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keyword">static</span> <a class="code" href="classmode_1_1_mode_server.html">ModeServer</a>* modeserver_instance_;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">static</span> <a class="code" href="classmode_1_1_mode_server.html">ModeServer</a>* GetInstance() { <span class="keywordflow">return</span> (<a class="code" href="classmode_1_1_mode_server.html">ModeServer</a>*)modeserver_instance_; }</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classmode_1_1_mode_server.html#ab7c2e83daab5866ebb51d0c2e7da49b7">Add</a>(<a class="code" href="classmode_1_1_mode_base.html">ModeBase</a>* _mode, <span class="keywordtype">int</span> _layer, <span class="keyword">const</span> <span class="keywordtype">char</span>* _name);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classmode_1_1_mode_server.html#a5e37b38860723125c79f947231a1d46a">Del</a>(<a class="code" href="classmode_1_1_mode_base.html">ModeBase</a>* _mode);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="classmode_1_1_mode_base.html">ModeBase</a>* <a class="code" href="classmode_1_1_mode_server.html#a646cfdbc2530bff1c92869c95e1cd159">Get</a>(<span class="keywordtype">int</span> _uid);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="classmode_1_1_mode_base.html">ModeBase</a>* <a class="code" href="classmode_1_1_mode_server.html#a646cfdbc2530bff1c92869c95e1cd159">Get</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* _name);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classmode_1_1_mode_server.html#a51006f8a9d8efb6b99799d8d36c47352">GetId</a>(<a class="code" href="classmode_1_1_mode_base.html">ModeBase</a>* _mode);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classmode_1_1_mode_server.html#a51006f8a9d8efb6b99799d8d36c47352">GetId</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* _name);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="classmode_1_1_mode_server.html#aaabc18263dbd56d56a087e2bdf6bd25d">GetName</a>(<a class="code" href="classmode_1_1_mode_base.html">ModeBase</a>* _mode);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="classmode_1_1_mode_server.html#aaabc18263dbd56d56a087e2bdf6bd25d">GetName</a>(<span class="keywordtype">int</span> _uid);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classmode_1_1_mode_server.html#a69acd0022a519c46d4a654552e781cb1">Clear</a>();</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classmode_1_1_mode_server.html#a193402804f3d984a5349cebc31d32d16">  111</a></span>&#160;        <span class="keywordtype">int</span>  <a class="code" href="classmode_1_1_mode_server.html#a193402804f3d984a5349cebc31d32d16">LayerTop</a>() { <span class="keywordflow">return</span> INT32_MAX; }</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="classmode_1_1_mode_server.html#af599c857be4af159151d150c35cb57c8">  120</a></span>&#160;        <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classmode_1_1_mode_server.html#af599c857be4af159151d150c35cb57c8">ModeSort</a>(<span class="keyword">const</span> <a class="code" href="classmode_1_1_mode_base.html">ModeBase</a>* _x, <span class="keyword">const</span> <a class="code" href="classmode_1_1_mode_base.html">ModeBase</a>* _y)</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <span class="keywordflow">return</span> _x-&gt;layer_ &lt; _y-&gt;layer_;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        }</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classmode_1_1_mode_server.html#a441e200520b0fbed3967110526a298e2">ProcessInit</a>();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classmode_1_1_mode_server.html#a475f5b598a21f036b6fbbbe9b0573f9a">Process</a>();</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classmode_1_1_mode_server.html#a2af064f621448baf1d3792972bc34ea2">ProcessFinish</a>();</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classmode_1_1_mode_server.html#ab7a2b06e046f5ba68f1727f3387c65c5">RenderInit</a>();</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classmode_1_1_mode_server.html#a10141edd1ab6e93d58f9ef6e64b57fa9">Render</a>();</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classmode_1_1_mode_server.html#a65ee8e2db1b93119676585914b86f3ef">RenderFinish</a>();</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classmode_1_1_mode_server.html#abcb501a3b52a62971fb429f63924faf8">SkipProcessUnderLayer</a>();</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classmode_1_1_mode_server.html#a471dc9ace206efbb1669d7e01ce490c9">SkipRenderUnderLayer</a>();</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classmode_1_1_mode_server.html#a7651a0f4a2ea379b48e3e4f310fe5c8a">PauseProcessUnderLayer</a>();</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="keywordtype">int</span> Release(<a class="code" href="classmode_1_1_mode_base.html">ModeBase</a>* mode);</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <span class="keywordtype">bool</span> IsDelRegist(<a class="code" href="classmode_1_1_mode_base.html">ModeBase</a>* mode);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        <span class="keywordtype">bool</span> IsAdd(<a class="code" href="classmode_1_1_mode_base.html">ModeBase</a>* mode);</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        std::list&lt;ModeBase*&gt; mode_list_; </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        <span class="keywordtype">int</span>  uid_count_; </div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        std::list&lt;ModeBase*&gt; addmode_list_;  </div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        std::list&lt;ModeBase*&gt; delmode_list_;  </div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        <a class="code" href="classmode_1_1_mode_base.html">ModeBase</a>* now_mode_; </div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        <a class="code" href="classmode_1_1_mode_base.html">ModeBase</a>* skip_processmode_; </div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <a class="code" href="classmode_1_1_mode_base.html">ModeBase</a>* skip_rendermode_; </div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <a class="code" href="classmode_1_1_mode_base.html">ModeBase</a>* pause_processmode_;   </div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    };</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;}</div>
+<div class="ttc" id="a_mode_base_8h_html"><div class="ttname"><a href="_mode_base_8h.html">ModeBase.h</a></div><div class="ttdoc">モードの基底クラス</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_base_html"><div class="ttname"><a href="classmode_1_1_mode_base.html">mode::ModeBase</a></div><div class="ttdoc">モードの基底クラス</div><div class="ttdef"><b>Definition:</b> ModeBase.h:20</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html"><div class="ttname"><a href="classmode_1_1_mode_server.html">mode::ModeServer</a></div><div class="ttdoc">モード管理クラス</div><div class="ttdef"><b>Definition:</b> ModeServer.h:18</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_a10141edd1ab6e93d58f9ef6e64b57fa9"><div class="ttname"><a href="classmode_1_1_mode_server.html#a10141edd1ab6e93d58f9ef6e64b57fa9">mode::ModeServer::Render</a></div><div class="ttdeci">int Render()</div><div class="ttdoc">レイヤーの下の方から処理</div><div class="ttdef"><b>Definition:</b> ModeServer.cpp:250</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_a193402804f3d984a5349cebc31d32d16"><div class="ttname"><a href="classmode_1_1_mode_server.html#a193402804f3d984a5349cebc31d32d16">mode::ModeServer::LayerTop</a></div><div class="ttdeci">int LayerTop()</div><div class="ttdoc">Layer top</div><div class="ttdef"><b>Definition:</b> ModeServer.h:111</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_a2af064f621448baf1d3792972bc34ea2"><div class="ttname"><a href="classmode_1_1_mode_server.html#a2af064f621448baf1d3792972bc34ea2">mode::ModeServer::ProcessFinish</a></div><div class="ttdeci">int ProcessFinish()</div><div class="ttdoc">プロセスを回した後の後始末</div><div class="ttdef"><b>Definition:</b> ModeServer.cpp:237</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_a441e200520b0fbed3967110526a298e2"><div class="ttname"><a href="classmode_1_1_mode_server.html#a441e200520b0fbed3967110526a298e2">mode::ModeServer::ProcessInit</a></div><div class="ttdeci">int ProcessInit()</div><div class="ttdoc">プロセスを回すための初期化</div><div class="ttdef"><b>Definition:</b> ModeServer.cpp:164</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_a471dc9ace206efbb1669d7e01ce490c9"><div class="ttname"><a href="classmode_1_1_mode_server.html#a471dc9ace206efbb1669d7e01ce490c9">mode::ModeServer::SkipRenderUnderLayer</a></div><div class="ttdeci">int SkipRenderUnderLayer()</div><div class="ttdoc">現Processで、今処理しているレイヤーより下のレイヤーは、描画を呼ばない</div><div class="ttdef"><b>Definition:</b> ModeServer.cpp:283</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_a475f5b598a21f036b6fbbbe9b0573f9a"><div class="ttname"><a href="classmode_1_1_mode_server.html#a475f5b598a21f036b6fbbbe9b0573f9a">mode::ModeServer::Process</a></div><div class="ttdeci">int Process()</div><div class="ttdoc">レイヤーの上の方から処理</div><div class="ttdef"><b>Definition:</b> ModeServer.cpp:197</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_a51006f8a9d8efb6b99799d8d36c47352"><div class="ttname"><a href="classmode_1_1_mode_server.html#a51006f8a9d8efb6b99799d8d36c47352">mode::ModeServer::GetId</a></div><div class="ttdeci">int GetId(ModeBase *_mode)</div><div class="ttdoc">uidを取得</div><div class="ttdef"><b>Definition:</b> ModeServer.cpp:142</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_a5e37b38860723125c79f947231a1d46a"><div class="ttname"><a href="classmode_1_1_mode_server.html#a5e37b38860723125c79f947231a1d46a">mode::ModeServer::Del</a></div><div class="ttdeci">int Del(ModeBase *_mode)</div><div class="ttdoc">削除予約をする モードサーバーから削除されるのは1フレーム後</div><div class="ttdef"><b>Definition:</b> ModeServer.cpp:36</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_a646cfdbc2530bff1c92869c95e1cd159"><div class="ttname"><a href="classmode_1_1_mode_server.html#a646cfdbc2530bff1c92869c95e1cd159">mode::ModeServer::Get</a></div><div class="ttdeci">ModeBase * Get(int _uid)</div><div class="ttdoc">uidから指定したモードを取得</div><div class="ttdef"><b>Definition:</b> ModeServer.cpp:110</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_a65ee8e2db1b93119676585914b86f3ef"><div class="ttname"><a href="classmode_1_1_mode_server.html#a65ee8e2db1b93119676585914b86f3ef">mode::ModeServer::RenderFinish</a></div><div class="ttdeci">int RenderFinish()</div><div class="ttdoc">描画を回した後の後始末</div><div class="ttdef"><b>Definition:</b> ModeServer.cpp:269</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_a69acd0022a519c46d4a654552e781cb1"><div class="ttname"><a href="classmode_1_1_mode_server.html#a69acd0022a519c46d4a654552e781cb1">mode::ModeServer::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdoc">モードサーバーのモードをすべて削除</div><div class="ttdef"><b>Definition:</b> ModeServer.cpp:61</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_a7651a0f4a2ea379b48e3e4f310fe5c8a"><div class="ttname"><a href="classmode_1_1_mode_server.html#a7651a0f4a2ea379b48e3e4f310fe5c8a">mode::ModeServer::PauseProcessUnderLayer</a></div><div class="ttdeci">int PauseProcessUnderLayer()</div><div class="ttdoc">現Processで、今処理しているレイヤーより下のレイヤーは、時間経過を止める</div><div class="ttdef"><b>Definition:</b> ModeServer.cpp:289</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_aaabc18263dbd56d56a087e2bdf6bd25d"><div class="ttname"><a href="classmode_1_1_mode_server.html#aaabc18263dbd56d56a087e2bdf6bd25d">mode::ModeServer::GetName</a></div><div class="ttdeci">const char * GetName(ModeBase *_mode)</div><div class="ttdoc">モード名を取得</div><div class="ttdef"><b>Definition:</b> ModeServer.cpp:153</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_ab7a2b06e046f5ba68f1727f3387c65c5"><div class="ttname"><a href="classmode_1_1_mode_server.html#ab7a2b06e046f5ba68f1727f3387c65c5">mode::ModeServer::RenderInit</a></div><div class="ttdeci">int RenderInit()</div><div class="ttdoc">描画を回すための初期化</div><div class="ttdef"><b>Definition:</b> ModeServer.cpp:242</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_ab7c2e83daab5866ebb51d0c2e7da49b7"><div class="ttname"><a href="classmode_1_1_mode_server.html#ab7c2e83daab5866ebb51d0c2e7da49b7">mode::ModeServer::Add</a></div><div class="ttdeci">int Add(ModeBase *_mode, int _layer, const char *_name)</div><div class="ttdoc">モードサーバーに追加予約する モードサーバーに追加されるのは1フレーム後</div><div class="ttdef"><b>Definition:</b> ModeServer.cpp:25</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_abcb501a3b52a62971fb429f63924faf8"><div class="ttname"><a href="classmode_1_1_mode_server.html#abcb501a3b52a62971fb429f63924faf8">mode::ModeServer::SkipProcessUnderLayer</a></div><div class="ttdeci">int SkipProcessUnderLayer()</div><div class="ttdoc">現Processで、今処理しているレイヤーより下のレイヤーは、処理を呼ばない</div><div class="ttdef"><b>Definition:</b> ModeServer.cpp:277</div></div>
+<div class="ttc" id="aclassmode_1_1_mode_server_html_af599c857be4af159151d150c35cb57c8"><div class="ttname"><a href="classmode_1_1_mode_server.html#af599c857be4af159151d150c35cb57c8">mode::ModeServer::ModeSort</a></div><div class="ttdeci">static bool ModeSort(const ModeBase *_x, const ModeBase *_y)</div><div class="ttdoc">レイヤー順にソートする</div><div class="ttdef"><b>Definition:</b> ModeServer.h:120</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_e2a4b953a92d931d270fbc83de6016dd.html">Mode</a></li><li class="navelem"><a class="el" href="_mode_server_8h.html">ModeServer.h</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>
