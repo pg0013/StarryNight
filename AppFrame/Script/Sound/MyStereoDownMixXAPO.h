@@ -1,7 +1,7 @@
 /**
  * @file	AMG_Summer_Co_Production_2020\script\MyStereoDownMixXAPO.h.
  *
- * @brief	ステレオダウンミックス
+ * @brief ステレオダウンミックス
  * @remark 参考文献 https://tsuchidasama.booth.pm/items/1417202
  */
 

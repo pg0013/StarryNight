@@ -13,6 +13,9 @@ namespace starrynight
 {
 	namespace ui
 	{
+		/**
+		 * @brief  ËŒ‚‚ÌUI•`‰æˆ—‚ğs‚¤ƒNƒ‰ƒX
+		 */
 		class Shoot_UI
 		{
 		public:

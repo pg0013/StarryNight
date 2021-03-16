@@ -9,6 +9,9 @@
 
 namespace starrynight
 {
+	/**
+	 * @brief  このプロジェクトのメイン処理
+	 */
 	class ApplicationMain :
 		public appframe::ApplicationBase
 	{

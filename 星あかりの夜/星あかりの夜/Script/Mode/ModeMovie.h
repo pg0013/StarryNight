@@ -13,6 +13,9 @@ namespace starrynight
 {
 	namespace mode
 	{
+		/**
+		 * @brief  オープニングのムービー再生クラス
+		 */
 		class ModeMovie :
 			public ::mode::ModeBase
 		{

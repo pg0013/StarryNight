@@ -1,6 +1,6 @@
 /**
  * @file    ModeGameOver.h
- * @brief  ゲームオーバーシーン
+ * @brief  ゲームオーバーモードクラス
  *
  * @author Takuya Fujisawa
  * @date   2021/03/08
@@ -19,6 +19,9 @@ namespace starrynight
 {
 	namespace mode
 	{
+		/**
+		 * @brief  ゲームオーバーモードクラス
+		 */
 		class ModeGameOver :
 			public ::mode::ModeBase
 		{

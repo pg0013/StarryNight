@@ -12,6 +12,10 @@ namespace starrynight
 {
 	namespace camera
 	{
+
+        /**
+         * @brief カメラパラメータ読み込みクラス
+         */
 		class CameraParameters :
 			public parameters::Parameters
 		{

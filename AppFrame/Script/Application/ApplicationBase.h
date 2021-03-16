@@ -23,7 +23,10 @@ namespace appframe
 		constexpr int SCREEN_HEIGHT = 1080;
 		constexpr int SCREEN_DEPTH = 32;
 	}
-
+	/**
+	 * @brief  アプリケーションの基底クラス
+	 * @details ゲームごとにオーバーライドして使用する
+	 */
 	class ApplicationBase
 	{
 	public:

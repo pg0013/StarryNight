@@ -1,8 +1,8 @@
 /**
  * @file	AMG_Summer_Co_Production_2020\script\PlayWAVE.h.
  *
- * @brief	XAudio2‚ğ—p‚¢‚½‰¹ºÄ¶
- * @author	Takuya Fujisawa
+ * @brief XAudio2‚ğ—p‚¢‚½‰¹ºÄ¶
+ * @author Takuya Fujisawa
  */
 
 #pragma once

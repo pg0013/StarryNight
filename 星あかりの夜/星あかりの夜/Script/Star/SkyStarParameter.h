@@ -13,6 +13,9 @@ namespace starrynight
 {
     namespace star
     {
+        /**
+         * @brief  星座のパラメータを読み込むクラス
+         */
         class SkyStarParameter :
             public parameters::Parameters
         {

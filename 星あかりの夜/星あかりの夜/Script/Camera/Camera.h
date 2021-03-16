@@ -13,13 +13,18 @@ namespace starrynight
 {
 	namespace camera
 	{
-		//カメラ設定用構造体
+		/**
+		 * @brief カメラ設定用構造体
+		 */
 		struct CLIP
 		{
 			float near_;
 			float far_;
 		};
 
+		/**
+		 * @brief カメラ処理クラス
+		 */
 		class Camera
 		{
 		public:

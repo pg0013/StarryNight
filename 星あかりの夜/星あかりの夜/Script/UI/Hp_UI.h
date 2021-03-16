@@ -1,6 +1,6 @@
 /**
  * @file    Hp_UI.h
- * @brief  hpUI表示クラス
+ * @brief  HPUI表示クラス
  *
  * @author Takuya Fujisawa
  * @date   2021/03/03
@@ -13,6 +13,9 @@ namespace starrynight
 {
 	namespace ui
 	{
+		/**
+		 * @brief  HPUI表示クラス
+		 */
 		class Hp_UI
 		{
 		public:

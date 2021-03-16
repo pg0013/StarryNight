@@ -15,6 +15,9 @@ namespace starrynight
 {
 	namespace player
 	{
+		/**
+		 * @brief  ゲームモード内のプレイヤークラス
+		 */
 		class Player :
 			public object::ObjectBase
 		{

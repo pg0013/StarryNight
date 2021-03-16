@@ -1,8 +1,8 @@
 /**
  * @file	AMG_Summer_Co_Production_2020\script\MyHighPassFilter.h.
  *
- * @brief	ハイパスフィルター
- * @detail	遮断周波数の上限がサンプリング周波数の1/2
+ * @brief ハイパスフィルター
+ * @detail 遮断周波数の上限がサンプリング周波数の1/2
  * @remark 参考文献 https://tsuchidasama.booth.pm/items/1417202
  */
 

@@ -12,6 +12,9 @@ namespace starrynight
 {
 	namespace stage
 	{
+		/**
+		 * @brief  ステージパラメータ読み込みクラス
+		 */
 		class StageParameters :
 			public parameters::Parameters
 		{

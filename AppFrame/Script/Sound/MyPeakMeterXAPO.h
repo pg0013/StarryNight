@@ -1,7 +1,7 @@
 /**
  * @file	AMG_Summer_Co_Production_2020\script\MyPeakMeterXAPO.h.
  *
- * @brief	全区域ピークメータ
+ * @brief 全区域ピークメータ
  * @remark 参考文献 https://tsuchidasama.booth.pm/items/1417202
  */
 

@@ -13,6 +13,9 @@ namespace starrynight
 {
 	namespace effect
 	{
+		/**
+		 * @brief  エフェクトの基底クラス
+		 */
 		class EffectBase
 		{
 		public:

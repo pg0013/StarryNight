@@ -1,8 +1,8 @@
 /**
  * @file	AMG_Summer_Co_Production_2020\script\WAVEReader.h.
  *
- * @brief	WAVEファイル読み込みクラス
- * @author	Takuya Fujisawa
+ * @brief WAVEファイル読み込みクラス
+ * @author Takuya Fujisawa
  */
 
 #include<xaudio2.h>

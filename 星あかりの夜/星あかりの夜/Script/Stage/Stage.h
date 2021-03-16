@@ -25,6 +25,9 @@ namespace starrynight
 {
 	namespace stage
 	{
+		/**
+		 * @brief  ステージ管理クラス
+		 */
 		class Stage
 		{
 		public:

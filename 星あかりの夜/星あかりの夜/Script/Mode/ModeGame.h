@@ -1,6 +1,6 @@
 /**
  * @file    ModeGame.h
- * @brief  ゲームモードの定義
+ * @brief  ゲームモードクラス
  *
  * @author Takuya Fujisawa
  * @date    202012/09
@@ -23,6 +23,9 @@ namespace starrynight
 {
 	namespace mode
 	{
+		/**
+		 * @brief  ゲームモードクラス
+		 */
 		class ModeGame :
 			public ::mode::ModeBase
 		{

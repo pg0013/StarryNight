@@ -15,6 +15,9 @@ namespace starrynight
 {
 	namespace effect
 	{
+		/**
+		 * @brief	エフェクト管理を行うサーバー
+		 */
 		class EffectServer
 		{
 		public:

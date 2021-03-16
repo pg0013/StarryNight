@@ -1,6 +1,6 @@
 /**
  * @file    ObjectBase.h
- * @brief  オブジェクトの基底クラス
+ * @brief オブジェクトの基底クラス
  *
  * @author Takuya Fujisawa
  * @date    202012/16
@@ -12,6 +12,9 @@ namespace starrynight
 {
 	namespace object
 	{
+		/**
+		 * @brief オブジェクトの基底クラス
+		 */
 		class ObjectBase
 		{
 		public:

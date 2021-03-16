@@ -14,6 +14,9 @@ namespace starrynight
 {
 	namespace effect
 	{
+		/**
+		 * @brief  プレイヤーの軌跡エフェクト
+		 */
 		class PlayerTrailEffect :
 			public EffectBase
 		{

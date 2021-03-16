@@ -14,6 +14,9 @@ namespace starrynight
 {
 	namespace effect
 	{
+		/**
+		 * @brief  スターを獲得したときのエフェクトクラス
+		 */
 		class GetStarEffect :
 			public EffectBase
 		{

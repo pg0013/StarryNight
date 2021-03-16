@@ -18,8 +18,8 @@ namespace starrynight
 		/**
 		* @class	ObjectServer
 		*
-		* @brief		すべてのオブジェクトを管理するクラス
-		* @detail		vectorコンテナでオブジェクトの生成、演算、描画、消去の管理を行う
+		* @brief すべてのオブジェクトを管理するクラス
+		* @details vectorコンテナでオブジェクトの生成、演算、描画、消去の管理を行う
 		*
 		*/
 		class ObjectServer

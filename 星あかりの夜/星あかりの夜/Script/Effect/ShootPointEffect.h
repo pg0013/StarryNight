@@ -14,6 +14,9 @@ namespace starrynight
 {
 	namespace effect
 	{
+		/**
+		 * @brief  射撃ポイントエフェクトクラス
+		 */
 		class ShootPointEffect :
 			public effect::EffectBase
 		{

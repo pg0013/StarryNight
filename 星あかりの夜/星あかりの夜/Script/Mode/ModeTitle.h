@@ -19,6 +19,9 @@ namespace starrynight
 {
 	namespace mode
 	{
+		/**
+		 * @brief  タイトルモードクラス
+		 */
 		class ModeTitle :
 			public ::mode::ModeBase
 		{

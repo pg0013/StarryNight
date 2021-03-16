@@ -14,6 +14,9 @@ namespace starrynight
 {
     namespace player
     {
+        /**
+         * @brief  プレイヤーパラメータ読み込み処理
+         */
         class PlayerParameters :
             public parameters::Parameters
         {

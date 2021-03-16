@@ -14,6 +14,9 @@ namespace starrynight
 {
     namespace enemy
     {
+        /**
+         * @brief  エネミーパラメータ読み込みクラス
+         */
         class EnemyParameters :
             public parameters::Parameters
         {

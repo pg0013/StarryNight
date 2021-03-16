@@ -1,6 +1,6 @@
 /**
  * @file    ModePauseMenu.h
- * @brief  ゲーム中のポーズ画面シーン
+ * @brief  ゲーム中のポーズ画面モードクラス
  *
  * @author Takuya Fujisawa
  * @date   2021/03/06
@@ -20,6 +20,9 @@ namespace starrynight
 {
 	namespace mode
 	{
+		/**
+		 * @brief  ゲーム中のポーズ画面モードクラス
+		 */
 		class ModePauseMenu :
 			public ::mode::ModeBase
 		{

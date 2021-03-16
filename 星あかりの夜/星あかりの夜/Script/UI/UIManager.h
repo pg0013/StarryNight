@@ -17,6 +17,9 @@ namespace starrynight
 {
 	namespace ui
 	{
+		/**
+		 * @brief  ƒQ[ƒ€“àUIŠÇ—ƒNƒ‰ƒX
+		 */
 		class UIManager
 		{
 		public:

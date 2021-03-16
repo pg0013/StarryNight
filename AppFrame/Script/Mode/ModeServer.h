@@ -1,6 +1,6 @@
 /** 
  * @file    ModeServer.h
- * @brief  
+ * @brief  モード管理クラス
  * 
  * @author Takuya Fujisawa
  * @date    2020/10/21
@@ -11,6 +11,9 @@
 
 namespace mode
 {
+	/**
+	 * @brief  モード管理クラス
+	 */
 	class ModeServer
 	{
 	public:

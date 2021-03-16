@@ -1,6 +1,6 @@
 /**
  * @file    ModeTutorial.h
- * @brief  チュートリアル画面シーン
+ * @brief  チュートリアル画面モードクラス
  *
  * @author Takuya Fujisawa
  * @date   2021/03/06
@@ -13,6 +13,9 @@ namespace starrynight
 {
 	namespace mode
 	{
+		/**
+		 * @brief  チュートリアル画面モードクラス
+		 */
 		class ModeTutorial :
 			public ::mode::ModeBase
 		{

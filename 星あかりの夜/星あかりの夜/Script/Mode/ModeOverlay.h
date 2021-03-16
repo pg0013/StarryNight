@@ -1,6 +1,6 @@
 /**
  * @file    ModeOverlay.h
- * @brief	画面遷移モード
+ * @brief	画面遷移モードクラス
  * 				キャプチャかフェードかを指定して画面遷移を行う
  * 				キャプチャでは、表示画面の上からオーバーレイ表示
  * 				フェードでは、画面を暗転させる
@@ -22,6 +22,9 @@ namespace starrynight
 {
 	namespace mode
 	{
+		/**
+		 * @brief	画面遷移モードクラス
+		 */
 		class ModeOverlay :
 			public ::mode::ModeBase
 		{

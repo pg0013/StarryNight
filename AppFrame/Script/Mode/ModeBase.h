@@ -13,6 +13,9 @@ namespace mode
 {
 	class ModeServer;
 
+	/**
+	 * @brief  モードの基底クラス
+	 */
 	class ModeBase
 	{
 	public:

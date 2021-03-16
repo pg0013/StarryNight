@@ -1,6 +1,6 @@
 /**
  * @file    ModeMenu.h
- * @brief  メニュー選択シーン
+ * @brief  メニュー選択モードクラス
  *
  * @author Takuya Fujisawa
  * @date   2021/03/06
@@ -28,6 +28,9 @@ namespace starrynight
 {
 	namespace mode
 	{
+		/**
+		 * @brief  メニュー選択モードクラス
+		 */
 		class ModeMenu :
 			public ::mode::ModeBase
 		{

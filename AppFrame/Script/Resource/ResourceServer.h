@@ -1,8 +1,8 @@
 /**
  * @file	AMG_Summer_Co_Production_2020\script\ResourceServer.h.
  *
- * @brief	画像や音声ファイルを補完するリソースサーバのクラス
- * 	@detail	静的メンバなので、どこでも実行可能
+ * @brief 画像や音声ファイルを補完するリソースサーバのクラス
+ * 	@details 静的メンバなので、どこでも実行可能
  */
 
 #pragma once

@@ -15,6 +15,9 @@ namespace starrynight
 {
 	namespace enemy
 	{
+		/**
+		 * @brief  敵オブジェクトクラス
+		 */
 		class Enemy :
 			public object::ObjectBase
 		{

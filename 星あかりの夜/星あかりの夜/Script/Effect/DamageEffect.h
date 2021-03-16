@@ -14,6 +14,9 @@ namespace starrynight
 {
 	namespace effect
 	{
+		/**
+		 * @brief  プレイヤーのダメージエフェクトクラス
+		 */
 		class DamageEffect :
 			public EffectBase
 		{

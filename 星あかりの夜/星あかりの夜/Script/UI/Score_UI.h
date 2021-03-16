@@ -19,6 +19,9 @@ namespace starrynight
 {
 	namespace ui
 	{
+		/**
+		 * @brief  ゲームスコア表示UIクラス
+		 */
 		class Score_UI
 		{
 		public:

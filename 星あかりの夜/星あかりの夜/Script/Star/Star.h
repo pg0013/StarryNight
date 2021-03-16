@@ -14,6 +14,9 @@ namespace starrynight
 {
 	namespace star
 	{
+		/**
+		 * @brief  ステージ内のスター挙動実装クラス
+		 */
 		class Star :
 			public object::ObjectBase
 		{

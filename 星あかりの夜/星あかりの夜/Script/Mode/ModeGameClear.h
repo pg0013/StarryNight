@@ -1,6 +1,6 @@
 /**
  * @file    ModeGameClear.h
- * @brief  ゲームクリアシーン
+ * @brief  ゲームクリアモードクラス
  *
  * @author Takuya Fujisawa
  * @date   2021/03/05
@@ -20,6 +20,9 @@ namespace starrynight
 {
 	namespace mode
 	{
+		/**
+		 * @brief  ゲームクリアモードクラス
+		 */
 		class ModeGameClear :
 			public ::mode::ModeBase
 		{

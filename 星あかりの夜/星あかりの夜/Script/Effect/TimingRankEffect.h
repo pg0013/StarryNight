@@ -16,6 +16,9 @@ namespace starrynight
 {
 	namespace effect
 	{
+		/**
+		 * @brief  タイミング判定によって変わる射撃時のエフェクト
+		 */
 		class TimingRankEffect :
 			public EffectBase
 		{

@@ -20,6 +20,9 @@ namespace starrynight
 {
 	namespace ui
 	{
+		/**
+		 * @brief  タイミングゲームのUIを表示するクラス
+		 */
 		class TimingGame_UI
 		{
 		public:

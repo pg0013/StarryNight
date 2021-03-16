@@ -15,6 +15,9 @@ namespace starrynight
 {
 	namespace star
 	{
+		/**
+		 *@brief  射撃モードで射る星のクラス
+		 */
 		class SkyStar :
 			public object::ObjectBase
 		{

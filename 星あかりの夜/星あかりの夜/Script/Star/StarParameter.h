@@ -12,6 +12,9 @@ namespace starrynight
 {
     namespace star
     {
+        /**
+         * @brief  スターパラメータを読み込み処理
+         */
         class StarParameter :
             public parameters::Parameters
         {

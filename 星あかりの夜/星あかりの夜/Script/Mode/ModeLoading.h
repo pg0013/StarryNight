@@ -13,6 +13,9 @@ namespace starrynight
 {
 	namespace mode
 	{
+		/**
+		 * @brief  ローディングモードクラス
+		 */
 		class ModeLoading :
 			public ::mode::ModeBase
 		{

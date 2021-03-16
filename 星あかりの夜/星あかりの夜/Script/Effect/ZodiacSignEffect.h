@@ -15,6 +15,9 @@ namespace starrynight
 {
 	namespace effect
 	{
+		/**
+		 * @brief  星座エフェクトクラス
+		 */
 		class ZodiacSignEffect :
 			public EffectBase
 		{

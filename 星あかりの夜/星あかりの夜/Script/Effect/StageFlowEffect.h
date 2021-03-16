@@ -14,6 +14,9 @@ namespace starrynight
 {
 	namespace effect
 	{
+		/**
+		 * @brief  ステージ上に漂う花びらなどのエフェクト
+		 */
 		class StageFlowEffect :
 			public EffectBase
 		{
