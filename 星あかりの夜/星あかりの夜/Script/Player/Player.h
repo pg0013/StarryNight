@@ -35,12 +35,12 @@ namespace starrynight
 			/**
 			 * @brief@‰Šú‰»ˆ—.
 			 */
-			virtual void Initialize();
+			virtual void Initialize() override;
 
 			/**
 			 * @brief@‰‰Zˆ—.
 			 */
-			virtual void Process();
+			virtual void Process() override;
 
 			/**
 			 * @brief@•`‰æˆ—.

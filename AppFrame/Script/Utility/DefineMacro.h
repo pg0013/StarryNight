@@ -5,23 +5,23 @@
 #define DEBUG_FUNCTION
 #endif // _DEBUG
 
-
-#define DEBUG_COLOR GetColor(255,0,0)
-#define DEBUG_FONT_SIZE (20)
+#define DEBUG_COLOR  = GetColor(255, 0, 0);
+constexpr int  DEBUG_FONT_SIZE = 20;
 
 //計算用マクロ
-#define	PI	(3.1415926535897932386f)
-#define DEG2RAD(x)		( ((x) / 180.0f)* PI)
-#define RAD2DEG(x)		( ((x) * 180.0f ) / PI )
+constexpr float	PI = 3.1415926535897932386f;
+template<typename T>
+constexpr float DEG2RAD(T x){ return (((x) / 180.0f) * PI); }
+
+template<typename T>
+constexpr float  RAD2DEG(T x) { return (((x) * 180.0f) / PI); }
 
 //XINPUT最大値
-#define TRIGGER_MAX (255.0f)
-#define THUMB_MAX (32767.0f)
+constexpr float  TRIGGER_MAX = (255.0f);
+constexpr float  THUMB_MAX = (32767.0f);
 
 //パッド入力のトリガー用
-#define PAD_INPUT_ALL (0xffff)
+constexpr int  PAD_INPUT_ALL = (0xffff);
 
 //アナログスティックのデッドスペース
-#define ANALOG_MIN (0.2f)
-
-#define CLAMP(v,a,b)  (return min(max(v, a), b))
+constexpr float  ANALOG_MIN = (0.2f);

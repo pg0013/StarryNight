@@ -24,7 +24,7 @@
 /**
  * @brief  画像、モデルで使用するハンドル
  */
-typedef int handle;
+using handle = int;
 
 namespace utility
 {

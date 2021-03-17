@@ -15,7 +15,7 @@ namespace starrynight
 	class ApplicationMain :
 		public appframe::ApplicationBase
 	{
-		typedef appframe::ApplicationBase appbase;
+		using appbase = appframe::ApplicationBase;
 
 	public:
 		/**
