@@ -1,0 +1,355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>星あかりの夜: starrynight::effect::EffectBase クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">星あかりの夜
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classstarrynight_1_1effect_1_1_effect_base.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pro-methods">限定公開メンバ関数</a> &#124;
+<a href="#pro-attribs">限定公開変数類</a> &#124;
+<a href="classstarrynight_1_1effect_1_1_effect_base-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">starrynight::effect::EffectBase クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>エフェクトの基底クラス  
+ <a href="classstarrynight_1_1effect_1_1_effect_base.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="_effect_base_8h_source.html">EffectBase.h</a>&gt;</code></p>
+<div class="dynheader">
+starrynight::effect::EffectBase の継承関係図</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classstarrynight_1_1effect_1_1_effect_base.png" usemap="#starrynight::effect::EffectBase_map" alt=""/>
+  <map id="starrynight::effect::EffectBase_map" name="starrynight::effect::EffectBase_map">
+<area href="classstarrynight_1_1effect_1_1_damage_effect.html" title="プレイヤーのダメージエフェクトクラス" alt="starrynight::effect::DamageEffect" shape="rect" coords="233,56,456,80"/>
+<area href="classstarrynight_1_1effect_1_1_get_star_effect.html" title="スターを獲得したときのエフェクトクラス" alt="starrynight::effect::GetStarEffect" shape="rect" coords="233,112,456,136"/>
+<area href="classstarrynight_1_1effect_1_1_player_trail_effect.html" title="プレイヤーの軌跡エフェクト" alt="starrynight::effect::PlayerTrailEffect" shape="rect" coords="233,168,456,192"/>
+<area href="classstarrynight_1_1effect_1_1_shoot_charge_effect.html" title="射撃構え時のエフェクトクラス" alt="starrynight::effect::ShootChargeEffect" shape="rect" coords="233,224,456,248"/>
+<area href="classstarrynight_1_1effect_1_1_shoot_effect.html" title="射撃の流星エフェクト" alt="starrynight::effect::ShootEffect" shape="rect" coords="233,280,456,304"/>
+<area href="classstarrynight_1_1effect_1_1_shoot_point_effect.html" title="射撃ポイントエフェクトクラス" alt="starrynight::effect::ShootPointEffect" shape="rect" coords="233,336,456,360"/>
+<area href="classstarrynight_1_1effect_1_1_stage_flow_effect.html" title="ステージ上に漂う花びらなどのエフェクト" alt="starrynight::effect::StageFlowEffect" shape="rect" coords="233,392,456,416"/>
+<area href="classstarrynight_1_1effect_1_1_timing_rank_effect.html" title="タイミング判定によって変わる射撃時のエフェクト" alt="starrynight::effect::TimingRankEffect" shape="rect" coords="233,448,456,472"/>
+<area href="classstarrynight_1_1effect_1_1_zodiac_sign_effect.html" title="星座エフェクトクラス" alt="starrynight::effect::ZodiacSignEffect" shape="rect" coords="233,504,456,528"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a0223abb92bab7e435e683faf33d9bf57"><td class="memItemLeft" align="right" valign="top"><a id="a0223abb92bab7e435e683faf33d9bf57"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstarrynight_1_1effect_1_1_effect_base.html#a0223abb92bab7e435e683faf33d9bf57">Initialize</a> ()</td></tr>
+<tr class="memdesc:a0223abb92bab7e435e683faf33d9bf57"><td class="mdescLeft">&#160;</td><td class="mdescRight">　 初期化処理 <br /></td></tr>
+<tr class="separator:a0223abb92bab7e435e683faf33d9bf57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad8c18282c24f3ea0402b7da874c5598"><td class="memItemLeft" align="right" valign="top"><a id="aad8c18282c24f3ea0402b7da874c5598"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstarrynight_1_1effect_1_1_effect_base.html#aad8c18282c24f3ea0402b7da874c5598">Process</a> ()</td></tr>
+<tr class="memdesc:aad8c18282c24f3ea0402b7da874c5598"><td class="mdescLeft">&#160;</td><td class="mdescRight">　毎フレーム呼ばれる演算処理 <br /></td></tr>
+<tr class="separator:aad8c18282c24f3ea0402b7da874c5598"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a9eded21e3eb2508a39973fe7411181"><td class="memItemLeft" align="right" valign="top"><a id="a5a9eded21e3eb2508a39973fe7411181"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstarrynight_1_1effect_1_1_effect_base.html#a5a9eded21e3eb2508a39973fe7411181">Render</a> ()</td></tr>
+<tr class="memdesc:a5a9eded21e3eb2508a39973fe7411181"><td class="mdescLeft">&#160;</td><td class="mdescRight">　 描画処理 <br /></td></tr>
+<tr class="separator:a5a9eded21e3eb2508a39973fe7411181"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2e3245b052061c8bb4e3ae075e715ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstarrynight_1_1effect_1_1_effect_base.html#ab2e3245b052061c8bb4e3ae075e715ab">SetPosition</a> (VECTOR _positon)</td></tr>
+<tr class="memdesc:ab2e3245b052061c8bb4e3ae075e715ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">　オブジェクトの位置を設定する.  <a href="classstarrynight_1_1effect_1_1_effect_base.html#ab2e3245b052061c8bb4e3ae075e715ab">[詳解]</a><br /></td></tr>
+<tr class="separator:ab2e3245b052061c8bb4e3ae075e715ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a990703600d8d416f5bc08c36f627d823"><td class="memItemLeft" align="right" valign="top">VECTOR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstarrynight_1_1effect_1_1_effect_base.html#a990703600d8d416f5bc08c36f627d823">GetPosition</a> ()</td></tr>
+<tr class="memdesc:a990703600d8d416f5bc08c36f627d823"><td class="mdescLeft">&#160;</td><td class="mdescRight">　オブジェクトの位置を返す.  <a href="classstarrynight_1_1effect_1_1_effect_base.html#a990703600d8d416f5bc08c36f627d823">[詳解]</a><br /></td></tr>
+<tr class="separator:a990703600d8d416f5bc08c36f627d823"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a577e3385a394ea2850efa37df07d0d27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstarrynight_1_1effect_1_1_effect_base.html#a577e3385a394ea2850efa37df07d0d27">SetRotation</a> (VECTOR _rotation)</td></tr>
+<tr class="memdesc:a577e3385a394ea2850efa37df07d0d27"><td class="mdescLeft">&#160;</td><td class="mdescRight">　オブジェクトの回転角度を設定する.  <a href="classstarrynight_1_1effect_1_1_effect_base.html#a577e3385a394ea2850efa37df07d0d27">[詳解]</a><br /></td></tr>
+<tr class="separator:a577e3385a394ea2850efa37df07d0d27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e0852684b8b8e3251857783d9c64b20"><td class="memItemLeft" align="right" valign="top">VECTOR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstarrynight_1_1effect_1_1_effect_base.html#a6e0852684b8b8e3251857783d9c64b20">GetRotation</a> ()</td></tr>
+<tr class="memdesc:a6e0852684b8b8e3251857783d9c64b20"><td class="mdescLeft">&#160;</td><td class="mdescRight">　オブジェクトの回転角度を返す.  <a href="classstarrynight_1_1effect_1_1_effect_base.html#a6e0852684b8b8e3251857783d9c64b20">[詳解]</a><br /></td></tr>
+<tr class="separator:a6e0852684b8b8e3251857783d9c64b20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6da03c0be153002c4c8cb9ff6ced54d1"><td class="memItemLeft" align="right" valign="top"><a id="a6da03c0be153002c4c8cb9ff6ced54d1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstarrynight_1_1effect_1_1_effect_base.html#a6da03c0be153002c4c8cb9ff6ced54d1">PlayEffect</a> ()</td></tr>
+<tr class="memdesc:a6da03c0be153002c4c8cb9ff6ced54d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">　 エフェクトを再生する <br /></td></tr>
+<tr class="separator:a6da03c0be153002c4c8cb9ff6ced54d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e9de33e1db3ecf547c7fd8a780e48b0"><td class="memItemLeft" align="right" valign="top"><a id="a6e9de33e1db3ecf547c7fd8a780e48b0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstarrynight_1_1effect_1_1_effect_base.html#a6e9de33e1db3ecf547c7fd8a780e48b0">SetPlayingEffectPosition</a> ()</td></tr>
+<tr class="memdesc:a6e9de33e1db3ecf547c7fd8a780e48b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">　 再生中のエフェクト座標を更新する <br /></td></tr>
+<tr class="separator:a6e9de33e1db3ecf547c7fd8a780e48b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbef1871b961b5fec687cb905003b5a6"><td class="memItemLeft" align="right" valign="top"><a id="adbef1871b961b5fec687cb905003b5a6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstarrynight_1_1effect_1_1_effect_base.html#adbef1871b961b5fec687cb905003b5a6">SetPlayingEffectRotation</a> ()</td></tr>
+<tr class="memdesc:adbef1871b961b5fec687cb905003b5a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">　 再生中のエフェクト回転角度を更新する <br /></td></tr>
+<tr class="separator:adbef1871b961b5fec687cb905003b5a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:a745b028fe8f866412dceb0f22a7fb530"><td class="memItemLeft" align="right" valign="top">Effekseer::Vector3D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstarrynight_1_1effect_1_1_effect_base.html#a745b028fe8f866412dceb0f22a7fb530">DXLibtoEffekseer</a> (VECTOR _vector)</td></tr>
+<tr class="memdesc:a745b028fe8f866412dceb0f22a7fb530"><td class="mdescLeft">&#160;</td><td class="mdescRight">　 DXライブラリのベクトルをEffekseerのベクトルに変換する  <a href="classstarrynight_1_1effect_1_1_effect_base.html#a745b028fe8f866412dceb0f22a7fb530">[詳解]</a><br /></td></tr>
+<tr class="separator:a745b028fe8f866412dceb0f22a7fb530"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+限定公開変数類</h2></td></tr>
+<tr class="memitem:a512787db6f303d0c380a09c6b9059525"><td class="memItemLeft" align="right" valign="top"><a id="a512787db6f303d0c380a09c6b9059525"></a>
+VECTOR&#160;</td><td class="memItemRight" valign="bottom"><b>position_</b></td></tr>
+<tr class="separator:a512787db6f303d0c380a09c6b9059525"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a003584547b7671efc59b09f13dc08c7e"><td class="memItemLeft" align="right" valign="top"><a id="a003584547b7671efc59b09f13dc08c7e"></a>
+VECTOR&#160;</td><td class="memItemRight" valign="bottom"><b>rotation_</b></td></tr>
+<tr class="separator:a003584547b7671efc59b09f13dc08c7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb7468e2b502d09b0a10da68206e55e9"><td class="memItemLeft" align="right" valign="top"><a id="adb7468e2b502d09b0a10da68206e55e9"></a>
+handle&#160;</td><td class="memItemRight" valign="bottom"><b>effect_resource_</b></td></tr>
+<tr class="separator:adb7468e2b502d09b0a10da68206e55e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a42d13995b6611f9453078410f01422"><td class="memItemLeft" align="right" valign="top"><a id="a2a42d13995b6611f9453078410f01422"></a>
+handle&#160;</td><td class="memItemRight" valign="bottom"><b>playing_effect_</b></td></tr>
+<tr class="separator:a2a42d13995b6611f9453078410f01422"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a072f4f5e9e0b9348b0be6395145e3389"><td class="memItemLeft" align="right" valign="top"><a id="a072f4f5e9e0b9348b0be6395145e3389"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>effect_frame_</b></td></tr>
+<tr class="separator:a072f4f5e9e0b9348b0be6395145e3389"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>エフェクトの基底クラス </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a745b028fe8f866412dceb0f22a7fb530"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a745b028fe8f866412dceb0f22a7fb530">&#9670;&nbsp;</a></span>DXLibtoEffekseer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Effekseer::Vector3D starrynight::effect::EffectBase::DXLibtoEffekseer </td>
+          <td>(</td>
+          <td class="paramtype">VECTOR&#160;</td>
+          <td class="paramname"><em>_vector</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>　 DXライブラリのベクトルをEffekseerのベクトルに変換する </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_vector</td><td>DXライブラリのベクトル構造体 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>Effekseerのベクトル構造体 </dd></dl>
+
+</div>
+</div>
+<a id="a990703600d8d416f5bc08c36f627d823"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a990703600d8d416f5bc08c36f627d823">&#9670;&nbsp;</a></span>GetPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">VECTOR starrynight::effect::EffectBase::GetPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>　オブジェクトの位置を返す. </p>
+<dl class="section return"><dt>戻り値</dt><dd>位置(x,y,z)のベクトル構造体 </dd></dl>
+
+</div>
+</div>
+<a id="a6e0852684b8b8e3251857783d9c64b20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e0852684b8b8e3251857783d9c64b20">&#9670;&nbsp;</a></span>GetRotation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">VECTOR starrynight::effect::EffectBase::GetRotation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>　オブジェクトの回転角度を返す. </p>
+<dl class="section return"><dt>戻り値</dt><dd>回転角度(x,y,z)[rad] </dd></dl>
+
+</div>
+</div>
+<a id="ab2e3245b052061c8bb4e3ae075e715ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2e3245b052061c8bb4e3ae075e715ab">&#9670;&nbsp;</a></span>SetPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void starrynight::effect::EffectBase::SetPosition </td>
+          <td>(</td>
+          <td class="paramtype">VECTOR&#160;</td>
+          <td class="paramname"><em>_positon</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>　オブジェクトの位置を設定する. </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_positon</td><td>位置(x,y,z)のベクトル構造体 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a577e3385a394ea2850efa37df07d0d27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a577e3385a394ea2850efa37df07d0d27">&#9670;&nbsp;</a></span>SetRotation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void starrynight::effect::EffectBase::SetRotation </td>
+          <td>(</td>
+          <td class="paramtype">VECTOR&#160;</td>
+          <td class="paramname"><em>_rotation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>　オブジェクトの回転角度を設定する. </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_rotation　回転角度(x,y,z)[rad]</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>Effect/<a class="el" href="_effect_base_8h_source.html">EffectBase.h</a></li>
+<li>Effect/<a class="el" href="_effect_base_8cpp.html">EffectBase.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>starrynight</b></li><li class="navelem"><b>effect</b></li><li class="navelem"><a class="el" href="classstarrynight_1_1effect_1_1_effect_base.html">EffectBase</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

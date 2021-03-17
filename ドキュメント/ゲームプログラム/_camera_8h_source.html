@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>星あかりの夜: Camera/Camera.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">星あかりの夜
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_camera_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">Camera.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_camera_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include&quot;appframe.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include&quot;<a class="code" href="_camera_parameters_8h.html">CameraParameters.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>starrynight</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">namespace </span>camera</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="structstarrynight_1_1camera_1_1_c_l_i_p.html">   19</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structstarrynight_1_1camera_1_1_c_l_i_p.html">CLIP</a></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="keywordtype">float</span> near_;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keywordtype">float</span> far_;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        };</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classstarrynight_1_1camera_1_1_camera.html">   28</a></span>&#160;        <span class="keyword">class </span><a class="code" href="classstarrynight_1_1camera_1_1_camera.html">Camera</a></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <a class="code" href="classstarrynight_1_1camera_1_1_camera.html">Camera</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            ~<a class="code" href="classstarrynight_1_1camera_1_1_camera.html">Camera</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keyword">static</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html">Camera</a>* instance_;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keyword">static</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html">Camera</a>* GetInstance() { <span class="keywordflow">return</span> instance_; }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#afd88c2780203f02c9fe236a7239e414c">Initialize</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#ad1ee9564fca204a16bb35dd6b2be2d53">Process</a>();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#ab99417d5df5a3126910d9b027a9af24b">Render</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classstarrynight_1_1camera_1_1_camera.html#a35228de239ce1d5f6054fe1ab445168f">   60</a></span>&#160;            VECTOR <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#a35228de239ce1d5f6054fe1ab445168f">GetPosition</a>() { <span class="keywordflow">return</span> position_; }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classstarrynight_1_1camera_1_1_camera.html#aacf375d78685e3f9266bdba3e7a6b88b">   67</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#aacf375d78685e3f9266bdba3e7a6b88b">SetPosition</a>(VECTOR _vector) { position_ = _vector; }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classstarrynight_1_1camera_1_1_camera.html#a690536469a7990c0c60aac3aeb712406">   74</a></span>&#160;            VECTOR <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#a690536469a7990c0c60aac3aeb712406">GetTarget</a>() { <span class="keywordflow">return</span> target_; }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="classstarrynight_1_1camera_1_1_camera.html#a2653c1c7e10431cc8ad7290b4580961c">   81</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#a2653c1c7e10431cc8ad7290b4580961c">SetTarget</a>(VECTOR _vector) { target_ = _vector; }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="keywordtype">float</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#a21735881f92d29ab7ded447cf89cbd64">GetCameraRad</a>();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keywordtype">float</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#a10359ee76a31dc9c0d4dfe54ddf940ff">GetCameraLength</a>();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classstarrynight_1_1camera_1_1_camera.html#a577c068bcf082b600921b1dac6bc5435">  102</a></span>&#160;            <a class="code" href="structstarrynight_1_1camera_1_1_c_l_i_p.html">CLIP</a> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#a577c068bcf082b600921b1dac6bc5435">GetClip</a>() { <span class="keywordflow">return</span> clip_; }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="classstarrynight_1_1camera_1_1_camera.html#a37248a14478354c58c6107d1dbe88f46">  110</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#a37248a14478354c58c6107d1dbe88f46">SetClip</a>(<span class="keywordtype">float</span> _near, <span class="keywordtype">float</span> _far)</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                clip_.near_ = _near;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                clip_.far_ = _far;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#a7fc02996215b53258e9527c873c30346">DrawDebugMenu</a>();</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#add512df45a19df5d2912836973a022ae">MoveCamera</a>();</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#a91015c456ae7f242432f9fcda66ac368">ShootCameraInit</a>();</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#af93f5bc86abcd57d92147cc18b184278">ShootCamera</a>();</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#a1c1309590c5f09b9c01f6b4e70a7a300">SkyStarCameraInit</a>();</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="classstarrynight_1_1camera_1_1_camera.html#a40a4e28423c24204c9e216774b8c639b">  148</a></span>&#160;            <span class="keyword">enum class</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#a40a4e28423c24204c9e216774b8c639b">STATUS</a></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                MOVE,</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                SHOOT,</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                SKYSTAR</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            };</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="classstarrynight_1_1camera_1_1_camera.html#ac26a0a0cbcb3e220c517e5677c9398ca">  160</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#ac26a0a0cbcb3e220c517e5677c9398ca">SetStatus</a>(<a class="code" href="classstarrynight_1_1camera_1_1_camera.html#a40a4e28423c24204c9e216774b8c639b">STATUS</a> _status) { status_ = _status; }</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="classstarrynight_1_1camera_1_1_camera.html#a12e2b0fa62b1593c00a36b7e4a39a826">  167</a></span>&#160;            <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#a40a4e28423c24204c9e216774b8c639b">STATUS</a> <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#a12e2b0fa62b1593c00a36b7e4a39a826">GetStatus</a>() { <span class="keywordflow">return</span> status_; }</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            VECTOR position_;<span class="comment">//座標</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            VECTOR target_;<span class="comment">//ターゲット座標</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            <a class="code" href="structstarrynight_1_1camera_1_1_c_l_i_p.html">CLIP</a> clip_;<span class="comment">//Near,Far設定構造体</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            <a class="code" href="classstarrynight_1_1camera_1_1_camera.html#a40a4e28423c24204c9e216774b8c639b">STATUS</a> status_;<span class="comment">//状態遷移用変数</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            <span class="comment">//カメラパラメータ</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            <a class="code" href="classstarrynight_1_1camera_1_1_camera_parameters.html">CameraParameters</a> camera_param_;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            <span class="keywordtype">float</span> move_speed_;<span class="comment">//移動速度</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            <span class="keywordtype">float</span> rot_speed_;<span class="comment">//回転速度</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;            <span class="keywordtype">float</span> camera_distance_;<span class="comment">//カメラ距離</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            VECTOR old_target_;<span class="comment">//前フレームのプレイヤー座標</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        };</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    }</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;}</div>
+<div class="ttc" id="a_camera_parameters_8h_html"><div class="ttname"><a href="_camera_parameters_8h.html">CameraParameters.h</a></div><div class="ttdoc">カメラパラメータ読み込みクラス</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html">starrynight::camera::Camera</a></div><div class="ttdoc">カメラ処理クラス</div><div class="ttdef"><b>Definition:</b> Camera.h:29</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_a10359ee76a31dc9c0d4dfe54ddf940ff"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#a10359ee76a31dc9c0d4dfe54ddf940ff">starrynight::camera::Camera::GetCameraLength</a></div><div class="ttdeci">float GetCameraLength()</div><div class="ttdoc">カメラとの距離を返す.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:103</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_a12e2b0fa62b1593c00a36b7e4a39a826"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#a12e2b0fa62b1593c00a36b7e4a39a826">starrynight::camera::Camera::GetStatus</a></div><div class="ttdeci">STATUS GetStatus()</div><div class="ttdoc">　 カメラの状態を取得する</div><div class="ttdef"><b>Definition:</b> Camera.h:167</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_a1c1309590c5f09b9c01f6b4e70a7a300"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#a1c1309590c5f09b9c01f6b4e70a7a300">starrynight::camera::Camera::SkyStarCameraInit</a></div><div class="ttdeci">void SkyStarCameraInit()</div><div class="ttdoc">　 星座エフェクト完成時のカメラ位置初期化処理</div><div class="ttdef"><b>Definition:</b> SkyStarCamera.cpp:14</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_a21735881f92d29ab7ded447cf89cbd64"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#a21735881f92d29ab7ded447cf89cbd64">starrynight::camera::Camera::GetCameraRad</a></div><div class="ttdeci">float GetCameraRad()</div><div class="ttdoc">　 targetとcameraの角度を計算して返す</div><div class="ttdef"><b>Definition:</b> Camera.cpp:94</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_a2653c1c7e10431cc8ad7290b4580961c"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#a2653c1c7e10431cc8ad7290b4580961c">starrynight::camera::Camera::SetTarget</a></div><div class="ttdeci">void SetTarget(VECTOR _vector)</div><div class="ttdoc">　 カメラのターゲット座標を設定する</div><div class="ttdef"><b>Definition:</b> Camera.h:81</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_a35228de239ce1d5f6054fe1ab445168f"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#a35228de239ce1d5f6054fe1ab445168f">starrynight::camera::Camera::GetPosition</a></div><div class="ttdeci">VECTOR GetPosition()</div><div class="ttdoc">　 カメラ座標を取得する</div><div class="ttdef"><b>Definition:</b> Camera.h:60</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_a37248a14478354c58c6107d1dbe88f46"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#a37248a14478354c58c6107d1dbe88f46">starrynight::camera::Camera::SetClip</a></div><div class="ttdeci">void SetClip(float _near, float _far)</div><div class="ttdoc">　 カメラのNear,Farを設定する</div><div class="ttdef"><b>Definition:</b> Camera.h:110</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_a40a4e28423c24204c9e216774b8c639b"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#a40a4e28423c24204c9e216774b8c639b">starrynight::camera::Camera::STATUS</a></div><div class="ttdeci">STATUS</div><div class="ttdoc">状態遷移用変数</div><div class="ttdef"><b>Definition:</b> Camera.h:149</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_a577c068bcf082b600921b1dac6bc5435"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#a577c068bcf082b600921b1dac6bc5435">starrynight::camera::Camera::GetClip</a></div><div class="ttdeci">CLIP GetClip()</div><div class="ttdoc">　 カメラのNear,Far設定を取得する</div><div class="ttdef"><b>Definition:</b> Camera.h:102</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_a690536469a7990c0c60aac3aeb712406"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#a690536469a7990c0c60aac3aeb712406">starrynight::camera::Camera::GetTarget</a></div><div class="ttdeci">VECTOR GetTarget()</div><div class="ttdoc">　 カメラのターゲット座標を取得する</div><div class="ttdef"><b>Definition:</b> Camera.h:74</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_a7fc02996215b53258e9527c873c30346"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#a7fc02996215b53258e9527c873c30346">starrynight::camera::Camera::DrawDebugMenu</a></div><div class="ttdeci">void DrawDebugMenu()</div><div class="ttdoc">　 カメラのデバッグメニューを表示</div><div class="ttdef"><b>Definition:</b> Camera.cpp:73</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_a91015c456ae7f242432f9fcda66ac368"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#a91015c456ae7f242432f9fcda66ac368">starrynight::camera::Camera::ShootCameraInit</a></div><div class="ttdeci">void ShootCameraInit()</div><div class="ttdoc">　 射撃時のカメラ位置初期化処理</div><div class="ttdef"><b>Definition:</b> ShootCamera.cpp:16</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_aacf375d78685e3f9266bdba3e7a6b88b"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#aacf375d78685e3f9266bdba3e7a6b88b">starrynight::camera::Camera::SetPosition</a></div><div class="ttdeci">void SetPosition(VECTOR _vector)</div><div class="ttdoc">　 カメラ座標を設定する</div><div class="ttdef"><b>Definition:</b> Camera.h:67</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_ab99417d5df5a3126910d9b027a9af24b"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#ab99417d5df5a3126910d9b027a9af24b">starrynight::camera::Camera::Render</a></div><div class="ttdeci">void Render()</div><div class="ttdoc">描画処理.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:65</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_ac26a0a0cbcb3e220c517e5677c9398ca"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#ac26a0a0cbcb3e220c517e5677c9398ca">starrynight::camera::Camera::SetStatus</a></div><div class="ttdeci">void SetStatus(STATUS _status)</div><div class="ttdoc">　 カメラの状態を設定する</div><div class="ttdef"><b>Definition:</b> Camera.h:160</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_ad1ee9564fca204a16bb35dd6b2be2d53"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#ad1ee9564fca204a16bb35dd6b2be2d53">starrynight::camera::Camera::Process</a></div><div class="ttdeci">void Process()</div><div class="ttdoc">演算処理.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:50</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_add512df45a19df5d2912836973a022ae"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#add512df45a19df5d2912836973a022ae">starrynight::camera::Camera::MoveCamera</a></div><div class="ttdeci">void MoveCamera()</div><div class="ttdoc">　移動時のカメラ制御処理</div><div class="ttdef"><b>Definition:</b> MoveCamera.cpp:13</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_af93f5bc86abcd57d92147cc18b184278"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#af93f5bc86abcd57d92147cc18b184278">starrynight::camera::Camera::ShootCamera</a></div><div class="ttdeci">void ShootCamera()</div><div class="ttdoc">　 射撃時のカメラ制御処理</div><div class="ttdef"><b>Definition:</b> ShootCamera.cpp:43</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_html_afd88c2780203f02c9fe236a7239e414c"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera.html#afd88c2780203f02c9fe236a7239e414c">starrynight::camera::Camera::Initialize</a></div><div class="ttdeci">void Initialize()</div><div class="ttdoc">初期化処理.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:25</div></div>
+<div class="ttc" id="aclassstarrynight_1_1camera_1_1_camera_parameters_html"><div class="ttname"><a href="classstarrynight_1_1camera_1_1_camera_parameters.html">starrynight::camera::CameraParameters</a></div><div class="ttdoc">カメラパラメータ読み込みクラス</div><div class="ttdef"><b>Definition:</b> CameraParameters.h:21</div></div>
+<div class="ttc" id="astructstarrynight_1_1camera_1_1_c_l_i_p_html"><div class="ttname"><a href="structstarrynight_1_1camera_1_1_c_l_i_p.html">starrynight::camera::CLIP</a></div><div class="ttdoc">カメラ設定用構造体</div><div class="ttdef"><b>Definition:</b> Camera.h:20</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_e82d518b81fd896db0329786809da157.html">Camera</a></li><li class="navelem"><a class="el" href="_camera_8h.html">Camera.h</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

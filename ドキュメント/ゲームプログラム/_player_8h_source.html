@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>星あかりの夜: Player/Player.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">星あかりの夜
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_player_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">Player.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_player_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include&quot;appframe.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include&quot;../Object/ObjectBase.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include&quot;<a class="code" href="_player_parameters_8h.html">PlayerParameters.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span>starrynight</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">namespace </span>player</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    {</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classstarrynight_1_1player_1_1_player.html">   21</a></span>&#160;        <span class="keyword">class </span><a class="code" href="classstarrynight_1_1player_1_1_player.html">Player</a> :</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keyword">public</span> <a class="code" href="classstarrynight_1_1object_1_1_object_base.html">object::ObjectBase</a></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <a class="code" href="classstarrynight_1_1player_1_1_player.html">Player</a>(std::string _stage_name);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            ~<a class="code" href="classstarrynight_1_1player_1_1_player.html">Player</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classstarrynight_1_1player_1_1_player.html#a69b9f122e5f2faa35009c51652aedc9c">   33</a></span>&#160;            <span class="keyword">virtual</span> <a class="code" href="classstarrynight_1_1object_1_1_object_base.html#a66dd92bf9af8af82f96a94819d047c3e">OBJECT_TYPE</a> <a class="code" href="classstarrynight_1_1player_1_1_player.html#a69b9f122e5f2faa35009c51652aedc9c">GetObjectType</a>()<span class="keyword"> override </span>{ <span class="keywordflow">return</span> ObjectBase::OBJECT_TYPE::PLAYER; }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1player_1_1_player.html#a8e6db9cfc016d7895c4451319808bab0">Initialize</a>();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1player_1_1_player.html#a0daa01a96a0c15ddf7e0b9d976056f08">Process</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1player_1_1_player.html#adadf7046d564eabdca1ce20080bb56ed">Render</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classstarrynight_1_1player_1_1_player.html#a06493cdb0893d3c5dcc48df87548ed02">   55</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1player_1_1_player.html#a06493cdb0893d3c5dcc48df87548ed02">SetDamageFlag</a>(<span class="keywordtype">bool</span> _flag) { damage_flag_ = _flag; }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classstarrynight_1_1player_1_1_player.html#acbb41d548ca591e36b7f3b358181e66c">   62</a></span>&#160;            <span class="keywordtype">bool</span> <a class="code" href="classstarrynight_1_1player_1_1_player.html#acbb41d548ca591e36b7f3b358181e66c">GetDamageFlag</a>() { <span class="keywordflow">return</span> damage_flag_; }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classstarrynight_1_1player_1_1_player.html#a213365558e5d403150d378bf1a12ed27">   69</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1player_1_1_player.html#a213365558e5d403150d378bf1a12ed27">SetDamageAnimFlag</a>(<span class="keywordtype">bool</span> _flag) { damage_anim_flag_ = _flag; }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classstarrynight_1_1player_1_1_player.html#a5734bc894b4381b581dbed493f8d04a8">   76</a></span>&#160;            <span class="keywordtype">bool</span> <a class="code" href="classstarrynight_1_1player_1_1_player.html#a5734bc894b4381b581dbed493f8d04a8">GetPlayerSlingShotStatus</a>() { <span class="keywordflow">return</span> slingshot_flag_; }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classstarrynight_1_1player_1_1_player.html#a3a31bf983c1fce853bd10b99b3c49545">   83</a></span>&#160;            <span class="keywordtype">bool</span> <a class="code" href="classstarrynight_1_1player_1_1_player.html#a3a31bf983c1fce853bd10b99b3c49545">GetSelectedStarFlag</a>() { <span class="keywordflow">return</span> selected_skystar_flag_; }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="classstarrynight_1_1player_1_1_player.html#a49703ce8542e91382ab602eb25038d67">   90</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="classstarrynight_1_1player_1_1_player.html#a49703ce8542e91382ab602eb25038d67">GetPlayerHP</a>() { <span class="keywordflow">return</span> player_hp_; }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="classstarrynight_1_1player_1_1_player.html#af5bfbb298164ced89e4b245508d2af17">   97</a></span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classstarrynight_1_1player_1_1_player.html#af5bfbb298164ced89e4b245508d2af17">AddPlayerHP</a>(<span class="keywordtype">int</span> _addhp) { player_hp_ += _addhp; }</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classstarrynight_1_1player_1_1_player.html#a74deba74d0f0a18bc70097ea70eb52df">  102</a></span>&#160;            <span class="keyword">enum class</span> <a class="code" href="classstarrynight_1_1player_1_1_player.html#a74deba74d0f0a18bc70097ea70eb52df">STATUS</a></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                NONE,</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                WAIT,</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                WALK,</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                RUN,</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                JUMP_START,</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                JUMP_LOOP,</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                JUMP_END,</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                SHOOT_START,</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                SHOOT_END,</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                DAMAGE,</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                _EOT_</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            };</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="classstarrynight_1_1player_1_1_player.html#a445417a890ef1ea16796277a80eba58b">  122</a></span>&#160;            <a class="code" href="classstarrynight_1_1player_1_1_player.html#a74deba74d0f0a18bc70097ea70eb52df">STATUS</a> <a class="code" href="classstarrynight_1_1player_1_1_player.html#a445417a890ef1ea16796277a80eba58b">GetPlayerStatus</a>() { <span class="keywordflow">return</span> status_; }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            sound::PlayWAVE se_;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            <span class="keywordtype">void</span> Move();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            <span class="keywordtype">void</span> Jump();</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;            <span class="keywordtype">void</span> HoldSlingShot();</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            <span class="keywordtype">void</span> SlingShotStance();</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            <span class="keywordtype">void</span> Launch_Star(VECTOR _star_position);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            <span class="keywordtype">void</span> SlingShotEnd();</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="keywordtype">void</span> SetShootRotation();</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            MV1_COLL_RESULT_POLY CheckHitStar();</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            <span class="keywordtype">void</span> DecideForwardDirection();</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            <span class="keywordtype">void</span> Damage();</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            <span class="keywordtype">void</span> OutOfStage();</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            <span class="keywordtype">void</span> GameOver();</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            <span class="keywordtype">void</span> SwitchPlayerAction();</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160; </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            <span class="keywordtype">void</span> SwitchPlayerStatus();</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            <span class="keywordtype">void</span> SwitchPlayerAnimation(<a class="code" href="classstarrynight_1_1player_1_1_player.html#a74deba74d0f0a18bc70097ea70eb52df">STATUS</a> _old_status);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            <span class="keywordtype">void</span> PlayerAnimationBlend();</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            <span class="keywordtype">void</span> SwitchPlayerSound();</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            <span class="comment">//プレイヤーパラメータ保持クラス</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            <a class="code" href="classstarrynight_1_1player_1_1_player_parameters.html">PlayerParameters</a> player_param_;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;            <span class="keywordtype">int</span> player_hp_;<span class="comment">//プレイヤー体力</span></div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160; </div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            <span class="keywordtype">float</span> walk_speed_;<span class="comment">//移動速度</span></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            <span class="keywordtype">float</span> run_speed_;<span class="comment">//移動速度</span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            <span class="keywordtype">float</span> rot_speed_;<span class="comment">//回転速度</span></div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            <span class="keywordtype">float</span> jump_speed_;<span class="comment">//ジャンプ速度</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;            <span class="keywordtype">float</span> jump_height_;<span class="comment">//ジャンプ高さ</span></div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;            <span class="keywordtype">float</span> gravity_;<span class="comment">//重力</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;            <span class="keywordtype">bool</span> jump_flag_;<span class="comment">//ジャンプ状態記録用フラグ</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            <span class="keywordtype">int</span> floor_type_;<span class="comment">//床の材質</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;            <span class="keywordtype">bool</span> damage_flag_;<span class="comment">//ダメージを受けたことを記録するフラグ</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;            <span class="keywordtype">bool</span> damage_anim_flag_;<span class="comment">//ダメージモーションを開始するフラグ</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160; </div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;            <span class="keywordtype">bool</span> gameover_flag_;<span class="comment">//ゲームオーバー状態を判定するフラグ</span></div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160; </div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            <span class="comment">//モデルアニメーション用変数</span></div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            <span class="keywordtype">int</span> anim_attach_index_;<span class="comment">//アニメーションアタッチ番号</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            <span class="keywordtype">int</span> old_anim_attach_index_;<span class="comment">//遷移元のアニメーションアタッチ番号</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="keywordtype">float</span> anim_rate_;<span class="comment">//アニメーションブレンド率</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            <span class="keywordtype">float</span> anim_total_time_;<span class="comment">//アニメーション総再生時間</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            <span class="keywordtype">float</span> anim_play_time_;<span class="comment">//アニメーション再生時間</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;            <span class="keywordtype">bool</span> anim_loop_flag_;<span class="comment">//アニメーションをループするかどうか</span></div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;            <span class="comment">//エフェクト用変数</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;            <span class="keywordtype">bool</span> slingshot_flag_;<span class="comment">//パチンコ射撃状態かどうかを判定するフラグ</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;            <span class="keywordtype">bool</span> selected_skystar_flag_;<span class="comment">//射撃状態から星を選択したかどうか判定するフラグ</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;            <span class="keywordtype">bool</span> shoot_charge_effect_flag_;<span class="comment">//射撃溜めエフェクト生成フラグ</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160; </div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;            <a class="code" href="classstarrynight_1_1player_1_1_player.html#a74deba74d0f0a18bc70097ea70eb52df">STATUS</a> status_;<span class="comment">//プレイヤーの状態保持変数</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        };</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    }</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;}</div>
+<div class="ttc" id="a_player_parameters_8h_html"><div class="ttname"><a href="_player_parameters_8h.html">PlayerParameters.h</a></div><div class="ttdoc">プレイヤーパラメータ読み込み処理</div></div>
+<div class="ttc" id="aclassstarrynight_1_1object_1_1_object_base_html"><div class="ttname"><a href="classstarrynight_1_1object_1_1_object_base.html">starrynight::object::ObjectBase</a></div><div class="ttdoc">オブジェクトの基底クラス</div><div class="ttdef"><b>Definition:</b> ObjectBase.h:19</div></div>
+<div class="ttc" id="aclassstarrynight_1_1object_1_1_object_base_html_a66dd92bf9af8af82f96a94819d047c3e"><div class="ttname"><a href="classstarrynight_1_1object_1_1_object_base.html#a66dd92bf9af8af82f96a94819d047c3e">starrynight::object::ObjectBase::OBJECT_TYPE</a></div><div class="ttdeci">OBJECT_TYPE</div><div class="ttdoc">　オブジェクトの種類検出用変数.</div><div class="ttdef"><b>Definition:</b> ObjectBase.h:28</div></div>
+<div class="ttc" id="aclassstarrynight_1_1player_1_1_player_html"><div class="ttname"><a href="classstarrynight_1_1player_1_1_player.html">starrynight::player::Player</a></div><div class="ttdoc">ゲームモード内のプレイヤークラス</div><div class="ttdef"><b>Definition:</b> Player.h:23</div></div>
+<div class="ttc" id="aclassstarrynight_1_1player_1_1_player_html_a06493cdb0893d3c5dcc48df87548ed02"><div class="ttname"><a href="classstarrynight_1_1player_1_1_player.html#a06493cdb0893d3c5dcc48df87548ed02">starrynight::player::Player::SetDamageFlag</a></div><div class="ttdeci">void SetDamageFlag(bool _flag)</div><div class="ttdoc">　 ダメージを受けたことを記録するフラグを設定する</div><div class="ttdef"><b>Definition:</b> Player.h:55</div></div>
+<div class="ttc" id="aclassstarrynight_1_1player_1_1_player_html_a0daa01a96a0c15ddf7e0b9d976056f08"><div class="ttname"><a href="classstarrynight_1_1player_1_1_player.html#a0daa01a96a0c15ddf7e0b9d976056f08">starrynight::player::Player::Process</a></div><div class="ttdeci">virtual void Process()</div><div class="ttdoc">　演算処理.</div><div class="ttdef"><b>Definition:</b> Player.cpp:82</div></div>
+<div class="ttc" id="aclassstarrynight_1_1player_1_1_player_html_a213365558e5d403150d378bf1a12ed27"><div class="ttname"><a href="classstarrynight_1_1player_1_1_player.html#a213365558e5d403150d378bf1a12ed27">starrynight::player::Player::SetDamageAnimFlag</a></div><div class="ttdeci">void SetDamageAnimFlag(bool _flag)</div><div class="ttdoc">　 ダメージモーションを開始するフラグを設定する</div><div class="ttdef"><b>Definition:</b> Player.h:69</div></div>
+<div class="ttc" id="aclassstarrynight_1_1player_1_1_player_html_a3a31bf983c1fce853bd10b99b3c49545"><div class="ttname"><a href="classstarrynight_1_1player_1_1_player.html#a3a31bf983c1fce853bd10b99b3c49545">starrynight::player::Player::GetSelectedStarFlag</a></div><div class="ttdeci">bool GetSelectedStarFlag()</div><div class="ttdoc">　 射撃構え時に星が選択されたかどうか取得するフラグ</div><div class="ttdef"><b>Definition:</b> Player.h:83</div></div>
+<div class="ttc" id="aclassstarrynight_1_1player_1_1_player_html_a445417a890ef1ea16796277a80eba58b"><div class="ttname"><a href="classstarrynight_1_1player_1_1_player.html#a445417a890ef1ea16796277a80eba58b">starrynight::player::Player::GetPlayerStatus</a></div><div class="ttdeci">STATUS GetPlayerStatus()</div><div class="ttdoc">　 プレイヤーの状態を取得</div><div class="ttdef"><b>Definition:</b> Player.h:122</div></div>
+<div class="ttc" id="aclassstarrynight_1_1player_1_1_player_html_a49703ce8542e91382ab602eb25038d67"><div class="ttname"><a href="classstarrynight_1_1player_1_1_player.html#a49703ce8542e91382ab602eb25038d67">starrynight::player::Player::GetPlayerHP</a></div><div class="ttdeci">int GetPlayerHP()</div><div class="ttdoc">　 プレイヤーの残りHPを返す</div><div class="ttdef"><b>Definition:</b> Player.h:90</div></div>
+<div class="ttc" id="aclassstarrynight_1_1player_1_1_player_html_a5734bc894b4381b581dbed493f8d04a8"><div class="ttname"><a href="classstarrynight_1_1player_1_1_player.html#a5734bc894b4381b581dbed493f8d04a8">starrynight::player::Player::GetPlayerSlingShotStatus</a></div><div class="ttdeci">bool GetPlayerSlingShotStatus()</div><div class="ttdoc">射撃状態かどうかを判定するフラグを取得する.</div><div class="ttdef"><b>Definition:</b> Player.h:76</div></div>
+<div class="ttc" id="aclassstarrynight_1_1player_1_1_player_html_a69b9f122e5f2faa35009c51652aedc9c"><div class="ttname"><a href="classstarrynight_1_1player_1_1_player.html#a69b9f122e5f2faa35009c51652aedc9c">starrynight::player::Player::GetObjectType</a></div><div class="ttdeci">virtual OBJECT_TYPE GetObjectType() override</div><div class="ttdoc">オブジェクトの種類を返す.</div><div class="ttdef"><b>Definition:</b> Player.h:33</div></div>
+<div class="ttc" id="aclassstarrynight_1_1player_1_1_player_html_a74deba74d0f0a18bc70097ea70eb52df"><div class="ttname"><a href="classstarrynight_1_1player_1_1_player.html#a74deba74d0f0a18bc70097ea70eb52df">starrynight::player::Player::STATUS</a></div><div class="ttdeci">STATUS</div><div class="ttdoc">状態遷移用定数</div><div class="ttdef"><b>Definition:</b> Player.h:103</div></div>
+<div class="ttc" id="aclassstarrynight_1_1player_1_1_player_html_a8e6db9cfc016d7895c4451319808bab0"><div class="ttname"><a href="classstarrynight_1_1player_1_1_player.html#a8e6db9cfc016d7895c4451319808bab0">starrynight::player::Player::Initialize</a></div><div class="ttdeci">virtual void Initialize()</div><div class="ttdoc">　初期化処理.</div><div class="ttdef"><b>Definition:</b> Player.cpp:71</div></div>
+<div class="ttc" id="aclassstarrynight_1_1player_1_1_player_html_acbb41d548ca591e36b7f3b358181e66c"><div class="ttname"><a href="classstarrynight_1_1player_1_1_player.html#acbb41d548ca591e36b7f3b358181e66c">starrynight::player::Player::GetDamageFlag</a></div><div class="ttdeci">bool GetDamageFlag()</div><div class="ttdoc">　 ダメージを受けたことを記録するフラグを返す</div><div class="ttdef"><b>Definition:</b> Player.h:62</div></div>
+<div class="ttc" id="aclassstarrynight_1_1player_1_1_player_html_adadf7046d564eabdca1ce20080bb56ed"><div class="ttname"><a href="classstarrynight_1_1player_1_1_player.html#adadf7046d564eabdca1ce20080bb56ed">starrynight::player::Player::Render</a></div><div class="ttdeci">virtual void Render() override</div><div class="ttdoc">　描画処理.</div><div class="ttdef"><b>Definition:</b> Player.cpp:190</div></div>
+<div class="ttc" id="aclassstarrynight_1_1player_1_1_player_html_af5bfbb298164ced89e4b245508d2af17"><div class="ttname"><a href="classstarrynight_1_1player_1_1_player.html#af5bfbb298164ced89e4b245508d2af17">starrynight::player::Player::AddPlayerHP</a></div><div class="ttdeci">void AddPlayerHP(int _addhp)</div><div class="ttdoc">　 プレイヤーのHPを加算する</div><div class="ttdef"><b>Definition:</b> Player.h:97</div></div>
+<div class="ttc" id="aclassstarrynight_1_1player_1_1_player_parameters_html"><div class="ttname"><a href="classstarrynight_1_1player_1_1_player_parameters.html">starrynight::player::PlayerParameters</a></div><div class="ttdoc">プレイヤーパラメータ読み込み処理</div><div class="ttdef"><b>Definition:</b> PlayerParameters.h:22</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_c049039abd2482638da2b3d05566ace6.html">Player</a></li><li class="navelem"><a class="el" href="_player_8h.html">Player.h</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>
