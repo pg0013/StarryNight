@@ -5,7 +5,7 @@
 #define DEBUG_FUNCTION
 #endif // _DEBUG
 
-#define DEBUG_COLOR  = GetColor(255, 0, 0);
+#define DEBUG_COLOR  GetColor(255, 0, 0)
 constexpr int  DEBUG_FONT_SIZE = 20;
 
 //計算用マクロ
