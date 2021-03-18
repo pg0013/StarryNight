@@ -1,6 +1,10 @@
 # 星あかりの夜  
 ## 実行ファイル
 [こちら](https://drive.google.com/file/d/1NXlrxWzzzGZNLk-WYZDDJ56J1APE2MNq/view?usp=sharing "作品リンク")からダウンロードしてください。 
+## 実行ファイル
+doxygenで制作したドキュメントを閲覧することができます。  
+フレームワークのドキュメントは[こちら](https://120pg0013.web.fc2.com/appframe/index.html "フレームワークドキュメント")。   
+ゲームプログラムのドキュメントは[こちら](https://120pg0013.web.fc2.com/starrynight/index.html "ゲームプログラムドキュメント")。 
 ## ジャンル  
 1人プレイの3Dアクションゲーム  
 ## 開発期間  
