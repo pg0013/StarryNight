@@ -13,7 +13,7 @@ doxygenで制作したドキュメントを閲覧することができます。
 * OS　　　　　　　Windows10
 * 言語　　　　　　C++
 * 開発環境　　　　Microsoft Visual Studio 2019
-* 使用ライブラリ　DXライブラリ,Effekseer  
+* 使用ライブラリ　DXライブラリ,Effekseer,picojson  
 ## 開発体制  
 * 企画　2名  
 * プログラム 1名  
