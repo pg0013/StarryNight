@@ -186,6 +186,9 @@ void ModeGame::Input()
 
 		appframe::ApplicationBase::GetInstance()->se_.Load("Resource/sound/se2.wav");
 		appframe::ApplicationBase::GetInstance()->se_.Play();
+
+		//ダッキング
+		appframe::ApplicationBase::GetInstance()->bgm_.Fade(XAudio2DecibelsToAmplitudeRatio(-12.0f), 1.0f);
 	}
 }
 
