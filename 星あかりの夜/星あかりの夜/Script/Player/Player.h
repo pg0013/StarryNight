@@ -30,22 +30,22 @@ namespace starrynight
 			 *
 			 * @param ObjectBase::OBJECT_TYPE::PLAYER
 			 */
-			virtual OBJECT_TYPE GetObjectType() override { return ObjectBase::OBJECT_TYPE::PLAYER; }
+			OBJECT_TYPE GetObjectType() override { return ObjectBase::OBJECT_TYPE::PLAYER; }
 
 			/**
 			 * @brief　初期化処理.
 			 */
-			virtual void Initialize() override;
+			void Initialize() override;
 
 			/**
 			 * @brief　演算処理.
 			 */
-			virtual void Process() override;
+			void Process() override;
 
 			/**
 			 * @brief　描画処理.
 			 */
-			virtual void Render() override;
+			void Render() override;
 
 			/**
 			 * @brief　 ダメージを受けたことを記録するフラグを設定する

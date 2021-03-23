@@ -27,17 +27,17 @@ namespace starrynight
 			/**
 			 * @brief　初期化処理.
 			 */
-			virtual void Initialize();
+			void Initialize() override;
 
 			/**
 			 * @brief　演算処理.
 			 */
-			virtual void Process();
+			void Process() override;
 
 			/**
 			 * @brief　描画処理.
 			 */
-			virtual void Render();
+			void Render() override;
 
 		private:
 			int start_frame_;//エフェクト再生開始フレーム

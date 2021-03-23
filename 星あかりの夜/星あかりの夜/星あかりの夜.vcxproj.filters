@@ -82,6 +82,9 @@
     <Filter Include="ソース ファイル\SkyStar">
       <UniqueIdentifier>{33cfde7d-f7a5-410b-ae93-dfcf02e3ff70}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Server">
+      <UniqueIdentifier>{d0f01317-0365-40a5-b5d5-f6a2642d7c13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Script\ApplicationMain.cpp">
@@ -287,9 +290,6 @@
     <ClInclude Include="Script\Object\ObjectBase.h">
       <Filter>ヘッダー ファイル\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Script\Object\ObjectServer.h">
-      <Filter>ヘッダー ファイル\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Script\Player\Player.h">
       <Filter>ヘッダー ファイル\Player</Filter>
     </ClInclude>
@@ -321,9 +321,6 @@
       <Filter>ヘッダー ファイル\Effect</Filter>
     </ClInclude>
     <ClInclude Include="Script\Effect\EffectBase.h">
-      <Filter>ヘッダー ファイル\Effect</Filter>
-    </ClInclude>
-    <ClInclude Include="Script\Effect\EffectServer.h">
       <Filter>ヘッダー ファイル\Effect</Filter>
     </ClInclude>
     <ClInclude Include="Script\Effect\ShootEffect.h">
@@ -397,6 +394,12 @@
     </ClInclude>
     <ClInclude Include="Script\Effect\PlayerTrailEffect.h">
       <Filter>ヘッダー ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Effect\EffectServer.h">
+      <Filter>ヘッダー ファイル\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Object\ObjectServer.h">
+      <Filter>ヘッダー ファイル\Server</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

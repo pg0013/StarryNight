@@ -29,7 +29,7 @@ namespace starrynight
 			 *
 			 * @return 初期化成功の可否
 			 */
-			virtual bool Initialize();
+			bool Initialize() override;
 
 			/**
 			 * @brief   終了処理
@@ -37,21 +37,21 @@ namespace starrynight
 			 *
 			 * @return 終了処理成功の可否
 			 */
-			virtual bool Terminate();
+			bool Terminate() override;
 
 			/**
 			 * @brief   演算処理
 			 *
 			 * @return 演算処理成功の可否
 			 */
-			virtual bool Process();
+			bool Process() override;
 
 			/**
 			 * @brief   描画処理
 			 *
 			 * @return 描画処理成功の可否
 			 */
-			virtual bool Render();
+			bool Render() override;
 
 			/**
 			 * @brief　 次にモードへ遷移する処理
@@ -71,7 +71,5 @@ namespace starrynight
 			int nextmode_count_;//次のモードへ移行するカウンタ
 			bool pushed_flag_;//メニュー選択済みフラグ
 		};
-
 	}
 }
-

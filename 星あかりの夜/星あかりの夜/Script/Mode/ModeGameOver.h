@@ -35,7 +35,7 @@ namespace starrynight
 			 *
 			 * @return ‰Šú‰»¬Œ÷‚Ì‰Â”Û
 			 */
-			virtual bool Initialize();
+			bool Initialize() override;
 
 			/**
 			 * @brief   I—¹ˆ—
@@ -43,21 +43,21 @@ namespace starrynight
 			 *
 			 * @return I—¹ˆ—¬Œ÷‚Ì‰Â”Û
 			 */
-			virtual bool Terminate();
+			bool Terminate() override;
 
 			/**
 			 * @brief   ‰‰Zˆ—
 			 *
 			 * @return ‰‰Zˆ—¬Œ÷‚Ì‰Â”Û
 			 */
-			virtual bool Process();
+			bool Process() override;
 
 			/**
 			 * @brief   •`‰æˆ—
 			 *
 			 * @return •`‰æˆ—¬Œ÷‚Ì‰Â”Û
 			 */
-			virtual bool Render();
+			bool Render() override;
 
 		private:
 			/**
