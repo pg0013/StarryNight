@@ -14,7 +14,7 @@
 *.userprefs
 
 #DXLiblary
-プロジェクトに追加すべきファイル_VC用/
+/プロジェクトに追加すべきファイル_VC用
 
 # Build results
 [Dd]ebug/
