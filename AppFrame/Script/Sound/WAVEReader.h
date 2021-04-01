@@ -57,12 +57,6 @@ namespace sound
 			WAVEFORMAT fmt;
 		};
 
-		WAVEFORMATEX m_WFX{};   //!< WAVEFORMATEX構造体
-
-		char* m_pBuffer;	//!< 波形データ部の先頭アドレス
-
-		Chunk m_data;   //!< データチャンク
-
 	public:
 		WAVEReader();
 		~WAVEReader();
@@ -76,7 +70,7 @@ namespace sound
 		 *
 		 * @param 	_fileName	Filename of the file.
 		 */
-		void LoadWAVE(const char* _fileName);
+		void LoadWAVE(const char* _filename);
 
 		/**
 		 * @fn	WAVEFORMATEX WAVEReader::Getwfx()
@@ -85,7 +79,7 @@ namespace sound
 		 *
 		 * @returns	A WAVEFORMATEX.
 		 */
-		WAVEFORMATEX Getwfx() { return m_WFX; }
+		WAVEFORMATEX Getwfx() { return wfx_; }
 
 		/**
 		 * @fn	char* WAVEReader::GetpBuffer()
@@ -94,7 +88,7 @@ namespace sound
 		 *
 		 * @returns	波形データの先頭アドレス
 		 */
-		char* GetpBuffer() { return m_pBuffer; }
+		char* GetpBuffer() { return buffer_; }
 
 		/**
 		 * @fn	Chunk WAVEReader::GetDataChunk()
@@ -103,6 +97,13 @@ namespace sound
 		 *
 		 * @returns	The data chunk.
 		 */
-		Chunk GetDataChunk() { return m_data; }
+		Chunk GetDataChunk() { return data_; }
+
+	private:
+		WAVEFORMATEX wfx_{};   //!< WAVEFORMATEX構造体
+
+		char* buffer_;	//!< 波形データ部の先頭アドレス
+
+		Chunk data_;   //!< データチャンク
 	};
 }

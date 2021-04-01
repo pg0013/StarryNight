@@ -112,7 +112,7 @@ namespace sound
 		 * 										Rのみ→PAN_RIGHT
 		 *
 		 */
-		void Pan(const float _targetPan);
+		void Pan(const float _target_pan);
 
 		/**
 		 * @fn	void PlayWAVE::Pan(const int _pos_x);
@@ -169,7 +169,7 @@ namespace sound
 		 * 											フェードアウト	:	0.0f
 		 * @param 	_targetTime  	フェード時間[s]
 		 */
-		void Fade(const float _targetVolume, const float _targetTime);
+		void Fade(const float _target_volume, const float _target_time);
 
 		/**
 		 * @fn	void PlayWAVE::FadeWithEQ(const float _targetVolume, const float _targetTime, const float _freqency, const int _typeEQ);
@@ -183,7 +183,7 @@ namespace sound
 		 * @param 	_typeEQ		 	LPF	:	0
 		 * 											HPF	:	1
 		 */
-		void FadeWithEQ(const float _targetVolume, const float _targetTime, const float _freqency, const int _typeEQ);
+		void FadeWithEQ(const float _target_volume, const float _target_time, const float _freqency, const int _typeEQ);
 
 		/**
 		 * @fn	void PlayWAVE::LowPassFilter(const float _freqency);
@@ -281,11 +281,11 @@ namespace sound
 		bool CheckIsRunning();
 
 	private:
-		static IXAudio2* m_pXAudio2;	//!< XAudio2の作成
-		static IXAudio2MasteringVoice* m_pMasteringVoice;   //!< MasteringVoiceの作成
-		static HRESULT hr;
-		WAVEReader m_WaveReader;	//!< WAVEファイル読み込みクラス
-		IXAudio2SourceVoice* m_pSourceVoice = nullptr;  //!< SourceVoiceの作成
-		int m_LoopCount = 0;	//!< ループ回数
+		static IXAudio2* xaudio2_;	//!< XAudio2の作成
+		static IXAudio2MasteringVoice* mastering_voice_;   //!< MasteringVoiceの作成
+		static HRESULT hr_;
+		WAVEReader wave_reader_;	//!< WAVEファイル読み込みクラス
+		IXAudio2SourceVoice* source_voice_ = nullptr;  //!< SourceVoiceの作成
+		int loop_count_ = 0;	//!< ループ回数
 	};
 }

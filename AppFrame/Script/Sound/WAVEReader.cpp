@@ -19,19 +19,19 @@ namespace sound
 		//自己代入処理
 		if (this != &rhs)
 		{
-			this->m_pBuffer = rhs.m_pBuffer;
-			this->m_WFX = rhs.m_WFX;
-			this->m_data = rhs.m_data;
+			this->buffer_ = rhs.buffer_;
+			this->wfx_ = rhs.wfx_;
+			this->data_ = rhs.data_;
 		}
 		return*this;
 	}
 
-	void WAVEReader::LoadWAVE(const char* _fileName)
+	void WAVEReader::LoadWAVE(const char* _filename)
 	{
 		int filehandle;
 
 		//DXライブラリのアーカイブ機能を使うため、DXライブラリのfileopen関数を使う
-		filehandle = FileRead_open(_fileName);
+		filehandle = FileRead_open(_filename);
 
 		//RIFFヘッダーの読み込み
 		RiffHeader riff;
@@ -42,16 +42,16 @@ namespace sound
 		FileRead_read(&format, sizeof(format), filehandle);
 
 		//Dataチャンクの読み込み
-		FileRead_read(&m_data, sizeof(m_data), filehandle);
+		FileRead_read(&data_, sizeof(data_), filehandle);
 
 		//Dataチャンクのデータ部(波形データ)の読み込み
-		m_pBuffer = (char*)malloc(m_data.chunk_size);
-		FileRead_read(m_pBuffer, m_data.chunk_size, filehandle);
+		buffer_ = (char*)malloc(data_.chunk_size);
+		FileRead_read(buffer_, data_.chunk_size, filehandle);
 
 		//波形フォーマットの設定
-		memcpy(&m_WFX, &format.fmt, sizeof(format.fmt));
+		memcpy(&wfx_, &format.fmt, sizeof(format.fmt));
 
 		//WAVEFORMATにはないビット深度を計算
-		m_WFX.wBitsPerSample = format.fmt.nBlockAlign * 8 / format.fmt.nChannels;
+		wfx_.wBitsPerSample = format.fmt.nBlockAlign * 8 / format.fmt.nChannels;
 	}
 }
