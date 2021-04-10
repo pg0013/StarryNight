@@ -22,13 +22,26 @@ ModeGame::ModeGame(std::string _stage_name)
 	stop_object_process_ = false;
 	player_star_num_ = 0;
 	game_score_ = 0;
-	regulations_score_ = 30000;
 	fade_count_ = 0;
 	nextmode_count_ = 0;
 	pushed_flag_ = false;
 	pause_flag_ = false;
 	score_rank_ = SCORE_RANK::LOW;
 	result_ = -1;
+
+	//ステージ規定スコアを設定
+	if (std::equal(stage_name_.begin(), stage_name_.end(), "haru_A"))
+	{
+		SetStageRegulationsScore(30000);
+	}
+	else if (std::equal(stage_name_.begin(), stage_name_.end(), "haru_B"))
+	{
+		SetStageRegulationsScore(50000);
+	}
+	else
+	{
+		SetStageRegulationsScore(70000);
+	}
 
 	stage_shadowmap_ = MakeShadowMap(8192, 8192);
 	object_shadowmap_ = MakeShadowMap(8192, 8192);
