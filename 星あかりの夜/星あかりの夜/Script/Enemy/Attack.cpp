@@ -24,7 +24,11 @@ VECTOR Enemy::Attack(VECTOR _move)
 			{
 				player::Player* player = static_cast<player::Player*>(*iter);
 				player->SetDamageAnimFlag(true);//ダメージアニメーションを再生
-				player->AddPlayerHP(-1);//HPを減らす
+
+				//プレイヤーが星を所持していない場合、HPを減らす
+				if (mode_game->GetPlayerStarNum() == 0)
+					player->AddPlayerHP(-1);
+
 				break;
 			}
 		}
