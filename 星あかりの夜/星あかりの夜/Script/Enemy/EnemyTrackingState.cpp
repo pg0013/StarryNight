@@ -1,0 +1,109 @@
+/**
+ * @file    EnemyTrackingState.cpp
+ * @brief  敵の追跡状態クラス
+ *
+ * @author Takuya Fujisawa
+ * @date   2021/04/12
+ */
+
+#include"EnemyTrackingState.h"
+#include"EnemyWaitState.h"
+#include"EnemyAttackState.h"
+#include"../Player/Player.h"
+#include"Enemy.h"
+#include"../Mode/ModeGame.h"
+using namespace starrynight::enemy;
+
+EnemyTrackingState::EnemyTrackingState()
+{
+	attack_length_ = 70.0f;
+
+	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	track_start_frame_ = mode_game->GetModeCount();
+}
+
+EnemyTrackingState::~EnemyTrackingState()
+{
+}
+
+void EnemyTrackingState::Enter(Enemy& _enemy)
+{
+}
+
+void EnemyTrackingState::Exit(Enemy& _enemy)
+{
+}
+
+EnemyState* EnemyTrackingState::Input(Enemy& _enemy)
+{
+	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
+	VECTOR enemy_position = _enemy.GetPosition();
+	float player_distance = VSize(VSub(player_position, enemy_position));
+	float player_distance_y = abs(player_position.y - enemy_position.y);
+
+	if (player_distance > _enemy.GetDetectLength())
+	{
+		return NEW EnemyWaitState();
+	}
+
+	if (player_distance <= attack_length_)
+	{
+		//攻撃Stateを返す
+		return NEW EnemyAttackState();
+	}
+
+	//追跡状態を継続
+	_enemy.SetAnimStatus(Enemy::ANIM_STATUS::RUN);
+	_enemy.SetMoveStatus(Enemy::MOVE_STATUS::TRACKING);
+	return nullptr;
+}
+
+void EnemyTrackingState::Update(Enemy& _enemy)
+{
+	VECTOR move = { 0,0,0 };
+	VECTOR position = _enemy.GetPosition();
+	VECTOR rotation = _enemy.GetRotation();
+
+	//プレイヤーを発見してから、ワンモーションは移動しない
+	if (::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - track_start_frame_ < 25)
+	{
+		if (::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - track_start_frame_ == 1)
+		{
+			//プレイヤー発見SEを再生
+			_enemy.attention_se_.Load("Resource/sound/enemy_se3.wav");
+			//スクリーン上の位置に対して、左右バランスを設定
+			_enemy.attention_se_.Pan(static_cast<int>(utility::GetScreenPosFromWorldPos(position).x));
+			_enemy.attention_se_.Play();
+		}
+
+		//移動しないでその場で足踏み
+		move = { 0,0,0 };
+		_enemy.Move(move);
+
+		return;
+	}
+
+	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
+
+	float player_distance = VSize(VSub(player_position, position));
+
+	VECTOR enemy_to_player = VSub(player_position, position);
+	VECTOR forward = utility::GetForwardVector(rotation.y);
+
+	VECTOR cross = VCross(forward, enemy_to_player);
+
+	//プレイヤーがエネミーに対して左右どちらかにいるか判定する
+	if (VCross(VNorm(forward), VNorm(enemy_to_player)).y >= 0)
+	{
+		rotation.y += DEG2RAD(_enemy.GetRotationSpeed()) * VSize(VCross(forward, enemy_to_player)) * 0.02f;
+	}
+	else
+	{
+		rotation.y -= DEG2RAD(_enemy.GetRotationSpeed()) * VSize(VCross(forward, enemy_to_player)) * 0.02f;
+	}
+
+	move = VScale(VNorm(utility::GetForwardVector(rotation.y)), _enemy.GetRunSpeed());
+
+	_enemy.SetRotation(rotation);
+	_enemy.Move(move);
+}

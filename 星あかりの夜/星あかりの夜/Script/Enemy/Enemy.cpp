@@ -7,6 +7,7 @@
  */
 
 #include "Enemy.h"
+#include"EnemyWaitState.h"
 #include"../Player/Player.h"
 #include"../Mode/ModeGame.h"
 
@@ -31,12 +32,11 @@ Enemy::Enemy(std::string _handle_name)
 
 	attacked_flag_ = false;
 	random_rot_direction_ = 1.0f;
-	attack_length_ = 70.0f;
-	track_start_frame_ = 0;
 
 	//状態遷移用変数を初期化
 	anim_status_ = ANIM_STATUS::WAIT;
 	move_status_ = MOVE_STATUS::WAIT;
+	enemy_state_ = NEW EnemyWaitState();
 
 	//アニメーション情報を初期化
 	anim_attach_index_ = -1;
@@ -49,6 +49,7 @@ Enemy::Enemy(std::string _handle_name)
 
 Enemy::~Enemy()
 {
+	delete enemy_state_;
 }
 
 void Enemy::Initialize()
@@ -62,11 +63,10 @@ void Enemy::Process()
 	ANIM_STATUS old_anim_status = anim_status_;
 
 	//状態遷移を行う
-	SwitchStatus(old_anim_status);
+	SwitchStatus();
 
-	//ステータスによって移動量を決定し、移動
-	VECTOR move = DecideMoveAmount();
-	Move(move);
+	//状態ごとの更新処理
+	enemy_state_->Update(*this);
 
 	//アニメーション切り替えを行う
 	SwitchEnemyAnimation(old_anim_status);

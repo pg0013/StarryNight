@@ -76,7 +76,7 @@ void Enemy::Move(const VECTOR& _move)
 
 	//腰から地面までの線分ベクトル
 	VECTOR start_line = VAdd(position_, VGet(0, 10.0f, 0));
-	VECTOR end_line = VAdd(position_, VGet(0, -10.0f, 0));
+	VECTOR end_line = VAdd(position_, VGet(0, -100.0f, 0));
 
 	//床との当たり判定を取得
 	hit_poly_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
