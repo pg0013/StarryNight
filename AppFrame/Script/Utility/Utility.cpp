@@ -12,7 +12,7 @@
 
 namespace utility
 {
-	std::string GetExtension(std::string _filename)
+	std::string GetExtension(const std::string& _filename)
 	{
 		//最後に.がある場所を取得
 		int ext_pos = static_cast<int>(_filename.find_last_of("."));
@@ -26,7 +26,7 @@ namespace utility
 		_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	}
 
-	void Draw3DAxis(float _length, VECTOR _origin)
+	void Draw3DAxis(const float& _length, const  VECTOR& _origin)
 	{
 		VECTOR axis_x = VGet(_length, 0, 0);
 		VECTOR axis_y = VGet(0, _length, 0);
@@ -38,7 +38,7 @@ namespace utility
 		DrawLine3D(VAdd(_origin, axis_z), VAdd(_origin, VScale(axis_z, -1.0f)), GetColor(0, 0, 255));
 	}
 
-	void DrawModelDebugInfo(const int _handle, const std::string _name, const int _draw_start_line)
+	void DrawModelDebugInfo(const int& _handle, const std::string& _name, const int& _draw_start_line)
 	{
 		VECTOR position, rotation, scale;
 		position = MV1GetPosition(_handle);
@@ -53,12 +53,12 @@ namespace utility
 		DrawFormatString(x, y, DEBUG_COLOR, "%2d   -- scale     : (%5.2f, %5.2f, %5.2f)", y / DEBUG_FONT_SIZE, scale.x, scale.y, scale.z); y += DEBUG_FONT_SIZE;
 	}
 
-	void DrawDebugError(const std::string _error)
+	void DrawDebugError(const std::string& _error)
 	{
 		_RPTF0(_CRT_ERROR, _T(_error.c_str()));
 	}
 
-	VECTOR GetForwardVector(float& _rot_y)
+	VECTOR GetForwardVector(const float& _rot_y)
 	{
 		//モデルがz軸の負の方向を向いているため
 		VECTOR forward = VGet(0, 0, -1);
@@ -68,7 +68,7 @@ namespace utility
 		return VTransform(forward, rot_matrix);
 	}
 
-	VECTOR GetRightVector(float& _rot_y)
+	VECTOR GetRightVector(const float& _rot_y)
 	{
 		VECTOR forward = GetForwardVector(_rot_y);
 		VECTOR up = VGet(0, 1, 0);//仮のupベクトル
@@ -77,7 +77,7 @@ namespace utility
 		return VCross(up, forward);
 	}
 
-	VECTOR GetUpVector(float& _rot_y)
+	VECTOR GetUpVector(const float& _rot_y)
 	{
 		VECTOR forward = GetForwardVector(_rot_y);
 		VECTOR right = GetRightVector(_rot_y);
@@ -113,7 +113,7 @@ namespace utility
 		return rad;
 	}
 
-	VECTOR GetScreenPosFromWorldPos(VECTOR& _world_pos)
+	VECTOR GetScreenPosFromWorldPos(const VECTOR& _world_pos)
 	{
 		VECTOR screen_pos = ConvWorldPosToScreenPos(_world_pos);
 

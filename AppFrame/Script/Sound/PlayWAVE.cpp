@@ -55,7 +55,7 @@ namespace sound
 		//CoUninitialize();
 	}
 
-	void PlayWAVE::Load(const std::string _filename)
+	void PlayWAVE::Load(const std::string& _filename)
 	{
 		//WAVEファイルの読み込み
 		wave_reader_ = resource::ResourceServer::LoadSound(_filename);
@@ -71,23 +71,23 @@ namespace sound
 		}
 	}
 
-	void PlayWAVE::SetLoopCount(const int _count)
+	void PlayWAVE::SetLoopCount(const int& _count)
 	{
 		loop_count_ = _count;
 	}
 
-	void PlayWAVE::SetVolume(const float _volume)
+	void PlayWAVE::SetVolume(const float& _volume)
 	{
 		source_voice_->SetVolume(_volume);
 	}
 
-	void PlayWAVE::SetVolume_dB(const float _db)
+	void PlayWAVE::SetVolume_dB(const float& _db)
 	{
 		float volume = XAudio2DecibelsToAmplitudeRatio(_db);
 		source_voice_->SetVolume(volume);
 	}
 
-	void PlayWAVE::Pan(const float _targetPan)
+	void PlayWAVE::Pan(const float& _targetPan)
 	{
 		int in_channel, out_channel;
 		XAUDIO2_VOICE_DETAILS details;
@@ -135,7 +135,7 @@ namespace sound
 		}
 	}
 
-	void PlayWAVE::Pan(const int _PosX)
+	void PlayWAVE::Pan(const int& _pos_x)
 	{
 		int in_channel, out_channel;
 		XAUDIO2_VOICE_DETAILS details;
@@ -147,7 +147,7 @@ namespace sound
 		out_channel = details.InputChannels;
 
 		//volumeが0.0f~1.0fの範囲であるため、-90～90から0~90度へ正規化し、度からラジアンへ変換
-		float rad = ((static_cast<float>(_PosX) / static_cast<float>(appframe::SCREEN_WIDTH)) * 90.0f) * (DX_PI_F / 180.0f);
+		float rad = ((static_cast<float>(_pos_x) / static_cast<float>(appframe::SCREEN_WIDTH)) * 90.0f) * (DX_PI_F / 180.0f);
 
 		/*
 			注:SetOutputMatrixの入出力チャンネルについて
@@ -183,12 +183,12 @@ namespace sound
 		}
 	}
 
-	void PlayWAVE::Pitch(const float _pitch)
+	void PlayWAVE::Pitch(const float& _pitch)
 	{
 		source_voice_->SetFrequencyRatio(_pitch);
 	}
 
-	void PlayWAVE::RandomPitch(float _pitch_diff)
+	void PlayWAVE::RandomPitch(const float& _pitch_diff)
 	{
 		//srand((unsigned)time(NULL));
 		float random = ((rand() % 100) - 50) * 0.01f * _pitch_diff;
@@ -209,7 +209,7 @@ namespace sound
 		source_voice_->Start();
 	}
 
-	void PlayWAVE::Fade(const float _targetVolume, const float _targetTime)
+	void PlayWAVE::Fade(const float& _targetVolume, const float& _targetTime)
 	{
 		//Fadeフィルターの宣言
 		IUnknown* pXAPO;
@@ -238,7 +238,7 @@ namespace sound
 		source_voice_->SetEffectParameters(0, &fade_params, sizeof(fade_params));
 	}
 
-	void PlayWAVE::FadeWithEQ(const float _targetVolume, const float _targetTime, const float _freqency, const int _typeEQ)
+	void PlayWAVE::FadeWithEQ(const float& _targetVolume, const float& _targetTime, const float& _freqency, const int& _typeEQ)
 	{
 		//Fadeフィルターの宣言
 		IUnknown* FadeXAPO;
@@ -288,7 +288,7 @@ namespace sound
 		source_voice_->SetEffectParameters(1, &freq, sizeof(freq));
 	}
 
-	void PlayWAVE::LowPassFilter(const float _freqency)
+	void PlayWAVE::LowPassFilter(const float& _freqency)
 	{
 		WAVEFORMATEX wfx = wave_reader_.Getwfx();
 
@@ -303,7 +303,7 @@ namespace sound
 		source_voice_->SetFilterParameters(&FilterParams);
 	}
 
-	void PlayWAVE::HighPassFilter(const float _freqency)
+	void PlayWAVE::HighPassFilter(const float& _freqency)
 	{
 		IUnknown* pXAPO;
 		pXAPO = (IXAPO*)new MyHighPassFilterXAPO();
@@ -325,7 +325,7 @@ namespace sound
 		source_voice_->SetEffectParameters(0, &freq, sizeof(freq));
 	}
 
-	void PlayWAVE::Echo(float _wetdrymix, float _delay, float _feedback)
+	void PlayWAVE::Echo(const float& _wetdrymix, const float& _delay, const float& _feedback)
 	{
 		IUnknown* pXAPO;
 		::CreateFX(__uuidof(::FXEcho), &pXAPO);
@@ -393,7 +393,7 @@ namespace sound
 		}
 	}
 
-	void PlayWAVE::PlayWithLoop(float _loopbegin, float _looplength)
+	void PlayWAVE::PlayWithLoop(const float& _loopbegin, const float& _looplength)
 	{
 		XAUDIO2_BUFFER buffer = { 0 };
 		buffer.pAudioData = (BYTE*)wave_reader_.GetpBuffer();
@@ -442,7 +442,7 @@ namespace sound
 		th.detach();
 	}
 
-	void PlayWAVE::PlayBackGroundWithLoop(PlayWAVE& _pw, float _loopbegin, float _looplength)
+	void PlayWAVE::PlayBackGroundWithLoop(PlayWAVE& _pw, const float& _loopbegin, const float& _looplength)
 	{
 		std::thread th(&PlayWAVE::PlayWithLoop, &_pw, _loopbegin, _looplength);
 		th.detach();

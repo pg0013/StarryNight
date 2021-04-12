@@ -27,7 +27,7 @@ namespace starrynight
 			 *
 			 * @param  _name　星座名
 			 */
-			SkyStar(const std::string _name);
+			SkyStar(const std::string& _name);
 			~SkyStar();
 
 			/**
@@ -35,22 +35,22 @@ namespace starrynight
 			 *
 			 * @param ObjectBase::OBJECT_TYPE::PLAYER
 			 */
-			virtual OBJECT_TYPE GetObjectType() override { return ObjectBase::OBJECT_TYPE::SKY_STAR; }
+			virtual OBJECT_TYPE GetObjectType()const override { return ObjectBase::OBJECT_TYPE::SKY_STAR; }
 
 			/**
 			 * @brief　初期化処理.
 			 */
-			virtual void Initialize();
+			void Initialize() override;
 
 			/**
 			 * @brief　演算処理.
 			 */
-			virtual void Process();
+			void Process() override;
 
 			/**
 			 * @brief　描画処理.
 			 */
-			virtual void Render() override;
+			void Render() override;
 
 			/**
 			 * @brief　 射撃時の星座との当たり判定を取得する
@@ -59,7 +59,7 @@ namespace starrynight
 			 * @param  _end	線分の終了地点
 			 * @return   当たり判定結果構造体
 			 */
-			MV1_COLL_RESULT_POLY GetHitToSkyStar(VECTOR _start, VECTOR _end);
+			MV1_COLL_RESULT_POLY GetHitToSkyStar(const VECTOR& _start, const VECTOR& _end) const;
 		private:
 			/**
 			 * @brief　 モデルがプレイヤーの方向を向くようにrotationを設定する

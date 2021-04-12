@@ -21,9 +21,9 @@
 #define NEW new
 #endif
 
-/**
- * @brief  画像、モデルで使用するハンドル
- */
+  /**
+   * @brief  画像、モデルで使用するハンドル
+   */
 using handle = int;
 
 namespace utility
@@ -34,7 +34,7 @@ namespace utility
 	 * @param _filename ファイル名
 	 * @return 拡張子(.xxx)
 	 */
-	std::string GetExtension(std::string _filename);
+	std::string GetExtension(const std::string& _filename);
 
 	/**
 	 * @brief　 プログラム終了時にメモリリークを検出する
@@ -47,7 +47,7 @@ namespace utility
 	 * @param _length 座標軸の長さ
 	 * @param _origin  座標軸の原点
 	 */
-	void Draw3DAxis(float _length, VECTOR _origin);
+	void Draw3DAxis(const float& _length, const VECTOR& _origin);
 
 	/**
 	 * @brief 3Dモデルのデバッグ情報の読み込み
@@ -56,35 +56,35 @@ namespace utility
 	 * @param _name　表示するモデル名
 	 * @param _draw_start_line 画面左に表示を開始する行番号
 	 */
-	void DrawModelDebugInfo(const int _handle, const std::string _name, const int _draw_start_line);
+	void DrawModelDebugInfo(const int& _handle, const std::string& _name, const int& _draw_start_line);
 
 	/**
 	 * @brief　処理を中断してエラーアラートを表示する
 	 *
 	 * @param エラー文面.
 	 */
-	void DrawDebugError(const std::string _error);
+	void DrawDebugError(const std::string& _error);
 
 	/**
 	 * @brief　Forwardベクトルを求める.
 	 *
 	 * @param _rot_y	求めるベクトルのy軸回転量[rad]
 	 */
-	VECTOR GetForwardVector(float& _rot_y);
+	VECTOR GetForwardVector(const float& _rot_y);
 
 	/**
 	 * @brief　Rightベクトルを求める.
 	 *
 	 * @param _rot_y	求めるベクトルのy軸回転量[rad]
 	 */
-	VECTOR GetRightVector(float& _rot_y);
+	VECTOR GetRightVector(const float& _rot_y);
 
 	/**
 	 * @brief　Upベクトルを求める.
 	 *
 	 * @param _rot_y	求めるベクトルのy軸回転量[rad]
 	 */
-	VECTOR GetUpVector(float& _rot_y);
+	VECTOR GetUpVector(const float& _rot_y);
 
 	/**
 	 * @brief 左スティックの移動量を返す
@@ -104,7 +104,7 @@ namespace utility
 	 * @brief ワールド座標をスクリーン座標に変換する
 	 *				画面幅を超えていたら、画面幅の値を返す.
 	 */
-	VECTOR GetScreenPosFromWorldPos(VECTOR& _world_pos);
+	VECTOR GetScreenPosFromWorldPos(const VECTOR& _world_pos);
 
 	/**
 	 * @brief　クランプ関数.

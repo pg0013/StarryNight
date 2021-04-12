@@ -160,7 +160,7 @@ bool ModeGame::Render()
 	return true;
 }
 
-void ModeGame::SetNextMode(int _count, int _fade_count, int _result)
+void ModeGame::SetNextMode(const int& _count, const int& _fade_count, const int& _result)
 {
 	pushed_flag_ = true;
 

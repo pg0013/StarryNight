@@ -22,7 +22,7 @@ namespace starrynight
 			public object::ObjectBase
 		{
 		public:
-			Player(std::string _stage_name);
+			Player(const std::string& _stage_name);
 			~Player();
 
 			/**
@@ -30,7 +30,7 @@ namespace starrynight
 			 *
 			 * @param ObjectBase::OBJECT_TYPE::PLAYER
 			 */
-			OBJECT_TYPE GetObjectType() override { return ObjectBase::OBJECT_TYPE::PLAYER; }
+			OBJECT_TYPE GetObjectType() const override { return ObjectBase::OBJECT_TYPE::PLAYER; }
 
 			/**
 			 * @brief　初期化処理.
@@ -52,49 +52,49 @@ namespace starrynight
 			 *
 			 * @param  _flag　ダメージを受けたフラグ
 			 */
-			void SetDamageFlag(bool _flag) { damage_flag_ = _flag; }
+			void SetDamageFlag(const bool& _flag) { damage_flag_ = _flag; }
 
 			/**
 			 * @brief　 ダメージを受けたことを記録するフラグを返す
 			 *
 			 * @return   trueでダメージを受けた
 			 */
-			bool GetDamageFlag() { return damage_flag_; }
+			bool GetDamageFlag() const { return damage_flag_; }
 
 			/**
 			 * @brief　 ダメージモーションを開始するフラグを設定する
 			 *
 			 * @param  _flag	ダメージモーションを開始するフラグ
 			 */
-			void SetDamageAnimFlag(bool _flag) { damage_anim_flag_ = _flag; }
+			void SetDamageAnimFlag(const bool& _flag) { damage_anim_flag_ = _flag; }
 
 			/**
 			 * @brief	射撃状態かどうかを判定するフラグを取得する.
 			 *
 			 * @return		trueで射撃状態中
 			 */
-			bool GetPlayerSlingShotStatus() { return slingshot_flag_; }
+			bool GetPlayerSlingShotStatus() const { return slingshot_flag_; }
 
 			/**
 			 * @brief　 射撃構え時に星が選択されたかどうか取得するフラグ
 			 *
 			 * @return   trueで星選択済み
 			 */
-			bool GetSelectedStarFlag() { return selected_skystar_flag_; }
+			bool GetSelectedStarFlag() const { return selected_skystar_flag_; }
 
 			/**
 			 * @brief　 プレイヤーの残りHPを返す
 			 *
 			 * @return   HP
 			 */
-			int GetPlayerHP() { return player_hp_; }
+			int GetPlayerHP() const { return player_hp_; }
 
 			/**
 			 * @brief　 プレイヤーのHPを加算する
 			 *
 			 * @param  _addhp　加えるHP数
 			 */
-			void AddPlayerHP(int _addhp) { player_hp_ += _addhp; }
+			void AddPlayerHP(const int& _addhp) { player_hp_ += _addhp; }
 
 			/**
 			 * @brief 状態遷移用定数
@@ -119,8 +119,9 @@ namespace starrynight
 			 *
 			 * @return   プレイヤー状態
 			 */
-			STATUS GetPlayerStatus() { return status_; }
+			STATUS GetPlayerStatus() const { return status_; }
 
+			//プレイヤー効果音
 			sound::PlayWAVE se_;
 		private:
 			/**
@@ -146,7 +147,7 @@ namespace starrynight
 			/**
 			 * @brief 星を発射する処理.
 			 */
-			void Launch_Star(VECTOR _star_position);
+			void Launch_Star(const VECTOR& _star_position);
 
 			/**
 			 * @brief　 射撃状態の終了処理
@@ -203,7 +204,7 @@ namespace starrynight
 			 *
 			 * @param  _old_status	遷移元の状態
 			 */
-			void SwitchPlayerAnimation(STATUS _old_status);
+			void SwitchPlayerAnimation(const STATUS& _old_status);
 
 			/**
 			 * @brief　 別のアニメーションに移行するときにアニメーションをブレンドする処理

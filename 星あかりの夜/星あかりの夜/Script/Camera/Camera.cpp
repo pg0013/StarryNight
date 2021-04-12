@@ -91,7 +91,7 @@ void Camera::DrawDebugMenu()
 #endif
 }
 
-float Camera::GetCameraRad()
+float Camera::GetCameraRad() const
 {
 	float diff_x = position_.x - target_.x;
 	float diff_z = position_.z - target_.z;
@@ -100,7 +100,7 @@ float Camera::GetCameraRad()
 	return camera_rad;
 }
 
-float Camera::GetCameraLength()
+float Camera::GetCameraLength() const
 {
 	float diff_x = position_.x - target_.x;
 	float diff_z = position_.z - target_.z;

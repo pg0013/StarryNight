@@ -66,7 +66,7 @@ namespace sound
 		 *
 		 * @param 	_fileName	音声ファイル名
 		 */
-		void Load(const std::string _filename);
+		void Load(const std::string& _filename);
 
 		/**
 		 * @fn	void PlayWAVE::SetLoopCount(const int _count);
@@ -77,7 +77,7 @@ namespace sound
 		 * 					ex) _count = 1 　→　2回再生
 		 * 					無限ループは XAUDIO2_LOOP_INFINITEを設定
 		 */
-		void SetLoopCount(const int _count);
+		void SetLoopCount(const int& _count);
 
 		/**
 		 * @fn	void PlayWAVE::SetVolume(const float _volume);
@@ -87,7 +87,7 @@ namespace sound
 		 * @param 	_volume	MAX : 1.0f
 		 * 									MIN  : 0.0f
 		 */
-		void SetVolume(const float _volume);
+		void SetVolume(const float& _volume);
 
 		/**
 		 * @fn	void PlayWAVE::SetVolume_dB(const float _db);
@@ -98,7 +98,7 @@ namespace sound
 		 * 												MIN  : -40[dB]
 		 * 												1/2	: -6[dB]
 		 */
-		void SetVolume_dB(const float _db);
+		void SetVolume_dB(const float& _db);
 
 		/**
 		 * @fn	void PlayWAVE::Pan(const float _targetPan);
@@ -112,7 +112,7 @@ namespace sound
 		 * 										Rのみ→PAN_RIGHT
 		 *
 		 */
-		void Pan(const float _target_pan);
+		void Pan(const float& _target_pan);
 
 		/**
 		 * @fn	void PlayWAVE::Pan(const int _pos_x);
@@ -121,7 +121,7 @@ namespace sound
 		 *
 		 * @param 	_pos_x	x座標
 		 */
-		void Pan(const int _pos_x);
+		void Pan(const int& _pos_x);
 
 		/**
 		 * @fn	void PlayWAVE::Pitch(const float _pitch);
@@ -132,7 +132,7 @@ namespace sound
 		 * 								MAX	:	16.0f
 		 * 								MIN	:	0.0f
 		 */
-		void Pitch(const float _pitch);
+		void Pitch(const float& _pitch);
 
 		/**
 		 * @fn	void PlayWAVE::RandomPitch(const float _pitch_diff);
@@ -141,7 +141,7 @@ namespace sound
 		 *
 		 * @param 	_pitch_diff	等倍再生から±_pitch_diff の範囲の乱数で再生される.
 		 */
-		void RandomPitch(const float _pitch_diff);
+		void RandomPitch(const float& _pitch_diff);
 
 		/**
 		 * @fn	void PlayWAVE::Pause();
@@ -169,7 +169,7 @@ namespace sound
 		 * 											フェードアウト	:	0.0f
 		 * @param 	_targetTime  	フェード時間[s]
 		 */
-		void Fade(const float _target_volume, const float _target_time);
+		void Fade(const float& _target_volume, const float& _target_time);
 
 		/**
 		 * @fn	void PlayWAVE::FadeWithEQ(const float _targetVolume, const float _targetTime, const float _freqency, const int _typeEQ);
@@ -183,7 +183,7 @@ namespace sound
 		 * @param 	_typeEQ		 	LPF	:	0
 		 * 											HPF	:	1
 		 */
-		void FadeWithEQ(const float _target_volume, const float _target_time, const float _freqency, const int _typeEQ);
+		void FadeWithEQ(const float& _target_volume, const float& _target_time, const float& _freqency, const int& _typeEQ);
 
 		/**
 		 * @fn	void PlayWAVE::LowPassFilter(const float _freqency);
@@ -192,7 +192,7 @@ namespace sound
 		 *
 		 * @param 	_freqency	遮断周波数
 		 */
-		void LowPassFilter(const float _freqency);
+		void LowPassFilter(const float& _freqency);
 
 		/**
 		 * @fn	void PlayWAVE::HighPassFilter(const float _freqency);
@@ -201,7 +201,7 @@ namespace sound
 		 *
 		 * @param 	_freqency	遮断周波数
 		 */
-		void HighPassFilter(const float _freqency);
+		void HighPassFilter(const float& _freqency);
 
 		/**
 		 * @brief　 エコーエフェクト
@@ -216,9 +216,9 @@ namespace sound
 		 *	min FXECHO_MIN_FEEDBACK
 		 *	max FXECHO_MAX_FEEDBACK
 		 */
-		void Echo(float _wetdrymix = FXECHO_DEFAULT_WETDRYMIX,
-			float _delay = FXECHO_DEFAULT_DELAY,
-			float _feedback = FXECHO_DEFAULT_FEEDBACK);
+		void Echo(const float& _wetdrymix = FXECHO_DEFAULT_WETDRYMIX,
+			const float& _delay = FXECHO_DEFAULT_DELAY,
+			const float& _feedback = FXECHO_DEFAULT_FEEDBACK);
 
 		/**
 		 * @brief　 リバーブエフェクト
@@ -241,7 +241,7 @@ namespace sound
 		 * @param 	_loopbegin	ループ開始地点[s]
 		 * @param 	looplength		ループ継続時間[s]
 		 */
-		void PlayWithLoop(float _loopbegin, float looplength);
+		void PlayWithLoop(const float& _loopbegin, const float& _looplength);
 
 		/**
 		 * @fn	void PlayWAVE::PlayBackGround(PlayWAVE& _pw);
@@ -261,7 +261,7 @@ namespace sound
 		 * 	@param 	_loopbegin	ループ開始地点[s]
 		 * @param 	looplength		ループ継続時間[s]
 		 */
-		void PlayBackGroundWithLoop(PlayWAVE& _pw, float _loopbegin, float looplength);
+		void PlayBackGroundWithLoop(PlayWAVE& _pw, const float& _loopbegin, const float& looplength);
 
 		/**
 		 * @fn	void PlayWAVE::Destroy();

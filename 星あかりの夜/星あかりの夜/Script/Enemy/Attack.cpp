@@ -12,7 +12,7 @@
 
 using namespace starrynight::enemy;
 
-VECTOR Enemy::Attack(VECTOR _move)
+VECTOR Enemy::Attack(VECTOR& _move)
 {
 	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 

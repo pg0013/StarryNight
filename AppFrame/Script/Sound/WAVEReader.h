@@ -79,7 +79,7 @@ namespace sound
 		 *
 		 * @returns	A WAVEFORMATEX.
 		 */
-		WAVEFORMATEX Getwfx() { return wfx_; }
+		WAVEFORMATEX Getwfx() const { return wfx_; }
 
 		/**
 		 * @fn	char* WAVEReader::GetpBuffer()
@@ -88,7 +88,7 @@ namespace sound
 		 *
 		 * @returns	波形データの先頭アドレス
 		 */
-		char* GetpBuffer() { return buffer_; }
+		char* GetpBuffer() const { return buffer_; }
 
 		/**
 		 * @fn	Chunk WAVEReader::GetDataChunk()
@@ -97,7 +97,7 @@ namespace sound
 		 *
 		 * @returns	The data chunk.
 		 */
-		Chunk GetDataChunk() { return data_; }
+		Chunk GetDataChunk() const { return data_; }
 
 	private:
 		WAVEFORMATEX wfx_{};   //!< WAVEFORMATEX構造体

@@ -13,7 +13,7 @@
 
 namespace parameters
 {
-	void Parameters::LoadImagParameters(std::string _file_name, bool _async_flag)
+	void Parameters::LoadImagParameters(const std::string& _file_name, const bool& _async_flag)
 	{
 		std::string json_name = "Resource/json/image/" + _file_name + ".json";
 		std::ifstream ifs(json_name);

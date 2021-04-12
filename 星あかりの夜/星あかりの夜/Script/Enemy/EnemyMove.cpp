@@ -1,5 +1,5 @@
 /**
- * @file    Enemy_Move.cpp
+ * @file    Move.cpp
  * @brief  エネミーの移動処理
  *
  * @author Takuya Fujisawa
@@ -12,7 +12,7 @@
 
 using namespace starrynight::enemy;
 
-void Enemy::Move(VECTOR _move)
+void Enemy::Move(const VECTOR& _move)
 {
 	VECTOR old_position = position_;
 	position_ = VAdd(position_, _move);

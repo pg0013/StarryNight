@@ -59,14 +59,14 @@ namespace starrynight
 			 *
 			 * @param  _flag	UI描画フラグ　trueで描画
 			 */
-			void SetDrawUIFlag(bool _flag) { draw_ui_flag_ = _flag; }
+			void SetDrawUIFlag(const bool& _flag) { draw_ui_flag_ = _flag; }
 
 			/**
 			 * @brief　 UIの描画をするか設定するフラグ
 			 *
 			 * @param  _flag	UI描画フラグ　trueで描画
 			 */
-			void SetDrawPlayerUIFlag(bool _flag) { draw_player_ui_flag_ = _flag; }
+			void SetDrawPlayerUIFlag(const bool& _flag) { draw_player_ui_flag_ = _flag; }
 
 		public:
 			//射撃ガイド表示クラス

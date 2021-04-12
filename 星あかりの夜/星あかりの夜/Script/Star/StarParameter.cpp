@@ -18,7 +18,7 @@ StarParameter::~StarParameter()
 {
 }
 
-void StarParameter::LoadStageStar(std::string _stagename, bool _async_flag)
+void StarParameter::LoadStageStar(const std::string& _stagename, const bool& _async_flag)
 {
 	std::string json_name = "Resource/json/stage/" + _stagename + "/star.json";
 	std::ifstream ifs(json_name.c_str());

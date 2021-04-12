@@ -34,7 +34,7 @@ namespace starrynight
 			 *
 			 * @return　オブジェクトの種類
 			 */
-			virtual OBJECT_TYPE GetObjectType() = 0;
+			virtual OBJECT_TYPE GetObjectType() const = 0;
 
 			/**
 			 * @fn	virtual void ObjectBase::Initialize();
@@ -63,42 +63,42 @@ namespace starrynight
 			 *
 			 * @param _positon 位置(x,y,z)のベクトル構造体
 			 */
-			inline void SetPosition(VECTOR _positon) { position_ = _positon; MV1SetPosition(handle_, position_); }
+			inline void SetPosition(const VECTOR& _positon) { position_ = _positon; MV1SetPosition(handle_, position_); }
 
 			/**
 			 * @brief　オブジェクトの位置を返す.
 			 *
 			 * @return 位置(x,y,z)のベクトル構造体
 			 */
-			inline VECTOR GetPosition() { return MV1GetPosition(handle_); }
+			inline VECTOR GetPosition() const { return MV1GetPosition(handle_); }
 
 			/**
 			 * @brief　オブジェクトの回転角度を設定する.
 			 *
 			 * @param _rotation　回転角度(x,y,z)[rad]
 			 */
-			inline void SetRotation(VECTOR _rotation) { rotation_ = _rotation; MV1SetRotationXYZ(handle_, rotation_); }
+			inline void SetRotation(const VECTOR& _rotation) { rotation_ = _rotation; MV1SetRotationXYZ(handle_, rotation_); }
 
 			/**
 			 * @brief　オブジェクトの回転角度を返す.
 			 *
 			 * @return 回転角度(x,y,z)[rad]
 			 */
-			inline VECTOR GetRotation() { return MV1GetRotationXYZ(handle_); }
+			inline VECTOR GetRotation() const { return MV1GetRotationXYZ(handle_); }
 
 			/**
 			 * @brief　 モデルのハンドルを設定する
 			 *
 			 * @param  _handle　モデルハンドル
 			 */
-			inline void SetModelHandle(const handle _handle) { handle_ = _handle; }
+			inline void SetModelHandle(const handle& _handle) { handle_ = _handle; }
 
 			/**
 			 * @brief	オブジェクトのハンドルを返す.
 			 *
 			 * @return
 			 */
-			inline handle GetModelHandle() { return handle_; }
+			inline handle GetModelHandle() const { return handle_; }
 
 		protected:
 			VECTOR position_;//位置ベクトル

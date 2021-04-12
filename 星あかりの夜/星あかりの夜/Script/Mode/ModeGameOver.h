@@ -26,7 +26,7 @@ namespace starrynight
 			public ::mode::ModeBase
 		{
 		public:
-			ModeGameOver(std::string _stage_name);
+			ModeGameOver(const std::string& _stage_name);
 			~ModeGameOver();
 
 			/**

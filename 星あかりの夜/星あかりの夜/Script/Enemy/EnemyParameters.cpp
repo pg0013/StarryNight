@@ -20,7 +20,7 @@ EnemyParameters::~EnemyParameters()
 	map_enemy_param_.clear();
 }
 
-void EnemyParameters::LoadStageEnemys(std::string _stagename, bool _async_flag)
+void EnemyParameters::LoadStageEnemys(const std::string& _stagename,const bool& _async_flag)
 {
 	std::string json_name = "Resource/json/stage/" + _stagename + "/enemy.json";
 	std::ifstream ifs(json_name.c_str());
@@ -162,7 +162,7 @@ void EnemyParameters::LoadEnemyParameters(const std::vector<std::string>& _param
 	}
 }
 
-float EnemyParameters::GetEnemyParam(const std::string _param_name)
+float EnemyParameters::GetEnemyParam(const std::string _param_name) const
 {
 	auto iter = map_enemy_param_.find(_param_name);
 

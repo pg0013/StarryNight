@@ -12,7 +12,7 @@
 
 using namespace starrynight::enemy;
 
-VECTOR Enemy::Tracking(VECTOR _move)
+VECTOR Enemy::Tracking(VECTOR& _move)
 {
 	//プレイヤーを発見してから、ワンモーションは移動しない
 	if (::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - track_start_frame_ < 25)

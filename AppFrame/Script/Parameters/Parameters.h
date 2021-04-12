@@ -55,7 +55,7 @@ namespace parameters
 		 * @param  _folder_name ファイル名
 		 * @param  _async_flag　非同期読み込み用フラグ
 		 */
-		void LoadImagParameters(const std::string _file_name, bool _async_flag = false);
+		void LoadImagParameters(const std::string& _file_name, const bool& _async_flag = false);
 
 		/**
 		 * @brief　 Resource/json/model.jsonにあるオブジェクトのモデルパラメータを読み込む処理
@@ -63,10 +63,10 @@ namespace parameters
 		 * @param  _object_name　	model.jsonで指定するオブジェクト名.Resource/model配下のフォルダ名と同じ必要がある
 		 * @param  _async_flag			非同期読み込み処理
 		 */
-		void LoadModelParameters(std::string _object_name, bool _async_flag = false);
+		void LoadModelParameters(const std::string& _object_name, const bool& _async_flag = false);
 
-		std::unordered_map<std::string, imag_param> GetMapImageParam() { return map_imag_param_; }
-		std::unordered_map<std::string, model_param> GetMapModelParam() { return map_model_param_; }
+		std::unordered_map<std::string, imag_param> GetMapImageParam() const { return map_imag_param_; }
+		std::unordered_map<std::string, model_param> GetMapModelParam() const { return map_model_param_; }
 
 	protected:
 		std::unordered_map<std::string, imag_param> map_imag_param_;

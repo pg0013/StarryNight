@@ -58,49 +58,49 @@ namespace mode
 		 *
 		 * @return 経過カウント
 		 */
-		int GetModeCount() { return mode_count_; }
+		int GetModeCount() const { return mode_count_; }
 
 		/**
 		 * @brief   このモードが始まってからの時間を返す
 		 *
 		 * @return 経過時間[ms]
 		 */
-		unsigned long GetModeTime() { return mode_time_; }
+		unsigned long GetModeTime() const { return mode_time_; }
 
 		/**
 		 * @brief   前フレームからの経過時間を返す
 		 *
 		 * @return 前フレームからの経過時間[s]
 		 */
-		float GetDeltaTime() { return static_cast<float>(delta_time_/1000.0f); }
+		float GetDeltaTime() const { return static_cast<float>(delta_time_/1000.0f); }
 
 		/**
 		 * @brief   何フレームに何回Process()を呼ぶか設定 default : 1
 		 *
 		 * @param _frame 何フレームに何回か
 		 */
-		void SetCallPerFrame(int _frame) { callper_frame_ = callper_framecount = _frame; }
+		void SetCallPerFrame(const int& _frame) { callper_frame_ = callper_framecount = _frame; }
 
 		/**
 		 * @brief   1回の呼び出しに何回Process()を呼ぶか設定 default : 1
 		 *
 		 * @param _count 1回の呼び出しに何回Processを回すか
 		 */
-		void SetCallOfCount(int _count) { callof_count_ = _count; }
+		void SetCallOfCount(const int& _count) { callof_count_ = _count; }
 
 		/**
 		 * @brief   何フレームに何回Process()を呼ぶかを取得
 		 *
 		 * @return 何フレームに何回Process()を呼ぶか
 		 */
-		int GetCallPerFrame() { return callper_frame_; }
+		int GetCallPerFrame() const { return callper_frame_; }
 
 		/**
 		 * @brief   1回の呼び出しに何回Process()を呼ぶか取得
 		 *
 		 * @return 1回の呼び出しに何回Processを回すか
 		 */
-		int GetCallOfCount() { return callof_count_; }
+		int GetCallOfCount() const { return callof_count_; }
 
 	private:
 		/**

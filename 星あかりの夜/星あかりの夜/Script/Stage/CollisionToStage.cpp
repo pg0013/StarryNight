@@ -9,7 +9,7 @@
 #include"Stage.h"
 using namespace starrynight::stage;
 
-MV1_COLL_RESULT_POLY Stage::GetHitLineToFloor(VECTOR& _startline, VECTOR& _endline)
+MV1_COLL_RESULT_POLY Stage::GetHitLineToFloor(const VECTOR& _startline, const VECTOR& _endline) const
 {
 	MV1_COLL_RESULT_POLY hit_poly;
 	hit_poly.HitFlag = 0;
@@ -41,7 +41,7 @@ MV1_COLL_RESULT_POLY Stage::GetHitLineToFloor(VECTOR& _startline, VECTOR& _endli
 	return hit_poly;
 }
 
-MV1_COLL_RESULT_POLY Stage::GetHitLineToWall(VECTOR& _startline, VECTOR& _endline)
+MV1_COLL_RESULT_POLY Stage::GetHitLineToWall(const VECTOR& _startline, const VECTOR& _endline) const
 {
 	MV1_COLL_RESULT_POLY hit_poly;
 	hit_poly.HitFlag = 0;
@@ -64,7 +64,7 @@ MV1_COLL_RESULT_POLY Stage::GetHitLineToWall(VECTOR& _startline, VECTOR& _endlin
 	return hit_poly;
 }
 
-MV1_COLL_RESULT_POLY_DIM Stage::GetHitSphereToFloor(VECTOR& _position, float _radius)
+MV1_COLL_RESULT_POLY_DIM Stage::GetHitSphereToFloor(const VECTOR& _position, const float& _radius) const
 {
 	MV1_COLL_RESULT_POLY_DIM hit_poly;
 	hit_poly.HitNum = 0;
@@ -87,7 +87,7 @@ MV1_COLL_RESULT_POLY_DIM Stage::GetHitSphereToFloor(VECTOR& _position, float _ra
 	return hit_poly;
 }
 
-MV1_COLL_RESULT_POLY_DIM Stage::GetHitSphereToWall(VECTOR& _position, float _radius)
+MV1_COLL_RESULT_POLY_DIM Stage::GetHitSphereToWall(const VECTOR& _position, const float& _radius) const
 {
 	MV1_COLL_RESULT_POLY_DIM hit_poly;
 	hit_poly.HitNum = 0;
@@ -110,7 +110,7 @@ MV1_COLL_RESULT_POLY_DIM Stage::GetHitSphereToWall(VECTOR& _position, float _rad
 	return hit_poly;
 }
 
-MV1_COLL_RESULT_POLY_DIM Stage::GetHitCapsuleToFloor(VECTOR& _position1, VECTOR& _position2, float _radius)
+MV1_COLL_RESULT_POLY_DIM Stage::GetHitCapsuleToFloor(const VECTOR& _position1, const VECTOR& _position2, const float& _radius) const
 {
 	MV1_COLL_RESULT_POLY_DIM hit_poly;
 	hit_poly.HitNum = 0;
@@ -133,7 +133,7 @@ MV1_COLL_RESULT_POLY_DIM Stage::GetHitCapsuleToFloor(VECTOR& _position1, VECTOR&
 	return hit_poly;
 }
 
-MV1_COLL_RESULT_POLY_DIM Stage::GetHitCapsuleToWall(VECTOR& _position1, VECTOR& _position2, float _radius)
+MV1_COLL_RESULT_POLY_DIM Stage::GetHitCapsuleToWall(const VECTOR& _position1, const VECTOR& _position2, const float& _radius) const
 {
 	MV1_COLL_RESULT_POLY_DIM hit_poly;
 	hit_poly.HitNum = 0;
@@ -156,7 +156,7 @@ MV1_COLL_RESULT_POLY_DIM Stage::GetHitCapsuleToWall(VECTOR& _position1, VECTOR& 
 	return hit_poly;
 }
 
-MV1_COLL_RESULT_POLY Stage::GetHitLineToShootPoint(VECTOR& _startline, VECTOR& _endline)
+MV1_COLL_RESULT_POLY Stage::GetHitLineToShootPoint(const VECTOR& _startline, const VECTOR& _endline) const
 {
 	MV1_COLL_RESULT_POLY hit_poly;
 
@@ -168,7 +168,7 @@ MV1_COLL_RESULT_POLY Stage::GetHitLineToShootPoint(VECTOR& _startline, VECTOR& _
 	return hit_poly;
 }
 
-int Stage::GetHitFloorType(VECTOR& _startline, VECTOR& _endline)
+int Stage::GetHitFloorType(const VECTOR& _startline, const VECTOR& _endline) const
 {
 	MV1_COLL_RESULT_POLY hit_poly;
 	hit_poly.HitFlag = 0;

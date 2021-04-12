@@ -18,7 +18,7 @@ StageParameters::~StageParameters()
 {
 }
 
-void StageParameters::LoadStage(std::string _stagename, bool _async_flag)
+void StageParameters::LoadStage(const std::string& _stagename, const bool& _async_flag)
 {
 	std::string json_name = "Resource/json/stage/" + _stagename + "/" + _stagename + ".json";
 	std::ifstream ifs(json_name.c_str());

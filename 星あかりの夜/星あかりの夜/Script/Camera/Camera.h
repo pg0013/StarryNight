@@ -57,49 +57,49 @@ namespace starrynight
 			 *
 			 * @return   カメラ座標
 			 */
-			VECTOR GetPosition() { return position_; }
+			VECTOR GetPosition() const { return position_; }
 
 			/**
 			 * @brief　 カメラ座標を設定する
 			 *
 			 * @param  _vector	カメラ座標
 			 */
-			void SetPosition(VECTOR _vector) { position_ = _vector; }
+			void SetPosition(const VECTOR& _vector) { position_ = _vector; }
 
 			/**
 			 * @brief　 カメラのターゲット座標を取得する
 			 *
 			 * @return   ターゲット座標
 			 */
-			VECTOR GetTarget() { return target_; }
+			VECTOR GetTarget() const { return target_; }
 
 			/**
 			 * @brief　 カメラのターゲット座標を設定する
 			 *
 			 * @param  _vector	ターゲット座標
 			 */
-			void SetTarget(VECTOR _vector) { target_ = _vector; }
+			void SetTarget(const VECTOR& _vector) { target_ = _vector; }
 
 			/**
 			 * @brief　 targetとcameraの角度を計算して返す
 			 *
 			 * @return   targetとcameraの角度
 			 */
-			float GetCameraRad();
+			float GetCameraRad() const;
 
 			/**
 			 * @brief カメラとの距離を返す.
 			 *
 			 * @return
 			 */
-			float GetCameraLength();
+			float GetCameraLength() const;
 
 			/**
 			 * @brief　 カメラのNear,Far設定を取得する
 			 *
 			 * @return   near,far格納構造体
 			 */
-			CLIP GetClip() { return clip_; }
+			CLIP GetClip() const { return clip_; }
 
 			/**
 			 * @brief　 カメラのNear,Farを設定する
@@ -107,7 +107,7 @@ namespace starrynight
 			 * @param  _near	カメラのNear
 			 * @param  _far		カメラのFar
 			 */
-			void SetClip(float _near, float _far)
+			void SetClip(const float& _near,const float& _far)
 			{
 				clip_.near_ = _near;
 				clip_.far_ = _far;
@@ -157,14 +157,14 @@ namespace starrynight
 			 *
 			 * @param  _status	カメラ状態用変数
 			 */
-			void SetStatus(STATUS _status) { status_ = _status; }
+			void SetStatus(const STATUS& _status) { status_ = _status; }
 
 			/**
 			 * @brief　 カメラの状態を取得する
 			 *
 			 * @return   カメラの状態
 			 */
-			STATUS GetStatus() { return status_; }
+			STATUS GetStatus() const { return status_; }
 
 		private:
 			VECTOR position_;//座標

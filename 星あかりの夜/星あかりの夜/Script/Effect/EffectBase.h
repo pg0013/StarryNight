@@ -42,28 +42,28 @@ namespace starrynight
 			 *
 			 * @param _positon 位置(x,y,z)のベクトル構造体
 			 */
-			inline void SetPosition(VECTOR _positon) { position_ = _positon; }
+			inline void SetPosition(const VECTOR& _positon) { position_ = _positon; }
 
 			/**
 			 * @brief　オブジェクトの位置を返す.
 			 *
 			 * @return 位置(x,y,z)のベクトル構造体
 			 */
-			inline VECTOR GetPosition() { return position_; }
+			inline VECTOR GetPosition() const { return position_; }
 
 			/**
 			 * @brief　オブジェクトの回転角度を設定する.
 			 *
 			 * @param _rotation　回転角度(x,y,z)[rad]
 			 */
-			inline void SetRotation(VECTOR _rotation) { rotation_ = _rotation; }
+			inline void SetRotation(const VECTOR& _rotation) { rotation_ = _rotation; }
 
 			/**
 			 * @brief　オブジェクトの回転角度を返す.
 			 *
 			 * @return 回転角度(x,y,z)[rad]
 			 */
-			inline VECTOR GetRotation() { return rotation_; }
+			inline VECTOR GetRotation() const { return rotation_; }
 
 			/**
 			 * @brief　 エフェクトを再生する
@@ -87,7 +87,7 @@ namespace starrynight
 			 * @param  _vector	DXライブラリのベクトル構造体
 			 * @return   Effekseerのベクトル構造体
 			 */
-			Effekseer::Vector3D DXLibtoEffekseer(VECTOR _vector)
+			Effekseer::Vector3D DXLibtoEffekseer(const VECTOR& _vector)
 			{
 				return Effekseer::Vector3D(_vector.x, _vector.y, _vector.z);
 			}

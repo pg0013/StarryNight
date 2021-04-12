@@ -15,7 +15,7 @@
 
 using namespace starrynight::mode;
 
-ModeGameClear::ModeGameClear(int _score, std::string _stage_name)
+ModeGameClear::ModeGameClear(const int& _score, const std::string& _stage_name)
 {
 	score_ui_.SetPlayerScore(_score);
 	score_ui_.SetPosition(VGet(1100, 640, 0));

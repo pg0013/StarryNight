@@ -12,7 +12,7 @@
 
 using namespace starrynight::star;
 
-SkyStar::SkyStar(const std::string _name)
+SkyStar::SkyStar(const std::string& _name)
 {
 	zodiac_name_ = _name;
 	SetModelHandle(resource::ResourceServer::GetModelHandle(zodiac_name_));
@@ -101,7 +101,7 @@ void SkyStar::SetRotationToPlayer()
 	MV1SetRotationMatrix(handle_, rot_matrix);
 }
 
-MV1_COLL_RESULT_POLY SkyStar::GetHitToSkyStar(VECTOR _start, VECTOR _end)
+MV1_COLL_RESULT_POLY SkyStar::GetHitToSkyStar(const VECTOR& _start, const VECTOR& _end) const
 {
 	MV1_COLL_RESULT_POLY hit_poly;
 

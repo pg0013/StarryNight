@@ -30,22 +30,22 @@ namespace starrynight
 			 *
 			 * @param ObjectBase::OBJECT_TYPE::PLAYER
 			 */
-			virtual OBJECT_TYPE GetObjectType() override { return ObjectBase::OBJECT_TYPE::ENEMY; }
+			OBJECT_TYPE GetObjectType() const override { return ObjectBase::OBJECT_TYPE::ENEMY; }
 
 			/**
 			 * @brief　初期化処理.
 			 */
-			virtual void Initialize();
+			void Initialize() override;
 
 			/**
 			 * @brief　演算処理.
 			 */
-			virtual void Process();
+			void Process() override;
 
 			/**
 			 * @brief　描画処理.
 			 */
-			virtual void Render() override;
+			void Render() override;
 
 		private:
 			/**
@@ -61,7 +61,7 @@ namespace starrynight
 			 * @param  _move　移動方向ベクトル
 			 * @return   移動方向
 			 */
-			VECTOR Tracking(VECTOR _move);
+			VECTOR Tracking(VECTOR& _move);
 
 			/**
 			 * @brief　 プレイヤーを攻撃する処理
@@ -69,13 +69,13 @@ namespace starrynight
 			 * @param  _move　移動方向ベクトル
 			 * @return   移動方向
 			 */
-			VECTOR Attack(VECTOR _move);
+			VECTOR Attack(VECTOR& _move);
 
 			/**
 			 * @brief　 移動処理
 			 *
 			 */
-			void Move(VECTOR _move);
+			void Move(const VECTOR& _move);
 
 			/**
 			 * @brief 状態遷移用定数
@@ -107,14 +107,14 @@ namespace starrynight
 			 *
 			 * @param  _old_status	前フレームの状態
 			 */
-			void SwitchStatus(ANIM_STATUS _old_status);
+			void SwitchStatus(const ANIM_STATUS& _old_status);
 
 			/**
 			 * @brief　 アニメーション切り替え関数
 			 *
 			 * @param  _old_status	遷移元の状態
 			 */
-			void SwitchEnemyAnimation(ANIM_STATUS _old_status);
+			void SwitchEnemyAnimation(const ANIM_STATUS& _old_status);
 
 			/**
 			 * @brief SEの切り替えを行う処理.

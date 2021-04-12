@@ -22,7 +22,7 @@ namespace mode
 		modeserver_instance_ = nullptr;
 	}
 
-	int ModeServer::Add(ModeBase* _mode, int _layer, const char* _name)
+	int ModeServer::Add(ModeBase* _mode, const int& _layer, const char* _name)
 	{
 		addmode_list_.push_back(_mode);
 		_mode->uid_ = uid_count_;
@@ -107,7 +107,7 @@ namespace mode
 		return false;
 	}
 
-	ModeBase* ModeServer::Get(int _uid)
+	ModeBase* ModeServer::Get(const int& _uid)
 	{
 		//“o˜^’†‚Ì‚à‚ÌA“o˜^—\–ñ’†‚Ì‚à‚Ì‚©‚çŒŸõ‚·‚é
 		for (auto iter = mode_list_.begin(); iter != mode_list_.end(); ++iter)
@@ -156,7 +156,7 @@ namespace mode
 		return NULL;
 	}
 
-	const char* ModeServer::GetName(int _uid)
+	const char* ModeServer::GetName(const int& _uid)
 	{
 		return GetName(Get(_uid));
 	}
@@ -209,11 +209,11 @@ namespace mode
 				now_mode_ = (*iter);
 
 				if (pause == false)
-				{ 
+				{
 					//ŠÔ‚ğXV
-					(*iter)->StepTime(time); 
+					(*iter)->StepTime(time);
 				}
-				
+
 				(*iter)->Process();
 
 				//Mode‚ª–³‚¢ê‡(Reboot)

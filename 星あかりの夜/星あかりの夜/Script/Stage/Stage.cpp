@@ -27,7 +27,7 @@ Stage::~Stage()
 	instance_ = nullptr;
 }
 
-void Stage::Initialize(std::string _stage_name)
+void Stage::Initialize(const std::string& _stage_name)
 {
 	stage_param_.LoadStage(_stage_name, false);
 	star_param_.LoadStageStar(_stage_name, false);
@@ -86,7 +86,7 @@ void Stage::ClearHandle()
 	map_floortype_.clear();
 }
 
-int Stage::CheckFloorType(std::string _filename)
+int Stage::CheckFloorType(std::string& _filename)
 {
 	//ファイル名を小文字に変更
 	std::transform(_filename.begin(), _filename.end(), _filename.begin(), tolower);

@@ -14,7 +14,7 @@
 
 using namespace starrynight::mode;
 
-ModeGameOver::ModeGameOver(std::string _stage_name)
+ModeGameOver::ModeGameOver(const std::string& _stage_name)
 {
 	//‰æ‘œƒpƒ‰ƒ[ƒ^‚ğ“Ç‚İ‚İ
 	param_.LoadImagParameters("gameover");

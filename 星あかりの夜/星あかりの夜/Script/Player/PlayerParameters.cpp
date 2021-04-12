@@ -59,7 +59,7 @@ void PlayerParameters::LoadPlayerParameters(const std::vector<std::string>& _par
 	}
 }
 
-float PlayerParameters::GetPlayerParam(const std::string _param_name)
+float PlayerParameters::GetPlayerParam(const std::string& _param_name) const
 {
 	auto iter = map_player_param_.find(_param_name);
 

@@ -27,7 +27,7 @@ namespace starrynight
 			public ::mode::ModeBase
 		{
 		public:
-			ModeGameClear(int _score, std::string _stage_name);
+			ModeGameClear(const int& _score, const std::string& _stage_name);
 			~ModeGameClear();
 
 			/**

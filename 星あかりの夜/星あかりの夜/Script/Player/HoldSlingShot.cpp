@@ -138,7 +138,7 @@ MV1_COLL_RESULT_POLY Player::CheckHitStar()
 	return hit_star;
 }
 
-void Player::Launch_Star(VECTOR _star_position)
+void Player::Launch_Star(const VECTOR& _star_position)
 {
 	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 

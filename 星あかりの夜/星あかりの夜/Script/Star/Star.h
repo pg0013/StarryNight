@@ -29,29 +29,29 @@ namespace starrynight
 			 *
 			 * @param ObjectBase::OBJECT_TYPE::PLAYER
 			 */
-			virtual OBJECT_TYPE GetObjectType() override { return ObjectBase::OBJECT_TYPE::STAGE_STAR; }
+			virtual OBJECT_TYPE GetObjectType()const override { return ObjectBase::OBJECT_TYPE::STAGE_STAR; }
 
 			/**
 			 * @brief　初期化処理.
 			 */
-			virtual void Initialize();
+			void Initialize() override;
 
 			/**
 			 * @brief　演算処理.
 			 */
-			virtual void Process();
+			void Process() override;
 
 			/**
 			 * @brief　描画処理.
 			 */
-			virtual void Render() override;
+			void Render() override;
 
 			/**
 			 * @brief　 プレイヤーが何番目に取得したスターの数か取得する
 			 *
 			 * @return   0であればまだ未獲得、1以上であれば獲得済み
 			 */
-			int GetPlayersStarNum() { return star_num_; }
+			int GetPlayersStarNum() const { return star_num_; }
 		private:
 			/**
 			 * @brief 待機処理.

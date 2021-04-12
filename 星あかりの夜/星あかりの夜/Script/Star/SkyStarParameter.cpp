@@ -21,7 +21,7 @@ SkyStarParameter::~SkyStarParameter()
 	map_skystar_param_.clear();
 }
 
-void SkyStarParameter::LoadSkyStar(std::string _stagename, bool _async_flag)
+void SkyStarParameter::LoadSkyStar(const std::string& _stagename, const bool& _async_flag)
 {
 	std::string json_name = "Resource/json/stage/" + _stagename + "/skystar.json";
 	std::ifstream ifs(json_name.c_str());
@@ -123,7 +123,7 @@ void SkyStarParameter::LoadSkyStar(std::string _stagename, bool _async_flag)
 	}
 }
 
-void SkyStarParameter::LoadSkyStarParameter(std::string _name, const std::vector<std::string>& _param_name, bool _async_flag)
+void SkyStarParameter::LoadSkyStarParameter(const std::string& _name, const std::vector<std::string>& _param_name, const  bool& _async_flag)
 {
 	std::string json_name = "Resource/json/parameters/skystar.json";
 	std::ifstream ifs(json_name.c_str());

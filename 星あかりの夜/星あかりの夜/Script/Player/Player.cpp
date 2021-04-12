@@ -11,7 +11,7 @@
 #include<vector>
 using namespace starrynight::player;
 
-Player::Player(std::string _stage_name)
+Player::Player(const std::string& _stage_name)
 {
 	player_param_.LoadModelParameters("player");
 

@@ -1,7 +1,7 @@
-/** 
+/**
  * @file    ModeServer.h
  * @brief  モード管理クラス
- * 
+ *
  * @author Takuya Fujisawa
  * @date    2020/10/21
  */
@@ -21,23 +21,23 @@ namespace mode
 		virtual ~ModeServer();
 
 		static ModeServer* modeserver_instance_;
-		static ModeServer* GetInstance() { return (ModeServer*)modeserver_instance_; }
+		static ModeServer* GetInstance() { return static_cast<ModeServer*>(modeserver_instance_); }
 
 		/**
 		 * @brief   モードサーバーに追加予約する
 		 * モードサーバーに追加されるのは1フレーム後
-		 * 
+		 *
 		 * @param _mode　追加するモード
 		 * @param _layer　表示するレイヤー
 		 * @param _name　モード名
 		 * @return
 		 */
-		int Add(ModeBase* _mode, int _layer, const char* _name);
+		int Add(ModeBase* _mode, const int& _layer, const char* _name);
 
 		/**
 		 * @brief   削除予約をする
 		 * モードサーバーから削除されるのは1フレーム後
-		 * 
+		 *
 		 * @param _mode　削除するモード
 		 * @return 　0
 		 */
@@ -50,7 +50,7 @@ namespace mode
 		 *
 		 * @return		指定したuidを持つモード
 		 */
-		ModeBase* Get(int _uid);
+		ModeBase* Get(const int& _uid);
 
 		/**
 		 * @brief	モード名からモードを取得
@@ -95,7 +95,7 @@ namespace mode
 		 *
 		 * @returns	モード名.
 		 */
-		const char* GetName(int _uid);
+		const char* GetName(const int& _uid);
 
 		/**
 		 * @brief	モードサーバーのモードをすべて削除
@@ -108,7 +108,7 @@ namespace mode
 		 *
 		 * @returns	An int.
 		 */
-		int	 LayerTop() { return INT32_MAX; }
+		int	 LayerTop() const { return INT32_MAX; }
 
 		/**
 		 * @brief	レイヤー順にソートする

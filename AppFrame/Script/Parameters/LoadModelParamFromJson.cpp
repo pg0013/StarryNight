@@ -14,7 +14,7 @@
 
 namespace parameters
 {
-	void Parameters::LoadModelParameters(std::string _object_name, bool _async_flag)
+	void Parameters::LoadModelParameters(const std::string& _object_name, const bool& _async_flag)
 	{
 		std::string json_name = "Resource/json/model/" + _object_name + ".json";
 		std::ifstream ifs(json_name);

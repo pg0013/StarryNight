@@ -9,7 +9,7 @@
 #include"../Mode/ModeGame.h"
 using namespace starrynight::player;
 
-void Player::SwitchPlayerAnimation(STATUS _old_status)
+void Player::SwitchPlayerAnimation(const STATUS& _old_status)
 {
 	if (_old_status == status_ &&
 		status_ != STATUS::NONE)

@@ -24,7 +24,7 @@ namespace starrynight
 		 * @param _hinstance@WinMain‚Ì‘æˆêˆø”
 		 * @return ‰Šú‰»¬Œ÷‚Ì‰Â”Û
 		 */
-		virtual bool Initialize(HINSTANCE _hinstance);
+		bool Initialize(HINSTANCE _hinstance) override;
 
 		/**
 		 * @brief   I—¹ˆ—
@@ -32,7 +32,7 @@ namespace starrynight
 		 *
 		 * @return I—¹ˆ—¬Œ÷‚Ì‰Â”Û
 		 */
-		virtual bool Terminate();
+		bool Terminate() override;
 
 		/**
 		 * @brief   “ü—Íˆ—
@@ -40,20 +40,20 @@ namespace starrynight
 		 *
 		 * @return “ü—Íˆ—¬Œ÷‚Ì‰Â”Û
 		 */
-		virtual bool Input();
+		bool Input() override;
 
 		/**
 		 * @brief   ‰‰Zˆ—
 		 *
 		 * @return ‰‰Zˆ—¬Œ÷‚Ì‰Â”Û
 		 */
-		virtual bool Process();
+		bool Process() override;
 
 		/**
 		 * @brief   •`‰æˆ—
 		 *
 		 * @return •`‰æˆ—¬Œ÷‚Ì‰Â”Û
 		 */
-		virtual bool Render();
+		bool Render() override;
 	};
 }

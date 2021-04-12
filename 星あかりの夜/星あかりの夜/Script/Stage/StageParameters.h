@@ -28,7 +28,7 @@ namespace starrynight
 			 * @param  _stagename　ステージ名
 			 * @param  _async_flag　非同期読み込みフラグ
 			 */
-			void LoadStage(std::string _stagename, bool _async_flag = false);
+			void LoadStage(const std::string& _stagename, const bool& _async_flag = false);
 		};
 	}
 }

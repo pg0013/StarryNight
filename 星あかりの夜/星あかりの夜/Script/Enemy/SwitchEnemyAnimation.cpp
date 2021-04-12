@@ -12,7 +12,7 @@
 
 using namespace starrynight::enemy;
 
-void Enemy::SwitchEnemyAnimation(ANIM_STATUS _old_status)
+void Enemy::SwitchEnemyAnimation(const ANIM_STATUS& _old_status)
 {
 	if (_old_status == anim_status_)
 	{

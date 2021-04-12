@@ -13,7 +13,7 @@
 
 using namespace starrynight::enemy;
 
-void Enemy::SwitchStatus(ANIM_STATUS _old_status)
+void Enemy::SwitchStatus(const ANIM_STATUS& _old_status)
 {
 	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 	int elapsed_frame = mode_game->GetModeCount() - start_frame_;

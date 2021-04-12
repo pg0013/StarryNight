@@ -67,7 +67,7 @@ namespace starrynight
 			 *
 			 * @param  _stopflag　trueでオブジェクトの処理を止める
 			 */
-			void SetStopObjectProcess(bool _stopflag) { stop_object_process_ = _stopflag; }
+			void SetStopObjectProcess(const bool& _stopflag) { stop_object_process_ = _stopflag; }
 
 			camera::Camera camera_;//カメラ
 			object::ObjectServer object_server_;//オブジェクト管理サーバ
@@ -83,14 +83,14 @@ namespace starrynight
 			 *
 			 * @return   取得したスターの数
 			 */
-			int GetPlayerStarNum() { return player_star_num_; }
+			int GetPlayerStarNum() const { return player_star_num_; }
 
 			/**
 			 * @brief　 プレイヤーが取得したスターの数を設定する
 			 *
 			 * @param  _star_num　取得したスターの数
 			 */
-			void SetPlayerStarNum(int _star_num) { player_star_num_ = _star_num; }
+			void SetPlayerStarNum(const int& _star_num) { player_star_num_ = _star_num; }
 
 			/**
 			 * @brief　 プレイヤーが取得したスターの数を＋１する
@@ -102,70 +102,70 @@ namespace starrynight
 			 *
 			 * @return　ゲームモードインスタンス
 			 */
-			ModeGame* GetModeGame() { static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game")); }
+			ModeGame* GetModeGame() const { static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game")); }
 
 			/**
 			 * @brief　 ゲームスコアを追加する
 			 *
 			 * @param  _score		ゲームのスコア
 			 */
-			void AddGameScore(int _score) { game_score_ += _score; }
+			void AddGameScore(const int& _score) { game_score_ += _score; }
 
 			/**
 			 * @brief　 ゲームスコアを取得する
 			 *
 			 * @return   ゲームスコア
 			 */
-			int GetGameScore() { return game_score_; }
+			int GetGameScore() const { return game_score_; }
 
 			/**
 			 * @brief　 ステージのフィールドスター数を設定する
 			 *
 			 * @param  _stage_star_num	　ステージのフィールドスター総数
 			 */
-			void SetStageStarNum(int _stage_star_num) { stage_star_num_ = _stage_star_num; }
+			void SetStageStarNum(const int& _stage_star_num) { stage_star_num_ = _stage_star_num; }
 
 			/**
 			 * @brief　 ステージのフィールドスター総数を設定する
 			 *
 			 * @param  _stage_star_num	　ステージのフィールドスター総数
 			 */
-			void SetStageStarNumAll(int _stage_star_num_all) { stage_star_num_all_ = _stage_star_num_all; }
+			void SetStageStarNumAll(const int& _stage_star_num_all) { stage_star_num_all_ = _stage_star_num_all; }
 
 			/**
 			 * @brief　 ステージのフィールドスター数を取得する
 			 *
 			 * @return   ステージのフィールドスター数
 			 */
-			int GetStageStarNum() { return stage_star_num_; }
+			int GetStageStarNum() const { return stage_star_num_; }
 
 			/**
 			 * @brief　 ステージのフィールドスター総数を取得する
 			 *
 			 * @return   ステージのフィールドスター総数
 			 */
-			int GetStageStarNumAll() { return stage_star_num_all_; }
+			int GetStageStarNumAll() const { return stage_star_num_all_; }
 
 			/**
 			 * @brief  ステージのフィールドスター総数を変更する
 			 *
 			 * @param _add_starnum　ステージのフィールドスター数
 			 */
-			void AddStageStarNum(int _add_starnum) { stage_star_num_ += _add_starnum; }
+			void AddStageStarNum(const int& _add_starnum) { stage_star_num_ += _add_starnum; }
 
 			/**
 			 * @brief　 ステージの規定スコアを設定する
 			 *
 			 * @param  _regulations_score	ステージの規定スコア
 			 */
-			void SetStageRegulationsScore(int _regulations_score) { regulations_score_ = _regulations_score; }
+			void SetStageRegulationsScore(const int& _regulations_score) { regulations_score_ = _regulations_score; }
 
 			/**
 			 * @brief　 ステージの規定スコアを取得する
 			 *
 			 * @return   ステージの規定スコア
 			 */
-			int GetStageRegulationsScore() { return regulations_score_; }
+			int GetStageRegulationsScore() const { return regulations_score_; }
 
 			/**
 			 * @brief　ステージクリアを満たしているかどうかを判定する.
@@ -186,7 +186,7 @@ namespace starrynight
 			 * @param  _result	ゲームクリア判定　クリア : 0 ,ゲームオーバー : 1
 			 *
 			 */
-			void SetNextMode(int _count, int _fade_count, int _result);
+			void SetNextMode(const int& _count, const int& _fade_count, const int& _result);
 
 			/**
 			 * @brief スコアの評価
@@ -203,21 +203,21 @@ namespace starrynight
 			 *
 			 * @return   スコア評価
 			 */
-			SCORE_RANK GetScoreRank() { return score_rank_; }
+			SCORE_RANK GetScoreRank() const { return score_rank_; }
 
 			/**
 			 * @brief　 スコア評価を設定する
 			 *
 			 * @param  _rank	スコア評価
 			 */
-			void SetScoreRank(SCORE_RANK _rank) { score_rank_ = _rank; }
+			void SetScoreRank(const SCORE_RANK& _rank) { score_rank_ = _rank; }
 
 			/**
 			 * @brief　 ステージ名を取得する
 			 *
 			 * @return		ステージ名
 			 */
-			std::string GetStageName() { return stage_name_; }
+			std::string GetStageName() const { return stage_name_; }
 
 		private:
 			/**

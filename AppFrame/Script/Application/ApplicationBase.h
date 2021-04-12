@@ -98,28 +98,28 @@ namespace appframe
 		 *
 		 * @return   コントローラとキー入力
 		 */
-		virtual int GetKey() { return key_; }
+		virtual int GetKey() const { return key_; }
 
 		/**
 		 * @brief　 キーボードとコントローラのトリガー入力を返す
 		 *
 		 * @return   コントローラとキーのトリガー入力
 		 */
-		virtual int GetTriggerKey() { return trigger_key_; }
+		virtual int GetTriggerKey() const { return trigger_key_; }
 
 		/**
 		 * @brief　 XINPUTコントローラの入力を返す
 		 *
 		 * @return   XINPUTコントローラの入力
 		 */
-		virtual XINPUT_STATE GetXInputState() { return x_input_; }
+		virtual XINPUT_STATE GetXInputState() const { return x_input_; }
 
 		/**
 		 * @brief　 DIRECTINPUTコントローラの入力を返す
 		 *
 		 * @return   DINPUTコントローラの入力を返す
 		 */
-		virtual DINPUT_JOYSTATE GetDInputState() { return d_input_; }
+		virtual DINPUT_JOYSTATE GetDInputState() const { return d_input_; }
 
 		/**
 		 * @brief	現在のFPSを算出する処理.
@@ -136,7 +136,7 @@ namespace appframe
 		 *
 		 * @return   プログラム終了フラグ　trueで終了
 		 */
-		bool IsProgramExit() { return exit_flag_; }
+		bool IsProgramExit() const { return exit_flag_; }
 
 		sound::PlayWAVE bgm_;//BGM再生用
 		sound::PlayWAVE se_;//BGM再生用

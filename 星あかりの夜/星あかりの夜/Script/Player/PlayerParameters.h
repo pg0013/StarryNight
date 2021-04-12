@@ -37,7 +37,7 @@ namespace starrynight
              * @param  _param_name　パラメータ名（jsonに記載）
              * @return   パラメータ(float)
              */
-            float GetPlayerParam(const std::string _param_name);
+            float GetPlayerParam(const std::string& _param_name) const;
 
         private:
             //プレイヤーパラメータ記録用変数
