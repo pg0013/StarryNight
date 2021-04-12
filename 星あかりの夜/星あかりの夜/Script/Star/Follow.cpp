@@ -70,8 +70,6 @@ void Star::Follow()
 		star_num_ = 0;
 		jump_speed_ = jump_height_ * 3.0f;
 
-		modegame->SetPlayerStarNum(0);
-
 		//queue‚ğ‰Šú‰»
 		std::queue<VECTOR> empty;
 		std::swap(player_pos_history_, empty);
