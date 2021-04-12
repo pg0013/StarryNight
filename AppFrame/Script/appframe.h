@@ -10,3 +10,4 @@
 #include"Utility/Utility.h"
 #include"Utility/DefineMacro.h"
 #include"Parameters/Parameters.h"
+#include"State/StateBase.h"
