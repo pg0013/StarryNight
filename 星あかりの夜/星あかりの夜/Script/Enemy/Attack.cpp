@@ -18,11 +18,11 @@ VECTOR Enemy::Attack(VECTOR& _move)
 
 	if (anim_play_time_ == 0.0f)
 	{
-		for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+		for (auto&& iter : (*mode_game->object_server_.List()))
 		{
-			if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
+			if ((iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 			{
-				player::Player* player = static_cast<player::Player*>(*iter);
+				player::Player* player = static_cast<player::Player*>(iter);
 				player->SetDamageAnimFlag(true);//ダメージアニメーションを再生
 
 				//プレイヤーが星を所持していない場合、HPを減らす

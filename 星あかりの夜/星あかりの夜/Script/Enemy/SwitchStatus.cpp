@@ -20,11 +20,11 @@ void Enemy::SwitchStatus(const ANIM_STATUS& _old_status)
 
 	//プレイヤーがダメージを受けたかどうか取得
 	bool player_damaged = false;
-	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+	for (auto&& iter : (*mode_game->object_server_.List()))
 	{
-		if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
+		if ((iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 		{
-			player::Player* player = static_cast<player::Player*>(*iter);
+			player::Player* player = static_cast<player::Player*>(iter);
 			player_damaged = player->GetDamageFlag();
 			break;
 		}
@@ -80,12 +80,12 @@ void Enemy::SwitchStatus(const ANIM_STATUS& _old_status)
 		//1フレームだけ処理を行うためのフラグ
 		if (attacked_flag_ == false)
 		{
-			for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+			for (auto&& iter : (*mode_game->object_server_.List()))
 			{
 				//プレイヤーをエネミーの方に向ける
-				if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
+				if (iter->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 				{
-					player::Player* player = static_cast<player::Player*>(*iter);
+					player::Player* player = static_cast<player::Player*>(iter);
 					player->SetRotation(VGet(0.0f, rotation_.y + DEG2RAD(180.0f), 0.0f));
 					player->SetDamageFlag(true);
 					break;

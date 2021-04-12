@@ -20,7 +20,7 @@ EnemyParameters::~EnemyParameters()
 	map_enemy_param_.clear();
 }
 
-void EnemyParameters::LoadStageEnemys(const std::string& _stagename,const bool& _async_flag)
+void EnemyParameters::LoadStageEnemys(const std::string& _stagename, const bool& _async_flag)
 {
 	std::string json_name = "Resource/json/stage/" + _stagename + "/enemy.json";
 	std::ifstream ifs(json_name.c_str());
@@ -49,9 +49,9 @@ void EnemyParameters::LoadStageEnemys(const std::string& _stagename,const bool& 
 	auto json_object = json_value.get<picojson::object>();
 	auto model_array = json_object["enemy"].get<picojson::array>();
 
-	for (auto iter = model_array.begin(); iter != model_array.end(); iter++)
+	for (auto&& iter : model_array)
 	{
-		auto model = (*iter).get<picojson::object>();
+		auto model = (iter).get<picojson::object>();
 		parameters::model_param param = {};
 
 		if (model["filename"].is<std::string>())
@@ -153,11 +153,11 @@ void EnemyParameters::LoadEnemyParameters(const std::vector<std::string>& _param
 	//playerオブジェクトからパラメータを読み込む
 	auto player_param = json_object["enemy"].get<picojson::object>();
 
-	for (auto iter = _param_name.begin(); iter != _param_name.end(); iter++)
+	for (auto&& iter : _param_name)
 	{
-		if (player_param[iter->c_str()].is<double>())
+		if (player_param[iter.c_str()].is<double>())
 		{
-			map_enemy_param_.emplace((*iter), static_cast<float>(player_param[iter->c_str()].get<double>()));
+			map_enemy_param_.emplace(iter, static_cast<float>(player_param[iter.c_str()].get<double>()));
 		}
 	}
 }

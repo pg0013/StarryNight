@@ -24,9 +24,9 @@ EffectServer::~EffectServer()
 
 void EffectServer::Clear()
 {
-	for (auto iter = effect_list_.begin(); iter != effect_list_.end(); iter++)
+	for (auto&& iter : effect_list_)
 	{
-		delete (*iter);
+		delete (iter);
 	}
 
 	effect_list_.clear();
@@ -44,21 +44,21 @@ void EffectServer::Delete(EffectBase* _Effect)
 
 void EffectServer::AddListEffect()
 {
-	for (auto iter = add_list_.begin(); iter != add_list_.end(); iter++)
+	for (auto&& iter : add_list_)
 	{
-		effect_list_.push_back((*iter));
+		effect_list_.push_back(iter);
 	}
 	add_list_.clear();
 }
 
 void EffectServer::DeleteListEffect()
 {
-	for (auto iter_del = delete_list_.begin(); iter_del != delete_list_.end(); iter_del++)
+	for (auto&& iter_del : delete_list_)
 	{
 		for (auto iter = effect_list_.begin(); iter != effect_list_.end();)
 		{
 			//削除リストと一致したエフェクトを削除
-			if ((*iter) == (*iter_del))
+			if ((*iter) == (iter_del))
 			{
 				delete (*iter);
 				//イテレータを削除し、次に進める
@@ -79,9 +79,9 @@ void EffectServer::Process()
 	AddListEffect();
 
 	//サーバーにあるオブジェクトのProcessを呼び出し
-	for (auto iter = effect_list_.begin(); iter != effect_list_.end(); iter++)
+	for (auto&& iter : effect_list_)
 	{
-		(*iter)->Process();
+		(iter)->Process();
 	}
 
 	//削除リストのオブジェクトを削除
@@ -94,10 +94,9 @@ void EffectServer::Process()
 void EffectServer::Render()
 {
 	//サーバーにあるエフェクトのRenderを呼び出し
-	for (auto iter = effect_list_.begin(); iter != effect_list_.end(); iter++)
+	for (auto&& iter : effect_list_)
 	{
-		(*iter)->Render();
+		(iter)->Render();
 	}
 	DrawEffekseer3D();
-
 }

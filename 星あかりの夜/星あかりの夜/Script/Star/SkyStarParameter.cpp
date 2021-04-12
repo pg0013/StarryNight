@@ -50,9 +50,9 @@ void SkyStarParameter::LoadSkyStar(const std::string& _stagename, const bool& _a
 	auto json_object = json_value.get<picojson::object>();
 	auto model_array = json_object["skystar"].get<picojson::array>();
 
-	for (auto iter = model_array.begin(); iter != model_array.end(); iter++)
+	for (auto&& iter : model_array)
 	{
-		auto model = (*iter).get<picojson::object>();
+		auto model = (iter).get<picojson::object>();
 		parameters::model_param param = {};
 
 		if (model["filename"].is<std::string>())
@@ -154,11 +154,11 @@ void SkyStarParameter::LoadSkyStarParameter(const std::string& _name, const std:
 	//オブジェクトからパラメータを読み込む
 	auto skystar_param = json_object[_name.c_str()].get<picojson::object>();
 
-	for (auto iter = _param_name.begin(); iter != _param_name.end(); iter++)
+	for (auto&& iter : _param_name)
 	{
-		if (skystar_param[iter->c_str()].is<double>())
+		if (skystar_param[iter.c_str()].is<double>())
 		{
-			map_skystar_param_.emplace((*iter), static_cast<float>(skystar_param[iter->c_str()].get<double>()));
+			map_skystar_param_.emplace(iter, static_cast<float>(skystar_param[iter.c_str()].get<double>()));
 		}
 	}
 }

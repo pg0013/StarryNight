@@ -59,11 +59,11 @@ int Star::IsStageStarDraw()
 	bool star_draw_flag = true;
 
 	//ƒvƒŒƒCƒ„[‚ªŽËŒ‚ó‘Ô‚©‚Ç‚¤‚©Žæ“¾
-	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+	for (auto&& iter : (*mode_game->object_server_.List()))
 	{
-		if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
+		if ((iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 		{
-			player::Player* player = static_cast<player::Player*>(*iter);
+			player::Player* player = static_cast<player::Player*>(iter);
 			star_draw_flag = player->GetPlayerSlingShotStatus();
 			break;
 		}

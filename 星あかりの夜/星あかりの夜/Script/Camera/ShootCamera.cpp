@@ -51,11 +51,11 @@ void Camera::ShootCamera()
 
 	//プレイヤーが星を選択したかどうかを取得
 	bool selected_star_flag = false;
-	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+	for (auto&& iter : (*mode_game->object_server_.List()))
 	{
-		if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
+		if (iter->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 		{
-			player::Player* player = static_cast<player::Player*>(*iter);
+			player::Player* player = static_cast<player::Player*>(iter);
 			selected_star_flag = player->GetSelectedStarFlag();
 			break;
 		}

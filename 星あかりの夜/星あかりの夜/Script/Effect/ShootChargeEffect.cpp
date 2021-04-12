@@ -63,11 +63,11 @@ void ShootChargeEffect::Process()
 	mode::ModeGame* mode_game =
 		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
-	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+	for (auto&& iter : (*mode_game->object_server_.List()))
 	{
-		if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
+		if ((iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 		{
-			player::Player* player = static_cast<player::Player*>(*iter);
+			player::Player* player = static_cast<player::Player*>(iter);
 
 			if (player->GetPlayerStatus() != player::Player::STATUS::SHOOT_START)
 				mode_game->effect_server_.Delete(this);

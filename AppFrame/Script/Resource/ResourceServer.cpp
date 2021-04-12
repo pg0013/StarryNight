@@ -48,9 +48,9 @@ namespace resource
 
 	void ResourceServer::ClearSoundMap()
 	{
-		for (auto iter = map_sound_.begin(); iter != map_sound_.end(); iter++)
+		for (auto&& iter : map_sound_)
 		{
-			free(iter->second.GetpBuffer());
+			free(iter.second.GetpBuffer());
 		}
 		map_sound_.clear();
 	}

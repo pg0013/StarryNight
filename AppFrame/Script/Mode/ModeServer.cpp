@@ -67,11 +67,10 @@ namespace mode
 			delete (*iter);
 		}
 		//’Ç‰ÁƒŠƒXƒg‚Ìƒ‚[ƒh‚ğ‚·‚×‚Äíœ
-		auto iteradd = addmode_list_.begin();
-		for (; iteradd != addmode_list_.end(); ++iteradd)
+		for (auto&& iteradd : addmode_list_)
 		{
-			(*iteradd)->Terminate();
-			delete(*iteradd);
+			iteradd->Terminate();
+			delete iteradd;
 		}
 
 		mode_list_.clear();
@@ -83,9 +82,9 @@ namespace mode
 	{
 		if (delmode_list_.size() > 0)
 		{
-			for (auto iterdel = delmode_list_.begin(); iterdel != delmode_list_.end(); ++iterdel)
+			for (auto&& iterdel : delmode_list_)
 			{
-				if ((*iterdel) == _mode) { return true; }
+				if (iterdel == _mode) { return true; }
 			}
 		}
 		return false;
@@ -94,15 +93,15 @@ namespace mode
 	bool ModeServer::IsAdd(ModeBase* _mode)
 	{
 		//“o˜^’†‚Ì‚à‚ÌA“o˜^—\–ñ’†‚Ì‚à‚Ì‚©‚çŒŸõ‚·‚é
-		for (auto iter = mode_list_.begin(); iter != mode_list_.end(); ++iter)
+		for (auto&& iter : mode_list_)
 		{
 			//íœ—\–ñ‚³‚ê‚Ä‚¢‚È‚¢ƒ‚[ƒh‚©H
-			if (!IsDelRegist((*iter)) && (*iter) == _mode) { return true; }
+			if (!IsDelRegist(iter) && (iter) == _mode) { return true; }
 		}
-		for (auto iteradd = addmode_list_.begin(); iteradd != addmode_list_.end(); ++iteradd)
+		for (auto&& iteradd : addmode_list_)
 		{
 			//íœ—\–ñ‚³‚ê‚Ä‚¢‚È‚¢ƒ‚[ƒh‚©H
-			if (!IsDelRegist((*iteradd)) && (*iteradd) == _mode) { return true; }
+			if (!IsDelRegist(iteradd) && (iteradd) == _mode) { return true; }
 		}
 		return false;
 	}
@@ -110,15 +109,15 @@ namespace mode
 	ModeBase* ModeServer::Get(const int& _uid)
 	{
 		//“o˜^’†‚Ì‚à‚ÌA“o˜^—\–ñ’†‚Ì‚à‚Ì‚©‚çŒŸõ‚·‚é
-		for (auto iter = mode_list_.begin(); iter != mode_list_.end(); ++iter)
+		for (auto&& iter : mode_list_)
 		{
 			//íœ—\–ñ‚³‚ê‚Ä‚¢‚È‚¢ƒ‚[ƒh‚©H
-			if (!IsDelRegist((*iter)) && (*iter)->uid_ == _uid) { return (*iter); }
+			if (!IsDelRegist(iter) && (iter)->uid_ == _uid) { return (iter); }
 		}
-		for (auto iteradd = addmode_list_.begin(); iteradd != addmode_list_.end(); ++iteradd)
+		for (auto&& iteradd : addmode_list_)
 		{
 			//íœ—\–ñ‚³‚ê‚Ä‚¢‚È‚¢ƒ‚[ƒh‚©H
-			if (!IsDelRegist((*iteradd)) && (*iteradd)->uid_ == _uid) { return (*iteradd); }
+			if (!IsDelRegist(iteradd) && (iteradd)->uid_ == _uid) { return (iteradd); }
 		}
 		return nullptr;
 	}
@@ -126,15 +125,15 @@ namespace mode
 	ModeBase* ModeServer::Get(const char* _name)
 	{
 		//“o˜^’†‚Ì‚à‚ÌA“o˜^—\–ñ’†‚Ì‚à‚Ì‚©‚çŒŸõ‚·‚é
-		for (auto iter = mode_list_.begin(); iter != mode_list_.end(); ++iter)
+		for (auto&& iter : mode_list_)
 		{
 			//íœ—\–ñ‚³‚ê‚Ä‚¢‚È‚¢ƒ‚[ƒh‚©H
-			if (!IsDelRegist((*iter)) && (*iter)->modename_ == _name) { return (*iter); }
+			if (!IsDelRegist(iter) && (iter)->modename_ == _name) { return (iter); }
 		}
-		for (auto iteradd = addmode_list_.begin(); iteradd != addmode_list_.end(); ++iteradd)
+		for (auto&& iteradd : addmode_list_)
 		{
 			//íœ—\–ñ‚³‚ê‚Ä‚¢‚È‚¢ƒ‚[ƒh‚©H
-			if (!IsDelRegist((*iteradd)) && (*iteradd)->modename_ == _name) { return (*iteradd); }
+			if (!IsDelRegist(iteradd) && (iteradd)->modename_ == _name) { return (iteradd); }
 		}
 		return nullptr;
 	}
@@ -166,9 +165,9 @@ namespace mode
 		//íœ—\–ñ‚³‚ê‚Ä‚¢‚½‚à‚Ì‚ğíœ
 		if (delmode_list_.size() > 0)
 		{
-			for (auto iterdel = delmode_list_.begin(); iterdel != delmode_list_.end(); ++iterdel)
+			for (auto&& iterdel : delmode_list_)
 			{
-				Release((*iterdel));
+				Release(iterdel);
 			}
 			delmode_list_.clear();
 		}
@@ -176,10 +175,10 @@ namespace mode
 		//Add()‚³‚ê‚½‚à‚Ì‚ğ—LŒø‚É‚µA•K—v‚Å‚ ‚ê‚Îƒ\[ƒg‚ğs‚¤
 		if (addmode_list_.size() > 0)
 		{
-			for (auto iteradd = addmode_list_.begin(); iteradd != addmode_list_.end(); ++iteradd)
+			for (auto&& iteradd : addmode_list_)
 			{
-				(*iteradd)->Initialize();
-				mode_list_.push_back((*iteradd));
+				iteradd->Initialize();
+				mode_list_.push_back(iteradd);
 			}
 			addmode_list_.clear();
 
@@ -250,15 +249,15 @@ namespace mode
 	int ModeServer::Render()
 	{
 		//ƒŒƒCƒ„[‚Ì‰º‚©‚çˆ—
-		for (auto iter = mode_list_.begin(); iter != mode_list_.end(); ++iter)
+		for (auto&& iter : mode_list_)
 		{
-			if (skip_rendermode_ && skip_rendermode_ != (*iter)) { continue; }
+			if (skip_rendermode_ && skip_rendermode_ != iter) { continue; }
 			skip_rendermode_ = nullptr;
 
-			if (IsDelRegist(*iter) == false)
+			if (IsDelRegist(iter) == false)
 			{
-				now_mode_ = (*iter);
-				(*iter)->Render();
+				now_mode_ = (iter);
+				(iter)->Render();
 			}
 		}
 

@@ -51,11 +51,11 @@ void CameraParameters::LoadCameraParameters(const std::vector<std::string>& _par
 	//playerオブジェクトからパラメータを読み込む
 	auto player_param = json_object["camera"].get<picojson::object>();
 
-	for (auto iter = _param_name.begin(); iter != _param_name.end(); iter++)
+	for (auto&& iter : _param_name)
 	{
-		if (player_param[iter->c_str()].is<double>())
+		if (player_param[iter.c_str()].is<double>())
 		{
-			map_camera_param_.emplace((*iter), static_cast<float>(player_param[iter->c_str()].get<double>()));
+			map_camera_param_.emplace(iter, static_cast<float>(player_param[iter.c_str()].get<double>()));
 		}
 	}
 }

@@ -21,10 +21,10 @@ void Stage::InitStageModel()
 	//Stageモデルの読み込み
 	auto handle_map = stage_param_.GetMapModelParam();
 
-	for (auto iter = handle_map.begin(); iter != handle_map.end(); iter++)
+	for (auto&& iter : handle_map)
 	{
 		auto navmesh_count = 0;//ナビメッシュがあるオブジェクトかを確認するカウンタ
-		auto handle = resource::ResourceServer::GetModelHandle((*iter).second.handlename_);
+		auto handle = resource::ResourceServer::GetModelHandle(iter.second.handlename_);
 
 		//天球は初めに描画するために個別で管理する
 		if (handle == resource::ResourceServer::GetModelHandle("skysphere"))
@@ -47,7 +47,7 @@ void Stage::InitStageModel()
 			MV1SetupCollInfo(handle, MV1SearchFrame(handle, "floor_NavMesh"), 16, 16, 16);
 			MV1SetFrameVisible(handle, MV1SearchFrame(handle, "floor_NavMesh"), FALSE);
 
-			map_floortype_.emplace(handle, CheckFloorType((*iter).second.filename_));
+			map_floortype_.emplace(handle, CheckFloorType(iter.second.filename_));
 
 			navmesh_count++;
 		}
@@ -72,10 +72,10 @@ void Stage::InitStageStar()
 
 	//StageにStarモデルを配置する
 	int stage_star_num = 0;
-	for (auto iter = handle_map.begin(); iter != handle_map.end(); iter++)
+	for (auto&& iter : handle_map)
 	{
 		star::Star* star = NEW star::Star();
-		star->SetModelHandle(resource::ResourceServer::GetModelHandle((*iter).second.handlename_));
+		star->SetModelHandle(resource::ResourceServer::GetModelHandle(iter.second.handlename_));
 		star->Initialize();
 		mode_game->object_server_.Add(star);
 		stage_star_num++;
@@ -94,9 +94,9 @@ void Stage::InitSkyStar()
 	auto handle_map = skystar_param_.GetMapModelParam();
 
 	//星座モデルを配置する
-	for (auto iter = handle_map.begin(); iter != handle_map.end(); iter++)
+	for (auto&& iter : handle_map)
 	{
-		star::SkyStar* skystar = NEW star::SkyStar((*iter).second.filename_);
+		star::SkyStar* skystar = NEW star::SkyStar(iter.second.filename_);
 		skystar->Initialize();
 		mode_game->object_server_.Add(skystar);
 	}
@@ -110,9 +110,9 @@ void Stage::InitEnemy()
 	auto handle_map = enemy_param_.GetMapModelParam();
 
 	//Stageにエネミーモデルを配置する
-	for (auto iter = handle_map.begin(); iter != handle_map.end(); iter++)
+	for (auto&& iter : handle_map)
 	{
-		enemy::Enemy* enemy = NEW enemy::Enemy((*iter).second.handlename_);
+		enemy::Enemy* enemy = NEW enemy::Enemy(iter.second.handlename_);
 		enemy->Initialize();
 		mode_game->object_server_.Add(enemy);
 	}

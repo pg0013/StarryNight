@@ -125,11 +125,11 @@ MV1_COLL_RESULT_POLY Player::CheckHitStar()
 		VGet(appframe::SCREEN_WIDTH / 2.0f, appframe::SCREEN_HEIGHT / 2.0f, 1.0f));
 
 	//星座との当たり判定をとる
-	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+	for (auto&& iter : (*mode_game->object_server_.List()))
 	{
-		if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::SKY_STAR)
+		if ((iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::SKY_STAR)
 		{
-			star::SkyStar* star = static_cast<star::SkyStar*>(*iter);
+			star::SkyStar* star = static_cast<star::SkyStar*>(iter);
 			hit_star = star->GetHitToSkyStar(start, end);
 			break;
 		}
@@ -153,13 +153,13 @@ void Player::Launch_Star(const VECTOR& _star_position)
 	mode_game->effect_server_.Add(shoot_effect);
 
 	//プレイヤーが連れていた星を削除する
-	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+	for (auto&& iter : (*mode_game->object_server_.List()))
 	{
-		if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::STAGE_STAR)
+		if ((iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::STAGE_STAR)
 		{
-			star::Star* star = static_cast<star::Star*>(*iter);
+			star::Star* star = static_cast<star::Star*>(iter);
 			if (star->GetPlayersStarNum() > 0)
-				mode_game->object_server_.Delete(*iter);
+				mode_game->object_server_.Delete(iter);
 		}
 	}
 

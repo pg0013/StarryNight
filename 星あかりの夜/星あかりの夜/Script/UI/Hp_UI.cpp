@@ -50,11 +50,11 @@ void Hp_UI::UpdatePlayerHP()
 	mode::ModeGame* mode_game =
 		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
-	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+	for (auto&& iter : (*mode_game->object_server_.List()))
 	{
-		if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
+		if ((iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 		{
-			player::Player* player = static_cast<player::Player*>((*iter));
+			player::Player* player = static_cast<player::Player*>(iter);
 			player_hp_ = player->GetPlayerHP();
 			break;
 		}

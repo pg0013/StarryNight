@@ -23,9 +23,9 @@ ObjectServer::~ObjectServer()
 
 void ObjectServer::Clear()
 {
-	for (auto iter = object_list_.begin(); iter != object_list_.end(); iter++)
+	for (auto&& iter : object_list_)
 	{
-		delete (*iter);
+		delete (iter);
 	}
 
 	object_list_.clear();
@@ -43,21 +43,21 @@ void ObjectServer::Delete(ObjectBase* _object)
 
 void ObjectServer::AddListObject()
 {
-	for (auto iter = add_list_.begin(); iter != add_list_.end(); iter++)
+	for (auto&& iter : add_list_)
 	{
-		object_list_.push_back((*iter));
+		object_list_.push_back(iter);
 	}
 	add_list_.clear();
 }
 
 void ObjectServer::DeleteListObject()
 {
-	for (auto iter_del = delete_list_.begin(); iter_del != delete_list_.end(); iter_del++)
+	for (auto&& iter_del : delete_list_)
 	{
 		for (auto iter = object_list_.begin(); iter != object_list_.end();)
 		{
 			//削除リストと一致したオブジェクトを削除
-			if ((*iter) == (*iter_del))
+			if ((*iter) == (iter_del))
 			{
 				delete (*iter);
 				//イテレータを削除し、次に進める
@@ -78,9 +78,9 @@ void ObjectServer::Process()
 	AddListObject();
 
 	//サーバーにあるオブジェクトのProcessを呼び出し
-	for (auto iter = object_list_.begin(); iter != object_list_.end(); iter++)
+	for (auto&& iter : object_list_)
 	{
-		(*iter)->Process();
+		(iter)->Process();
 	}
 
 	//削除リストのオブジェクトを削除
@@ -90,8 +90,8 @@ void ObjectServer::Process()
 void ObjectServer::Render()
 {
 	//サーバーにあるオブジェクトのRenderを呼び出し
-	for (auto iter = object_list_.begin(); iter != object_list_.end(); iter++)
+	for (auto&& iter : object_list_)
 	{
-		(*iter)->Render();
+		(iter)->Render();
 	}
 }

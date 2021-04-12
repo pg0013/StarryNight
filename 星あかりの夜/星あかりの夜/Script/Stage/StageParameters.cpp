@@ -47,9 +47,9 @@ void StageParameters::LoadStage(const std::string& _stagename, const bool& _asyn
 	auto json_object = json_value.get<picojson::object>();
 	auto model_array = json_object[_stagename].get<picojson::array>();
 
-	for (auto iter = model_array.begin(); iter != model_array.end(); iter++)
+	for (auto&& iter : model_array)
 	{
-		auto model = (*iter).get<picojson::object>();
+		auto model = (iter).get<picojson::object>();
 		parameters::model_param param = {};
 
 		if (model["filename"].is<std::string>())

@@ -15,11 +15,11 @@ void Camera::SkyStarCameraInit()
 {
 	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
-	for (auto iter = mode_game->object_server_.List()->begin(); iter != mode_game->object_server_.List()->end(); iter++)
+	for (auto&& iter : (*mode_game->object_server_.List()))
 	{
-		if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::SKY_STAR)
+		if ((iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::SKY_STAR)
 		{
-			target_ = (*iter)->GetPosition();
+			target_ = (iter)->GetPosition();
 		}
 	}
 

@@ -53,11 +53,11 @@ void Star::Follow()
 
 	//プレイヤーがダメージを受けたかどうかを取得
 	bool player_damaged = false;
-	for (auto iter = modegame->object_server_.List()->begin(); iter != modegame->object_server_.List()->end(); iter++)
+	for (auto&& iter : (*modegame->object_server_.List()))
 	{
-		if ((*iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
+		if ((iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 		{
-			player::Player* player = static_cast<player::Player*>(*iter);
+			player::Player* player = static_cast<player::Player*>(iter);
 			player_damaged = player->GetDamageFlag();
 			break;
 		}
