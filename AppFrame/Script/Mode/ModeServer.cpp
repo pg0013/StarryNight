@@ -10,10 +10,10 @@ namespace mode
 	{
 		modeserver_instance_ = this;
 		uid_count_ = 1;
-		now_mode_ = NULL;
-		skip_processmode_ = NULL;
-		skip_rendermode_ = NULL;
-		pause_processmode_ = NULL;
+		now_mode_ = nullptr;
+		skip_processmode_ = nullptr;
+		skip_rendermode_ = nullptr;
+		pause_processmode_ = nullptr;
 	}
 
 	ModeServer::~ModeServer()
@@ -120,7 +120,7 @@ namespace mode
 			//削除予約されていないモードか？
 			if (!IsDelRegist((*iteradd)) && (*iteradd)->uid_ == _uid) { return (*iteradd); }
 		}
-		return NULL;
+		return nullptr;
 	}
 
 	ModeBase* ModeServer::Get(const char* _name)
@@ -136,7 +136,7 @@ namespace mode
 			//削除予約されていないモードか？
 			if (!IsDelRegist((*iteradd)) && (*iteradd)->modename_ == _name) { return (*iteradd); }
 		}
-		return NULL;
+		return nullptr;
 	}
 
 	int ModeServer::GetId(ModeBase* _mode)
@@ -153,7 +153,7 @@ namespace mode
 	const char* ModeServer::GetName(ModeBase* _mode)
 	{
 		if (IsAdd(_mode)) { return _mode->modename_.c_str(); }
-		return NULL;
+		return nullptr;
 	}
 
 	const char* ModeServer::GetName(const int& _uid)
@@ -188,9 +188,9 @@ namespace mode
 		}
 
 		//skip,pauseの解除
-		skip_processmode_ = NULL;
-		skip_rendermode_ = NULL;
-		pause_processmode_ = NULL;
+		skip_processmode_ = nullptr;
+		skip_rendermode_ = nullptr;
+		pause_processmode_ = nullptr;
 		return 0;
 	}
 

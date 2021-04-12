@@ -13,7 +13,7 @@
 
 namespace appframe
 {
-	ApplicationBase* ApplicationBase::appbase_instance_ = NULL;
+	ApplicationBase* ApplicationBase::appbase_instance_ = nullptr;
 
 	ApplicationBase::ApplicationBase()
 	{
