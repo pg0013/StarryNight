@@ -34,28 +34,44 @@ void EnemyTrackingState::Exit(Enemy& _enemy)
 {
 }
 
-EnemyState* EnemyTrackingState::Input(Enemy& _enemy)
+void EnemyTrackingState::Input(Enemy& _enemy)
 {
+	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 	VECTOR enemy_position = _enemy.GetPosition();
 	float player_distance = VSize(VSub(player_position, enemy_position));
 	float player_distance_y = abs(player_position.y - enemy_position.y);
 
-	if (player_distance > _enemy.GetDetectLength())
+	//プレイヤーがダメージを受けたかどうか取得
+	bool player_damaged = false;
+	for (auto&& iter : (*mode_game->object_server_.List()))
 	{
-		return NEW EnemyWaitState();
+		if ((iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
+		{
+			player::Player* player = static_cast<player::Player*>(iter);
+			player_damaged = player->GetDamageFlag();
+			break;
+		}
+	}
+
+	//検出範囲からプレイヤーが出たか、プレイヤーがダメージ中の場合
+	if (player_distance > _enemy.GetDetectLength() ||
+		player_damaged == true)
+	{
+		//待機状態へ移行
+		_enemy.ChangeEnemyState("Wait");
 	}
 
 	if (player_distance <= attack_length_)
 	{
-		//攻撃Stateを返す
-		return NEW EnemyAttackState();
+		//攻撃状態へ移行
+		_enemy.ChangeEnemyState("Attack");
 	}
 
 	//追跡状態を継続
 	_enemy.SetAnimStatus(Enemy::ANIM_STATUS::RUN);
 	_enemy.SetMoveStatus(Enemy::MOVE_STATUS::TRACKING);
-	return nullptr;
 }
 
 void EnemyTrackingState::Update(Enemy& _enemy)

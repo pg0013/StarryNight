@@ -38,7 +38,7 @@ namespace starrynight
 			/**
 			 * @brief　 状態遷移を行うか判定する入力処理
 			 */
-			EnemyState* Input(Enemy& _enemy) override;
+			void Input(Enemy& _enemy) override;
 
 			/**
 			* @brief　 毎フレーム行われる更新処理

@@ -70,18 +70,17 @@ void EnemyAttackState::Exit(Enemy& _enemy)
 {
 }
 
-EnemyState* EnemyAttackState::Input(Enemy& _enemy)
+void EnemyAttackState::Input(Enemy& _enemy)
 {
 	//ダメージモーションの再生が完了したら
 	if (_enemy.GetAnimPlayTime() >= _enemy.GetAnimTotalTime())
 	{
 		//プレイヤーから離れていく状態へ遷移
-		return NEW EnemyEscapeState();
+		_enemy.ChangeEnemyState("Escape");
 	}
 
 	//ダメージモーション中は攻撃を継続
 	_enemy.SetAnimStatus(Enemy::ANIM_STATUS::ATTACK);
-	return nullptr;
 }
 
 void EnemyAttackState::Update(Enemy& _enemy)

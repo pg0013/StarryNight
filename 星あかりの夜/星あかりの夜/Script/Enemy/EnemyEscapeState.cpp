@@ -33,7 +33,7 @@ void EnemyEscapeState::Exit(Enemy& _enemy)
 {
 }
 
-EnemyState* EnemyEscapeState::Input(Enemy& _enemy)
+void EnemyEscapeState::Input(Enemy& _enemy)
 {
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 	float player_distance = VSize(VSub(player_position, _enemy.GetPosition()));
@@ -41,13 +41,12 @@ EnemyState* EnemyEscapeState::Input(Enemy& _enemy)
 	//プレイヤーから一定距離離れたら待機状態へ移行
 	if (player_distance > _enemy.GetDetectLength() + 300.0f)
 	{
-		return  NEW EnemyWaitState();
+		_enemy.ChangeEnemyState("Wait");
 	}
 
 	//現在の状態を継続
 	_enemy.SetAnimStatus(Enemy::ANIM_STATUS::MOVE);
 	_enemy.SetMoveStatus(Enemy::MOVE_STATUS::ESCAPE);
-	return nullptr;
 }
 
 void EnemyEscapeState::Update(Enemy& _enemy)

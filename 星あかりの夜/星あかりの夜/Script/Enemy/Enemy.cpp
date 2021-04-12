@@ -7,8 +7,11 @@
  */
 
 #include "Enemy.h"
-#include"EnemyWaitState.h"
 #include"../Player/Player.h"
+#include"EnemyWaitState.h"
+#include"EnemyTrackingState.h"
+#include"EnemyAttackState.h"
+#include"EnemyEscapeState.h"
 #include"../Mode/ModeGame.h"
 
 using namespace starrynight::enemy;
@@ -49,13 +52,26 @@ Enemy::Enemy(std::string _handle_name)
 
 Enemy::~Enemy()
 {
-	delete enemy_state_;
+	for (auto&& state : state_map_)
+		delete state.second;
 }
 
 void Enemy::Initialize()
 {
 	//生成されたときのフレームを記録
 	start_frame_ = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount();
+
+	state_map_.clear();
+
+	//状態保持コンテナにポインタを保存
+	EnemyWaitState* wait_state = NEW EnemyWaitState();
+	state_map_.emplace("Wait", wait_state);
+	EnemyTrackingState* tracking_state = NEW EnemyTrackingState();
+	state_map_.emplace("Tracking", tracking_state);
+	EnemyAttackState* attack_state = NEW EnemyAttackState();
+	state_map_.emplace("Attack", attack_state);
+	EnemyEscapeState* escape_state = NEW EnemyEscapeState();
+	state_map_.emplace("Escape", escape_state);
 }
 
 void Enemy::Process()
@@ -72,6 +88,22 @@ void Enemy::Process()
 	SwitchEnemyAnimation(old_anim_status);
 	//サウンドの切り替えを行う
 	SwitchEnemySound();
+}
+
+void Enemy::ChangeEnemyState(const std::string& _state_name)
+{
+	auto iter = state_map_.find(_state_name);
+	if (iter != state_map_.end())
+	{
+		//現在の状態の終了処理を実行
+		enemy_state_->Exit(*this);
+
+		//現在の状態から次の状態へ遷移
+		enemy_state_ = iter->second;
+
+		//移行した状態の初期化処理を実行
+		enemy_state_->Enter(*this);
+	}
 }
 
 void Enemy::Render()

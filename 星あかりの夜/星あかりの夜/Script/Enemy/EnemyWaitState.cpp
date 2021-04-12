@@ -24,13 +24,14 @@ EnemyWaitState::~EnemyWaitState()
 void EnemyWaitState::Enter(Enemy& _enemy)
 {
 	_enemy.SetMoveStatus(Enemy::MOVE_STATUS::WAIT);
+	_enemy.SetAnimStatus(Enemy::ANIM_STATUS::WAIT);
 }
 
 void EnemyWaitState::Exit(Enemy& _enemy)
 {
 }
 
-EnemyState* EnemyWaitState::Input(Enemy& _enemy)
+void EnemyWaitState::Input(Enemy& _enemy)
 {
 	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
 
@@ -59,12 +60,9 @@ EnemyState* EnemyWaitState::Input(Enemy& _enemy)
 			player_damaged == false)
 		{
 			//追跡状態ポインタをnewしてポインタを返す
-			return new EnemyTrackingState();
+			_enemy.ChangeEnemyState("Tracking");
 		}
 	}
-
-	//待機状態を継続
-	return nullptr;
 }
 
 void EnemyWaitState::Update(Enemy& _enemy)
@@ -75,19 +73,21 @@ void EnemyWaitState::Update(Enemy& _enemy)
 	enemy::Enemy::MOVE_STATUS  old_status = _enemy.GetMoveStatus();
 
 	//索敵状態であれば、経過時間によって待機と直進を交互に繰り返す
+	//TODO
+
 	float random_rot_direction = 1.0f;
 	if (elapsed_frame % (60 * (GetRand(5) + 1)) == 0)
 	{
-		if (old_status == enemy::Enemy::MOVE_STATUS::STRAIGHT)
+		if (old_status == enemy::Enemy::MOVE_STATUS::WAIT)
 		{
-			_enemy.SetMoveStatus(enemy::Enemy::MOVE_STATUS::WAIT);
+			_enemy.SetMoveStatus(enemy::Enemy::MOVE_STATUS::STRAIGHT);
 
 			//回転方向をランダムに変える
 			random_rot_direction *= powf(-1.0f, static_cast<float>(GetRand(1) + 1));
 		}
-		else if (old_status == enemy::Enemy::MOVE_STATUS::WAIT)
+		else
 		{
-			_enemy.SetMoveStatus(enemy::Enemy::MOVE_STATUS::STRAIGHT);
+			_enemy.SetMoveStatus(enemy::Enemy::MOVE_STATUS::WAIT);
 		}
 	}
 
@@ -101,7 +101,6 @@ void EnemyWaitState::Update(Enemy& _enemy)
 		_enemy.SetAnimStatus(Enemy::ANIM_STATUS::WAIT);
 
 		rotation.y += DEG2RAD(_enemy.GetRotationSpeed()) * random_rot_direction;
-		printfDx("%f\n", random_rot_direction);
 		break;
 	case Enemy::MOVE_STATUS::STRAIGHT:
 		_enemy.SetAnimStatus(Enemy::ANIM_STATUS::MOVE);

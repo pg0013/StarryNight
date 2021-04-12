@@ -11,6 +11,7 @@
 #include "../Object/ObjectBase.h"
 #include"EnemyParameters.h"
 #include"EnemyState.h"
+#include<unordered_map>
 
 namespace starrynight
 {
@@ -149,6 +150,13 @@ namespace starrynight
 			 */
 			void Move(const VECTOR& _move);
 
+			/**
+			 * @brief　 指定した状態に遷移する
+			 *
+			 * @param  _state_name　状態の名前
+			 */
+			void ChangeEnemyState(const std::string& _state_name);
+
 			sound::PlayWAVE se_;//敵モーションSE
 			sound::PlayWAVE attention_se_;//敵プレイヤー発見SE
 
@@ -199,7 +207,11 @@ namespace starrynight
 			//エネミーパラメータ保持クラス
 			EnemyParameters enemy_param_;
 
+			//状態遷移保持ポインタ
 			EnemyState* enemy_state_;
+
+			//状態遷移管理マップ
+			std::unordered_map<std::string, EnemyState*> state_map_;
 
 			//現在の状態を保持する変数
 			ANIM_STATUS anim_status_;

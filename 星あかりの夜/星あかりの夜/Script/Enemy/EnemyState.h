@@ -40,7 +40,7 @@ namespace starrynight
 			/**
 			 * @brief　 状態遷移を行うか判定する入力処理
 			 */
-			virtual EnemyState* Input(Enemy& _enemy) { return nullptr; }
+			virtual void Input(Enemy& _enemy) { }
 
 			/**
 			* @brief　 毎フレーム行われる更新処理
