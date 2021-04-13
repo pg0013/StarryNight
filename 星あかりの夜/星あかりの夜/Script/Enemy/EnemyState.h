@@ -16,7 +16,7 @@ namespace starrynight
 		class Enemy;
 
 		/**
-		 * @brief “G‚Ìó‘Ô‹K’èƒNƒ‰ƒX
+		 * @brief “G‚Ìó‘ÔŠî’êƒNƒ‰ƒX
 		 */
 		class EnemyState :
 			public ::state::StateBase
