@@ -85,6 +85,9 @@
     <Filter Include="ヘッダー ファイル\Server">
       <UniqueIdentifier>{d0f01317-0365-40a5-b5d5-f6a2642d7c13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Enemy\Enemy_State">
+      <UniqueIdentifier>{9ee59921-8ac6-4758-bda9-94f0c9b953d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Script\ApplicationMain.cpp">
@@ -161,21 +164,6 @@
     </ClCompile>
     <ClCompile Include="Script\Player\Jump.cpp">
       <Filter>ソース ファイル\Player\Player_Action</Filter>
-    </ClCompile>
-    <ClCompile Include="Script\Player\Move.cpp">
-      <Filter>ソース ファイル\Player\Player_Action</Filter>
-    </ClCompile>
-    <ClCompile Include="Script\Enemy\Attack.cpp">
-      <Filter>ソース ファイル\Enemy\Enemy_Action</Filter>
-    </ClCompile>
-    <ClCompile Include="Script\Enemy\Tracking.cpp">
-      <Filter>ソース ファイル\Enemy\Enemy_Action</Filter>
-    </ClCompile>
-    <ClCompile Include="Script\Enemy\Enemy_Move.cpp">
-      <Filter>ソース ファイル\Enemy\Enemy_Action</Filter>
-    </ClCompile>
-    <ClCompile Include="Script\Enemy\DecideMoveAmount.cpp">
-      <Filter>ソース ファイル\Enemy\Enemy_Action</Filter>
     </ClCompile>
     <ClCompile Include="Script\Effect\EffectServer.cpp">
       <Filter>ソース ファイル\Server</Filter>
@@ -275,6 +263,24 @@
     </ClCompile>
     <ClCompile Include="Script\Effect\PlayerTrailEffect.cpp">
       <Filter>ソース ファイル\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Enemy\EnemyMove.cpp">
+      <Filter>ソース ファイル\Enemy\Enemy_Action</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Enemy\EnemyAttackState.cpp">
+      <Filter>ソース ファイル\Enemy\Enemy_State</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Enemy\EnemyEscapeState.cpp">
+      <Filter>ソース ファイル\Enemy\Enemy_State</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Enemy\EnemyTrackingState.cpp">
+      <Filter>ソース ファイル\Enemy\Enemy_State</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Enemy\EnemyWaitState.cpp">
+      <Filter>ソース ファイル\Enemy\Enemy_State</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Player\PlayerMove.cpp">
+      <Filter>ソース ファイル\Player\Player_Action</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -400,6 +406,21 @@
     </ClInclude>
     <ClInclude Include="Script\Object\ObjectServer.h">
       <Filter>ヘッダー ファイル\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Enemy\EnemyAttackState.h">
+      <Filter>ヘッダー ファイル\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Enemy\EnemyEscapeState.h">
+      <Filter>ヘッダー ファイル\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Enemy\EnemyState.h">
+      <Filter>ヘッダー ファイル\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Enemy\EnemyWaitState.h">
+      <Filter>ヘッダー ファイル\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Enemy\EnemyTrackingState.h">
+      <Filter>ヘッダー ファイル\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
