@@ -33,8 +33,10 @@ void Star::Wait()
 			//画面のスクリーン座標によって音の左右バランスを設定
 			se_.Pan(static_cast<int>(utility::GetScreenPosFromWorldPos(position_).x));
 			//プレイヤーとの距離で音の音量を設定
-			float volume = 1.0f - VSize(VSub(MV1GetPosition(resource::ResourceServer::GetModelHandle("player")), position_)) / detect_length;
-			se_.SetVolume(volume);
+			float distance = 1.0f - VSize(VSub(MV1GetPosition(resource::ResourceServer::GetModelHandle("player")), position_)) / detect_length;
+			distance = utility::clamp(distance, 0.01f, 1.0f);
+			float volume = 20.0f * logf(distance);
+			se_.SetVolume_dB(volume);
 			se_.Play();
 		}
 

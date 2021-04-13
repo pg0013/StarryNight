@@ -51,6 +51,7 @@ void EnemyTrackingState::Input(Enemy& _enemy)
 	VECTOR enemy_position = _enemy.GetPosition();
 	float player_distance = VSize(VSub(player_position, enemy_position));
 	float player_distance_y = abs(player_position.y - enemy_position.y);
+	float detect_y_length = 200.0f;
 
 	//プレイヤーがダメージを受けたかどうか取得
 	bool player_damaged = false;
@@ -64,8 +65,16 @@ void EnemyTrackingState::Input(Enemy& _enemy)
 		}
 	}
 
-	//検出範囲からプレイヤーが出たか、プレイヤーがダメージ中の場合
+	//追跡範囲から出たかを確認
+	bool out_of_tracking = false;
 	if (player_distance > _enemy.GetDetectLength() ||
+		player_distance_y > detect_y_length)
+	{
+		out_of_tracking = true;
+	}
+
+	//検出範囲からプレイヤーが出たか、プレイヤーがダメージ中の場合
+	if (out_of_tracking == true ||
 		player_damaged == true)
 	{
 		//待機状態へ移行

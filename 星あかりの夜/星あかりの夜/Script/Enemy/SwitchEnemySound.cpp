@@ -24,10 +24,14 @@ void Enemy::SwitchEnemySound()
 			se_.RandomPitch(0.3f);
 			//スクリーン上の位置に対して、左右バランスを設定
 			se_.Pan(static_cast<int>(utility::GetScreenPosFromWorldPos(position_).x));
-			//プレイヤーとの距離に対して、音量を設定
-			float volume = 1.0f - VSize(VSub(MV1GetPosition(resource::ResourceServer::GetModelHandle("player")), position_)) / detect_length_;
-			se_.SetVolume(volume);
 
+			//プレイヤーとの距離に対して、音量を設定
+			float distance = 1.0f - VSize(VSub(MV1GetPosition(resource::ResourceServer::GetModelHandle("player")), position_)) / detect_length_;
+			//敵の足音は遠くでも少し聞こえるぐらいにするため、最小値を-12dBに設定
+			distance = utility::clamp(distance, 0.25f, 1.0f);
+			float volume = 20.0f * logf(distance);
+
+			se_.SetVolume_dB(volume);
 			se_.Play();
 		}
 		break;
