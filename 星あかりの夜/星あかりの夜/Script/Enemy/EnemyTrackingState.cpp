@@ -17,9 +17,7 @@ using namespace starrynight::enemy;
 EnemyTrackingState::EnemyTrackingState()
 {
 	attack_length_ = 70.0f;
-
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-	track_start_frame_ = mode_game->GetModeCount();
+	track_start_frame_ = 0;
 }
 
 EnemyTrackingState::~EnemyTrackingState()
@@ -28,6 +26,17 @@ EnemyTrackingState::~EnemyTrackingState()
 
 void EnemyTrackingState::Enter(Enemy& _enemy)
 {
+	//追跡開始フレームを記録
+	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	track_start_frame_ = mode_game->GetModeCount();
+
+	VECTOR position = _enemy.GetPosition();
+
+	//プレイヤー発見SEを再生
+	_enemy.attention_se_.Load("Resource/sound/enemy_se3.wav");
+	//スクリーン上の位置に対して、左右バランスを設定
+	_enemy.attention_se_.Pan(static_cast<int>(utility::GetScreenPosFromWorldPos(position).x));
+	_enemy.attention_se_.Play();
 }
 
 void EnemyTrackingState::Exit(Enemy& _enemy)
@@ -77,21 +86,11 @@ void EnemyTrackingState::Input(Enemy& _enemy)
 void EnemyTrackingState::Update(Enemy& _enemy)
 {
 	VECTOR move = { 0,0,0 };
-	VECTOR position = _enemy.GetPosition();
-	VECTOR rotation = _enemy.GetRotation();
 
 	//プレイヤーを発見してから、ワンモーションは移動しない
-	if (::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - track_start_frame_ < 25)
+	int stop_frame = 25;
+	if (::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - track_start_frame_ < stop_frame)
 	{
-		if (::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - track_start_frame_ == 1)
-		{
-			//プレイヤー発見SEを再生
-			_enemy.attention_se_.Load("Resource/sound/enemy_se3.wav");
-			//スクリーン上の位置に対して、左右バランスを設定
-			_enemy.attention_se_.Pan(static_cast<int>(utility::GetScreenPosFromWorldPos(position).x));
-			_enemy.attention_se_.Play();
-		}
-
 		//移動しないでその場で足踏み
 		move = { 0,0,0 };
 		_enemy.Move(move);
@@ -100,6 +99,8 @@ void EnemyTrackingState::Update(Enemy& _enemy)
 	}
 
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
+	VECTOR position = _enemy.GetPosition();
+	VECTOR rotation = _enemy.GetRotation();
 
 	float player_distance = VSize(VSub(player_position, position));
 

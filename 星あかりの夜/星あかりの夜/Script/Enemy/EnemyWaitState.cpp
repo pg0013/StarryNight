@@ -15,6 +15,7 @@ using namespace starrynight::enemy;
 
 EnemyWaitState::EnemyWaitState()
 {
+	waitstart_frame_ = 0;
 }
 
 EnemyWaitState::~EnemyWaitState()
@@ -25,6 +26,10 @@ void EnemyWaitState::Enter(Enemy& _enemy)
 {
 	_enemy.SetMoveStatus(Enemy::MOVE_STATUS::WAIT);
 	_enemy.SetAnimStatus(Enemy::ANIM_STATUS::WAIT);
+
+	//待機状態開始フレームを初期化
+	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	waitstart_frame_ = mode_game->GetModeCount();
 }
 
 void EnemyWaitState::Exit(Enemy& _enemy)
@@ -59,7 +64,7 @@ void EnemyWaitState::Input(Enemy& _enemy)
 		if (player_distance_y < 200 &&
 			player_damaged == false)
 		{
-			//追跡状態ポインタをnewしてポインタを返す
+			//追跡状態へ以降
 			_enemy.ChangeEnemyState("Tracking");
 		}
 	}
@@ -68,17 +73,13 @@ void EnemyWaitState::Input(Enemy& _enemy)
 void EnemyWaitState::Update(Enemy& _enemy)
 {
 	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
-	int elapsed_frame = mode_game->GetModeCount() - _enemy.GetStartFrame();
-
-	enemy::Enemy::MOVE_STATUS  old_status = _enemy.GetMoveStatus();
+	int elapsed_frame = mode_game->GetModeCount() - waitstart_frame_;
 
 	//索敵状態であれば、経過時間によって待機と直進を交互に繰り返す
-	//TODO
-
 	float random_rot_direction = 1.0f;
 	if (elapsed_frame % (60 * (GetRand(5) + 1)) == 0)
 	{
-		if (old_status == enemy::Enemy::MOVE_STATUS::WAIT)
+		if (_enemy.GetMoveStatus() == enemy::Enemy::MOVE_STATUS::WAIT)
 		{
 			_enemy.SetMoveStatus(enemy::Enemy::MOVE_STATUS::STRAIGHT);
 

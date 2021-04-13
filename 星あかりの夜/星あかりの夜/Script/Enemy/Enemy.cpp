@@ -58,9 +58,7 @@ Enemy::~Enemy()
 
 void Enemy::Initialize()
 {
-	//生成されたときのフレームを記録
-	start_frame_ = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount();
-
+	//状態管理マップを初期化
 	state_map_.clear();
 
 	//状態保持コンテナにポインタを保存

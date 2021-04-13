@@ -46,6 +46,9 @@ namespace starrynight
 			 * @param  _enemy インスタンスを持つクラスの参照
 			 */
 			void Update(Enemy& _enemy) override;
+
+		private:
+			int waitstart_frame_;//待機状態開始フレーム
         };
     }
 }

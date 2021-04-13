@@ -75,13 +75,6 @@ namespace starrynight
 			};
 
 			/**
-			 * @brief　 敵が生成されたフレームを取得する
-			 *
-			 * @return   生成されたフレーム
-			 */
-			int GetStartFrame() const { return start_frame_; }
-
-			/**
 			 * @brief　 プレイヤー検出距離を取得する
 			 *
 			 * @return   プレイヤー検出距離
@@ -222,8 +215,6 @@ namespace starrynight
 			float run_speed_;//移動速度
 			float rot_speed_;//回転速度
 			float detect_length_;//プレイヤー検出範囲
-
-			int start_frame_;//生成フレーム記録用変数
 
 			bool attacked_flag_;//攻撃したことを記録するフラグ
 
