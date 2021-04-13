@@ -227,7 +227,6 @@ namespace starrynight
 			float anim_total_time_;//アニメーション総再生時間
 			float anim_play_time_;//アニメーション再生時間
 			bool anim_loop_flag_;//アニメーションをループするかどうか
-
 		};
 	}
 }

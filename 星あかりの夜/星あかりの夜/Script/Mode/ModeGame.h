@@ -102,7 +102,9 @@ namespace starrynight
 			 *
 			 * @return　ゲームモードインスタンス
 			 */
-			ModeGame* GetModeGame() const { static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game")); }
+			static ModeGame* GetModeGame() {
+				return static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+			}
 
 			/**
 			 * @brief　 ゲームスコアを追加する

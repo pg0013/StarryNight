@@ -23,7 +23,7 @@ void Player::HoldSlingShot()
 	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
 
 	mode::ModeGame* mode_game =
-		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		mode::ModeGame::GetModeGame();
 
 	//éÀåÇç\Ç¶èàóù
 	SlingShotStance();
@@ -79,7 +79,7 @@ void Player::HoldSlingShot()
 
 void Player::SlingShotStance()
 {
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	if (status_ == STATUS::SHOOT_END)
 		return;
@@ -114,7 +114,7 @@ void Player::SlingShotStance()
 
 MV1_COLL_RESULT_POLY Player::CheckHitStar()
 {
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	MV1_COLL_RESULT_POLY hit_star;
 	hit_star.HitFlag = 0;
@@ -140,7 +140,7 @@ MV1_COLL_RESULT_POLY Player::CheckHitStar()
 
 void Player::Launch_Star(const VECTOR& _star_position)
 {
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	if (mode_game->ui_.timing_ui_.GetLaunchStarShoot() == false)
 		return;
@@ -194,7 +194,7 @@ void Player::SetShootRotation()
 
 void Player::SlingShotEnd()
 {
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	float shoot_anim_end = 80.0f;
 	if (anim_play_time_ < shoot_anim_end)
@@ -222,7 +222,7 @@ void Player::SlingShotEnd()
 			gameover_flag_ = true;
 
 			mode::ModeGame* mode_game =
-				static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+				mode::ModeGame::GetModeGame();
 			mode_game->SetNextMode(300, 60, GAME_OVER);
 		}
 

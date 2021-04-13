@@ -56,7 +56,7 @@ void TimingGame_UI::Process()
 	if (draw_timing_guide_ == false)
 	{
 		mode::ModeGame* mode_game =
-			static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+			mode::ModeGame::GetModeGame();
 
 		player_star_num_ = mode_game->GetPlayerStarNum() - 1;
 		return;
@@ -173,8 +173,7 @@ void TimingGame_UI::Render()
 
 void TimingGame_UI::CalcurateScore()
 {
-	mode::ModeGame* mode_game =
-		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	double score = static_cast<double>(mode_game->GetGameScore());
 	int regulations_score = mode_game->GetStageRegulationsScore();

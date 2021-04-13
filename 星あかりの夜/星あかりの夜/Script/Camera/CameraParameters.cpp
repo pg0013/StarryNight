@@ -17,7 +17,6 @@ CameraParameters::CameraParameters()
 
 CameraParameters::~CameraParameters()
 {
-
 }
 
 void CameraParameters::LoadCameraParameters(const std::vector<std::string>& _param_name)

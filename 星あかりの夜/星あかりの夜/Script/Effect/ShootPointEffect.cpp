@@ -34,7 +34,7 @@ void ShootPointEffect::Initialize()
 
 void ShootPointEffect::Process()
 {
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	//プレイヤーとの距離を算出
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));

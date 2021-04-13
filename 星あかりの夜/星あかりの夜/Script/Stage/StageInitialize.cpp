@@ -65,7 +65,7 @@ void Stage::InitStageModel()
 
 void Stage::InitStageStar()
 {
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	//Starモデルの配置情報を読み込み
 	auto handle_map = star_param_.GetMapModelParam();
@@ -88,7 +88,7 @@ void Stage::InitStageStar()
 
 void Stage::InitSkyStar()
 {
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	//星座の情報を読み込み
 	auto handle_map = skystar_param_.GetMapModelParam();
@@ -104,7 +104,7 @@ void Stage::InitSkyStar()
 
 void Stage::InitEnemy()
 {
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	//エネミーモデルの配置情報を読み込み
 	auto handle_map = enemy_param_.GetMapModelParam();
@@ -120,7 +120,7 @@ void Stage::InitEnemy()
 
 void Stage::InitStageEffect()
 {
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	//射撃ポイントにエフェクトを配置
 	handle shootpoint = resource::ResourceServer::GetModelHandle("ShootPoint_GEO1");

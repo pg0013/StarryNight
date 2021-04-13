@@ -12,36 +12,36 @@
 
 namespace starrynight
 {
-    namespace player
-    {
-        /**
-         * @brief  プレイヤーパラメータ読み込み処理
-         */
-        class PlayerParameters :
-            public parameters::Parameters
-        {
-        public:
-            PlayerParameters();
-            ~PlayerParameters();
+	namespace player
+	{
+		/**
+		 * @brief  プレイヤーパラメータ読み込み処理
+		 */
+		class PlayerParameters :
+			public parameters::Parameters
+		{
+		public:
+			PlayerParameters();
+			~PlayerParameters();
 
-            /**
-             * @brief　 プレイヤーパラメータをjsonファイルから読み込む
-             *
-             * @param  _param_name　パラメータ名を格納したコンテナ
-             */
-            void LoadPlayerParameters(const std::vector<std::string>& _param_name);
+			/**
+			 * @brief　 プレイヤーパラメータをjsonファイルから読み込む
+			 *
+			 * @param  _param_name　パラメータ名を格納したコンテナ
+			 */
+			void LoadPlayerParameters(const std::vector<std::string>& _param_name);
 
-            /**
-             * @brief　 mapからプレイヤーパラメータを取得する
-             *
-             * @param  _param_name　パラメータ名（jsonに記載）
-             * @return   パラメータ(float)
-             */
-            float GetPlayerParam(const std::string& _param_name) const;
+			/**
+			 * @brief　 mapからプレイヤーパラメータを取得する
+			 *
+			 * @param  _param_name　パラメータ名（jsonに記載）
+			 * @return   パラメータ(float)
+			 */
+			float GetPlayerParam(const std::string& _param_name) const;
 
-        private:
-            //プレイヤーパラメータ記録用変数
-            std::unordered_map<std::string, float> map_player_param_;
-        };
-    }
+		private:
+			//プレイヤーパラメータ記録用変数
+			std::unordered_map<std::string, float> map_player_param_;
+		};
+	}
 }

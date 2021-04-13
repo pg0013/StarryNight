@@ -28,7 +28,7 @@ void EnemyWaitState::Enter(Enemy& _enemy)
 	_enemy.SetAnimStatus(Enemy::ANIM_STATUS::WAIT);
 
 	//待機状態開始フレームを初期化
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 	waitstart_frame_ = mode_game->GetModeCount();
 }
 
@@ -38,7 +38,7 @@ void EnemyWaitState::Exit(Enemy& _enemy)
 
 void EnemyWaitState::Input(Enemy& _enemy)
 {
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	//プレイヤーがダメージを受けたかどうか取得
 	bool player_damaged = false;
@@ -72,7 +72,7 @@ void EnemyWaitState::Input(Enemy& _enemy)
 
 void EnemyWaitState::Update(Enemy& _enemy)
 {
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 	int elapsed_frame = mode_game->GetModeCount() - waitstart_frame_;
 
 	//索敵状態であれば、経過時間によって待機と直進を交互に繰り返す

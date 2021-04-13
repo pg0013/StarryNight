@@ -26,7 +26,7 @@ void EnemyAttackState::Enter(Enemy& _enemy)
 {
 	_enemy.SetMoveStatus(Enemy::MOVE_STATUS::ATTACK);
 
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	VECTOR position = _enemy.GetPosition();
 	VECTOR rotation = _enemy.GetRotation();

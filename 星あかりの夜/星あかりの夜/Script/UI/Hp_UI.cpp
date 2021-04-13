@@ -48,7 +48,7 @@ void Hp_UI::Render()
 void Hp_UI::UpdatePlayerHP()
 {
 	mode::ModeGame* mode_game =
-		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		mode::ModeGame::GetModeGame();
 
 	for (auto&& iter : (*mode_game->object_server_.List()))
 	{

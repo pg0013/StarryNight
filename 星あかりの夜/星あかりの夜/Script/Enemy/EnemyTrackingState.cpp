@@ -27,7 +27,7 @@ EnemyTrackingState::~EnemyTrackingState()
 void EnemyTrackingState::Enter(Enemy& _enemy)
 {
 	//追跡開始フレームを記録
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 	track_start_frame_ = mode_game->GetModeCount();
 
 	VECTOR position = _enemy.GetPosition();
@@ -45,7 +45,7 @@ void EnemyTrackingState::Exit(Enemy& _enemy)
 
 void EnemyTrackingState::Input(Enemy& _enemy)
 {
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 	VECTOR enemy_position = _enemy.GetPosition();

@@ -14,7 +14,7 @@ using namespace starrynight::star;
 
 void Star::Follow()
 {
-	mode::ModeGame* modegame = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* modegame = mode::ModeGame::GetModeGame();
 
 	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
 	player_position = VAdd(player_position, VGet(0.0f, 50.0f, 0.0f));

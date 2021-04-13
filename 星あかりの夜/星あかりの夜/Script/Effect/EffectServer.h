@@ -77,6 +77,3 @@ namespace starrynight
 		};
 	}
 }
-
-
-

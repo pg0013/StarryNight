@@ -27,7 +27,7 @@ namespace mode
 		SetCallOfCount(1);
 	}
 
-	ModeBase::~ModeBase(){}
+	ModeBase::~ModeBase() {}
 
 	bool ModeBase::Initialize()
 	{

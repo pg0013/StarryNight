@@ -11,15 +11,18 @@
 
 namespace starrynight
 {
-    namespace enemy
-    {
-        class EnemyAttackState :
-            public EnemyState
-        {
-        public:
-            EnemyAttackState();
+	namespace enemy
+	{
+		/**
+		 * @brief “G‚ÌUŒ‚ó‘ÔƒNƒ‰ƒX
+		 */
+		class EnemyAttackState :
+			public EnemyState
+		{
+		public:
+			EnemyAttackState();
 
-            ~EnemyAttackState();
+			~EnemyAttackState();
 
 			/**
 			 * @brief@ ó‘Ô‘JˆÚ‚Éˆê“xs‚í‚ê‚é“ü‚èŒûˆ—
@@ -47,7 +50,5 @@ namespace starrynight
 			 */
 			void Update(Enemy& _enemy) override;
 		};
-    }
+	}
 }
-
-

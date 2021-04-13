@@ -37,7 +37,7 @@ void PlayerTrailEffect::Process()
 	if (length < ANALOG_MIN)
 		length = 0.0f;
 
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 	//プレイヤーが星を持っていなければ、エフェクトを再生しない
 	if (mode_game->GetPlayerStarNum() == 0 ||
 		length == 0.0f)

@@ -112,7 +112,6 @@ namespace sound
 			*out = volume;
 			in++;
 			out++;
-
 		}
 		EndProcess();
 	}

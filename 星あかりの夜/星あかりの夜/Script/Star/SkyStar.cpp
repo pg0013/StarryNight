@@ -26,7 +26,7 @@ SkyStar::~SkyStar()
 
 void SkyStar::Initialize()
 {
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	float radius = 10000.0f;
 	float height = 6500.0f;

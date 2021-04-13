@@ -72,7 +72,7 @@ namespace mode
 		 *
 		 * @return 前フレームからの経過時間[s]
 		 */
-		float GetDeltaTime() const { return static_cast<float>(delta_time_/1000.0f); }
+		float GetDeltaTime() const { return static_cast<float>(delta_time_ / 1000.0f); }
 
 		/**
 		 * @brief   何フレームに何回Process()を呼ぶか設定 default : 1

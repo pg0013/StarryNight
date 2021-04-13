@@ -47,7 +47,7 @@ void Camera::ShootCamera()
 	ShootCameraInit();
 
 	mode::ModeGame* mode_game =
-		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		mode::ModeGame::GetModeGame();
 
 	//プレイヤーが星を選択したかどうかを取得
 	bool selected_star_flag = false;

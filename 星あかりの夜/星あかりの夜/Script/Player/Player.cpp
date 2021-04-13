@@ -75,7 +75,7 @@ void Player::Initialize()
 	effect::PlayerTrailEffect* trail_effect = NEW effect::PlayerTrailEffect();
 	trail_effect->PlayEffect();
 	trail_effect->SetPosition(position_);
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 	mode_game->effect_server_.Add(trail_effect);
 }
 
@@ -128,7 +128,7 @@ void Player::Damage()
 
 	//所持しているスターの数をリセットする
 	mode::ModeGame* mode_game =
-		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		mode::ModeGame::GetModeGame();
 	mode_game->SetPlayerStarNum(0);
 
 	//ダメージモーションが終了したら、待機へ移行
@@ -171,7 +171,7 @@ void Player::GameOver()
 
 	//ゲームオーバーへ移行
 	mode::ModeGame* mode_game =
-		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		mode::ModeGame::GetModeGame();
 	mode_game->SetNextMode(300, 60, GAME_OVER);
 }
 

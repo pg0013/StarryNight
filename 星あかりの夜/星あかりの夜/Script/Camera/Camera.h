@@ -107,7 +107,7 @@ namespace starrynight
 			 * @param  _near	ƒJƒƒ‰‚ÌNear
 			 * @param  _far		ƒJƒƒ‰‚ÌFar
 			 */
-			void SetClip(const float& _near,const float& _far)
+			void SetClip(const float& _near, const float& _far)
 			{
 				clip_.near_ = _near;
 				clip_.far_ = _far;

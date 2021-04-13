@@ -141,7 +141,7 @@ void ZodiacSignEffect::DrawCompleteEffect()
 
 	int elapsed_frame = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - start_frame_;
 
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	//経過フレームが星座エフェクト切り替え時であれば
 	if (elapsed_frame == switch_effect_frame_)
@@ -181,7 +181,7 @@ void ZodiacSignEffect::PlayEffectSound()
 
 	int elapsed_frame = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - start_frame_;
 
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	if (elapsed_frame == switch_effect_frame_ + complete_effect_startframe_)
 	{

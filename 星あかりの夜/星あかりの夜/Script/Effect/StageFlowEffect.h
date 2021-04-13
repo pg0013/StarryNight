@@ -1,7 +1,7 @@
 /**
  * @file    StageFlowEffect.h
  * @brief  ステージ上に漂う花びらなどのエフェクト
- * 
+ *
  * @author Takuya Fujisawa
  * @date   2021/03/03
  */
@@ -41,6 +41,3 @@ namespace starrynight
 		};
 	}
 }
-
-
-

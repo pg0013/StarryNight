@@ -10,7 +10,6 @@
 
 namespace sound
 {
-
 #define EFFECT_PARAMS 3
 
 	/**

@@ -54,7 +54,7 @@ void Star::Process()
 
 int Star::IsStageStarDraw()
 {
-	mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
 	bool star_draw_flag = true;
 

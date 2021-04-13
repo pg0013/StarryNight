@@ -59,7 +59,7 @@ void ShootEffect::Process()
 	if (camera::Camera::GetInstance()->GetStatus() != camera::Camera::STATUS::SHOOT)
 	{
 		mode::ModeGame* mode_game =
-			static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+			mode::ModeGame::GetModeGame();
 		mode_game->effect_server_.Delete(this);
 	}
 }

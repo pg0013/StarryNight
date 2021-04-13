@@ -172,7 +172,7 @@ void ModePauseMenu::NextMode()
 	}
 	else if (nextmode_ == RETURN)
 	{
-		mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 		mode_game->ui_.SetDrawUIFlag(true);
 		::mode::ModeServer::GetInstance()->Del(this);
 	}

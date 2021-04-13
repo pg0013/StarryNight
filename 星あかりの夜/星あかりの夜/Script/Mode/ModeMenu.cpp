@@ -202,6 +202,5 @@ bool ModeMenu::Render()
 	DrawRotaGraph(icon_x, icon_y, 1.0, 0.0, stage_num_graph_[cursol_], TRUE);
 	DrawRotaGraph(stage_goal_x, stage_goal_y, 1.0, 0.0, stage_goal_graph_, TRUE);
 
-
 	return true;
 }

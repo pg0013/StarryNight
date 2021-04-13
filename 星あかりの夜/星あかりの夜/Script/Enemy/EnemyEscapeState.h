@@ -11,15 +11,18 @@
 
 namespace starrynight
 {
-    namespace enemy
-    {
-        class EnemyEscapeState :
-            public EnemyState
-        {
-        public:
-            EnemyEscapeState();
+	namespace enemy
+	{
+		/**
+		 * @brief 敵の退避状態クラス
+		 */
+		class EnemyEscapeState :
+			public EnemyState
+		{
+		public:
+			EnemyEscapeState();
 
-            ~EnemyEscapeState();
+			~EnemyEscapeState();
 
 			/**
 			 * @brief　 状態遷移時に一度行われる入り口処理
@@ -47,7 +50,5 @@ namespace starrynight
 			 */
 			void Update(Enemy& _enemy) override;
 		};
-    }
+	}
 }
-
-

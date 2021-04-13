@@ -11,15 +11,18 @@
 
 namespace starrynight
 {
-    namespace enemy
-    {
-        class EnemyTrackingState :
-            public EnemyState
-        {
-        public:
-            EnemyTrackingState();
+	namespace enemy
+	{
+		/**
+		 * @brief 敵の追跡状態クラス
+		 */
+		class EnemyTrackingState :
+			public EnemyState
+		{
+		public:
+			EnemyTrackingState();
 
-            ~EnemyTrackingState();
+			~EnemyTrackingState();
 
 			/**
 			 * @brief　 状態遷移時に一度行われる入り口処理
@@ -50,9 +53,6 @@ namespace starrynight
 		private:
 			float attack_length_;//攻撃開始距離
 			int track_start_frame_;//敵の追跡開始フレーム
-
 		};
-    }
+	}
 }
-
-

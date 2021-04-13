@@ -50,7 +50,7 @@ void TimingRankEffect::Process()
 	if (elapsed_frame > effect_frame_)
 	{
 		mode::ModeGame* mode_game =
-			static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+			mode::ModeGame::GetModeGame();
 		mode_game->effect_server_.Delete(this);
 	}
 

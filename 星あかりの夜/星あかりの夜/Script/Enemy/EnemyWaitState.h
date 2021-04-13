@@ -11,15 +11,18 @@
 
 namespace starrynight
 {
-    namespace enemy
-    {
-        class EnemyWaitState :
-            public EnemyState
-        {
-        public:
-            EnemyWaitState();
+	namespace enemy
+	{
+		/**
+		 * @brief 敵の待機状態クラス
+		 */
+		class EnemyWaitState :
+			public EnemyState
+		{
+		public:
+			EnemyWaitState();
 
-            ~EnemyWaitState();
+			~EnemyWaitState();
 
 			/**
 			 * @brief　 状態遷移時に一度行われる入り口処理
@@ -49,6 +52,6 @@ namespace starrynight
 
 		private:
 			int waitstart_frame_;//待機状態開始フレーム
-        };
-    }
+		};
+	}
 }

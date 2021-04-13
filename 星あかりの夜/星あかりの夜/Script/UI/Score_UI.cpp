@@ -67,7 +67,7 @@ void Score_UI::Process()
 		blink_startframe_ = 0;
 
 		mode::ModeGame* mode_game =
-			static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+			mode::ModeGame::GetModeGame();
 		if (mode_game->GetStageStarNum() == 1)
 			se_.Load("Resource/sound/lastone_voice.wav");
 		else
@@ -79,7 +79,7 @@ void Score_UI::Process()
 void Score_UI::UpdatePlayerScore()
 {
 	mode::ModeGame* mode_game =
-		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		mode::ModeGame::GetModeGame();
 
 	SetPlayerScore(mode_game->GetStageStarNum() - mode_game->GetPlayerStarNum());
 }

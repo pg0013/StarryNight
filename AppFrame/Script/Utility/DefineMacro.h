@@ -11,7 +11,7 @@ constexpr int  DEBUG_FONT_SIZE = 20;
 //計算用マクロ
 constexpr float	PI = 3.1415926535897932386f;
 template<typename T>
-constexpr float DEG2RAD(T x){ return (((x) / 180.0f) * PI); }
+constexpr float DEG2RAD(T x) { return (((x) / 180.0f) * PI); }
 
 template<typename T>
 constexpr float  RAD2DEG(T x) { return (((x) * 180.0f) / PI); }

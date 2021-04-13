@@ -61,7 +61,7 @@ void ShootChargeEffect::Process()
 
 	//プレイヤーが射撃モードでないとき、または星が発射されたらエフェクトを消す
 	mode::ModeGame* mode_game =
-		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		mode::ModeGame::GetModeGame();
 
 	for (auto&& iter : (*mode_game->object_server_.List()))
 	{

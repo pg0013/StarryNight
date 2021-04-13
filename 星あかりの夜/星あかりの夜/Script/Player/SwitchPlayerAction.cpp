@@ -24,7 +24,7 @@ void Player::SwitchPlayerAction()
 	int key = appframe::ApplicationBase::GetInstance()->GetKey();
 
 	mode::ModeGame* mode_game =
-		static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		mode::ModeGame::GetModeGame();
 
 	//Navimesh‚Æ‚Ì“–‚½‚è”»’è
 	MV1_COLL_RESULT_POLY hit_poly_shootpoint;

@@ -89,7 +89,7 @@ namespace resource
 		 * @param 		  	_ysize   	分割画像の画像の高さ
 		 */
 		static void RegisterDivGraph(std::string _mode, std::string _filename, int _allnum,
-			int _xnum, int _ynum, int _xsize, int _ysize,bool _async);
+			int _xnum, int _ynum, int _xsize, int _ysize, bool _async);
 
 		/**
 		 * @fn	static WAVEReader ResourceServer::LoadSound(const TCHAR* _filename);
@@ -110,7 +110,7 @@ namespace resource
 		 * @param  _handlename　ハンドルマップに登録するハンドル名
 		 * @param  _async			非同期読み込みを行うフラグ
 		 */
-		static void RegisterModel(const std::string _foldername, const std::string _filename ,const std::string _handlename , bool _async);
+		static void RegisterModel(const std::string _foldername, const std::string _filename, const std::string _handlename, bool _async);
 
 		/**
 		 * @brief　リソースサーバ内の3Dモデルハンドルの取得.

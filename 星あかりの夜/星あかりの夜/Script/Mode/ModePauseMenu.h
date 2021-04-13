@@ -87,7 +87,5 @@ namespace starrynight
 			bool pushed_flag_;//メニュー選択済みフラグ
 			int select_frame_;//カーソルを動かしたときのフレーム
 		};
-
 	}
 }
-

@@ -60,7 +60,7 @@ void Star::Wait()
 		status_ = STATUS::FOLLOW;
 
 		//æ“¾‚µ‚½ƒXƒ^[‚Ì”‚ğ‘‚â‚·
-		mode::ModeGame* mode_game = static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+		mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 		mode_game->AddPlayerStarNum();
 		star_num_ = mode_game->GetPlayerStarNum();
 
