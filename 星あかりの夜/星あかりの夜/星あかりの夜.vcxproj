@@ -21,10 +21,12 @@
   <ItemGroup>
     <ClCompile Include="Script\ApplicationMain.cpp" />
     <ClCompile Include="Script\Camera\Camera.cpp" />
+    <ClCompile Include="Script\Camera\CameraMoveState.cpp" />
     <ClCompile Include="Script\Camera\CameraParameters.cpp" />
+    <ClCompile Include="Script\Camera\CameraShootState.cpp" />
+    <ClCompile Include="Script\Camera\CameraSkyStarState.cpp" />
     <ClCompile Include="Script\Camera\MoveCamera.cpp" />
     <ClCompile Include="Script\Camera\ShootCamera.cpp" />
-    <ClCompile Include="Script\Camera\SkyStarCamera.cpp" />
     <ClCompile Include="Script\Effect\DamageEffect.cpp" />
     <ClCompile Include="Script\Effect\EffectBase.cpp" />
     <ClCompile Include="Script\Effect\EffectServer.cpp" />
@@ -98,7 +100,11 @@
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h" />
     <ClInclude Include="Script\Camera\Camera.h" />
+    <ClInclude Include="Script\Camera\CameraMoveState.h" />
     <ClInclude Include="Script\Camera\CameraParameters.h" />
+    <ClInclude Include="Script\Camera\CameraShootState.h" />
+    <ClInclude Include="Script\Camera\CameraSkyStarState.h" />
+    <ClInclude Include="Script\Camera\CameraState.h" />
     <ClInclude Include="Script\Effect\DamageEffect.h" />
     <ClInclude Include="Script\Effect\EffectBase.h" />
     <ClInclude Include="Script\Effect\EffectServer.h" />

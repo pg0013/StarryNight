@@ -8,6 +8,8 @@
 #pragma once
 #include"appframe.h"
 #include"CameraParameters.h"
+#include"CameraState.h"
+#include<unordered_map>
 
 namespace starrynight
 {
@@ -52,6 +54,7 @@ namespace starrynight
 			 */
 			void Render();
 
+		public:
 			/**
 			 * @brief　 カメラ座標を取得する
 			 *
@@ -88,11 +91,32 @@ namespace starrynight
 			float GetCameraRad() const;
 
 			/**
-			 * @brief カメラとの距離を返す.
+			 * @brief 現在のカメラとの距離を返す.
 			 *
-			 * @return
+			 * @return　現在のカメラ位置とターゲットの距離
 			 */
 			float GetCameraLength() const;
+
+			/**
+			 * @brief　 カメラの移動速度を返す
+			 *
+			 * @return   移動速度
+			 */
+			float GetMoveCameraSpeed() const { return move_speed_; }
+
+			/**
+			 * @brief　 設定したカメラ距離を返す
+			 *
+			 * @return   カメラ距離
+			 */
+			float GetCameraDistance() const { return camera_distance_; }
+
+			/**
+			 * @brief　 カメラの回転速度を返す
+			 *
+			 * @return   回転速度
+			 */
+			float GetCameraRotSpeed() const { return rot_speed_; }
 
 			/**
 			 * @brief　 カメラのNear,Far設定を取得する
@@ -114,33 +138,16 @@ namespace starrynight
 			}
 
 			/**
+			 * @brief　 カメラの状態を指定した状態に変更する
+			 *
+			 * @param  _state_name　遷移するカメラ状態
+			 */
+			void ChangeCameraState(const std::string& _state_name);
+
+			/**
 			 * @brief　 カメラのデバッグメニューを表示
 			 */
 			void DrawDebugMenu();
-
-		public:
-			/**
-			 * @brief　移動時のカメラ制御処理
-			 *
-			 */
-			void MoveCamera();
-
-			/**
-			 * @brief　 射撃時のカメラ位置初期化処理
-			 *
-			 */
-			void ShootCameraInit();
-
-			/**
-			 * @brief　 射撃時のカメラ制御処理
-			 *
-			 */
-			void ShootCamera();
-
-			/**
-			 * @brief　 星座エフェクト完成時のカメラ位置初期化処理
-			 */
-			void SkyStarCameraInit();
 
 			/**
 			 * @brief 状態遷移用変数
@@ -172,6 +179,8 @@ namespace starrynight
 			CLIP clip_;//Near,Far設定構造体
 
 			STATUS status_;//状態遷移用変数
+			std::shared_ptr<CameraState> camera_state_;//状態遷移ポインタ
+			std::unordered_map<std::string, std::shared_ptr<CameraState>> state_map_;//状態管理マップ
 
 			//カメラパラメータ
 			CameraParameters camera_param_;
@@ -179,8 +188,6 @@ namespace starrynight
 			float move_speed_;//移動速度
 			float rot_speed_;//回転速度
 			float camera_distance_;//カメラ距離
-
-			VECTOR old_target_;//前フレームのプレイヤー座標
 		};
 	}
 }

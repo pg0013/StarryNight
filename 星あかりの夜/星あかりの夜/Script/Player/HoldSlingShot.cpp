@@ -202,10 +202,6 @@ void Player::SlingShotEnd()
 
 	if (mode_game->IsClearStage() == true)
 	{
-		//星座カメラモードへ移行
-		camera::Camera::GetInstance()->SkyStarCameraInit();
-		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::SKYSTAR);
-
 		//星座によって完成エフェクトの時間が違うので、次のモードへ移行する時間をステージごとに設定する
 		if (mode_game->GetStageName() == "haru_A")
 			mode_game->SetNextMode(420, 40, GAME_CLEAR);

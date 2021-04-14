@@ -83,6 +83,13 @@ namespace starrynight
 			bool GetSelectedStarFlag() const { return selected_skystar_flag_; }
 
 			/**
+			 * @brief　 アニメーション再生時間を取得する
+			 *
+			 * @return   アニメーション再生時間
+			 */
+			float GetAnimPlayTime() const { return anim_play_time_; }
+
+			/**
 			 * @brief　 プレイヤーの残りHPを返す
 			 *
 			 * @return   HP

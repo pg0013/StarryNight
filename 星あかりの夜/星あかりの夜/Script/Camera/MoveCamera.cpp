@@ -5,14 +5,18 @@
  * @author Takuya Fujisawa
  * @date   2021/02/05
  */
+#include"CameraMoveState.h"
 #include "Camera.h"
 #include"../Stage/Stage.h"
 #include<cmath>
 using namespace starrynight::camera;
 
-void Camera::MoveCamera()
+void CameraMoveState::MoveCamera(Camera& _camera)
 {
 	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
+
+	VECTOR position = _camera.GetPosition();
+	VECTOR target = _camera.GetTarget();
 
 	float stick_rx, stick_ry;//右アナログスティックの座標
 
@@ -21,26 +25,26 @@ void Camera::MoveCamera()
 	stick_ry = -x_input.ThumbRY / THUMB_MAX;
 
 	//カメラ角度を取得
-	float camera_rad = GetCameraRad();
+	float camera_rad = _camera.GetCameraRad();
 
 	//右スティックカメラ回転
-	VECTOR old_position = position_;
+	VECTOR old_position = position;
 
 	//カメラを左右に回転する
 	if (stick_rx > ANALOG_MIN)
-		camera_rad -= DEG2RAD(rot_speed_) * stick_rx;
+		camera_rad -= DEG2RAD(_camera.GetCameraRotSpeed()) * stick_rx;
 	if (stick_rx < -ANALOG_MIN)
-		camera_rad += DEG2RAD(rot_speed_) * -stick_rx;
+		camera_rad += DEG2RAD(_camera.GetCameraRotSpeed()) * -stick_rx;
 
 	//カメラの左右位置を更新
-	position_.x = target_.x + camera_distance_ * cos(camera_rad);
-	position_.z = target_.z + camera_distance_ * sin(camera_rad);
+	position.x = target.x + _camera.GetCameraDistance() * cos(camera_rad);
+	position.z = target.z + _camera.GetCameraDistance() * sin(camera_rad);
 
 	//カメラと壁の押し出し処理
 	while (1)
 	{
 		//プレイヤーのカプセル情報
-		VECTOR sphere_position = position_;
+		VECTOR sphere_position = position;
 		float radius = 60.0f;
 
 		//壁との当たり判定をとる
@@ -63,7 +67,7 @@ void Camera::MoveCamera()
 		normal = VNorm(normal);
 
 		//押し出し
-		position_ = VAdd(position_, VScale(normal, 0.5f));
+		position = VAdd(position, VScale(normal, 0.5f));
 
 		MV1CollResultPolyDimTerminate(hit_poly_wallpush);
 	}
@@ -71,30 +75,30 @@ void Camera::MoveCamera()
 	//カメラを上に移動する
 	if (stick_ry < -ANALOG_MIN)
 	{
-		position_.y += move_speed_;
+		position.y += _camera.GetMoveCameraSpeed();
 	}
 
 	//カメラの高さの上限を設定
 	float camera_max_y = MV1GetPosition(resource::ResourceServer::GetModelHandle("player")).y + 400.0f;
-	if (position_.y > camera_max_y)
-		position_.y = camera_max_y;
+	if (position.y > camera_max_y)
+		position.y = camera_max_y;
 
 	//カメラの高さを下に移動
 	if (stick_ry > ANALOG_MIN)
 	{
-		position_.y -= move_speed_;
+		position.y -= _camera.GetMoveCameraSpeed();
 	}
 
 	//カメラの高さの下限を設定
 	float camera_y_min = 80;
-	if (position_.y < camera_y_min)
-		position_.y = camera_y_min;
+	if (position.y < camera_y_min)
+		position.y = camera_y_min;
 
 	//カメラと床の押し出し処理
 	while (1)
 	{
 		//プレイヤーのカプセル情報
-		VECTOR sphere_position = position_;
+		VECTOR sphere_position = position;
 		float radius = 60.0f;
 
 		//床との当たり判定をとる
@@ -117,8 +121,10 @@ void Camera::MoveCamera()
 		normal = VNorm(normal);
 
 		//押し出し
-		position_ = VAdd(position_, VScale(normal, 0.5f));
+		position = VAdd(position, VScale(normal, 0.5f));
 
 		MV1CollResultPolyDimTerminate(hit_poly_floorpush);
 	}
+
+	_camera.SetPosition(position);
 }

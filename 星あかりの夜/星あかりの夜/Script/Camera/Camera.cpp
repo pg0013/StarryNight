@@ -6,6 +6,9 @@
  * @date    202012/11
  */
 #include "Camera.h"
+#include"CameraMoveState.h"
+#include"CameraShootState.h"
+#include"CameraSkyStarState.h"
 #include"../Stage/Stage.h"
 #include<cmath>
 using namespace starrynight::camera;
@@ -15,6 +18,7 @@ Camera* Camera::instance_ = nullptr;
 Camera::Camera()
 {
 	instance_ = this;
+	state_map_.clear();
 }
 
 Camera::~Camera()
@@ -44,21 +48,35 @@ void Camera::Initialize()
 	clip_.far_ = camera_param_.GetCameraParam("far");
 
 	status_ = STATUS::MOVE;
-	old_target_ = VGet(0, 5000, 0);
+	camera_state_ = std::make_shared<CameraMoveState>();
+	//状態ポインタをマップに登録
+	state_map_.emplace("Move", camera_state_);
+	state_map_.emplace("Shoot", std::make_shared<CameraShootState>());
+	state_map_.emplace("SkyStar", std::make_shared<CameraSkyStarState>());
+
 }
 
 void Camera::Process()
 {
-	switch (status_)
+	//状態の切り替え処理
+	camera_state_->Input(*this);
+	//現在の状態の更新処理
+	camera_state_->Update(*this);
+}
+
+void Camera::ChangeCameraState(const std::string& _state_name)
+{
+	auto iter = state_map_.find(_state_name);
+	if (iter != state_map_.end())
 	{
-	case STATUS::MOVE:
-		//移動用カメラ処理
-		MoveCamera();
-		break;
-	case STATUS::SHOOT:
-		//射撃用カメラ処理
-		ShootCamera();
-		break;
+		//現在の状態の終了処理を実行
+		camera_state_->Exit(*this);
+
+		//現在の状態から次の状態へ遷移
+		camera_state_ = iter->second;
+
+		//移行した状態の初期化処理を実行
+		camera_state_->Enter(*this);
 	}
 }
 

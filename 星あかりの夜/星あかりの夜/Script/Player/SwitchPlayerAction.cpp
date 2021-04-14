@@ -51,8 +51,6 @@ void Player::SwitchPlayerAction()
 
 	if (slingshot_flag_)
 	{
-		//射撃用のカメラに設定
-		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::SHOOT);
 		mode_game->ui_.SetDrawPlayerUIFlag(false);
 		//射撃アクションを行う
 		HoldSlingShot();
@@ -65,8 +63,6 @@ void Player::SwitchPlayerAction()
 		mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
 		//射撃チャージエフェクトのフラグを初期化
 		shoot_charge_effect_flag_ = true;
-		//移動カメラに設定
-		camera::Camera::GetInstance()->SetStatus(camera::Camera::STATUS::MOVE);
 
 		VECTOR old_position = position_;
 
