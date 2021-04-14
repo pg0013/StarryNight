@@ -9,7 +9,9 @@
 #pragma once
 #include"appframe.h"
 #include"../Object/ObjectBase.h"
+#include"PlayerState.h"
 #include"PlayerParameters.h"
+#include<unordered_map>
 
 namespace starrynight
 {
@@ -46,6 +48,13 @@ namespace starrynight
 			 * @brief　描画処理.
 			 */
 			void Render() override;
+
+			/**
+			 * @brief　 プレイヤーの状態を指定した状態に変更する
+			 *
+			 * @param  _state_name　指定する状態名
+			 */
+			void ChangePlayerState(const std::string& _state_name);
 
 			/**
 			 * @brief　 ダメージを受けたことを記録するフラグを設定する
@@ -130,6 +139,7 @@ namespace starrynight
 
 			//プレイヤー効果音
 			sound::PlayWAVE se_;
+
 		private:
 			/**
 			 * @brief　 移動処理
@@ -226,6 +236,11 @@ namespace starrynight
 		private:
 			//プレイヤーパラメータ保持クラス
 			PlayerParameters player_param_;
+
+			//プレイヤー状態ポインタ
+			std::shared_ptr<PlayerState> player_state_;
+			//プレイヤー状態保持マップ
+			std::unordered_map<std::string, std::shared_ptr<PlayerState>> state_map_;
 
 			int player_hp_;//プレイヤー体力
 

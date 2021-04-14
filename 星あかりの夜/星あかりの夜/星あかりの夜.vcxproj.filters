@@ -97,6 +97,9 @@
     <Filter Include="ソース ファイル\Camera\Camera_State">
       <UniqueIdentifier>{dabd3240-5388-42c3-ac4e-4e6fb1a91f11}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Player\Player_State">
+      <UniqueIdentifier>{41782896-307b-4c51-9e08-aed33a8fb329}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Script\ApplicationMain.cpp">
@@ -312,6 +315,18 @@
     <ClCompile Include="Script\Camera\CameraSkyStarState.cpp">
       <Filter>ソース ファイル\Camera\Camera_State</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Player\PlayerDamageState.cpp">
+      <Filter>ソース ファイル\Player\Player_State</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Player\PlayerJumpState.cpp">
+      <Filter>ソース ファイル\Player\Player_State</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Player\PlayerMoveState.cpp">
+      <Filter>ソース ファイル\Player\Player_State</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Player\PlayerShootState.cpp">
+      <Filter>ソース ファイル\Player\Player_State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\ApplicationMain.h">
@@ -475,6 +490,21 @@
     </ClInclude>
     <ClInclude Include="Script\Camera\CameraSkyStarState.h">
       <Filter>ヘッダー ファイル\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Player\PlayerState.h">
+      <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Player\PlayerDamageState.h">
+      <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Player\PlayerJumpState.h">
+      <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Player\PlayerMoveState.h">
+      <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Player\PlayerShootState.h">
+      <Filter>ヘッダー ファイル\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

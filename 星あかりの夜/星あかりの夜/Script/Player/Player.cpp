@@ -6,6 +6,10 @@
  * @date    202012/16
  */
 #include "Player.h"
+#include"PlayerMoveState.h"
+#include"PlayerJumpState.h"
+#include"PlayerShootState.h"
+#include"PlayerDamageState.h"
 #include"../Mode/ModeGame.h"
 #include"../Effect/PlayerTrailEffect.h"
 #include<vector>
@@ -52,6 +56,8 @@ Player::Player(const std::string& _stage_name)
 	gameover_flag_ = false;
 
 	status_ = STATUS::NONE;
+	player_state_ = std::make_shared<PlayerMoveState>();
+
 	anim_attach_index_ = -1;
 	old_anim_attach_index_ = anim_attach_index_;
 	anim_rate_ = 1.0f;
@@ -66,11 +72,17 @@ Player::Player(const std::string& _stage_name)
 
 Player::~Player()
 {
+	state_map_.clear();
 }
 
 void Player::Initialize()
 {
 	ObjectBase::Initialize();
+
+	state_map_.emplace("Move", player_state_);
+	state_map_.emplace("Jump", std::make_shared<PlayerJumpState>());
+	state_map_.emplace("Shoot", std::make_shared<PlayerShootState>());
+	state_map_.emplace("Damage", std::make_shared<PlayerDamageState>());
 
 	effect::PlayerTrailEffect* trail_effect = NEW effect::PlayerTrailEffect();
 	trail_effect->PlayEffect();
@@ -85,6 +97,11 @@ void Player::Process()
 
 	SwitchPlayerAction();
 
+	//状態切り替え処理
+	player_state_->Input(*this);
+	//現在の状態の更新処理
+	player_state_->Update(*this);
+
 	OutOfStage();
 	GameOver();
 
@@ -92,6 +109,22 @@ void Player::Process()
 	SwitchPlayerSound();
 
 	PlayerAnimationBlend();
+}
+
+void Player::ChangePlayerState(const std::string& _state_name)
+{
+	auto iter = state_map_.find(_state_name);
+	if (iter != state_map_.end())
+	{
+		//現在の状態の終了処理を実行
+		player_state_->Exit(*this);
+
+		//現在の状態から次の状態へ遷移
+		player_state_ = iter->second;
+
+		//移行した状態の初期化処理を実行
+		player_state_->Enter(*this);
+	}
 }
 
 void Player::Damage()

@@ -65,8 +65,12 @@
     <ClCompile Include="Script\Player\HoldSlingShot.cpp" />
     <ClCompile Include="Script\Player\Jump.cpp" />
     <ClCompile Include="Script\Player\Player.cpp" />
+    <ClCompile Include="Script\Player\PlayerDamageState.cpp" />
+    <ClCompile Include="Script\Player\PlayerJumpState.cpp" />
     <ClCompile Include="Script\Player\PlayerMove.cpp" />
+    <ClCompile Include="Script\Player\PlayerMoveState.cpp" />
     <ClCompile Include="Script\Player\PlayerParameters.cpp" />
+    <ClCompile Include="Script\Player\PlayerShootState.cpp" />
     <ClCompile Include="Script\Player\SwitchPlayerAction.cpp" />
     <ClCompile Include="Script\Player\SwitchPlayerAnimation.cpp" />
     <ClCompile Include="Script\Player\SwitchPlayerSound.cpp" />
@@ -136,7 +140,12 @@
     <ClInclude Include="Script\Object\ObjectBase.h" />
     <ClInclude Include="Script\Object\ObjectServer.h" />
     <ClInclude Include="Script\Player\Player.h" />
+    <ClInclude Include="Script\Player\PlayerDamageState.h" />
+    <ClInclude Include="Script\Player\PlayerJumpState.h" />
+    <ClInclude Include="Script\Player\PlayerMoveState.h" />
     <ClInclude Include="Script\Player\PlayerParameters.h" />
+    <ClInclude Include="Script\Player\PlayerShootState.h" />
+    <ClInclude Include="Script\Player\PlayerState.h" />
     <ClInclude Include="Script\Stage\Stage.h" />
     <ClInclude Include="Script\Stage\StageParameters.h" />
     <ClInclude Include="Script\Star\SkyStar.h" />
