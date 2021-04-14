@@ -42,6 +42,8 @@ namespace starrynight
 
 			/**
 			 * @brief　 状態遷移を行うか判定する入力処理
+			 * 
+			 * @param  _enemy インスタンスを持つクラスの参照
 			 */
 			virtual void Input(Enemy& _enemy) { }
 

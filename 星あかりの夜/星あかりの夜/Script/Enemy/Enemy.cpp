@@ -39,7 +39,7 @@ Enemy::Enemy(std::string _handle_name)
 	//状態遷移用変数を初期化
 	anim_status_ = ANIM_STATUS::WAIT;
 	move_status_ = MOVE_STATUS::WAIT;
-	enemy_state_ = NEW EnemyWaitState();
+	enemy_state_ = std::make_shared<EnemyWaitState>();
 
 	//アニメーション情報を初期化
 	anim_attach_index_ = -1;
@@ -52,8 +52,7 @@ Enemy::Enemy(std::string _handle_name)
 
 Enemy::~Enemy()
 {
-	for (auto&& state : state_map_)
-		delete state.second;
+	state_map_.clear();
 }
 
 void Enemy::Initialize()
@@ -62,14 +61,10 @@ void Enemy::Initialize()
 	state_map_.clear();
 
 	//状態保持コンテナにポインタを保存
-	EnemyWaitState* wait_state = NEW EnemyWaitState();
-	state_map_.emplace("Wait", wait_state);
-	EnemyTrackingState* tracking_state = NEW EnemyTrackingState();
-	state_map_.emplace("Tracking", tracking_state);
-	EnemyAttackState* attack_state = NEW EnemyAttackState();
-	state_map_.emplace("Attack", attack_state);
-	EnemyEscapeState* escape_state = NEW EnemyEscapeState();
-	state_map_.emplace("Escape", escape_state);
+	state_map_.emplace("Wait", enemy_state_);
+	state_map_.emplace("Tracking", std::make_shared<EnemyTrackingState>());
+	state_map_.emplace("Attack", std::make_shared<EnemyAttackState>());
+	state_map_.emplace("Escape", std::make_shared<EnemyEscapeState>());
 }
 
 void Enemy::Process()

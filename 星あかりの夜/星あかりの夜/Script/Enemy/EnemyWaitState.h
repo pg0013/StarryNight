@@ -51,6 +51,13 @@ namespace starrynight
 			void Update(Enemy& _enemy) override;
 
 		private:
+			/**
+			 * @brief　 待機状態処理
+			 *
+			 * @param  _enemy　インスタンスを持つクラスの参照
+			 */
+			void Wait(Enemy& _enemy);
+
 			int waitstart_frame_;//待機状態開始フレーム
 		};
 	}

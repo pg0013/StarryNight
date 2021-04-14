@@ -88,6 +88,9 @@
     <Filter Include="ソース ファイル\Enemy\Enemy_State">
       <UniqueIdentifier>{9ee59921-8ac6-4758-bda9-94f0c9b953d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\StageStar\StarState">
+      <UniqueIdentifier>{4b4bb91a-1a0c-42a9-935b-38969f6a596a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Script\ApplicationMain.cpp">
@@ -120,7 +123,7 @@
     <ClCompile Include="Script\Stage\CollisionToStage.cpp">
       <Filter>ソース ファイル\Stage</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Star\Star.cpp">
+    <ClCompile Include="Script\Star\StageStar.cpp">
       <Filter>ソース ファイル\StageStar</Filter>
     </ClCompile>
     <ClCompile Include="Script\Star\StarParameter.cpp">
@@ -264,6 +267,9 @@
     <ClCompile Include="Script\Effect\PlayerTrailEffect.cpp">
       <Filter>ソース ファイル\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Player\PlayerMove.cpp">
+      <Filter>ソース ファイル\Player\Player_Action</Filter>
+    </ClCompile>
     <ClCompile Include="Script\Enemy\EnemyMove.cpp">
       <Filter>ソース ファイル\Enemy\Enemy_Action</Filter>
     </ClCompile>
@@ -279,8 +285,20 @@
     <ClCompile Include="Script\Enemy\EnemyWaitState.cpp">
       <Filter>ソース ファイル\Enemy\Enemy_State</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Player\PlayerMove.cpp">
-      <Filter>ソース ファイル\Player\Player_Action</Filter>
+    <ClCompile Include="Script\Star\StageStarWaitState.cpp">
+      <Filter>ソース ファイル\StageStar\StarState</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Star\StageStarFollowState.cpp">
+      <Filter>ソース ファイル\StageStar\StarState</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Star\StageStarDiffusionState.cpp">
+      <Filter>ソース ファイル\StageStar\StarState</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Enemy\EnemyWait.cpp">
+      <Filter>ソース ファイル\Enemy\Enemy_Action</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Enemy\EnemyTracking.cpp">
+      <Filter>ソース ファイル\Enemy\Enemy_Action</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -311,7 +329,7 @@
     <ClInclude Include="Script\Camera\CameraParameters.h">
       <Filter>ヘッダー ファイル\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Script\Star\Star.h">
+    <ClInclude Include="Script\Star\StageStar.h">
       <Filter>ヘッダー ファイル\Star</Filter>
     </ClInclude>
     <ClInclude Include="Script\Star\StarParameter.h">
@@ -416,11 +434,23 @@
     <ClInclude Include="Script\Enemy\EnemyState.h">
       <Filter>ヘッダー ファイル\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Script\Enemy\EnemyTrackingState.h">
+      <Filter>ヘッダー ファイル\Enemy</Filter>
+    </ClInclude>
     <ClInclude Include="Script\Enemy\EnemyWaitState.h">
       <Filter>ヘッダー ファイル\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Script\Enemy\EnemyTrackingState.h">
-      <Filter>ヘッダー ファイル\Enemy</Filter>
+    <ClInclude Include="Script\Star\StageStarState.h">
+      <Filter>ヘッダー ファイル\Star</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Star\StageStarDiffusionState.h">
+      <Filter>ヘッダー ファイル\Star</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Star\StageStarFollowState.h">
+      <Filter>ヘッダー ファイル\Star</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Star\StageStarWaitState.h">
+      <Filter>ヘッダー ファイル\Star</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

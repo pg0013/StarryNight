@@ -33,6 +33,7 @@
     <ClInclude Include="Script\Sound\MyStereoDownMixXAPO.h" />
     <ClInclude Include="Script\Sound\PlayWAVE.h" />
     <ClInclude Include="Script\Sound\WAVEReader.h" />
+    <ClInclude Include="Script\State\StateBase.h" />
     <ClInclude Include="Script\Utility\DefineMacro.h" />
     <ClInclude Include="Script\Utility\Utility.h" />
   </ItemGroup>

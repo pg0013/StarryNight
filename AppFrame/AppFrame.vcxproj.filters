@@ -52,6 +52,9 @@
     <Filter Include="ヘッダー ファイル\Parameters">
       <UniqueIdentifier>{9ff2bcb2-e99a-4079-b486-508235955a9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\State">
+      <UniqueIdentifier>{974ea5b6-d1ab-42a0-a202-b6135c0ed4cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\Application\ApplicationBase.h">
@@ -101,6 +104,9 @@
     </ClInclude>
     <ClInclude Include="Script\Utility\DefineMacro.h">
       <Filter>ヘッダー ファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\State\StateBase.h">
+      <Filter>ヘッダー ファイル\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

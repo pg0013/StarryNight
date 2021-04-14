@@ -6,7 +6,10 @@
  * @date   2021/01/23
  */
 
-#include "Star.h"
+#include "StageStar.h"
+#include"StageStarWaitState.h"
+#include"StageStarFollowState.h"
+#include"StageStarDiffusionState.h"
 #include"../Player/Player.h"
 #include"../Mode/ModeGame.h"
 
@@ -18,15 +21,19 @@ Star::Star()
 	rot_speed_ = 5.0f;
 	jump_height_ = 4.5f;
 	jump_speed_ = -jump_height_;
-	gravity_ = 0.1f;
 	star_num_ = 0;
-	follow_interval_ = 100.0f;
-	old_player_position_ = { 0,0,0 };
+
+	gravity_ = 0.1f;
 	ground_position_y_ = 0.0f;
+
+	//初期は待機状態に初期化
+	stagestar_state_ = std::make_shared<StageStarWaitState>();
+	state_map_.clear();
 }
 
 Star::~Star()
 {
+	state_map_.clear();
 }
 
 void Star::Initialize()
@@ -34,21 +41,35 @@ void Star::Initialize()
 	position_ = MV1GetPosition(handle_);
 	rotation_ = MV1GetRotationXYZ(handle_);
 	ground_position_y_ = position_.y;
+
+	//状態ポインタを管理マップに追加
+	state_map_.emplace("Wait", stagestar_state_);
+	state_map_.emplace("Follow", std::make_shared<StageStarFollowState>());
+	state_map_.emplace("Diffusion", std::make_shared<StageStarDiffusionState>());
 }
 
 void Star::Process()
 {
-	switch (status_)
+	//状態遷移の切り替え
+	stagestar_state_->Input(*this);
+	//状態の更新処理
+	stagestar_state_->Update(*this);
+}
+
+void Star::ChangeStageStarState(const std::string& _state_name)
+{
+	auto iter = state_map_.find(_state_name);
+
+	if (iter != state_map_.end())
 	{
-	case starrynight::star::Star::STATUS::WAIT:
-		Wait();
-		break;
-	case starrynight::star::Star::STATUS::FOLLOW:
-		Follow();
-		break;
-	case starrynight::star::Star::STATUS::DIFFUSION:
-		Diffusion();
-		break;
+		//現在の状態の出口処理を実行
+		stagestar_state_->Exit(*this);
+
+		//指定した状態に切り替え
+		stagestar_state_ = iter->second;
+
+		//切り替えた状態の入口処理を実行
+		stagestar_state_->Enter(*this);
 	}
 }
 

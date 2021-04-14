@@ -201,10 +201,10 @@ namespace starrynight
 			EnemyParameters enemy_param_;
 
 			//状態遷移保持ポインタ
-			EnemyState* enemy_state_;
+			std::shared_ptr<EnemyState> enemy_state_;
 
 			//状態遷移管理マップ
-			std::unordered_map<std::string, EnemyState*> state_map_;
+			std::unordered_map<std::string, std::shared_ptr<EnemyState>> state_map_;
 
 			//現在の状態を保持する変数
 			ANIM_STATUS anim_status_;

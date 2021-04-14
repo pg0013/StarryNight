@@ -36,15 +36,18 @@
     <ClCompile Include="Script\Effect\StageFlowEffect.cpp" />
     <ClCompile Include="Script\Effect\TimingRankEffect.cpp" />
     <ClCompile Include="Script\Effect\ZodiacSignEffect.cpp" />
-    <ClCompile Include="Script\Enemy\Attack.cpp" />
-    <ClCompile Include="Script\Enemy\DecideMoveAmount.cpp" />
     <ClCompile Include="Script\Enemy\Enemy.cpp" />
+    <ClCompile Include="Script\Enemy\EnemyAttackState.cpp" />
+    <ClCompile Include="Script\Enemy\EnemyEscapeState.cpp" />
+    <ClCompile Include="Script\Enemy\EnemyMove.cpp" />
     <ClCompile Include="Script\Enemy\EnemyParameters.cpp" />
-    <ClCompile Include="Script\Enemy\Enemy_Move.cpp" />
+    <ClCompile Include="Script\Enemy\EnemyTracking.cpp" />
+    <ClCompile Include="Script\Enemy\EnemyTrackingState.cpp" />
+    <ClCompile Include="Script\Enemy\EnemyWait.cpp" />
+    <ClCompile Include="Script\Enemy\EnemyWaitState.cpp" />
     <ClCompile Include="Script\Enemy\SwitchEnemyAnimation.cpp" />
     <ClCompile Include="Script\Enemy\SwitchEnemySound.cpp" />
     <ClCompile Include="Script\Enemy\SwitchStatus.cpp" />
-    <ClCompile Include="Script\Enemy\Tracking.cpp" />
     <ClCompile Include="Script\Mode\ModeGame.cpp" />
     <ClCompile Include="Script\Mode\ModeGameClear.cpp" />
     <ClCompile Include="Script\Mode\ModeGameOver.cpp" />
@@ -59,8 +62,8 @@
     <ClCompile Include="Script\Object\ObjectServer.cpp" />
     <ClCompile Include="Script\Player\HoldSlingShot.cpp" />
     <ClCompile Include="Script\Player\Jump.cpp" />
-    <ClCompile Include="Script\Player\Move.cpp" />
     <ClCompile Include="Script\Player\Player.cpp" />
+    <ClCompile Include="Script\Player\PlayerMove.cpp" />
     <ClCompile Include="Script\Player\PlayerParameters.cpp" />
     <ClCompile Include="Script\Player\SwitchPlayerAction.cpp" />
     <ClCompile Include="Script\Player\SwitchPlayerAnimation.cpp" />
@@ -70,13 +73,22 @@
     <ClCompile Include="Script\Stage\Stage.cpp" />
     <ClCompile Include="Script\Stage\StageInitialize.cpp" />
     <ClCompile Include="Script\Stage\StageParameters.cpp" />
-    <ClCompile Include="Script\Star\Diffusion.cpp" />
-    <ClCompile Include="Script\Star\Follow.cpp" />
+    <ClCompile Include="Script\Star\Diffusion.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Script\Star\Follow.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Script\Star\SkyStar.cpp" />
     <ClCompile Include="Script\Star\SkyStarParameter.cpp" />
-    <ClCompile Include="Script\Star\Star.cpp" />
+    <ClCompile Include="Script\Star\StageStarDiffusionState.cpp" />
+    <ClCompile Include="Script\Star\StageStarFollowState.cpp" />
+    <ClCompile Include="Script\Star\StageStarWaitState.cpp" />
+    <ClCompile Include="Script\Star\StageStar.cpp" />
     <ClCompile Include="Script\Star\StarParameter.cpp" />
-    <ClCompile Include="Script\Star\Wait.cpp" />
+    <ClCompile Include="Script\Star\Wait.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Script\UI\Hp_UI.cpp" />
     <ClCompile Include="Script\UI\Score_UI.cpp" />
     <ClCompile Include="Script\UI\Shoot_UI.cpp" />
@@ -99,7 +111,12 @@
     <ClInclude Include="Script\Effect\TimingRankEffect.h" />
     <ClInclude Include="Script\Effect\ZodiacSignEffect.h" />
     <ClInclude Include="Script\Enemy\Enemy.h" />
+    <ClInclude Include="Script\Enemy\EnemyAttackState.h" />
+    <ClInclude Include="Script\Enemy\EnemyEscapeState.h" />
     <ClInclude Include="Script\Enemy\EnemyParameters.h" />
+    <ClInclude Include="Script\Enemy\EnemyState.h" />
+    <ClInclude Include="Script\Enemy\EnemyTrackingState.h" />
+    <ClInclude Include="Script\Enemy\EnemyWaitState.h" />
     <ClInclude Include="Script\Mode\ModeGame.h" />
     <ClInclude Include="Script\Mode\ModeGameClear.h" />
     <ClInclude Include="Script\Mode\ModeGameOver.h" />
@@ -118,7 +135,11 @@
     <ClInclude Include="Script\Stage\StageParameters.h" />
     <ClInclude Include="Script\Star\SkyStar.h" />
     <ClInclude Include="Script\Star\SkyStarParameter.h" />
-    <ClInclude Include="Script\Star\Star.h" />
+    <ClInclude Include="Script\Star\StageStarDiffusionState.h" />
+    <ClInclude Include="Script\Star\StageStarFollowState.h" />
+    <ClInclude Include="Script\Star\StageStarState.h" />
+    <ClInclude Include="Script\Star\StageStarWaitState.h" />
+    <ClInclude Include="Script\Star\StageStar.h" />
     <ClInclude Include="Script\Star\StarParameter.h" />
     <ClInclude Include="Script\UI\Hp_UI.h" />
     <ClInclude Include="Script\UI\Score_UI.h" />

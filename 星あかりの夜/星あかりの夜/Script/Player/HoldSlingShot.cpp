@@ -8,7 +8,7 @@
 
 #include"Player.h"
 #include"../Camera/Camera.h"
-#include"../Star/Star.h"
+#include"../Star/StageStar.h"
 #include"../Star/SkyStar.h"
 #include"../Effect/ShootChargeEffect.h"
 #include"../Effect/ShootEffect.h"

@@ -7,7 +7,7 @@
  */
 
 #include "Stage.h"
-#include"../Star/Star.h"
+#include"../Star/StageStar.h"
 #include"../Star/SkyStar.h"
 #include"../Enemy/Enemy.h"
 #include"../Effect/ShootPointEffect.h"

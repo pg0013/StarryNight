@@ -51,6 +51,13 @@ namespace starrynight
 			void Update(Enemy& _enemy) override;
 
 		private:
+			/**
+			 * @brief　 敵のプレイヤー追跡処理
+			 *
+			 * @param  _enemy　インスタンスを持つクラスの参照
+			 */
+			void Tracking(Enemy& _enemy);
+
 			float attack_length_;//攻撃開始距離
 			int track_start_frame_;//敵の追跡開始フレーム
 		};
