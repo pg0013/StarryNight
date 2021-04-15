@@ -103,10 +103,10 @@ void PlayerJumpState::Update(Player& _player)
 void PlayerJumpState::SwitchJumpState(Player& _player)
 {
 	//ジャンプアニメーションを設定
-	if (jump_speed_ < 0.0f)
+	if (jump_speed_ <= 0.0f)
 	{
-		VECTOR start_line = VAdd(_player.GetPosition(), VGet(0, 40.0f, 0));
-		VECTOR end_line = VAdd(_player.GetPosition(), VGet(0, -40.0f, 0));
+		VECTOR start_line = VAdd(position_, VGet(0, 40.0f, 0));
+		VECTOR end_line = VAdd(position_, VGet(0, -40.0f, 0));
 
 		//Navimeshとの当たり判定
 		MV1_COLL_RESULT_POLY hit_jump_floor;
@@ -116,7 +116,7 @@ void PlayerJumpState::SwitchJumpState(Player& _player)
 		{
 			_player.SetPlayerStatus(Player::STATUS::JUMP_END);
 
-			if (_player.GetAnimPlayTime() != 0)
+			if (_player.GetAnimPlayTime() > 0)
 				return;
 
 			//高い音から落ちたらボイスを再生する
