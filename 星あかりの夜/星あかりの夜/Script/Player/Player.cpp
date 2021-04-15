@@ -6,6 +6,7 @@
  * @date    202012/16
  */
 #include "Player.h"
+#include"PlayerWaitState.h"
 #include"PlayerMoveState.h"
 #include"PlayerJumpState.h"
 #include"PlayerShootState.h"
@@ -38,34 +39,21 @@ Player::Player(const std::string& _stage_name)
 		SetRotation(VGet(0, DEG2RAD(-13.65f), 0));
 	}
 
-	walk_speed_ = player_param_.GetPlayerParam("walk_speed");
-	run_speed_ = player_param_.GetPlayerParam("run_speed");
-	rot_speed_ = player_param_.GetPlayerParam("rot_speed");
 
 	player_hp_ = 3;
-
-	jump_speed_ = 0.0f;
-	jump_height_ = 15.0f;
-	gravity_ = 0.5f;
-	jump_flag_ = false;
 	floor_type_ = -1;
 
 	damage_flag_ = false;
-	damage_anim_flag_ = false;
-
-	gameover_flag_ = false;
+	slingshot_flag_ = false;
+	selected_skystar_flag_ = false;
 
 	status_ = STATUS::NONE;
-	player_state_ = std::make_shared<PlayerMoveState>();
+	player_state_ = std::make_shared<PlayerWaitState>();
 
 	anim_attach_index_ = -1;
 	old_anim_attach_index_ = anim_attach_index_;
 	anim_rate_ = 1.0f;
 	anim_loop_flag_ = true;
-
-	slingshot_flag_ = false;
-	selected_skystar_flag_ = false;
-	shoot_charge_effect_flag_ = true;
 
 	Initialize();
 }
@@ -79,8 +67,9 @@ void Player::Initialize()
 {
 	ObjectBase::Initialize();
 
-	state_map_.emplace("Move", player_state_);
-	state_map_.emplace("Jump", std::make_shared<PlayerJumpState>());
+	state_map_.emplace("Wait", player_state_);
+	state_map_.emplace("Move", std::make_shared<PlayerMoveState>(*this));
+	state_map_.emplace("Jump", std::make_shared<PlayerJumpState>(*this));
 	state_map_.emplace("Shoot", std::make_shared<PlayerShootState>());
 	state_map_.emplace("Damage", std::make_shared<PlayerDamageState>());
 
@@ -97,13 +86,7 @@ void Player::Process()
 
 	SwitchPlayerAction();
 
-	//状態切り替え処理
-	player_state_->Input(*this);
-	//現在の状態の更新処理
-	player_state_->Update(*this);
-
 	OutOfStage();
-	GameOver();
 
 	SwitchPlayerAnimation(old_status);
 	SwitchPlayerSound();
@@ -127,52 +110,6 @@ void Player::ChangePlayerState(const std::string& _state_name)
 	}
 }
 
-void Player::Damage()
-{
-	if (damage_anim_flag_ == false)
-		return;
-
-	if (status_ != STATUS::DAMAGE)
-		anim_play_time_ = 0;
-
-	status_ = STATUS::DAMAGE;
-
-	if (jump_flag_)
-	{
-		position_.y += jump_speed_;
-
-		//腰から地面までの線分ベクトル
-		VECTOR start_line = VAdd(position_, VGet(0, 40.0f, 0));
-		VECTOR end_line = VAdd(position_, VGet(0, -5.0f, 0));
-
-		//Navimeshとの当たり判定
-		MV1_COLL_RESULT_POLY hit_poly_floor;
-		hit_poly_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
-
-		//ジャンプ開始処理
-		if (hit_poly_floor.HitFlag)
-		{
-			position_.y = hit_poly_floor.HitPosition.y;
-			jump_flag_ = false;
-		}
-		//ジャンプ加速処理
-		jump_speed_ -= gravity_;
-	}
-
-	//所持しているスターの数をリセットする
-	mode::ModeGame* mode_game =
-		mode::ModeGame::GetModeGame();
-	mode_game->SetPlayerStarNum(0);
-
-	//ダメージモーションが終了したら、待機へ移行
-	if (anim_play_time_ >= anim_total_time_)
-	{
-		damage_flag_ = false;
-		damage_anim_flag_ = false;
-		status_ = STATUS::WAIT;
-	}
-}
-
 void Player::OutOfStage()
 {
 	if (position_.y < -200.0f)
@@ -182,30 +119,13 @@ void Player::OutOfStage()
 		float outstage_length = 2450.0f;
 		position_ = VGet(outstage_length * cosf(angle), 0, outstage_length * sinf(angle));
 
-		damage_flag_ = true;
-		damage_anim_flag_ = true;
-		anim_play_time_ = 0;
+		//ダメージ処理へ移行
+		ChangePlayerState("Damage");
 
 		VECTOR camera_position = camera::Camera::GetInstance()->GetPosition();
 		camera::Camera::GetInstance()->SetPosition(VGet(camera_position.x, 100, camera_position.z));
 		camera::Camera::GetInstance()->SetTarget(position_);
 	}
-}
-
-void Player::GameOver()
-{
-	if (gameover_flag_)
-		return;
-
-	if (GetPlayerHP() > 0)
-		return;
-
-	gameover_flag_ = true;
-
-	//ゲームオーバーへ移行
-	mode::ModeGame* mode_game =
-		mode::ModeGame::GetModeGame();
-	mode_game->SetNextMode(300, 60, GAME_OVER);
 }
 
 void Player::PlayerAnimationBlend()
@@ -233,8 +153,7 @@ void Player::Render()
 	float radius = 35.0f;
 	DrawCapsule3D(capsule_positon1, capsule_positon2, radius, 16, DEBUG_COLOR, DEBUG_COLOR, FALSE);
 
-	if (!jump_flag_)
-		DrawLine3D(VAdd(position_, VGet(0, 40.0f, 0)), VAdd(position_, VGet(0, -10.0f, 0)), DEBUG_COLOR);
+	DrawLine3D(VAdd(position_, VGet(0, 40.0f, 0)), VAdd(position_, VGet(0, -10.0f, 0)), DEBUG_COLOR);
 
 	VECTOR start = VAdd(position_, VGet(0, 100.0f, 0));
 	VECTOR end = VAdd(start, VScale(VNorm(utility::GetForwardVector(rotation_.y)), 30.0f));

@@ -27,28 +27,28 @@ namespace starrynight
 			virtual ~EnemyState() {}
 
 			/**
-			 * @brief　 状態遷移時に一度行われる入り口処理
+			 * @brief 状態遷移時に一度行われる入り口処理
 			 *
 			 * @param  _enemy インスタンスを持つクラスの参照
 			 */
 			virtual void Enter(Enemy& _enemy) {}
 
 			/**
-			 * @brief　 状態遷移時に一度行われる終了処理
+			 * @brief 状態遷移時に一度行われる終了処理
 			 *
 			 * @param  _enemy インスタンスを持つクラスの参照
 			 */
 			virtual void Exit(Enemy& _enemy) {}
 
 			/**
-			 * @brief　 状態遷移を行うか判定する入力処理
+			 * @brief 状態遷移を行うか判定する入力処理
 			 *
 			 * @param  _enemy インスタンスを持つクラスの参照
 			 */
 			virtual void Input(Enemy& _enemy) { }
 
 			/**
-			* @brief　 毎フレーム行われる更新処理
+			* @brief 毎フレーム行われる更新処理
 			 *
 			 * @param  _enemy インスタンスを持つクラスの参照
 			 */

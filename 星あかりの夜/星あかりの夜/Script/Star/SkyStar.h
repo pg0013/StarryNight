@@ -23,7 +23,7 @@ namespace starrynight
 		{
 		public:
 			/**
-			 * @brief　 星座モデルを生成する
+			 * @brief 星座モデルを生成する
 			 *
 			 * @param  _name　星座名
 			 */
@@ -53,7 +53,7 @@ namespace starrynight
 			void Render() override;
 
 			/**
-			 * @brief　 射撃時の星座との当たり判定を取得する
+			 * @brief 射撃時の星座との当たり判定を取得する
 			 *
 			 * @param  _start　線分の開始地点
 			 * @param  _end	線分の終了地点
@@ -62,7 +62,7 @@ namespace starrynight
 			MV1_COLL_RESULT_POLY GetHitToSkyStar(const VECTOR& _start, const VECTOR& _end) const;
 		private:
 			/**
-			 * @brief　 モデルがプレイヤーの方向を向くようにrotationを設定する
+			 * @brief モデルがプレイヤーの方向を向くようにrotationを設定する
 			 */
 			void SetRotationToPlayer();
 

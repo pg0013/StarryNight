@@ -26,32 +26,41 @@ namespace starrynight
 			~PlayerDamageState();
 
 			/**
-			 * @brief　 状態遷移時に一度行われる入り口処理
+			 * @brief 状態遷移時に一度行われる入り口処理
 			 *
 			 * @param  _player インスタンスを持つクラスの参照
 			 */
 			void Enter(Player& _player) override;
 
 			/**
-			 * @brief　 状態遷移時に一度行われる終了処理
+			 * @brief 状態遷移時に一度行われる終了処理
 			 *
 			 * @param  _player インスタンスを持つクラスの参照
 			 */
 			void Exit(Player& _player) override;
 
 			/**
-			 * @brief　 状態遷移を行うか判定する入力処理
+			 * @brief 状態遷移を行うか判定する入力処理
 			 *
 			 * @param  _player インスタンスを持つクラスの参照
 			 */
 			void Input(Player& _player) override;
 
 			/**
-			* @brief　 毎フレーム行われる更新処理
+			* @brief 毎フレーム行われる更新処理
 			 *
 			 * @param  _player インスタンスを持つクラスの参照
 			 */
 			void Update(Player& _player) override;
+
+		private:
+			/**
+			 * @brief	ダメージを受けた時の処理
+			 */
+			void Damage(Player& _player);
+
+			float jump_speed_;//ジャンプ速度
+			float gravity_;//重力
 		};
 	}
 }

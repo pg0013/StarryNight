@@ -183,9 +183,6 @@
     <ClCompile Include="Script\Player\SwitchPlayerAnimation.cpp">
       <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Player\SwitchPlayerStatus.cpp">
-      <Filter>ソース ファイル\Player</Filter>
-    </ClCompile>
     <ClCompile Include="Script\Player\SwitchPlayerAction.cpp">
       <Filter>ソース ファイル\Player\Player_Action</Filter>
     </ClCompile>
@@ -326,6 +323,12 @@
     </ClCompile>
     <ClCompile Include="Script\Player\PlayerShootState.cpp">
       <Filter>ソース ファイル\Player\Player_State</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Player\PlayerWaitState.cpp">
+      <Filter>ソース ファイル\Player\Player_State</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Player\Player_Damage.cpp">
+      <Filter>ソース ファイル\Player\Player_Action</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -504,6 +507,9 @@
       <Filter>ヘッダー ファイル\Player</Filter>
     </ClInclude>
     <ClInclude Include="Script\Player\PlayerShootState.h">
+      <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Player\PlayerWaitState.h">
       <Filter>ヘッダー ファイル\Player</Filter>
     </ClInclude>
   </ItemGroup>

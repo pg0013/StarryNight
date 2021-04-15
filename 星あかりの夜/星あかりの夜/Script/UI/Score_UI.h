@@ -49,14 +49,14 @@ namespace starrynight
 			void Render();
 
 			/**
-			 * @brief　 スコア画面の下地を描画するか設定する
+			 * @brief スコア画面の下地を描画するか設定する
 			 *
 			 * @param  _flag　trueで下地を描画する
 			 */
 			void SetDrawScoreBaseFlag(const bool& _flag) { draw_scorebase_flag_ = _flag; }
 
 			/**
-			 * @brief　 スコアを点滅表示するフラグを設定する
+			 * @brief スコアを点滅表示するフラグを設定する
 			 *
 			 * @param  _flag　点滅表示フラグ
 			 */
@@ -74,27 +74,27 @@ namespace starrynight
 			void SetPosition(const VECTOR& _positon) { position_ = _positon; }
 
 			/**
-			 * @brief　 拡大率を設定する
+			 * @brief 拡大率を設定する
 			 *
 			 * @param  _rate	拡大率
 			 */
 			void SetEXRate(const double& _rate) { exrate_ = _rate; }
 
 			/**
-			 * @brief　 プレイヤースコアを設定する
+			 * @brief プレイヤースコアを設定する
 			 *
 			 * @param  _score　ゲームスコア
 			 */
 			void SetPlayerScore(const int& _score) { player_score_ = _score; }
 
 			/**
-			 * @brief　 プレイヤースコアを更新する
+			 * @brief プレイヤースコアを更新する
 			 */
 			void UpdatePlayerScore();
 
 		private:
 			/**
-			 * @brief　 スコアの桁の値を設定する
+			 * @brief スコアの桁の値を設定する
 			 */
 			void SetScoreRankNum();
 

@@ -46,7 +46,7 @@ namespace starrynight
 			void Render() override;
 
 			/**
-			 * @brief　 星座完成エフェクトを描画する
+			 * @brief 星座完成エフェクトを描画する
 			 */
 			void DrawCompleteEffect();
 		private:
@@ -56,7 +56,7 @@ namespace starrynight
 			void PlayEffectSound();
 
 			/**
-			 * @brief　 エフェクトをプレイヤーの方向に向ける
+			 * @brief エフェクトをプレイヤーの方向に向ける
 			 */
 			void SetEffectRotationToPlayer();
 

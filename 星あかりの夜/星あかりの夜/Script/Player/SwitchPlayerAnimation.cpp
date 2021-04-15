@@ -16,12 +16,14 @@ void Player::SwitchPlayerAnimation(const STATUS& _old_status)
 	{
 		if (anim_loop_flag_ == false &&
 			anim_play_time_ > anim_total_time_)
+		{
 			anim_play_time_ = anim_total_time_;
+		}
 		else
 		{
 			//Ä¶ŠÔ‚ği‚ß‚é
 			anim_play_time_ += 1.0f;
-			anim_rate_ += 0.2f;
+			anim_rate_ += 0.3f;
 		}
 	}
 	else

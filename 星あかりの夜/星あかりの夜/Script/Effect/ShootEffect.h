@@ -41,7 +41,7 @@ namespace starrynight
 
 		private:
 			/**
-			 * @brief@ ËŒ‚‘ÎÛ‚ÖŒü‚­‰ñ“]’l‚ğİ’è‚·‚é
+			 * @brief ËŒ‚‘ÎÛ‚ÖŒü‚­‰ñ“]’l‚ğİ’è‚·‚é
 			 *
 			 */
 			void SetRotationToTarget();

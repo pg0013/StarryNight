@@ -94,28 +94,28 @@ namespace appframe
 		static ApplicationBase* GetInstance() { return appbase_instance_; }
 
 		/**
-		 * @brief　 キーボードとコントローラのkey入力を返す
+		 * @brief キーボードとコントローラのkey入力を返す
 		 *
 		 * @return   コントローラとキー入力
 		 */
 		virtual int GetKey() const { return key_; }
 
 		/**
-		 * @brief　 キーボードとコントローラのトリガー入力を返す
+		 * @brief キーボードとコントローラのトリガー入力を返す
 		 *
 		 * @return   コントローラとキーのトリガー入力
 		 */
 		virtual int GetTriggerKey() const { return trigger_key_; }
 
 		/**
-		 * @brief　 XINPUTコントローラの入力を返す
+		 * @brief XINPUTコントローラの入力を返す
 		 *
 		 * @return   XINPUTコントローラの入力
 		 */
 		virtual XINPUT_STATE GetXInputState() const { return x_input_; }
 
 		/**
-		 * @brief　 DIRECTINPUTコントローラの入力を返す
+		 * @brief DIRECTINPUTコントローラの入力を返す
 		 *
 		 * @return   DINPUTコントローラの入力を返す
 		 */
@@ -127,12 +127,12 @@ namespace appframe
 		void CalculateFPS();
 
 		/**
-		 * @brief　 プログラムを終了させる処理
+		 * @brief プログラムを終了させる処理
 		 */
 		void ExitProgram() { exit_flag_ = true; }
 
 		/**
-		 * @brief　 プログラムを終了するかどうかを取得する
+		 * @brief プログラムを終了するかどうかを取得する
 		 *
 		 * @return   プログラム終了フラグ　trueで終了
 		 */

@@ -37,7 +37,7 @@ namespace utility
 	std::string GetExtension(const std::string& _filename);
 
 	/**
-	 * @brief　 プログラム終了時にメモリリークを検出する
+	 * @brief プログラム終了時にメモリリークを検出する
 	 */
 	void CheckMemoryLeak();
 

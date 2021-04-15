@@ -75,76 +75,76 @@ namespace starrynight
 			};
 
 			/**
-			 * @brief　 プレイヤー検出距離を取得する
+			 * @brief プレイヤー検出距離を取得する
 			 *
 			 * @return   プレイヤー検出距離
 			 */
 			float GetDetectLength() const { return detect_length_; }
 
 			/**
-			 * @brief　 敵の回転速度を取得する
+			 * @brief 敵の回転速度を取得する
 			 *
 			 * @return   敵の回転速度
 			 */
 			float GetRotationSpeed() const { return rot_speed_; }
 
 			/**
-			 * @brief　 敵の歩く速度を取得する
+			 * @brief 敵の歩く速度を取得する
 			 *
 			 * @return   歩く速度
 			 */
 			float GetWalkSpeed() const { return walk_speed_; }
 
 			/**
-			 * @brief　 敵の走る速度を取得する
+			 * @brief 敵の走る速度を取得する
 			 *
 			 * @return   走る速度
 			 */
 			float GetRunSpeed() const { return run_speed_; }
 
 			/**
-			 * @brief　 アニメーション再生時間を取得する
+			 * @brief アニメーション再生時間を取得する
 			 *
 			 * @return   アニメーション再生時間
 			 */
 			float GetAnimPlayTime() const { return anim_play_time_; }
 
 			/**
-			 * @brief　 アニメーション総再生時間を取得する
+			 * @brief アニメーション総再生時間を取得する
 			 *
 			 * @return   アニメーション総再生時間
 			 */
 			float GetAnimTotalTime() const { return anim_total_time_; }
 
 			/**
-			 * @brief　 移動状態を取得する
+			 * @brief 移動状態を取得する
 			 *
 			 * @return   敵の移動状態
 			 */
 			MOVE_STATUS GetMoveStatus() const { return move_status_; }
 
 			/**
-			 * @brief　 敵の移動状態を設定する
+			 * @brief 敵の移動状態を設定する
 			 *
 			 * @param  _status　移動状態
 			 */
 			void SetMoveStatus(const MOVE_STATUS& _status) { move_status_ = _status; }
 
 			/**
-			 * @brief　 敵のアニメーション状態を設定する
+			 * @brief 敵のアニメーション状態を設定する
 			 *
 			 * @param  _status　アニメーション状態
 			 */
 			void SetAnimStatus(const ANIM_STATUS& _status) { anim_status_ = _status; }
 
 			/**
-			 * @brief　 移動処理
+			 * @brief 移動処理
 			 *
 			 */
 			void Move(const VECTOR& _move);
 
 			/**
-			 * @brief　 指定した状態に遷移する
+			 * @brief 指定した状態に遷移する
 			 *
 			 * @param  _state_name　状態の名前
 			 */
@@ -155,14 +155,14 @@ namespace starrynight
 
 		private:
 			/**
-			 * @brief　 エネミーのさまよう移動処理
+			 * @brief エネミーのさまよう移動処理
 			 *
 			 * @return　移動方向
 			 */
 			VECTOR DecideMoveAmount();
 
 			/**
-			 * @brief　 プレイヤーを追跡する処理
+			 * @brief プレイヤーを追跡する処理
 			 *
 			 * @param  _move　移動方向ベクトル
 			 * @return   移動方向
@@ -170,7 +170,7 @@ namespace starrynight
 			VECTOR Tracking(VECTOR& _move);
 
 			/**
-			 * @brief　 プレイヤーを攻撃する処理
+			 * @brief プレイヤーを攻撃する処理
 			 *
 			 * @param  _move　移動方向ベクトル
 			 * @return   移動方向
@@ -178,14 +178,14 @@ namespace starrynight
 			VECTOR Attack(VECTOR& _move);
 
 			/**
-			 * @brief　 状態遷移を決定する処理
+			 * @brief 状態遷移を決定する処理
 			 *
 			 * @param  _old_status	前フレームの状態
 			 */
 			void SwitchStatus();
 
 			/**
-			 * @brief　 アニメーション切り替え関数
+			 * @brief アニメーション切り替え関数
 			 *
 			 * @param  _old_status	遷移元の状態
 			 */

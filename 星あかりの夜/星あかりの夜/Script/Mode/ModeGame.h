@@ -63,7 +63,7 @@ namespace starrynight
 			bool Render() override;
 
 			/**
-			 * @brief　 オブジェクトの処理を止めるフラグを設定
+			 * @brief オブジェクトの処理を止めるフラグを設定
 			 *
 			 * @param  _stopflag　trueでオブジェクトの処理を止める
 			 */
@@ -77,28 +77,29 @@ namespace starrynight
 
 			handle stage_shadowmap_;
 			handle object_shadowmap_;
+
 		public:
 			/**
-			 * @brief　 プレイヤーが取得したステージスターの数を取得する
+			 * @brief プレイヤーが取得したステージスターの数を取得する
 			 *
 			 * @return   取得したスターの数
 			 */
 			int GetPlayerStarNum() const { return player_star_num_; }
 
 			/**
-			 * @brief　 プレイヤーが取得したスターの数を設定する
+			 * @brief プレイヤーが取得したスターの数を設定する
 			 *
 			 * @param  _star_num　取得したスターの数
 			 */
 			void SetPlayerStarNum(const int& _star_num) { player_star_num_ = _star_num; }
 
 			/**
-			 * @brief　 プレイヤーが取得したスターの数を＋１する
+			 * @brief プレイヤーが取得したスターの数を＋１する
 			 */
 			void AddPlayerStarNum() { player_star_num_++; }
 
 			/**
-			 * @brief　 ゲームモードを取得する
+			 * @brief ゲームモードを取得する
 			 *
 			 * @return　ゲームモードインスタンス
 			 */
@@ -107,42 +108,42 @@ namespace starrynight
 			}
 
 			/**
-			 * @brief　 ゲームスコアを追加する
+			 * @brief ゲームスコアを追加する
 			 *
 			 * @param  _score		ゲームのスコア
 			 */
 			void AddGameScore(const int& _score) { game_score_ += _score; }
 
 			/**
-			 * @brief　 ゲームスコアを取得する
+			 * @brief ゲームスコアを取得する
 			 *
 			 * @return   ゲームスコア
 			 */
 			int GetGameScore() const { return game_score_; }
 
 			/**
-			 * @brief　 ステージのフィールドスター数を設定する
+			 * @brief ステージのフィールドスター数を設定する
 			 *
 			 * @param  _stage_star_num	　ステージのフィールドスター総数
 			 */
 			void SetStageStarNum(const int& _stage_star_num) { stage_star_num_ = _stage_star_num; }
 
 			/**
-			 * @brief　 ステージのフィールドスター総数を設定する
+			 * @brief ステージのフィールドスター総数を設定する
 			 *
 			 * @param  _stage_star_num	　ステージのフィールドスター総数
 			 */
 			void SetStageStarNumAll(const int& _stage_star_num_all) { stage_star_num_all_ = _stage_star_num_all; }
 
 			/**
-			 * @brief　 ステージのフィールドスター数を取得する
+			 * @brief ステージのフィールドスター数を取得する
 			 *
 			 * @return   ステージのフィールドスター数
 			 */
 			int GetStageStarNum() const { return stage_star_num_; }
 
 			/**
-			 * @brief　 ステージのフィールドスター総数を取得する
+			 * @brief ステージのフィールドスター総数を取得する
 			 *
 			 * @return   ステージのフィールドスター総数
 			 */
@@ -156,14 +157,14 @@ namespace starrynight
 			void AddStageStarNum(const int& _add_starnum) { stage_star_num_ += _add_starnum; }
 
 			/**
-			 * @brief　 ステージの規定スコアを設定する
+			 * @brief ステージの規定スコアを設定する
 			 *
 			 * @param  _regulations_score	ステージの規定スコア
 			 */
 			void SetStageRegulationsScore(const int& _regulations_score) { regulations_score_ = _regulations_score; }
 
 			/**
-			 * @brief　 ステージの規定スコアを取得する
+			 * @brief ステージの規定スコアを取得する
 			 *
 			 * @return   ステージの規定スコア
 			 */
@@ -181,7 +182,26 @@ namespace starrynight
 			}
 
 			/**
-			* @brief　 次のモードに移行する設定を行う
+			 * @brief ゲームオーバー状態か判定するフラグを取得する
+			 *
+			 * @return  trueでゲームオーバー
+			 */
+			bool GetIsGameOver() const { return gameover_flag_; }
+
+			/**
+			 * @brief ゲームオーバーかを判定して、ゲームオーバーモードへ移行する
+			 */
+			void CheckIsGameOver();
+
+			/**
+			 * @brief 射撃終了時にステージクリアかゲームオーバーを判定して、次のモードへ遷移する
+			 *
+			 * @param  _player インスタンスを持つクラスの参照
+			 */
+			void CheckIsClearStage();
+
+			/**
+			* @brief 次のモードに移行する設定を行う
 			*
 			* @param  _count　次のモードへ移行するまでのフレーム数
 			* @param  _fade_count　フェードを行うフレーム数
@@ -201,21 +221,21 @@ namespace starrynight
 			SCORE_RANK score_rank_;//スコア評価
 
 			/**
-			 * @brief　 スコア評価を取得する
+			 * @brief スコア評価を取得する
 			 *
 			 * @return   スコア評価
 			 */
 			SCORE_RANK GetScoreRank() const { return score_rank_; }
 
 			/**
-			 * @brief　 スコア評価を設定する
+			 * @brief スコア評価を設定する
 			 *
 			 * @param  _rank	スコア評価
 			 */
 			void SetScoreRank(const SCORE_RANK& _rank) { score_rank_ = _rank; }
 
 			/**
-			 * @brief　 ステージ名を取得する
+			 * @brief ステージ名を取得する
 			 *
 			 * @return		ステージ名
 			 */
@@ -223,12 +243,12 @@ namespace starrynight
 
 		private:
 			/**
-			 * @brief　 コントローラ入力処理
+			 * @brief コントローラ入力処理
 			 */
 			void Input();
 
 			/**
-			 * @brief　 次のモードに遷移する処理
+			 * @brief 次のモードに遷移する処理
 			 */
 			void NextMode();
 
@@ -247,6 +267,8 @@ namespace starrynight
 			int stage_star_num_all_;//ステージのスター総数
 			int regulations_score_;//ステージの規定スコア
 			int result_;//ゲームクリアモードへクリア判定を渡すための変数
+
+			bool gameover_flag_;//ゲームオーバー状態を判定するフラグ
 		};
 	}
 }

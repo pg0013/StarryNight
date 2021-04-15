@@ -23,7 +23,7 @@ namespace starrynight
 			~StageParameters();
 
 			/**
-			 * @brief　 ステージパラメータの読み込み
+			 * @brief ステージパラメータの読み込み
 			 *
 			 * @param  _stagename　ステージ名
 			 * @param  _async_flag　非同期読み込みフラグ

@@ -28,6 +28,7 @@ ModeGame::ModeGame(std::string _stage_name)
 	pause_flag_ = false;
 	score_rank_ = SCORE_RANK::LOW;
 	result_ = -1;
+	gameover_flag_ = false;
 
 	//ステージ規定スコアを設定
 	if (std::equal(stage_name_.begin(), stage_name_.end(), "haru_A"))
@@ -119,6 +120,8 @@ bool ModeGame::Process()
 	camera_.Process();
 	ui_.Process();
 
+	CheckIsGameOver();
+
 	Input();
 	NextMode();
 
@@ -203,6 +206,59 @@ void ModeGame::Input()
 		//ダッキング
 		appframe::ApplicationBase::GetInstance()->bgm_.Fade(XAudio2DecibelsToAmplitudeRatio(-12.0f), 1.0f);
 	}
+}
+
+void ModeGame::CheckIsClearStage()
+{
+	if (IsClearStage() == true)
+	{
+		//星座によって完成エフェクトの時間が違うので、次のモードへ移行する時間をステージごとに設定する
+		if (GetStageName() == "haru_A")
+		{
+			SetNextMode(420, 40, GAME_CLEAR);
+		}
+		else if (GetStageName() == "haru_B")
+		{
+			SetNextMode(480, 40, GAME_CLEAR);
+		}
+		else if (GetStageName() == "haru_C")
+		{
+			SetNextMode(450, 40, GAME_CLEAR);
+		}
+	}
+	else
+	{
+		//星を発射しつくしてゲームクリア判定がなければゲームオーバーへ移行
+		if (GetStageStarNum() == 0)
+		{
+			gameover_flag_ = true;
+
+			mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+			mode_game->SetNextMode(300, 60, GAME_OVER);
+		}
+	}
+}
+
+void ModeGame::CheckIsGameOver()
+{
+	if (gameover_flag_)
+		return;
+
+	for (auto&& iter : (*object_server_.List()))
+	{
+		if (iter->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
+		{
+			player::Player* player = static_cast<player::Player*>(iter);
+			//HPがあればゲームオーバーではない
+			if (player->GetPlayerHP() > 0)
+				return;
+		}
+	}
+
+	gameover_flag_ = true;
+
+	//ゲームオーバーへ移行
+	SetNextMode(300, 60, GAME_OVER);
 }
 
 void ModeGame::NextMode()

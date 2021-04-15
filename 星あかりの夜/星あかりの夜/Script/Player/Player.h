@@ -50,63 +50,84 @@ namespace starrynight
 			void Render() override;
 
 			/**
-			 * @brief　 プレイヤーの状態を指定した状態に変更する
+			 * @brief プレイヤーの状態を指定した状態に変更する
 			 *
 			 * @param  _state_name　指定する状態名
 			 */
 			void ChangePlayerState(const std::string& _state_name);
 
 			/**
-			 * @brief　 ダメージを受けたことを記録するフラグを設定する
+			 * @brief プレイヤーが踏んでいる床の材質を設定する
+			 *
+			 * @param  _floor_type　床の材質
+			 */
+			void SetFloorType(const int& _floor_type) { floor_type_ = _floor_type; }
+
+			/**
+			 * @brief ダメージを受けたことを記録するフラグを設定する
 			 *
 			 * @param  _flag　ダメージを受けたフラグ
 			 */
 			void SetDamageFlag(const bool& _flag) { damage_flag_ = _flag; }
 
 			/**
-			 * @brief　 ダメージを受けたことを記録するフラグを返す
+			 * @brief ダメージを受けたことを記録するフラグを返す
 			 *
 			 * @return   trueでダメージを受けた
 			 */
 			bool GetDamageFlag() const { return damage_flag_; }
 
 			/**
-			 * @brief　 ダメージモーションを開始するフラグを設定する
-			 *
-			 * @param  _flag	ダメージモーションを開始するフラグ
-			 */
-			void SetDamageAnimFlag(const bool& _flag) { damage_anim_flag_ = _flag; }
-
-			/**
 			 * @brief	射撃状態かどうかを判定するフラグを取得する.
 			 *
-			 * @return		trueで射撃状態中
+			 * @return	 trueで射撃状態中
 			 */
 			bool GetPlayerSlingShotStatus() const { return slingshot_flag_; }
 
 			/**
-			 * @brief　 射撃構え時に星が選択されたかどうか取得するフラグ
+			 * @brief 射撃状態かどうかを設定する
+			 *
+			 * @param _slingshot_flag trueで射撃状態中
+			 */
+			void SetPlayerSlingShotStatus(const bool& _slingshot_flag) { slingshot_flag_ = _slingshot_flag; }
+
+			/**
+			 * @brief 射撃構え時に星が選択されたかどうか取得するフラグ
 			 *
 			 * @return   trueで星選択済み
 			 */
 			bool GetSelectedStarFlag() const { return selected_skystar_flag_; }
 
 			/**
-			 * @brief　 アニメーション再生時間を取得する
+			 * @brief 射撃構え時に星が選択されたかどうかのフラグを設定する
+			 *
+			 * @param _selected_skystar_flag trueで星選択済み
+			 */
+			void SetSelectedStarFlag(const bool& _selected_skystar_flag) { selected_skystar_flag_ = _selected_skystar_flag; }
+
+			/**
+			 * @brief アニメーション再生時間を取得する
 			 *
 			 * @return   アニメーション再生時間
 			 */
 			float GetAnimPlayTime() const { return anim_play_time_; }
 
 			/**
-			 * @brief　 プレイヤーの残りHPを返す
+			 * @brief アニメーションの総再生時間を取得する
+			 *
+			 * @return   アニメーション再生時間
+			 */
+			float GetAnimTotalTime() const { return anim_total_time_; }
+
+			/**
+			 * @brief プレイヤーの残りHPを返す
 			 *
 			 * @return   HP
 			 */
 			int GetPlayerHP() const { return player_hp_; }
 
 			/**
-			 * @brief　 プレイヤーのHPを加算する
+			 * @brief プレイヤーのHPを加算する
 			 *
 			 * @param  _addhp　加えるHP数
 			 */
@@ -131,112 +152,56 @@ namespace starrynight
 			};
 
 			/**
-			 * @brief　 プレイヤーの状態を取得
+			 * @brief プレイヤーの状態を取得
 			 *
 			 * @return   プレイヤー状態
 			 */
 			STATUS GetPlayerStatus() const { return status_; }
+
+			/**
+			 * @brief プレイヤーの状態を設定する
+			 *
+			 * @param  _status　プレイヤー状態
+			 */
+			void SetPlayerStatus(const Player::STATUS& _status) { status_ = _status; }
+
+			//プレイヤーパラメータ保持クラス
+			PlayerParameters player_param_;
 
 			//プレイヤー効果音
 			sound::PlayWAVE se_;
 
 		private:
 			/**
-			 * @brief　 移動処理
-			 */
-			void Move();
-
-			/**
-			 * @brief　 ジャンプ処理
-			 */
-			void Jump();
-
-			/**
-			 * @brief	パチンコを構えて星を撃つ処理.
-			 */
-			void HoldSlingShot();
-
-			/**
-			 * @brief パチンコを構える処理.
-			 */
-			void SlingShotStance();
-
-			/**
-			 * @brief 星を発射する処理.
-			 */
-			void Launch_Star(const VECTOR& _star_position);
-
-			/**
-			 * @brief　 射撃状態の終了処理
-			 */
-			void SlingShotEnd();
-
-			/**
-			 * @brief 射撃構え時のプレイヤーの向きを設定する.
-			 */
-			void SetShootRotation();
-
-			/**
-			 * @brief. 星座との当たり判定を取得する
-			 *
-			 * @return 星座との当たり判定構造体
-			 */
-			MV1_COLL_RESULT_POLY CheckHitStar();
-
-			/**
-			 * @brief　 右スティック入力からプレイヤーの方向を決める
-			 */
-			void DecideForwardDirection();
-
-			/**
-			 * @brief	ダメージを受けた時の処理
-			 */
-			void Damage();
-
-			/**
-			 * @brief　 ステージの外に飛び出たときの処理
+			 * @brief ステージの外に飛び出たときの処理
 			 *
 			 */
 			void OutOfStage();
 
 			/**
-			 * @brief　 ゲームオーバー処理
-			 */
-			void GameOver();
-
-			/**
-			 * @brief　 プレイヤーのアクション切り替えを行う処理
+			 * @brief プレイヤーのアクション切り替えを行う処理
 			 *
 			 */
 			void SwitchPlayerAction();
 
 			/**
-			 * @brief　 プレイヤーの状態切り替えを行う処理
-			 *
-			 */
-			void SwitchPlayerStatus();
-
-			/**
-			 * @brief　 アニメーション切り替え関数
+			 * @brief アニメーション切り替え関数
 			 *
 			 * @param  _old_status	遷移元の状態
 			 */
 			void SwitchPlayerAnimation(const STATUS& _old_status);
 
 			/**
-			 * @brief　 別のアニメーションに移行するときにアニメーションをブレンドする処理
+			 * @brief 別のアニメーションに移行するときにアニメーションをブレンドする処理
 			 */
 			void PlayerAnimationBlend();
 
 			/**
-			 * @brief　 ステータスからサウンドを設定する
+			 * @brief ステータスからサウンドを設定する
 			 */
 			void SwitchPlayerSound();
 
 		private:
-			//プレイヤーパラメータ保持クラス
-			PlayerParameters player_param_;
-
 			//プレイヤー状態ポインタ
 			std::shared_ptr<PlayerState> player_state_;
 			//プレイヤー状態保持マップ
@@ -244,20 +209,9 @@ namespace starrynight
 
 			int player_hp_;//プレイヤー体力
 
-			float walk_speed_;//移動速度
-			float run_speed_;//移動速度
-			float rot_speed_;//回転速度
-
-			float jump_speed_;//ジャンプ速度
-			float jump_height_;//ジャンプ高さ
-			float gravity_;//重力
-			bool jump_flag_;//ジャンプ状態記録用フラグ
 			int floor_type_;//床の材質
 
 			bool damage_flag_;//ダメージを受けたことを記録するフラグ
-			bool damage_anim_flag_;//ダメージモーションを開始するフラグ
-
-			bool gameover_flag_;//ゲームオーバー状態を判定するフラグ
 
 			//モデルアニメーション用変数
 			int anim_attach_index_;//アニメーションアタッチ番号
@@ -270,7 +224,6 @@ namespace starrynight
 			//エフェクト用変数
 			bool slingshot_flag_;//パチンコ射撃状態かどうかを判定するフラグ
 			bool selected_skystar_flag_;//射撃状態から星を選択したかどうか判定するフラグ
-			bool shoot_charge_effect_flag_;//射撃溜めエフェクト生成フラグ
 
 			STATUS status_;//プレイヤーの状態保持変数
 		};

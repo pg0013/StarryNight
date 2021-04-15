@@ -23,6 +23,14 @@ CameraMoveState::~CameraMoveState()
 
 void CameraMoveState::Enter(Camera& _camera)
 {
+	VECTOR player_position = MV1GetPosition(resource::ResourceServer::GetModelHandle("player"));
+	VECTOR player_rotation = MV1GetRotationXYZ(resource::ResourceServer::GetModelHandle("player"));
+
+	VECTOR position = VAdd(VAdd(player_position, VGet(0, 90, 0)),
+		VScale(utility::GetForwardVector(player_rotation.y), _camera.GetCameraDistance()));
+
+	_camera.SetTarget(VAdd(VGet(0.0f, 60.0f, 0.0f), player_position));
+	_camera.SetPosition(position);
 }
 
 void CameraMoveState::Exit(Camera& _camera)
@@ -54,5 +62,11 @@ void CameraMoveState::Input(Camera& _camera)
 
 void CameraMoveState::Update(Camera& _camera)
 {
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+
+	//ゲームオーバーであれば、プレイヤーの処理を行わない
+	if (mode_game->GetIsGameOver() == true)
+		return;
+
 	MoveCamera(_camera);
 }

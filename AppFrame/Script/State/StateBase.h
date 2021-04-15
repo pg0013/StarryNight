@@ -13,22 +13,22 @@ namespace state
 	class StateBase
 	{
 	public:
-		virtual ~StateBase(){}
+		virtual ~StateBase() {}
 
 		/**
-		 * @brief　 状態遷移時に一度行われる入り口処理
+		 * @brief 状態遷移時に一度行われる入り口処理
 		 */
-		virtual void Enter(){}
+		virtual void Enter() {}
 
 		/**
-		 * @brief　 状態遷移時に行われる出口処理
+		 * @brief 状態遷移時に行われる出口処理
 		 *
 		 */
-		virtual void Exit(){}
+		virtual void Exit() {}
 
 		/**
-		 * @brief　 毎フレーム行われる更新処理
+		 * @brief 毎フレーム行われる更新処理
 		 */
-		virtual void Update(){}
+		virtual void Update() {}
 	};
 }

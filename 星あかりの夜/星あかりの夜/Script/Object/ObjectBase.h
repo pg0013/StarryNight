@@ -87,7 +87,7 @@ namespace starrynight
 			inline VECTOR GetRotation() const { return MV1GetRotationXYZ(handle_); }
 
 			/**
-			 * @brief　 モデルのハンドルを設定する
+			 * @brief モデルのハンドルを設定する
 			 *
 			 * @param  _handle　モデルハンドル
 			 */

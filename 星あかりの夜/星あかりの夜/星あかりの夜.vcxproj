@@ -71,10 +71,11 @@
     <ClCompile Include="Script\Player\PlayerMoveState.cpp" />
     <ClCompile Include="Script\Player\PlayerParameters.cpp" />
     <ClCompile Include="Script\Player\PlayerShootState.cpp" />
+    <ClCompile Include="Script\Player\PlayerWaitState.cpp" />
+    <ClCompile Include="Script\Player\Player_Damage.cpp" />
     <ClCompile Include="Script\Player\SwitchPlayerAction.cpp" />
     <ClCompile Include="Script\Player\SwitchPlayerAnimation.cpp" />
     <ClCompile Include="Script\Player\SwitchPlayerSound.cpp" />
-    <ClCompile Include="Script\Player\SwitchPlayerStatus.cpp" />
     <ClCompile Include="Script\Stage\CollisionToStage.cpp" />
     <ClCompile Include="Script\Stage\Stage.cpp" />
     <ClCompile Include="Script\Stage\StageInitialize.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Script\Player\PlayerParameters.h" />
     <ClInclude Include="Script\Player\PlayerShootState.h" />
     <ClInclude Include="Script\Player\PlayerState.h" />
+    <ClInclude Include="Script\Player\PlayerWaitState.h" />
     <ClInclude Include="Script\Stage\Stage.h" />
     <ClInclude Include="Script\Stage\StageParameters.h" />
     <ClInclude Include="Script\Star\SkyStar.h" />

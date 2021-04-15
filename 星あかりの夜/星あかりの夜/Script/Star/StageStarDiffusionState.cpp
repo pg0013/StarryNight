@@ -9,11 +9,13 @@
 #include "StageStarDiffusionState.h"
 #include"../Stage/Stage.h"
 #include"StageStar.h"
+#include"../Mode/ModeGame.h"
 
 using namespace starrynight::star;
 
 StageStarDiffusionState::StageStarDiffusionState()
 {
+	start_frame_ = 0;
 }
 
 StageStarDiffusionState::~StageStarDiffusionState()
@@ -23,7 +25,7 @@ StageStarDiffusionState::~StageStarDiffusionState()
 void StageStarDiffusionState::Enter(Star& _star)
 {
 	_star.SetJumpSpeed(_star.GetJumpHeight() * 3.0f);
-
+	start_frame_ = mode::ModeGame::GetModeGame()->GetModeCount();
 }
 
 void StageStarDiffusionState::Exit(Star& _star)
@@ -43,7 +45,8 @@ void StageStarDiffusionState::Input(Star& _star)
 	hit_poly_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
 
 	//’…’n‚µ‚½‚ç‘Ò‹@ó‘Ô‚ÖˆÚs
-	if (hit_poly_floor.HitFlag)
+	if (hit_poly_floor.HitFlag&&
+		mode::ModeGame::GetModeGame()->GetModeCount() - start_frame_ >60.0f)
 	{
 		_star.ChangeStageStarState("Wait");
 	}

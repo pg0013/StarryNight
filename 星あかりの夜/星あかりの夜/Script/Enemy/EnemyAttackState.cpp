@@ -40,7 +40,6 @@ void EnemyAttackState::Enter(Enemy& _enemy)
 			player::Player* player = static_cast<player::Player*>(iter);
 			player->SetRotation(VGet(0.0f, rotation.y + DEG2RAD(180.0f), 0.0f));
 			player->SetDamageFlag(true);
-			player->SetDamageAnimFlag(true);//ダメージアニメーションを再生
 
 			//プレイヤーが星を所持していない場合、HPを減らす
 			if (mode_game->GetPlayerStarNum() == 0)

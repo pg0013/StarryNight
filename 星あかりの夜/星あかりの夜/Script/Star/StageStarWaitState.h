@@ -26,28 +26,28 @@ namespace starrynight
 			~StageStarWaitState();
 
 			/**
-			 * @brief　 状態遷移時に一度行われる入り口処理
+			 * @brief 状態遷移時に一度行われる入り口処理
 			 *
 			 * @param  _star　インスタンスを持つクラスの参照
 			 */
 			void Enter(Star& _star) override;
 
 			/**
-			 * @brief　 状態遷移時に行われる出口処理
+			 * @brief 状態遷移時に行われる出口処理
 			 *
 			 * @param  _star　インスタンスを持つクラスの参照
 			 */
 			void Exit(Star& _star) override;
 
 			/**
-			 * @brief　 状態遷移を行うか判定する入力処理
+			 * @brief 状態遷移を行うか判定する入力処理
 			 *
 			 * @param  _star　インスタンスを持つクラスの参照
 			 */
 			void Input(Star& _star) override;
 
 			/**
-			 * @brief　 毎フレーム行われる更新処理
+			 * @brief 毎フレーム行われる更新処理
 			 *
 			 * @param  _star インスタンスを持つクラスの参照
 			 */

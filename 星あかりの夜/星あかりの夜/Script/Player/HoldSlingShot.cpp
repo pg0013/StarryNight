@@ -6,6 +6,7 @@
  * @date    202101/18
  */
 
+#include"PlayerShootState.h"
 #include"Player.h"
 #include"../Camera/Camera.h"
 #include"../Star/StageStar.h"
@@ -17,102 +18,97 @@
 
 using namespace starrynight::player;
 
-void Player::HoldSlingShot()
+void PlayerShootState::HoldSlingShot(Player& _player)
 {
-	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
-	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
+	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
-	mode::ModeGame* mode_game =
-		mode::ModeGame::GetModeGame();
+	if (_player.GetPlayerStatus() != Player::STATUS::SHOOT_END)
+	{
+		//射撃構え処理
+		SlingShotStance(_player);
+		//星を選べ画像を描画
+		mode_game->ui_.shoot_ui_.SetDrawChooseSkystarGuide(true);
+	}
 
-	//射撃構え処理
-	SlingShotStance();
-
-	//星を選べ画像を描画
-	mode_game->ui_.shoot_ui_.SetDrawChooseSkystarGuide(true);
-
-	//星との当たり判定
-	MV1_COLL_RESULT_POLY hit_star = CheckHitStar();
-
-	//星選択前であれば、トリガーを離すと射撃状態を解除
-	if (x_input.RightTrigger != 255 &&
-		selected_skystar_flag_ == false)
-		slingshot_flag_ = false;
+	//星との当たり判定を取得
+	MV1_COLL_RESULT_POLY hit_star = CheckHitStar(_player);
 
 	//星と標準があっていないので、次の処理に進まない
-	if (hit_star.HitFlag == 0)
+	if (!hit_star.HitFlag)
 		return;
 
 	//星と当たり判定があれば、星を選べ画像を表示しない
 	mode_game->ui_.shoot_ui_.SetDrawChooseSkystarGuide(false);
 
+	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
+
 	//Yボタンが押されたら、タイミングゲージを描画
 	if (trigger_key & PAD_INPUT_4 &&
-		selected_skystar_flag_ == false)
+		_player.GetSelectedStarFlag() == false)
 	{
 		mode_game->ui_.timing_ui_.SetSelectedStarNum(hit_star.FrameIndex);
 		mode_game->ui_.shoot_ui_.SetDrawShootGuide(false);
 		mode_game->ui_.timing_ui_.SetDrawTimingGuide(true);
 		mode_game->ui_.timing_ui_.SetSelectStarFrame(mode_game->GetModeCount());
-		selected_skystar_flag_ = true;
+		_player.SetSelectedStarFlag(true);
 
-		se_.Load("Resource/sound/star_select.wav");
-		se_.Play();
-		se_.Fade(0.0f, 1.0f);
+		_player.se_.Load("Resource/sound/star_select.wav");
+		_player.se_.Play();
+		_player.se_.Fade(0.0f, 1.0f);
 	}
 
-	//星発射エフェクトを生成
-	Launch_Star(hit_star.HitPosition);
+	//タイミングゲームが終了し、星が発射可能であれば星を撃つ
+	if (mode_game->ui_.timing_ui_.GetLaunchStarShoot() == true)
+	{
+		Launch_Star(_player, hit_star.HitPosition);
+	}
+
+	if (mode_game->IsClearStage() == false)
+		return;
 
 	//星発射後にゲームクリアしていれば、星座カメラに移行するのでフェードアウト
-	if (mode_game->IsClearStage() == true &&
-		anim_play_time_ == 70.0f)
+	if (_player.GetAnimPlayTime() == 70.0f)
 	{
 		mode::ModeOverlay* modeoverlay = NEW mode::ModeOverlay();
 		modeoverlay->Fade(11, FADE_OUT);
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 	}
 
-	//射撃状態の終了
-	SlingShotEnd();
+	if (_player.GetAnimPlayTime() == _player.GetAnimTotalTime())
+	{
+		mode_game->CheckIsClearStage();
+	}
 }
 
-void Player::SlingShotStance()
+void  PlayerShootState::SlingShotStance(Player& _player)
 {
 	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
-	if (status_ == STATUS::SHOOT_END)
-		return;
-
-	status_ = STATUS::SHOOT_START;
-
-	if (anim_play_time_ == 0)
-	{
-		//射撃標準を描画
-		mode_game->ui_.shoot_ui_.SetDrawShootGuide(true);
-	}
+	_player.SetPlayerStatus(Player::STATUS::SHOOT_START);
 
 	//射撃溜めエフェクト生成
-	if (anim_play_time_ == anim_total_time_)
+	if (_player.GetAnimPlayTime() > _player.GetAnimTotalTime())
 	{
 		//1フレームだけ処理を行う
-		if (shoot_charge_effect_flag_)
+		if (shoot_charge_effect_flag_ == false)
 		{
 			effect::ShootChargeEffect* charge_effect = NEW effect::ShootChargeEffect();
 
 			charge_effect->Initialize();
 			charge_effect->PlayEffect();
 			mode_game->effect_server_.Add(charge_effect);
-			shoot_charge_effect_flag_ = false;
+			shoot_charge_effect_flag_ = true;
 		}
 	}
 
 	//射撃標準の回転を行う
-	if (selected_skystar_flag_ == false)
-		SetShootRotation();
+	if (_player.GetSelectedStarFlag() == false)
+	{
+		SetShootRotation(_player);
+	}
 }
 
-MV1_COLL_RESULT_POLY Player::CheckHitStar()
+MV1_COLL_RESULT_POLY PlayerShootState::CheckHitStar(Player& _player)
 {
 	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
 
@@ -138,12 +134,9 @@ MV1_COLL_RESULT_POLY Player::CheckHitStar()
 	return hit_star;
 }
 
-void Player::Launch_Star(const VECTOR& _star_position)
+void PlayerShootState::Launch_Star(Player& _player, const VECTOR& _star_position)
 {
 	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
-
-	if (mode_game->ui_.timing_ui_.GetLaunchStarShoot() == false)
-		return;
 
 	//射撃エフェクトの生成
 	effect::ShootEffect* shoot_effect = NEW effect::ShootEffect(_star_position);
@@ -163,17 +156,19 @@ void Player::Launch_Star(const VECTOR& _star_position)
 		}
 	}
 
-	status_ = STATUS::SHOOT_END;
+	_player.SetPlayerStatus(Player::STATUS::SHOOT_END);
 
-	se_.Load("Resource/sound/shoot_voice.wav");
-	se_.Play();
+	_player.se_.Load("Resource/sound/shoot_voice.wav");
+	_player.se_.Play();
 
 	mode_game->ui_.timing_ui_.SetLaunchStarShoot(false);
 }
 
-void Player::SetShootRotation()
+void PlayerShootState::SetShootRotation(Player& _player)
 {
 	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
+
+	VECTOR rotation = _player.GetRotation();
 
 	//右スティックの移動量
 	float stick_rx = x_input.ThumbRX / THUMB_MAX;
@@ -189,46 +184,6 @@ void Player::SetShootRotation()
 		rot_horizon -= DEG2RAD(rot_speed * 0.3f) * -stick_rx;
 
 	//プレイヤーの向きを回転
-	rotation_.y += rot_horizon;
-}
-
-void Player::SlingShotEnd()
-{
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
-
-	float shoot_anim_end = 80.0f;
-	if (anim_play_time_ < shoot_anim_end)
-		return;
-
-	if (mode_game->IsClearStage() == true)
-	{
-		//星座によって完成エフェクトの時間が違うので、次のモードへ移行する時間をステージごとに設定する
-		if (mode_game->GetStageName() == "haru_A")
-			mode_game->SetNextMode(420, 40, GAME_CLEAR);
-		else if (mode_game->GetStageName() == "haru_B")
-			mode_game->SetNextMode(480, 40, GAME_CLEAR);
-		else if (mode_game->GetStageName() == "haru_C")
-			mode_game->SetNextMode(450, 40, GAME_CLEAR);
-	}
-	else
-	{
-		//星を発射しつくしてゲームクリア判定がなければゲームオーバー並行
-		if (mode_game->GetStageStarNum() == 0)
-		{
-			gameover_flag_ = true;
-
-			mode::ModeGame* mode_game =
-				mode::ModeGame::GetModeGame();
-			mode_game->SetNextMode(300, 60, GAME_OVER);
-		}
-
-		//待機モーションへ移動し、ステージのスター総数とプレイヤーの所持スター数を設定
-		status_ = STATUS::WAIT;
-		slingshot_flag_ = false;
-		selected_skystar_flag_ = false;
-		mode_game->AddStageStarNum(-1 * mode_game->GetPlayerStarNum());
-		mode_game->SetPlayerStarNum(0);
-		//残り星数を点滅表示
-		mode_game->ui_.score_ui_.SetBlinkingFlag(true);
-	}
+	rotation.y += rot_horizon;
+	_player.SetRotation(rotation);
 }

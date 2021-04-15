@@ -6,82 +6,127 @@
  * @date   2021/01/13
  */
 
+#include"PlayerJumpState.h"
 #include"Player.h"
-#include"../Mode/ModeGame.h"
+#include"../Camera/Camera.h"
 #include"../Stage/Stage.h"
 using namespace starrynight::player;
 
-void Player::Jump()
+void PlayerJumpState::Move(Player& _player)
 {
-	int trigger_key = appframe::ApplicationBase::GetInstance()->GetTriggerKey();
+	//スティックの移動量と角度を計算
+	float camera_rad = camera::Camera::GetInstance()->GetCameraRad();
+	float length = utility::GetLeftStickLength();
+	float rad = utility::GetLeftStickRad();
 
-	//腰から地面までの線分ベクトル
-	VECTOR start_line = VAdd(position_, VGet(0, 40.0f, 0));
-	VECTOR end_line = VAdd(position_, VGet(0, -5.0f, 0));
+	//スティックの傾ける量で移動速度を変更
+	float run_stick_range = 0.6f;
 
+	if (length < ANALOG_MIN)
+	{
+		length = 0.0f;
+	}
+	else 	if (length < run_stick_range)
+	{
+		length = walk_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
+	}
+	else
+	{
+		length = run_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
+	}
+
+	//着地硬直
+	if (_player.GetPlayerStatus() == Player::STATUS::JUMP_END &&
+		_player.GetAnimPlayTime() < _player.GetAnimTotalTime() * 2.0f / 3.0f)
+	{
+		if (length < ANALOG_MIN)
+		{
+			move_ = { 0,0,0 };
+		}
+		else
+		{
+			float landing_speed = 2.5f;
+			length = landing_speed;
+		}
+	}
+
+	//移動量の計算
+	move_ = { 0,0,0 };
+	move_.x = cos(rad + camera_rad) * length;
+	move_.z = sin(rad + camera_rad) * length;
+
+	//移動処理
+	position_ = VAdd(position_, move_);
+}
+
+void PlayerJumpState::Jump(Player& _player)
+{
+	position_.y += jump_speed_;
+	move_.y += jump_speed_;
+
+	//ジャンプ加速処理
+	jump_speed_ -= gravity_;
+}
+
+void PlayerJumpState::Landing(Player& _player)
+{
 	//Navimeshとの当たり判定
 	MV1_COLL_RESULT_POLY hit_poly_floor;
+
+	//腰から地面までの線分ベクトル
+	VECTOR start_line = VAdd(position_, VGet(0, 60.0f, 0));
+	VECTOR end_line = VAdd(position_, VGet(0, -10.0f, 0));
+
+	//床との当たり判定
 	hit_poly_floor = stage::Stage::GetInstance()->GetHitLineToFloor(start_line, end_line);
+	//踏んでいる床の材質を設定
+	_player.SetFloorType(stage::Stage::GetInstance()->GetHitFloorType(start_line, end_line));
 
-	//ジャンプ開始処理
-	if (hit_poly_floor.HitFlag)
+	//落下後に接地したら、地面にY座標を合わせる
+	if (hit_poly_floor.HitFlag &&
+		jump_speed_ < 0)
 	{
-		if (trigger_key & PAD_INPUT_2)
-		{
-			//床に接地している状態でAボタンが押されたら、ジャンプを開始する
-			jump_speed_ = jump_height_;
-			status_ = STATUS::JUMP_START;
-			jump_flag_ = true;
-		}
-		else
-		{
-			//ジャンプや落下後に地面に着地したら、ジャンプ状態を解除する
-			if (jump_flag_)
-			{
-				if (jump_speed_ < 0.0f)
-					jump_flag_ = false;
-			}
-		}
-	}
-
-	//崖などから飛び降りたら落下状態にして、ジャンプ中に設定する
-	if (!hit_poly_floor.HitFlag &&
-		jump_flag_ == false)
-	{
-		jump_flag_ = true;
+		//キャラクターのy座標を調整
+		position_.y = hit_poly_floor.HitPosition.y;
 		jump_speed_ = 0.0f;
 	}
+}
 
-	//ジャンプ中の処理
-	if (jump_flag_)
+void PlayerJumpState::SlidingWall(Player& _player)
+{
+	//プレイヤーのカプセル情報
+	VECTOR capsule_positon1 = VAdd(position_, VGet(0, 100, 0));
+	VECTOR capsule_positon2 = VAdd(position_, VGet(0, 45, 0));
+	float radius = 35.0f;
+
+	//壁との当たり判定を取得
+	MV1_COLL_RESULT_POLY_DIM hit_poly_wall;
+	hit_poly_wall = stage::Stage::GetInstance()->GetHitCapsuleToWall(capsule_positon1, capsule_positon2, radius);
+
+	//壁ずり処理
+	if (hit_poly_wall.HitNum > 0)
 	{
-		VECTOR camera_pos = camera::Camera::GetInstance()->GetPosition();
-		VECTOR camera_tar = camera::Camera::GetInstance()->GetTarget();
-		float camera_rad = camera::Camera::GetInstance()->GetCameraRad();
+		VECTOR normal = { 0,0,0 };
+		for (int i = 0; i < hit_poly_wall.HitNum; i++)
+		{
+			normal = VAdd(normal, hit_poly_wall.Dim[i].Normal);
+		}
+		normal = VNorm(normal);
 
-		//スティックの移動量と角度を計算
-		float length = utility::GetLeftStickLength();
-		float rad = utility::GetLeftStickRad();
+		//壁ずりベクトルの算出
+		VECTOR escape = VCross(move_, normal);
+		escape = VCross(normal, escape);
+		escape.y = 0.0f;
 
-		//スティックの傾ける量で移動速度を変更
-		if (length < ANALOG_MIN)
-			length = 0.0f;
-		else if (length < 0.6f)
-			length = walk_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
-		else
-			length = run_speed_ * ::mode::ModeServer::GetInstance()->Get("Game")->GetDeltaTime();
+		//ジャンプ中は壁刷りによる移動成分の増加を小さくする
+		escape = VNorm(escape);
 
-		//移動量の計算
-		VECTOR move = { 0,0,0 };
-		move.x = cos(rad + camera_rad) * length;
-		move.z = sin(rad + camera_rad) * length;
+		//position_ = old_position_;
+		position_ = VAdd(position_, escape);
 
-		//移動処理
-		position_ = VAdd(position_, move);
-		position_.y += jump_speed_;
-		move.y += jump_speed_;
-
-		//ジャンプ加速処理
-		jump_speed_ -= gravity_;
+		WallPush(_player);
 	}
+
+	//当たり判定を解放
+	MV1CollResultPolyDimTerminate(hit_poly_wall);
 }

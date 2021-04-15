@@ -51,14 +51,14 @@ namespace starrynight
 			void Render();
 
 			/**
-			 * @brief　 射撃用ガイドを表示するフラグを設定する
+			 * @brief 射撃用ガイドを表示するフラグを設定する
 			 *
 			 * @param  _flag	trueで射撃ガイド表示
 			 */
 			void SetDrawShootGuide(const bool& _flag) { draw_shoot_guide_ = _flag; }
 
 			/**
-			 * @brief　 星座を狙えを表示するフラグを設定する
+			 * @brief 星座を狙えを表示するフラグを設定する
 			 *
 			 * @param  _flag	trueで射撃ガイド表示
 			 */

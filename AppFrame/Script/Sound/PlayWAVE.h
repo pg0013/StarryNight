@@ -204,7 +204,7 @@ namespace sound
 		void HighPassFilter(const float& _freqency);
 
 		/**
-		 * @brief　 エコーエフェクト
+		 * @brief エコーエフェクト
 		 *
 		 * @param  _wetdrymix　原音とエフェクト音の比率
 		 *	min FXECHO_MIN_WETDRYMIX
@@ -221,7 +221,7 @@ namespace sound
 			const float& _feedback = FXECHO_DEFAULT_FEEDBACK);
 
 		/**
-		 * @brief　 リバーブエフェクト
+		 * @brief リバーブエフェクト
 　		 */
 		void Reverb();
 

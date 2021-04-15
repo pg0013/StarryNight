@@ -1,13 +1,13 @@
 /**
- * @file    PlayerState.h
- * @brief  プレイヤーの状態遷移の基底クラス
+ * @file    PlayerWaitState.h
+ * @brief  プレイヤーの待機状態クラス
  *
  * @author Takuya Fujisawa
- * @date   2021/04/14
+ * @date   2021/04/15
  */
 
 #pragma once
-#include"appframe.h"
+#include "PlayerState.h"
 
 namespace starrynight
 {
@@ -16,41 +16,42 @@ namespace starrynight
 		class Player;
 
 		/**
-		 * @brief プレイヤーの状態基底クラス
+		 * @brief プレイヤーの移動状態クラス
 		 */
-		class PlayerState :
-			public state::StateBase
+		class PlayerWaitState :
+			public PlayerState
 		{
 		public:
-			virtual ~PlayerState() {}
+			PlayerWaitState();
+			~PlayerWaitState();
 
 			/**
 			 * @brief 状態遷移時に一度行われる入り口処理
 			 *
 			 * @param  _player インスタンスを持つクラスの参照
 			 */
-			virtual void Enter(Player& _player) {}
+			void Enter(Player& _player) override;
 
 			/**
 			 * @brief 状態遷移時に一度行われる終了処理
 			 *
 			 * @param  _player インスタンスを持つクラスの参照
 			 */
-			virtual void Exit(Player& _player) {}
+			void Exit(Player& _player) override;
 
 			/**
 			 * @brief 状態遷移を行うか判定する入力処理
 			 *
 			 * @param  _player インスタンスを持つクラスの参照
 			 */
-			virtual void Input(Player& _player) { }
+			void Input(Player& _player) override;
 
 			/**
 			* @brief 毎フレーム行われる更新処理
 			 *
 			 * @param  _player インスタンスを持つクラスの参照
 			 */
-			virtual void Update(Player& _player) {}
+			void Update(Player& _player) override;
 		};
 	}
 }

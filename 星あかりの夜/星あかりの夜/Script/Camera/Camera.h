@@ -56,35 +56,35 @@ namespace starrynight
 
 		public:
 			/**
-			 * @brief　 カメラ座標を取得する
+			 * @brief カメラ座標を取得する
 			 *
 			 * @return   カメラ座標
 			 */
 			VECTOR GetPosition() const { return position_; }
 
 			/**
-			 * @brief　 カメラ座標を設定する
+			 * @brief カメラ座標を設定する
 			 *
 			 * @param  _vector	カメラ座標
 			 */
 			void SetPosition(const VECTOR& _vector) { position_ = _vector; }
 
 			/**
-			 * @brief　 カメラのターゲット座標を取得する
+			 * @brief カメラのターゲット座標を取得する
 			 *
 			 * @return   ターゲット座標
 			 */
 			VECTOR GetTarget() const { return target_; }
 
 			/**
-			 * @brief　 カメラのターゲット座標を設定する
+			 * @brief カメラのターゲット座標を設定する
 			 *
 			 * @param  _vector	ターゲット座標
 			 */
 			void SetTarget(const VECTOR& _vector) { target_ = _vector; }
 
 			/**
-			 * @brief　 targetとcameraの角度を計算して返す
+			 * @brief targetとcameraの角度を計算して返す
 			 *
 			 * @return   targetとcameraの角度
 			 */
@@ -98,35 +98,35 @@ namespace starrynight
 			float GetCameraLength() const;
 
 			/**
-			 * @brief　 カメラの移動速度を返す
+			 * @brief カメラの移動速度を返す
 			 *
 			 * @return   移動速度
 			 */
 			float GetMoveCameraSpeed() const { return move_speed_; }
 
 			/**
-			 * @brief　 設定したカメラ距離を返す
+			 * @brief 設定したカメラ距離を返す
 			 *
 			 * @return   カメラ距離
 			 */
 			float GetCameraDistance() const { return camera_distance_; }
 
 			/**
-			 * @brief　 カメラの回転速度を返す
+			 * @brief カメラの回転速度を返す
 			 *
 			 * @return   回転速度
 			 */
 			float GetCameraRotSpeed() const { return rot_speed_; }
 
 			/**
-			 * @brief　 カメラのNear,Far設定を取得する
+			 * @brief カメラのNear,Far設定を取得する
 			 *
 			 * @return   near,far格納構造体
 			 */
 			CLIP GetClip() const { return clip_; }
 
 			/**
-			 * @brief　 カメラのNear,Farを設定する
+			 * @brief カメラのNear,Farを設定する
 			 *
 			 * @param  _near	カメラのNear
 			 * @param  _far		カメラのFar
@@ -138,14 +138,28 @@ namespace starrynight
 			}
 
 			/**
-			 * @brief　 カメラの状態を指定した状態に変更する
+			 * @brief カメラの状態を指定した状態に変更する
 			 *
 			 * @param  _state_name　遷移するカメラ状態
 			 */
 			void ChangeCameraState(const std::string& _state_name);
 
 			/**
-			 * @brief　 カメラのデバッグメニューを表示
+			 * @brief プレイヤーにカメラが追従する処理
+			 *
+			 * @param _player_diff　プレイヤーの前フレームとの移動量
+			 */
+
+			 /**
+			  * @brief プレイヤーにカメラが追従する処理
+			  *
+			  * @param _player_position 現在のプレイヤー座標
+			  * @param _player_old_position 前フレームのプレイヤー座標
+			  */
+			void PlayerFollowMove(const VECTOR& _player_position, const VECTOR& _player_old_position);
+
+			/**
+			 * @brief カメラのデバッグメニューを表示
 			 */
 			void DrawDebugMenu();
 
@@ -160,14 +174,14 @@ namespace starrynight
 			};
 
 			/**
-			 * @brief　 カメラの状態を設定する
+			 * @brief カメラの状態を設定する
 			 *
 			 * @param  _status	カメラ状態用変数
 			 */
 			void SetStatus(const STATUS& _status) { status_ = _status; }
 
 			/**
-			 * @brief　 カメラの状態を取得する
+			 * @brief カメラの状態を取得する
 			 *
 			 * @return   カメラの状態
 			 */

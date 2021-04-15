@@ -23,14 +23,14 @@ namespace starrynight
 			~CameraParameters();
 
 			/**
-			 * @brief　 カメラパラメータをjsonファイルから読み込む
+			 * @brief カメラパラメータをjsonファイルから読み込む
 			 *
 			 * @param  _param_name　パラメータ名を格納したコンテナ
 			 */
 			void LoadCameraParameters(const std::vector<std::string>& _param_name);
 
 			/**
-			 * @brief　 mapからプレイヤーパラメータを取得する
+			 * @brief mapからプレイヤーパラメータを取得する
 			 *
 			 * @param  _param_name　パラメータ名（jsonに記載）
 			 * @return   パラメータ(float)

@@ -23,7 +23,7 @@ namespace starrynight
 			virtual ~EffectBase();
 
 			/**
-			 * @brief　 初期化処理
+			 * @brief 初期化処理
 			 */
 			virtual void Initialize();
 
@@ -33,7 +33,7 @@ namespace starrynight
 			virtual void Process();
 
 			/**
-			 * @brief　 描画処理
+			 * @brief 描画処理
 			 */
 			virtual void Render();
 
@@ -66,23 +66,23 @@ namespace starrynight
 			inline VECTOR GetRotation() const { return rotation_; }
 
 			/**
-			 * @brief　 エフェクトを再生する
+			 * @brief エフェクトを再生する
 			 */
 			void PlayEffect();
 
 			/**
-			 * @brief　 再生中のエフェクト座標を更新する
+			 * @brief 再生中のエフェクト座標を更新する
 			 */
 			void SetPlayingEffectPosition();
 
 			/**
-			 * @brief　 再生中のエフェクト回転角度を更新する
+			 * @brief 再生中のエフェクト回転角度を更新する
 			 */
 			void SetPlayingEffectRotation();
 
 		protected:
 			/**
-			 * @brief　 DXライブラリのベクトルをEffekseerのベクトルに変換する
+			 * @brief DXライブラリのベクトルをEffekseerのベクトルに変換する
 			 *
 			 * @param  _vector	DXライブラリのベクトル構造体
 			 * @return   Effekseerのベクトル構造体

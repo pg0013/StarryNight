@@ -25,14 +25,14 @@ namespace starrynight
 			~PlayerParameters();
 
 			/**
-			 * @brief　 プレイヤーパラメータをjsonファイルから読み込む
+			 * @brief プレイヤーパラメータをjsonファイルから読み込む
 			 *
 			 * @param  _param_name　パラメータ名を格納したコンテナ
 			 */
 			void LoadPlayerParameters(const std::vector<std::string>& _param_name);
 
 			/**
-			 * @brief　 mapからプレイヤーパラメータを取得する
+			 * @brief mapからプレイヤーパラメータを取得する
 			 *
 			 * @param  _param_name　パラメータ名（jsonに記載）
 			 * @return   パラメータ(float)

@@ -54,13 +54,13 @@ namespace starrynight
 			bool Render() override;
 
 			/**
-			 * @brief　 次にモードへ遷移する処理
+			 * @brief 次にモードへ遷移する処理
 			 *
 			 */
 			void SetNextMode();
 		private:
 			/**
-			 * @brief　 次のモードに遷移する処理
+			 * @brief 次のモードに遷移する処理
 			 */
 			void NextMode();
 

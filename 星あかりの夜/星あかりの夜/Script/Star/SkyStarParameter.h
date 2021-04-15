@@ -32,7 +32,7 @@ namespace starrynight
 			void LoadSkyStar(const std::string& _stagename, const bool& _async_flag = false);
 
 			/**
-			 * @brief　 星座のパラメータを読み込む
+			 * @brief 星座のパラメータを読み込む
 			 *
 			 * @param  _name    星座名
 			 * @param  _param_name　パラメータ名を格納したコンテナ

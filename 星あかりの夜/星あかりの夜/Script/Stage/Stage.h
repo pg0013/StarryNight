@@ -37,7 +37,7 @@ namespace starrynight
 			static Stage* instance_;
 
 			/**
-			 * @brief　 インスタンスを返す
+			 * @brief インスタンスを返す
 			 *
 			 * @return   インスタンス
 			 */
@@ -66,7 +66,7 @@ namespace starrynight
 			void ClearHandle();
 
 			/**
-			 * @brief　 ナビメッシュと線分の当たり判定を取得する
+			 * @brief ナビメッシュと線分の当たり判定を取得する
 			 *
 			 * @param  _startline　	線分の開始地点
 			 * @param  _endline		線分の終了地点
@@ -75,7 +75,7 @@ namespace starrynight
 			MV1_COLL_RESULT_POLY GetHitLineToFloor(const VECTOR& _startline, const VECTOR& _endline) const;
 
 			/**
-			 * @brief　 オブジェクトと線分の当たり判定を取得する
+			 * @brief オブジェクトと線分の当たり判定を取得する
 			 *
 			 * @param  _startline　	線分の開始地点
 			 * @param  _endline		線分の終了地点
@@ -122,7 +122,7 @@ namespace starrynight
 			MV1_COLL_RESULT_POLY_DIM GetHitCapsuleToWall(const VECTOR& _position1, const VECTOR& _position2, const float& _radius) const;
 
 			/**
-			 * @brief　 射撃ポイントの床と当たり判定を取得する
+			 * @brief 射撃ポイントの床と当たり判定を取得する
 			 *
 			 * @param  _startline　	線分の開始地点
 			 * @param  _endline		線分の終了地点
@@ -131,7 +131,7 @@ namespace starrynight
 			MV1_COLL_RESULT_POLY GetHitLineToShootPoint(const VECTOR& _startline, const VECTOR& _endline) const;
 
 			/**
-			 * @brief　 床と線分の当たり判定をし、判定があれば床の材質を返す
+			 * @brief 床と線分の当たり判定をし、判定があれば床の材質を返す
 			 *
 			 * @param  _startline　	線分の開始地点
 			 * @param  _endline		線分の終了地点
@@ -144,37 +144,37 @@ namespace starrynight
 			int GetHitFloorType(const VECTOR& _startline, const VECTOR& _endline) const;
 		private:
 			/**
-			 * @brief　 ステージモデルを初期化、配置する
+			 * @brief ステージモデルを初期化、配置する
 			 *
 			 */
 			void InitStageModel();
 
 			/**
-			 * @brief　 ステージスターを初期化、配置する
+			 * @brief ステージスターを初期化、配置する
 			 *
 			 */
 			void InitStageStar();
 
 			/**
-			 * @brief　 星座を初期化、配置する
+			 * @brief 星座を初期化、配置する
 			 *
 			 */
 			void InitSkyStar();
 
 			/**
-			 * @brief　 敵を初期化、配置する
+			 * @brief 敵を初期化、配置する
 			 *
 			 */
 			void InitEnemy();
 
 			/**
-			 * @brief　 ステージのエフェクトを初期化、配置する
+			 * @brief ステージのエフェクトを初期化、配置する
 			 *
 			 */
 			void InitStageEffect();
 
 			/**
-			 * @brief　 ファイル名から床の材質を返す
+			 * @brief ファイル名から床の材質を返す
 			 *
 			 * @param  _filename　モデルのファイル名
 			 * @return   材質のタイプ

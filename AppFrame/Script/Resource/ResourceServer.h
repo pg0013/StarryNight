@@ -36,17 +36,17 @@ namespace resource
 		static void	Release();
 
 		/**
-		 * @brief　 テクスチャのデータを削除する
+		 * @brief テクスチャのデータを削除する
 		 */
 		static void	ClearTextureMap();
 
 		/**
-		 * @brief　 モデルデータを削除する
+		 * @brief モデルデータを削除する
 		 */
 		static void	ClearModelMap();
 
 		/**
-		 * @brief　 サウンドデータを削除する
+		 * @brief サウンドデータを削除する
 		 */
 		static void	ClearSoundMap();
 
@@ -121,7 +121,7 @@ namespace resource
 		static int GetModelHandle(const std::string _handlename);
 
 		/**
-		 * @brief　 画像ハンドルの取得
+		 * @brief 画像ハンドルの取得
 		 *
 		 * @param  _filename　画像ファイル名
 		 * @param  tex_num　分割時の画像番号（デフォルトで0）

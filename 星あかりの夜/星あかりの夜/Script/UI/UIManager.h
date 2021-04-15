@@ -55,14 +55,14 @@ namespace starrynight
 			void Render();
 
 			/**
-			 * @brief　 UIの描画をするか設定するフラグ
+			 * @brief UIの描画をするか設定するフラグ
 			 *
 			 * @param  _flag	UI描画フラグ　trueで描画
 			 */
 			void SetDrawUIFlag(const bool& _flag) { draw_ui_flag_ = _flag; }
 
 			/**
-			 * @brief　 UIの描画をするか設定するフラグ
+			 * @brief UIの描画をするか設定するフラグ
 			 *
 			 * @param  _flag	UI描画フラグ　trueで描画
 			 */

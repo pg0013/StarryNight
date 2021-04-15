@@ -53,7 +53,6 @@ void Camera::Initialize()
 	state_map_.emplace("Move", camera_state_);
 	state_map_.emplace("Shoot", std::make_shared<CameraShootState>());
 	state_map_.emplace("SkyStar", std::make_shared<CameraSkyStarState>());
-
 }
 
 void Camera::Process()
@@ -78,6 +77,20 @@ void Camera::ChangeCameraState(const std::string& _state_name)
 		//移行した状態の初期化処理を実行
 		camera_state_->Enter(*this);
 	}
+}
+
+void Camera::PlayerFollowMove(const VECTOR& _player_position, const VECTOR& _player_old_position)
+{
+	//プレイヤー移動によるカメラ移動
+	VECTOR camera_diff = camera::Camera::GetInstance()->GetPosition();
+	VECTOR player_diff = VSub(_player_position, _player_old_position);
+
+	if (VSize(player_diff) < 1.0f)
+		player_diff = { 0,0,0 };
+
+	camera_diff = VAdd(camera_diff, player_diff);
+	camera::Camera::GetInstance()->SetPosition(camera_diff);
+	camera::Camera::GetInstance()->SetTarget(VAdd(_player_position, VGet(0.0f, 60.0f, 0.0f)));
 }
 
 void Camera::Render()

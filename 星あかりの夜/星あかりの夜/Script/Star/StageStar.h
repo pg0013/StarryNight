@@ -48,70 +48,70 @@ namespace starrynight
 			void Render() override;
 
 			/**
-			 * @brief　 プレイヤーが何番目に取得したスターの数か取得する
+			 * @brief プレイヤーが何番目に取得したスターの数か取得する
 			 *
 			 * @return   0であればまだ未獲得、1以上であれば獲得済み
 			 */
 			int GetPlayersStarNum() const { return star_num_; }
 
 			/**
-			 * @brief　 プレイヤーが何番目に取得したスターの数か取得する
+			 * @brief プレイヤーが何番目に取得したスターの数か取得する
 			 *
 			 * @param  _star_num 何番目に所持したスターか
 			 */
 			void SetPlayersStarNum(const int& _star_num) { star_num_ = _star_num; }
 
 			/**
-			 * @brief　 指定した状態に切り替える処理
+			 * @brief 指定した状態に切り替える処理
 			 *
 			 * @param  _state_name　状態名
 			 */
 			void ChangeStageStarState(const std::string& _state_name);
 
 			/**
-			 * @brief　 待機状態の地面の高さを取得する
+			 * @brief 待機状態の地面の高さを取得する
 			 *
 			 * @return   地面の高さ
 			 */
 			float GetGroundPositionY() const { return ground_position_y_; }
 
 			/**
-			 * @brief　 待機状態の地面の高さを設定する
+			 * @brief 待機状態の地面の高さを設定する
 			 *
 			 * @param  _position_y　地面の高さ
 			 */
 			void SetGroundPositionY(const float& _position_y) { ground_position_y_ = _position_y; }
 
 			/**
-			 * @brief　 ジャンプの高さを取得する
+			 * @brief ジャンプの高さを取得する
 			 *
 			 * @return   ジャンプの高さ
 			 */
 			float GetJumpHeight() const { return jump_height_; }
 
 			/**
-			 * @brief　 ジャンプ速度を取得する
+			 * @brief ジャンプ速度を取得する
 			 *
 			 * @return   ジャンプ速度
 			 */
 			float GetJumpSpeed() const { return jump_speed_; }
 
 			/**
-			 * @brief　 ジャンプ速度を設定する
+			 * @brief ジャンプ速度を設定する
 			 *
 			 * @param  _jump_speed　ジャンプ速度
 			 */
 			void SetJumpSpeed(const float& _jump_speed) { jump_speed_ = _jump_speed; }
 
 			/**
-			 * @brief　 フィールド内スターの重力を取得する
+			 * @brief フィールド内スターの重力を取得する
 			 *
 			 * @return   重力加速度
 			 */
 			float GetGravity() const { return gravity_; }
 
 			/**
-			 * @brief　 フィールド内スターの回転速度を取得する
+			 * @brief フィールド内スターの回転速度を取得する
 			 *
 			 * @return   回転速度
 			 */
@@ -149,7 +149,6 @@ namespace starrynight
 			float ground_position_y_;//初期のY座標
 			float gravity_;//重力
 			float rot_speed_;//回転速度
-
 		};
 	}
 }

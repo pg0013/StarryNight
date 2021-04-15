@@ -44,7 +44,7 @@ namespace starrynight
 
 		private:
 			/**
-			 * @brief　 プレイヤーのHPを更新する
+			 * @brief プレイヤーのHPを更新する
 			 */
 			void UpdatePlayerHP();
 

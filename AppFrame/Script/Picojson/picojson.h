@@ -115,7 +115,6 @@ extern "C" {
 #endif
 
 namespace picojson {
-
 	enum
 	{
 		null_type,

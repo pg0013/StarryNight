@@ -68,21 +68,6 @@ void Player::SwitchPlayerSound()
 		}
 		break;
 	case STATUS::JUMP_END:
-		if (anim_play_time_ != 0)
-			break;
-
-		//‚‚¢‰¹‚©‚ç—‚¿‚½‚çƒ{ƒCƒX‚ğÄ¶‚·‚é
-		if (jump_speed_ < -20)
-		{
-			se_.Load("Resource/sound/landing_voice.wav");
-			se_.Play();
-		}
-		else
-		{
-			se_.Load("Resource/sound/shirimoti.wav");
-			se_.SetVolume_dB(-12.0f);
-			se_.Play();
-		}
 		break;
 	case STATUS::SHOOT_END:
 		if (anim_play_time_ == 0)

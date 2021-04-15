@@ -63,21 +63,21 @@ namespace starrynight
 			void CalcurateScore();
 
 			/**
-			 * @brief　 タイミングゲームのUIを表示するフラグを設定する
+			 * @brief タイミングゲームのUIを表示するフラグを設定する
 			 *
 			 * @param  _flag　trueでタイミングゲームUIを表示
 			 */
 			void SetDrawTimingGuide(const bool& _flag) { draw_timing_guide_ = _flag; }
 
 			/**
-			 * @brief　 プレイヤーが星を発射できるかどうかを判定するフラグを設定する
+			 * @brief プレイヤーが星を発射できるかどうかを判定するフラグを設定する
 			 *
 			 * @param  _flag　プレイヤーが星を発射できるかどうかを判定するフラグ
 			 */
 			void SetLaunchStarShoot(const bool& _flag) { launch_star_shoot_ = _flag; }
 
 			/**
-			 * @brief　 プレイヤーが星を発射できるかどうかを判定するフラグを取得する
+			 * @brief プレイヤーが星を発射できるかどうかを判定するフラグを取得する
 			 *
 			 * @return   プレイヤーが星を発射できるかどうかを判定するフラグ
 			 *					trueで発射
@@ -85,21 +85,21 @@ namespace starrynight
 			bool GetLaunchStarShoot() const { return launch_star_shoot_; }
 
 			/**
-			 * @brief　 プレイヤーが選択した星が何番星かを設定する
+			 * @brief プレイヤーが選択した星が何番星かを設定する
 			 *
 			 * @param  _star_frame_num	プレイヤーが選択した星のフレーム番号
 			 */
 			void SetSelectedStarNum(const int& _star_frame_num) { selected_star_num_ = _star_frame_num; }
 
 			/**
-			 * @brief　 プレイヤーが選択した星が何番星かを取得する
+			 * @brief プレイヤーが選択した星が何番星かを取得する
 			 *
 			 * @return   何番星か（1～３）
 			 */
 			int GetSelectedStarNum() const { return selected_star_num_; }
 
 			/**
-			 * @brief　 星選択時にボタンを押したときのフレームを記録する
+			 * @brief 星選択時にボタンを押したときのフレームを記録する
 			 *
 			 * @param  _frame	モードフレーム数
 			 */
@@ -115,7 +115,7 @@ namespace starrynight
 
 		private:
 			/**
-			 * @brief　 タイミングゲームのタイミングを評価する
+			 * @brief タイミングゲームのタイミングを評価する
 			 *
 			 * @return　タイミングの評価
 			 */

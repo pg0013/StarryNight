@@ -70,12 +70,12 @@ namespace starrynight
 
 		private:
 			/**
-			 * @brief　 コントローラ入力処理
+			 * @brief コントローラ入力処理
 			 */
 			void Input();
 
 			/**
-			 * @brief　 次のモードに遷移する処理
+			 * @brief 次のモードに遷移する処理
 			 */
 			void NextMode();
 
