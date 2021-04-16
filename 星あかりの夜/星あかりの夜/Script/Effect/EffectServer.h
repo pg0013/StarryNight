@@ -34,14 +34,14 @@ namespace starrynight
 			 *
 			 * @param [in,out]	_object	追加するオブジェクトのポインタ
 			 */
-			void Add(EffectBase* _effect);
+			void Add(const std::shared_ptr<EffectBase>& _effect);
 
 			/**
 			 * @brief	コンテナから削除
 			 *
 			 * @param [in,out]	削除するオブジェクトのポインタ
 			 */
-			void Delete(EffectBase* _effect);
+			void Delete(const std::shared_ptr<EffectBase>& _effect);
 
 			/**
 			 * @brief	毎フレーム呼ばれる演算処理
@@ -58,7 +58,7 @@ namespace starrynight
 			 *
 			 * @returns	コンテナ
 			 */
-			std::vector<EffectBase*>* List() { return &effect_list_; }
+			std::vector<std::shared_ptr<EffectBase>>* List() { return &effect_list_; }
 
 		private:
 			/**
@@ -71,9 +71,9 @@ namespace starrynight
 			 */
 			void DeleteListEffect();
 
-			std::vector<EffectBase*> effect_list_; //!< オブジェクト格納コンテナ
-			std::vector<EffectBase*> add_list_;	//!< 追加用コンテナ
-			std::vector<EffectBase*> delete_list_; //!< 削除用コンテナ
+			std::vector<std::shared_ptr<EffectBase>> effect_list_; //!< オブジェクト格納コンテナ
+			std::vector<std::shared_ptr<EffectBase>> add_list_;	//!< 追加用コンテナ
+			std::vector<std::shared_ptr<EffectBase>> delete_list_; //!< 削除用コンテナ
 		};
 	}
 }

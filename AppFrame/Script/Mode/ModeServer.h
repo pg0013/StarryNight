@@ -7,6 +7,7 @@
  */
 #pragma once
 #include<list>
+#include<memory>
 #include"ModeBase.h"
 
 namespace mode
@@ -14,14 +15,15 @@ namespace mode
 	/**
 	 * @brief  モード管理クラス
 	 */
-	class ModeServer
+	class ModeServer : public std::enable_shared_from_this<ModeServer>
 	{
 	public:
 		ModeServer();
 		virtual ~ModeServer();
 
-		static ModeServer* modeserver_instance_;
-		static ModeServer* GetInstance() { return static_cast<ModeServer*>(modeserver_instance_); }
+		static std::shared_ptr<ModeServer> modeserver_instance_;
+		static void SetInstance(const std::shared_ptr<ModeServer>& _instance) { modeserver_instance_ = _instance; }
+		static std::shared_ptr<ModeServer> GetInstance() { return modeserver_instance_; }
 
 		/**
 		 * @brief   モードサーバーに追加予約する
@@ -32,7 +34,7 @@ namespace mode
 		 * @param _name　モード名
 		 * @return
 		 */
-		int Add(ModeBase* _mode, const int& _layer, const char* _name);
+		int Add(std::shared_ptr<ModeBase> _mode, const int& _layer, const char* _name);
 
 		/**
 		 * @brief   削除予約をする
@@ -41,7 +43,7 @@ namespace mode
 		 * @param _mode　削除するモード
 		 * @return 　0
 		 */
-		int Del(ModeBase* _mode);
+		int Del(std::shared_ptr<ModeBase> _mode);
 
 		/**
 		 * @brief	uidから指定したモードを取得
@@ -50,7 +52,7 @@ namespace mode
 		 *
 		 * @return		指定したuidを持つモード
 		 */
-		ModeBase* Get(const int& _uid);
+		std::shared_ptr<ModeBase> Get(const int& _uid);
 
 		/**
 		 * @brief	モード名からモードを取得
@@ -59,7 +61,7 @@ namespace mode
 		 *
 		 * @returns	指定した名前のモード
 		 */
-		ModeBase* Get(const char* _name);
+		std::shared_ptr<ModeBase> Get(const char* _name);
 
 		/**
 		 * @brief	uidを取得
@@ -68,7 +70,7 @@ namespace mode
 		 *
 		 * @returns	指定したモードのuid
 		 */
-		int GetId(ModeBase* _mode);
+		int GetId(std::shared_ptr<ModeBase> _mode);
 
 		/**
 		 * @brief	uidを取得
@@ -86,7 +88,7 @@ namespace mode
 		 *
 		 * @returns	モード名
 		 */
-		const char* GetName(ModeBase* _mode);
+		const char* GetName(std::shared_ptr<ModeBase> _mode);
 
 		/**
 		 * @brief	モード名を取得
@@ -117,7 +119,7 @@ namespace mode
 		 *
 		 * @returns	_xが_yよりレイヤーが小さいかどうか
 		 */
-		static bool ModeSort(const ModeBase* _x, const ModeBase* _y)
+		static bool ModeSort(const std::shared_ptr<ModeBase> _x, const std::shared_ptr<ModeBase> _y)
 		{
 			return _x->layer_ < _y->layer_;
 		}
@@ -194,7 +196,7 @@ namespace mode
 		 *
 		 * @returns	An int.
 		 */
-		int Release(ModeBase* mode);
+		int Release(std::shared_ptr<ModeBase> mode);
 
 		/**
 		 * @brief	削除予約されているか？
@@ -203,7 +205,7 @@ namespace mode
 		 *
 		 * @returns	削除予約の可否
 		 */
-		bool IsDelRegist(ModeBase* mode);
+		bool IsDelRegist(std::shared_ptr<ModeBase> mode);
 
 		/**
 		 * @brief	リストにあるか？
@@ -212,17 +214,17 @@ namespace mode
 		 *
 		 * @returns	追加予約の可否
 		 */
-		bool IsAdd(ModeBase* mode);
+		bool IsAdd(std::shared_ptr<ModeBase> mode);
 
 	private:
-		std::list<ModeBase*> mode_list_; //!< モードリスト
+		std::list<std::shared_ptr<ModeBase>> mode_list_; //!< モードリスト
 		int	 uid_count_; //!< uidカウンタ
-		std::list<ModeBase*> addmode_list_;  //!< 追加予約
-		std::list<ModeBase*> delmode_list_;  //!< 削除予約
+		std::list<std::shared_ptr<ModeBase>> addmode_list_;  //!< 追加予約
+		std::list<std::shared_ptr<ModeBase>> delmode_list_;  //!< 削除予約
 
-		ModeBase* now_mode_; //!< 現在呼び出し中のモード
-		ModeBase* skip_processmode_; //!< このモードより下はProcessを呼ばない
-		ModeBase* skip_rendermode_;	//!< このモードより下はRenderを呼ばない
-		ModeBase* pause_processmode_;	//!< このモードより下はProcess時に時間経過をさせない
+		std::shared_ptr<ModeBase> now_mode_; //!< 現在呼び出し中のモード
+		std::shared_ptr<ModeBase> skip_processmode_; //!< このモードより下はProcessを呼ばない
+		std::shared_ptr<ModeBase> skip_rendermode_;	//!< このモードより下はRenderを呼ばない
+		std::shared_ptr<ModeBase> pause_processmode_;	//!< このモードより下はProcess時に時間経過をさせない
 	};
 }

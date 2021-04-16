@@ -55,7 +55,7 @@ void TimingGame_UI::Process()
 	//k¬‰ñ”‚ğXV‚·‚é
 	if (draw_timing_guide_ == false)
 	{
-		mode::ModeGame* mode_game =
+		std::shared_ptr<mode::ModeGame> mode_game =
 			mode::ModeGame::GetModeGame();
 
 		player_star_num_ = mode_game->GetPlayerStarNum() - 1;
@@ -173,7 +173,7 @@ void TimingGame_UI::Render()
 
 void TimingGame_UI::CalcurateScore()
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	double score = static_cast<double>(mode_game->GetGameScore());
 	int regulations_score = mode_game->GetStageRegulationsScore();

@@ -38,7 +38,7 @@ void CameraShootState::Exit(Camera& _camera)
 
 void CameraShootState::Input(Camera& _camera)
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	bool slingshot_flag = true;
 	float anim_playtime = 0.0f;
@@ -48,7 +48,7 @@ void CameraShootState::Input(Camera& _camera)
 	{
 		if (iter->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 		{
-			player::Player* player = static_cast<player::Player*>(iter);
+			std::shared_ptr<player::Player> player = std::dynamic_pointer_cast<player::Player>(iter);
 			//プレイヤーが射撃状態か取得
 			slingshot_flag = player->GetPlayerSlingShotStatus();
 			//アニメーション再生時間を取得
@@ -76,7 +76,7 @@ void CameraShootState::Input(Camera& _camera)
 
 void CameraShootState::Update(Camera& _camera)
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	//プレイヤーが星を選択したかどうかを取得
 	bool selected_star_flag = false;
@@ -84,7 +84,7 @@ void CameraShootState::Update(Camera& _camera)
 	{
 		if (iter->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 		{
-			player::Player* player = static_cast<player::Player*>(iter);
+			std::shared_ptr<player::Player> player = std::dynamic_pointer_cast<player::Player>(iter);
 			selected_star_flag = player->GetSelectedStarFlag();
 			break;
 		}

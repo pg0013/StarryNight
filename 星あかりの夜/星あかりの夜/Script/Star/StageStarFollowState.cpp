@@ -27,7 +27,7 @@ StageStarFollowState::~StageStarFollowState()
 void StageStarFollowState::Enter(Star& _star)
 {
 	//取得したスターの数を増やす
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 	mode_game->AddPlayerStarNum();
 	_star.SetPlayersStarNum(mode_game->GetPlayerStarNum());
 
@@ -42,7 +42,7 @@ void StageStarFollowState::Enter(Star& _star)
 	position = VAdd(player_position, VScale(VNorm(utility::GetForwardVector(player_rotation.y)), -0.5f * follow_interval_));
 
 	//星獲得エフェクトを生成
-	effect::GetStarEffect* getstar_effect = NEW effect::GetStarEffect();
+	std::shared_ptr<effect::GetStarEffect> getstar_effect = std::make_shared<effect::GetStarEffect>();
 	getstar_effect->SetPosition(player_position);
 	getstar_effect->Initialize();
 	getstar_effect->PlayEffect();
@@ -72,13 +72,13 @@ void StageStarFollowState::Input(Star& _star)
 {
 	//プレイヤーがダメージを受けたかどうかを取得
 	bool player_damaged = false;
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	for (auto&& iter : (*mode_game->object_server_.List()))
 	{
 		if ((iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 		{
-			player::Player* player = static_cast<player::Player*>(iter);
+			std::shared_ptr<player::Player> player = std::dynamic_pointer_cast<player::Player>(iter);
 			player_damaged = player->GetDamageFlag();
 			break;
 		}

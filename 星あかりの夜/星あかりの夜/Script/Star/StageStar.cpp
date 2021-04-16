@@ -75,7 +75,7 @@ void Star::ChangeStageStarState(const std::string& _state_name)
 
 int Star::IsStageStarDraw()
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	bool star_draw_flag = true;
 
@@ -84,7 +84,7 @@ int Star::IsStageStarDraw()
 	{
 		if ((iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 		{
-			player::Player* player = static_cast<player::Player*>(iter);
+			std::shared_ptr<player::Player> player = std::dynamic_pointer_cast<player::Player>(iter);
 			star_draw_flag = player->GetPlayerSlingShotStatus();
 			break;
 		}

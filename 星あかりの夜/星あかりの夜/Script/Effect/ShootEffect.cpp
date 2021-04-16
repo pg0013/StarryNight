@@ -58,9 +58,9 @@ void ShootEffect::Process()
 	//カメラが射撃モードでなくなったら、エフェクトを削除
 	if (camera::Camera::GetInstance()->GetStatus() != camera::Camera::STATUS::SHOOT)
 	{
-		mode::ModeGame* mode_game =
+		std::shared_ptr<mode::ModeGame> mode_game =
 			mode::ModeGame::GetModeGame();
-		mode_game->effect_server_.Delete(this);
+		mode_game->effect_server_.Delete(shared_from_this());
 	}
 }
 

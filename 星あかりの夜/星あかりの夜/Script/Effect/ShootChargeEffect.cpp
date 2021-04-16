@@ -60,17 +60,17 @@ void ShootChargeEffect::Process()
 	SetPlayingEffectPosition();
 
 	//プレイヤーが射撃モードでないとき、または星が発射されたらエフェクトを消す
-	mode::ModeGame* mode_game =
+	std::shared_ptr<mode::ModeGame> mode_game =
 		mode::ModeGame::GetModeGame();
 
 	for (auto&& iter : (*mode_game->object_server_.List()))
 	{
 		if ((iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 		{
-			player::Player* player = static_cast<player::Player*>(iter);
+			std::shared_ptr<player::Player> player = std::dynamic_pointer_cast<player::Player>(iter);
 
 			if (player->GetPlayerStatus() != player::Player::STATUS::SHOOT_START)
-				mode_game->effect_server_.Delete(this);
+				mode_game->effect_server_.Delete(shared_from_this());
 		}
 	}
 

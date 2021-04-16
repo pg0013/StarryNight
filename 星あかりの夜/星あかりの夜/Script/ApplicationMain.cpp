@@ -18,7 +18,7 @@ bool ApplicationMain::Initialize(HINSTANCE _hinstance)
 {
 	if (!appbase::Initialize(_hinstance)) { return false; }
 
-	mode::ModeMovie* mode_movie = NEW mode::ModeMovie();
+	std::shared_ptr<mode::ModeMovie> mode_movie = std::make_shared<mode::ModeMovie>();
 	::mode::ModeServer::GetInstance()->Add(mode_movie, 0, "Movie");
 
 	resource::ResourceServer::LoadSound("Resource/sound/outgame_bgm.wav");

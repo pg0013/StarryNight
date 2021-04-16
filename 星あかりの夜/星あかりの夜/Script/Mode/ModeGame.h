@@ -12,6 +12,7 @@
 #include"../Effect/EffectServer.h"
 #include"../Camera/Camera.h"
 #include"../UI/UIManager.h"
+#include<memory>
 
 namespace
 {
@@ -103,8 +104,8 @@ namespace starrynight
 			 *
 			 * @return　ゲームモードインスタンス
 			 */
-			static ModeGame* GetModeGame() {
-				return static_cast<mode::ModeGame*>(::mode::ModeServer::GetInstance()->Get("Game"));
+			static std::shared_ptr<ModeGame> GetModeGame() {
+				return std::dynamic_pointer_cast<ModeGame>(::mode::ModeServer::GetInstance()->Get("Game"));
 			}
 
 			/**

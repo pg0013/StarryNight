@@ -65,7 +65,7 @@ void Stage::InitStageModel()
 
 void Stage::InitStageStar()
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	//Starモデルの配置情報を読み込み
 	auto handle_map = star_param_.GetMapModelParam();
@@ -74,7 +74,7 @@ void Stage::InitStageStar()
 	int stage_star_num = 0;
 	for (auto&& iter : handle_map)
 	{
-		star::Star* star = NEW star::Star();
+		std::shared_ptr<star::Star> star = std::make_shared<star::Star>();
 		star->SetModelHandle(resource::ResourceServer::GetModelHandle(iter.second.handlename_));
 		star->Initialize();
 		mode_game->object_server_.Add(star);
@@ -88,7 +88,7 @@ void Stage::InitStageStar()
 
 void Stage::InitSkyStar()
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	//星座の情報を読み込み
 	auto handle_map = skystar_param_.GetMapModelParam();
@@ -96,7 +96,7 @@ void Stage::InitSkyStar()
 	//星座モデルを配置する
 	for (auto&& iter : handle_map)
 	{
-		star::SkyStar* skystar = NEW star::SkyStar(iter.second.filename_);
+		std::shared_ptr<star::SkyStar> skystar = std::make_shared<star::SkyStar>(iter.second.filename_);
 		skystar->Initialize();
 		mode_game->object_server_.Add(skystar);
 	}
@@ -104,7 +104,7 @@ void Stage::InitSkyStar()
 
 void Stage::InitEnemy()
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	//エネミーモデルの配置情報を読み込み
 	auto handle_map = enemy_param_.GetMapModelParam();
@@ -112,7 +112,7 @@ void Stage::InitEnemy()
 	//Stageにエネミーモデルを配置する
 	for (auto&& iter : handle_map)
 	{
-		enemy::Enemy* enemy = NEW enemy::Enemy(iter.second.handlename_);
+		std::shared_ptr<enemy::Enemy> enemy = std::make_shared<enemy::Enemy>(iter.second.handlename_);
 		enemy->Initialize();
 		mode_game->object_server_.Add(enemy);
 	}
@@ -120,17 +120,17 @@ void Stage::InitEnemy()
 
 void Stage::InitStageEffect()
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	//射撃ポイントにエフェクトを配置
 	handle shootpoint = resource::ResourceServer::GetModelHandle("ShootPoint_GEO1");
-	effect::ShootPointEffect* shootpoint_effect = NEW effect::ShootPointEffect();
+	std::shared_ptr<effect::ShootPointEffect> shootpoint_effect = std::make_shared<effect::ShootPointEffect>();
 	shootpoint_effect->SetPosition(MV1GetPosition(shootpoint));
 	shootpoint_effect->PlayEffect();
 	mode_game->effect_server_.Add(shootpoint_effect);
 
 	//花びらエフェクトの生成
-	effect::StageFlowEffect* stageflow_effect = NEW effect::StageFlowEffect();
+	std::shared_ptr<effect::StageFlowEffect> stageflow_effect = std::make_shared<effect::StageFlowEffect>();
 	stageflow_effect->SetPosition(VGet(0, 0, 0));
 	stageflow_effect->PlayEffect();
 	mode_game->effect_server_.Add(stageflow_effect);

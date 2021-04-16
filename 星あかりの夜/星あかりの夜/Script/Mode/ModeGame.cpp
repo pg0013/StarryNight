@@ -57,7 +57,7 @@ bool ModeGame::Initialize()
 	if (!::mode::ModeBase::Initialize()) { return false; }
 
 	//プレイヤーを生成
-	object::ObjectBase* player = NEW player::Player(stage_name_);
+	std::shared_ptr<player::Player> player = std::make_shared<player::Player>(stage_name_);
 	object_server_.Add(player);
 
 	//カメラ、ステージ、UIの初期化
@@ -84,7 +84,7 @@ bool ModeGame::Initialize()
 	appframe::ApplicationBase::GetInstance()->bgm_.SetLoopCount(XAUDIO2_LOOP_INFINITE);
 	appframe::ApplicationBase::GetInstance()->bgm_.PlayWithLoop(0.0f, 234.5f);
 
-	mode::ModeLoading* mode_loading = static_cast<mode::ModeLoading*>(::mode::ModeServer::GetInstance()->Get("Loading"));
+	std::shared_ptr<mode::ModeLoading> mode_loading = std::dynamic_pointer_cast<mode::ModeLoading>( ::mode::ModeServer::GetInstance()->Get("Loading"));
 	mode_loading->SetNextMode();
 
 	return true;
@@ -233,7 +233,7 @@ void ModeGame::CheckIsClearStage()
 		{
 			gameover_flag_ = true;
 
-			mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+			std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 			mode_game->SetNextMode(300, 60, GAME_OVER);
 		}
 	}
@@ -248,7 +248,7 @@ void ModeGame::CheckIsGameOver()
 	{
 		if (iter->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 		{
-			player::Player* player = static_cast<player::Player*>(iter);
+			std::shared_ptr<player::Player> player = std::dynamic_pointer_cast<player::Player>(iter);
 			//HPがあればゲームオーバーではない
 			if (player->GetPlayerHP() > 0)
 				return;
@@ -272,9 +272,9 @@ void ModeGame::NextMode()
 	if (nextmode_count_ == fade_count_ &&
 		pause_flag_ == false)
 	{
-		ModeOverlay* modeoverlay = NEW ModeOverlay();
-		modeoverlay->Fade(fade_count_, FADE_OUT);
-		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
+		std::shared_ptr<ModeOverlay> mode_overlay = std::make_shared<ModeOverlay>();
+		mode_overlay->Fade(fade_count_, FADE_OUT);
+		::mode::ModeServer::GetInstance()->Add(mode_overlay, 0, "Overlay");
 
 		appframe::ApplicationBase::GetInstance()->bgm_.Fade(0.0f, static_cast<float>(fade_count_) / 60.0f);
 	}
@@ -284,8 +284,8 @@ void ModeGame::NextMode()
 		if (pause_flag_)
 		{
 			//ポーズメニューへ移行
-			ModePauseMenu* mode_pause_menu = NEW ModePauseMenu();
-			::mode::ModeServer::GetInstance()->Add(mode_pause_menu, 1, "PauseMenu");
+			std::shared_ptr<ModePauseMenu> mode_pausemenu = std::make_shared<ModePauseMenu>();
+			::mode::ModeServer::GetInstance()->Add(mode_pausemenu, 1, "PauseMenu");
 			ui_.SetDrawUIFlag(false);
 			//モードを削除しないので、フラグを初期化
 			pause_flag_ = false;
@@ -296,16 +296,16 @@ void ModeGame::NextMode()
 		if (result_ == GAME_CLEAR)
 		{
 			//ゲームクリアへ移行し、モードを削除
-			ModeGameClear* mode_gameclear = NEW ModeGameClear(game_score_, stage_name_);
+			std::shared_ptr<ModeGameClear> mode_gameclear = std::make_shared<ModeGameClear>(game_score_, stage_name_);
 			::mode::ModeServer::GetInstance()->Add(mode_gameclear, 0, "GameClear");
-			::mode::ModeServer::GetInstance()->Del(this);
+			::mode::ModeServer::GetInstance()->Del(shared_from_this());
 		}
 		else if (result_ == GAME_OVER)
 		{
 			//ゲームオーバー並行し、モードを削除
-			mode::ModeGameOver* mode_gameover = NEW mode::ModeGameOver(stage_name_);
+			std::shared_ptr<ModeGameOver> mode_gameover = std::make_shared<ModeGameOver>(stage_name_);
 			::mode::ModeServer::GetInstance()->Add(mode_gameover, 0, "GameOver");
-			::mode::ModeServer::GetInstance()->Del(this);
+			::mode::ModeServer::GetInstance()->Del(shared_from_this());
 		}
 	}
 }

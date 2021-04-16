@@ -48,7 +48,7 @@ bool ModeOverlay::Process()
 	fade_count_--;
 
 	if (fade_count_ <= 0)
-		::mode::ModeServer::GetInstance()->Del(this);
+		::mode::ModeServer::GetInstance()->Del(shared_from_this());
 
 	return true;
 }

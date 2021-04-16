@@ -39,7 +39,7 @@ bool ModeGameOver::Initialize()
 {
 	if (!::mode::ModeBase::Initialize()) { return false; }
 
-	ModeOverlay* modeoverlay = NEW ModeOverlay();
+	std::shared_ptr<ModeOverlay> modeoverlay = std::make_shared<ModeOverlay>();
 	modeoverlay->Fade(30, FADE_IN);
 	::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 
@@ -100,13 +100,13 @@ void ModeGameOver::Input()
 
 		nextmode_count_ = 60;
 
-		ModeOverlay* modeoverlay = NEW ModeOverlay();
+		std::shared_ptr<ModeOverlay> modeoverlay = std::make_shared<ModeOverlay>();
 		modeoverlay->Fade(nextmode_count_, FADE_OUT);
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 
 		if (cursol_ == AGAIN)
 		{
-			ModeLoading* mode_loading = NEW ModeLoading();
+			std::shared_ptr<ModeLoading> mode_loading = std::make_shared<ModeLoading>();
 			::mode::ModeServer::GetInstance()->Add(mode_loading, 10, "Loading");
 		}
 		else
@@ -135,16 +135,17 @@ void ModeGameOver::NextMode()
 	{
 		resource::ResourceServer::ClearModelMap();
 
-		ModeGame* mode_game = NEW ModeGame(stage_name_);
+		std::shared_ptr<ModeGame> mode_game = std::make_shared<ModeGame>(stage_name_);
+
 		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
-		::mode::ModeServer::GetInstance()->Del(this);
+		::mode::ModeServer::GetInstance()->Del(shared_from_this());
 	}
 
 	if (cursol_ == GIVEUP)
 	{
-		ModeTitle* mode_title = NEW ModeTitle();
+		std::shared_ptr<ModeTitle> mode_title = std::make_shared<ModeTitle>();
 		::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");
-		::mode::ModeServer::GetInstance()->Del(this);
+		::mode::ModeServer::GetInstance()->Del(shared_from_this());
 	}
 }
 

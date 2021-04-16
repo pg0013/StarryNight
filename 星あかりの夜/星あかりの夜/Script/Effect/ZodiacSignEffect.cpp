@@ -141,7 +141,7 @@ void ZodiacSignEffect::DrawCompleteEffect()
 
 	int elapsed_frame = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - start_frame_;
 
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	//経過フレームが星座エフェクト切り替え時であれば
 	if (elapsed_frame == switch_effect_frame_)
@@ -164,7 +164,7 @@ void ZodiacSignEffect::DrawCompleteEffect()
 	if (elapsed_frame == switch_effect_frame_ + complete_effect_startframe_)
 	{
 		//星獲得エフェクトを生成
-		effect::TimingRankEffect* timing_effect = NEW effect::TimingRankEffect(mode_game->GetScoreRank());
+		std::shared_ptr<effect::TimingRankEffect> timing_effect = std::make_shared<effect::TimingRankEffect>(mode_game->GetScoreRank());
 		timing_effect->SetPosition(position_);
 		timing_effect->Initialize();
 		timing_effect->PlayEffect();
@@ -181,7 +181,7 @@ void ZodiacSignEffect::PlayEffectSound()
 
 	int elapsed_frame = ::mode::ModeServer::GetInstance()->Get("Game")->GetModeCount() - start_frame_;
 
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	if (elapsed_frame == switch_effect_frame_ + complete_effect_startframe_)
 	{

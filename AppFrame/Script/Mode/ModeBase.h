@@ -8,6 +8,7 @@
 
 #pragma once
 #include<string>
+#include<memory>
 
 namespace mode
 {
@@ -16,7 +17,7 @@ namespace mode
 	/**
 	 * @brief  モードの基底クラス
 	 */
-	class ModeBase
+	class ModeBase : public std::enable_shared_from_this<ModeBase>
 	{
 	public:
 		ModeBase();

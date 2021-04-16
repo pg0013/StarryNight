@@ -66,7 +66,7 @@ void Score_UI::Process()
 		blinking_flag_ = false;
 		blink_startframe_ = 0;
 
-		mode::ModeGame* mode_game =
+		std::shared_ptr<mode::ModeGame> mode_game =
 			mode::ModeGame::GetModeGame();
 		if (mode_game->GetStageStarNum() == 1)
 			se_.Load("Resource/sound/lastone_voice.wav");
@@ -78,7 +78,7 @@ void Score_UI::Process()
 
 void Score_UI::UpdatePlayerScore()
 {
-	mode::ModeGame* mode_game =
+	std::shared_ptr<mode::ModeGame> mode_game =
 		mode::ModeGame::GetModeGame();
 
 	SetPlayerScore(mode_game->GetStageStarNum() - mode_game->GetPlayerStarNum());

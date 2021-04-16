@@ -45,7 +45,7 @@ bool ModePauseMenu::Initialize()
 {
 	if (!::mode::ModeBase::Initialize()) { return false; }
 
-	ModeOverlay* modeoverlay = NEW ModeOverlay();
+	std::shared_ptr<ModeOverlay> modeoverlay = std::make_shared<ModeOverlay>();
 	modeoverlay->Capture(20);
 	::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 
@@ -109,7 +109,7 @@ void ModePauseMenu::Input()
 
 		if (nextmode_ == TITLE)
 		{
-			ModeOverlay* modeoverlay = NEW ModeOverlay();
+			std::shared_ptr<ModeOverlay> modeoverlay = std::make_shared<ModeOverlay>();
 			modeoverlay->Fade(nextmode_count_, FADE_OUT);
 			::mode::ModeServer::GetInstance()->Add(modeoverlay, 2, "Overlay");
 
@@ -126,7 +126,7 @@ void ModePauseMenu::Input()
 		{
 			nextmode_count_ = 2;
 
-			ModeTutorial* mode_tutorial = NEW ModeTutorial();
+			std::shared_ptr<ModeTutorial> mode_tutorial = std::make_shared<ModeTutorial>();
 			::mode::ModeServer::GetInstance()->Add(mode_tutorial, 3, "Tutorial");
 		}
 
@@ -165,16 +165,16 @@ void ModePauseMenu::NextMode()
 	{
 		resource::ResourceServer::ClearModelMap();
 
-		ModeTitle* mode_title = NEW ModeTitle();
+		std::shared_ptr<ModeTitle> mode_title = std::make_shared<ModeTitle>();
 		::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");
 		::mode::ModeServer::GetInstance()->Del(::mode::ModeServer::GetInstance()->Get("Game"));
-		::mode::ModeServer::GetInstance()->Del(this);
+		::mode::ModeServer::GetInstance()->Del(shared_from_this());
 	}
 	else if (nextmode_ == RETURN)
 	{
-		mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+		std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 		mode_game->ui_.SetDrawUIFlag(true);
-		::mode::ModeServer::GetInstance()->Del(this);
+		::mode::ModeServer::GetInstance()->Del(shared_from_this());
 	}
 	else if (nextmode_ == TUTORIAL)
 	{

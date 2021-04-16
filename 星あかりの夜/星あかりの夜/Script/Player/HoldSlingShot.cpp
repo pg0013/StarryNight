@@ -20,7 +20,7 @@ using namespace starrynight::player;
 
 void PlayerShootState::HoldSlingShot(Player& _player)
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	if (_player.GetPlayerStatus() != Player::STATUS::SHOOT_END)
 	{
@@ -69,7 +69,7 @@ void PlayerShootState::HoldSlingShot(Player& _player)
 	//星発射後にゲームクリアしていれば、星座カメラに移行するのでフェードアウト
 	if (_player.GetAnimPlayTime() == 70.0f)
 	{
-		mode::ModeOverlay* modeoverlay = NEW mode::ModeOverlay();
+		std::shared_ptr<mode::ModeOverlay> modeoverlay = std::make_shared < mode::ModeOverlay >();
 		modeoverlay->Fade(11, FADE_OUT);
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 	}
@@ -82,7 +82,7 @@ void PlayerShootState::HoldSlingShot(Player& _player)
 
 void  PlayerShootState::SlingShotStance(Player& _player)
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	_player.SetPlayerStatus(Player::STATUS::SHOOT_START);
 
@@ -92,7 +92,7 @@ void  PlayerShootState::SlingShotStance(Player& _player)
 		//1フレームだけ処理を行う
 		if (shoot_charge_effect_flag_ == false)
 		{
-			effect::ShootChargeEffect* charge_effect = NEW effect::ShootChargeEffect();
+			std::shared_ptr<effect::ShootChargeEffect> charge_effect = std::make_shared<effect::ShootChargeEffect>();
 
 			charge_effect->Initialize();
 			charge_effect->PlayEffect();
@@ -110,7 +110,7 @@ void  PlayerShootState::SlingShotStance(Player& _player)
 
 MV1_COLL_RESULT_POLY PlayerShootState::CheckHitStar(Player& _player)
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	MV1_COLL_RESULT_POLY hit_star;
 	hit_star.HitFlag = 0;
@@ -125,7 +125,7 @@ MV1_COLL_RESULT_POLY PlayerShootState::CheckHitStar(Player& _player)
 	{
 		if ((iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::SKY_STAR)
 		{
-			star::SkyStar* star = static_cast<star::SkyStar*>(iter);
+			std::shared_ptr<star::SkyStar> star = std::dynamic_pointer_cast<star::SkyStar>(iter);
 			hit_star = star->GetHitToSkyStar(start, end);
 			break;
 		}
@@ -136,10 +136,10 @@ MV1_COLL_RESULT_POLY PlayerShootState::CheckHitStar(Player& _player)
 
 void PlayerShootState::Launch_Star(Player& _player, const VECTOR& _star_position)
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	//射撃エフェクトの生成
-	effect::ShootEffect* shoot_effect = NEW effect::ShootEffect(_star_position);
+	std::shared_ptr< effect::ShootEffect> shoot_effect = std::make_shared< effect::ShootEffect>(_star_position);
 
 	shoot_effect->PlayEffect();
 	shoot_effect->Initialize();
@@ -150,7 +150,8 @@ void PlayerShootState::Launch_Star(Player& _player, const VECTOR& _star_position
 	{
 		if ((iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::STAGE_STAR)
 		{
-			star::Star* star = static_cast<star::Star*>(iter);
+			std::shared_ptr<star::Star> star = std::dynamic_pointer_cast<star::Star>(iter);
+
 			if (star->GetPlayersStarNum() > 0)
 				mode_game->object_server_.Delete(iter);
 		}

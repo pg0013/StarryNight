@@ -28,7 +28,7 @@ bool ModeMovie::Initialize()
 {
 	if (!::mode::ModeBase::Initialize()) { return false; }
 
-	ModeOverlay* modeoverlay = NEW ModeOverlay();
+	std::shared_ptr<ModeOverlay> modeoverlay = std::make_shared<ModeOverlay>();
 	modeoverlay->Fade(60, FADE_IN);
 	::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 
@@ -78,7 +78,7 @@ void ModeMovie::Input()
 
 		nextmode_count_ = 60;
 
-		ModeOverlay* modeoverlay = NEW ModeOverlay();
+		std::shared_ptr<ModeOverlay> modeoverlay = std::make_shared<ModeOverlay>();
 		modeoverlay->Fade(nextmode_count_, FADE_OUT);
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 	}
@@ -96,7 +96,7 @@ void ModeMovie::NextMode()
 
 	PauseMovieToGraph(movie_);
 
-	ModeTitle* mode_title = NEW ModeTitle();
+	std::shared_ptr<ModeTitle> mode_title = std::make_shared<ModeTitle>();
 	::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");
-	::mode::ModeServer::GetInstance()->Del(this);
+	::mode::ModeServer::GetInstance()->Del(shared_from_this());
 }

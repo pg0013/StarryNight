@@ -49,7 +49,7 @@ bool ModeMenu::Initialize()
 {
 	if (!::mode::ModeBase::Initialize()) { return false; }
 
-	ModeOverlay* modeoverlay = NEW ModeOverlay();
+	std::shared_ptr<ModeOverlay> modeoverlay = std::make_shared<ModeOverlay>();
 	modeoverlay->Fade(30, FADE_IN);
 	::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 
@@ -114,11 +114,11 @@ void ModeMenu::Input()
 		nextmode_count_ = 30;
 		nextmode_ = cursol_;
 
-		ModeOverlay* modeoverlay = NEW ModeOverlay();
+		std::shared_ptr<ModeOverlay> modeoverlay = std::make_shared<ModeOverlay>();
 		modeoverlay->Fade(nextmode_count_, FADE_OUT);
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 
-		ModeLoading* mode_loading = NEW ModeLoading();
+		std::shared_ptr<ModeLoading> mode_loading = std::make_shared<ModeLoading>();
 		::mode::ModeServer::GetInstance()->Add(mode_loading, 10, "Loading");
 	}
 
@@ -130,7 +130,7 @@ void ModeMenu::Input()
 		nextmode_count_ = 60;
 		nextmode_ = TITLE;
 
-		ModeOverlay* modeoverlay = NEW ModeOverlay();
+			std::shared_ptr<ModeOverlay> modeoverlay = std::make_shared<ModeOverlay>();
 		modeoverlay->Fade(nextmode_count_, FADE_OUT);
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 	}
@@ -150,9 +150,9 @@ void ModeMenu::NextMode()
 	{
 		resource::ResourceServer::ClearModelMap();
 
-		ModeGame* mode_game = NEW ModeGame("haru_A");
+		std::shared_ptr<ModeGame> mode_game = std::make_shared<ModeGame>("haru_A");
 		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
-		::mode::ModeServer::GetInstance()->Del(this);
+		::mode::ModeServer::GetInstance()->Del(shared_from_this());
 
 		appframe::ApplicationBase::GetInstance()->se_.Pause();
 		appframe::ApplicationBase::GetInstance()->bgm_.Pause();
@@ -161,9 +161,9 @@ void ModeMenu::NextMode()
 	{
 		resource::ResourceServer::ClearModelMap();
 
-		ModeGame* mode_game = NEW ModeGame("haru_B");
+		std::shared_ptr<ModeGame> mode_game = std::make_shared<ModeGame>("haru_B");
 		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
-		::mode::ModeServer::GetInstance()->Del(this);
+		::mode::ModeServer::GetInstance()->Del(shared_from_this());
 
 		appframe::ApplicationBase::GetInstance()->se_.Pause();
 		appframe::ApplicationBase::GetInstance()->bgm_.Pause();
@@ -172,9 +172,9 @@ void ModeMenu::NextMode()
 	{
 		resource::ResourceServer::ClearModelMap();
 
-		ModeGame* mode_game = NEW ModeGame("haru_C");
+		std::shared_ptr<ModeGame> mode_game = std::make_shared<ModeGame>("haru_C");
 		::mode::ModeServer::GetInstance()->Add(mode_game, 0, "Game");
-		::mode::ModeServer::GetInstance()->Del(this);
+		::mode::ModeServer::GetInstance()->Del(shared_from_this());
 
 		appframe::ApplicationBase::GetInstance()->se_.Pause();
 		appframe::ApplicationBase::GetInstance()->bgm_.Pause();
@@ -182,9 +182,9 @@ void ModeMenu::NextMode()
 
 	if (nextmode_ == TITLE)
 	{
-		ModeTitle* mode_title = NEW ModeTitle();
+		std::shared_ptr<ModeTitle> mode_title = std::make_shared<ModeTitle>();
 		::mode::ModeServer::GetInstance()->Add(mode_title, 0, "Title");
-		::mode::ModeServer::GetInstance()->Del(this);
+		::mode::ModeServer::GetInstance()->Del(shared_from_this());
 	}
 }
 

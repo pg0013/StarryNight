@@ -26,7 +26,7 @@ SkyStar::~SkyStar()
 
 void SkyStar::Initialize()
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	float radius = 10000.0f;
 	float height = 6500.0f;
@@ -47,7 +47,7 @@ void SkyStar::Initialize()
 	MV1SetPosition(handle_, position_);
 
 	//星座エフェクトを生成、配置
-	effect::ZodiacSignEffect* zodiac_effect = NEW effect::ZodiacSignEffect(zodiac_name_);
+	std::shared_ptr<effect::ZodiacSignEffect> zodiac_effect = std::make_shared<effect::ZodiacSignEffect>(zodiac_name_);
 	zodiac_effect->PlayEffect();
 	zodiac_effect->SetPosition(VGet(0, 0, 0));
 	zodiac_effect->SetPlayingEffectPosition();

@@ -149,7 +149,7 @@ namespace appframe
 		XINPUT_STATE x_input_;//!<XINPUT用コントローラ入力
 		DINPUT_JOYSTATE d_input_;//!<DIRECTINPUT用コントローラ入力
 
-		mode::ModeServer* mode_server_;//!<モード管理用サーバ
+		std::shared_ptr<mode::ModeServer> mode_server_;//!<モード管理用サーバ
 
 		//FPS計測用変数
 		LONGLONG now_time_, fps_check_time_;

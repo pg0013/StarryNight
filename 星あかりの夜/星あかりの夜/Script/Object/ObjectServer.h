@@ -10,6 +10,7 @@
 #include"appframe.h"
 #include"ObjectBase.h"
 #include<vector>
+#include<memory>
 
 namespace starrynight
 {
@@ -36,22 +37,22 @@ namespace starrynight
 			void Clear();
 
 			/**
-			 * @fn	void ObjectServer::Add(ObjectBase* _object);
+			 * @fn	void ObjectServer::Add(std::shared_ptr<ObjectBase> _object);
 			 *
 			 * @brief	コンテナに追加（最前面に表示）
 			 *
 			 * @param [in,out]	_object	追加するオブジェクトのポインタ
 			 */
-			void Add(ObjectBase* _object);
+			void Add(const std::shared_ptr<ObjectBase>& _object);
 
 			/**
-			 * @fn	void ObjectServer::Delete(ObjectBase* _object);
+			 * @fn	void ObjectServer::Delete(std::shared_ptr<ObjectBase> _object);
 			 *
 			 * @brief	コンテナから削除
 			 *
 			 * @param [in,out]	削除するオブジェクトのポインタ
 			 */
-			void Delete(ObjectBase* _object);
+			void Delete(const std::shared_ptr<ObjectBase>& _object);
 
 			/**
 			 * @fn	void ObjectServer::Process(Game& _game);
@@ -68,13 +69,13 @@ namespace starrynight
 			void Render();
 
 			/**
-			 * @fn	std::vector<ObjectBase*> ObjectServer::*List()
+			 * @fn	std::vector<std::shared_ptr<ObjectBase>> ObjectServer::*List()
 			 *
 			 * @brief	ObjectBaseを格納してるコンテナへのゲッター
 			 *
 			 * @returns	コンテナ
 			 */
-			std::vector<ObjectBase*>* List() { return &object_list_; }
+			std::vector<std::shared_ptr<ObjectBase>>* List() { return &object_list_; }
 
 		private:
 			/**
@@ -91,9 +92,9 @@ namespace starrynight
 			 */
 			void DeleteListObject();
 
-			std::vector<ObjectBase*> object_list_; //!< オブジェクト格納コンテナ
-			std::vector<ObjectBase*> add_list_;	//!< 追加用コンテナ
-			std::vector<ObjectBase*> delete_list_; //!< 削除用コンテナ
+			std::vector<std::shared_ptr<ObjectBase>> object_list_; //!< オブジェクト格納コンテナ
+			std::vector<std::shared_ptr<ObjectBase>> add_list_;	//!< 追加用コンテナ
+			std::vector<std::shared_ptr<ObjectBase>> delete_list_; //!< 削除用コンテナ
 		};
 	}
 }

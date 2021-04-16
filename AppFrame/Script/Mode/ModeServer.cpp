@@ -4,11 +4,10 @@
 
 namespace mode
 {
-	ModeServer* ModeServer::modeserver_instance_ = nullptr;
+	std::shared_ptr<ModeServer> ModeServer::modeserver_instance_ = nullptr;
 
 	ModeServer::ModeServer()
 	{
-		modeserver_instance_ = this;
 		uid_count_ = 1;
 		now_mode_ = nullptr;
 		skip_processmode_ = nullptr;
@@ -22,7 +21,7 @@ namespace mode
 		modeserver_instance_ = nullptr;
 	}
 
-	int ModeServer::Add(ModeBase* _mode, const int& _layer, const char* _name)
+	int ModeServer::Add(std::shared_ptr<ModeBase> _mode, const int& _layer, const char* _name)
 	{
 		addmode_list_.push_back(_mode);
 		_mode->uid_ = uid_count_;
@@ -33,13 +32,13 @@ namespace mode
 		return _mode->uid_;
 	}
 
-	int ModeServer::Del(ModeBase* _mode)
+	int ModeServer::Del(std::shared_ptr<ModeBase> _mode)
 	{
 		delmode_list_.push_back(_mode);
 		return 0;
 	}
 
-	int ModeServer::Release(ModeBase* _mode)
+	int ModeServer::Release(std::shared_ptr<ModeBase> _mode)
 	{
 		for (auto iter = mode_list_.begin(); iter != mode_list_.end();)
 		{
@@ -47,7 +46,7 @@ namespace mode
 			if ((*iter) == _mode)
 			{
 				(*iter)->Terminate();
-				delete (*iter);
+				iter->reset();
 				iter = mode_list_.erase(iter);
 			}
 			else
@@ -64,13 +63,13 @@ namespace mode
 		for (auto iter = mode_list_.rbegin(); iter != mode_list_.rend(); ++iter)
 		{
 			(*iter)->Terminate();
-			delete (*iter);
+			iter->reset();
 		}
 		//’Ç‰ÁƒŠƒXƒg‚Ìƒ‚[ƒh‚ğ‚·‚×‚Äíœ
 		for (auto&& iteradd : addmode_list_)
 		{
 			iteradd->Terminate();
-			delete iteradd;
+			iteradd.reset();
 		}
 
 		mode_list_.clear();
@@ -78,7 +77,7 @@ namespace mode
 		delmode_list_.clear();
 	}
 
-	bool ModeServer::IsDelRegist(ModeBase* _mode)
+	bool ModeServer::IsDelRegist(std::shared_ptr<ModeBase> _mode)
 	{
 		if (delmode_list_.size() > 0)
 		{
@@ -90,7 +89,7 @@ namespace mode
 		return false;
 	}
 
-	bool ModeServer::IsAdd(ModeBase* _mode)
+	bool ModeServer::IsAdd(std::shared_ptr<ModeBase> _mode)
 	{
 		//“o˜^’†‚Ì‚à‚ÌA“o˜^—\–ñ’†‚Ì‚à‚Ì‚©‚çŒŸõ‚·‚é
 		for (auto&& iter : mode_list_)
@@ -106,7 +105,7 @@ namespace mode
 		return false;
 	}
 
-	ModeBase* ModeServer::Get(const int& _uid)
+	std::shared_ptr<ModeBase> ModeServer::Get(const int& _uid)
 	{
 		//“o˜^’†‚Ì‚à‚ÌA“o˜^—\–ñ’†‚Ì‚à‚Ì‚©‚çŒŸõ‚·‚é
 		for (auto&& iter : mode_list_)
@@ -122,7 +121,7 @@ namespace mode
 		return nullptr;
 	}
 
-	ModeBase* ModeServer::Get(const char* _name)
+	std::shared_ptr<ModeBase> ModeServer::Get(const char* _name)
 	{
 		//“o˜^’†‚Ì‚à‚ÌA“o˜^—\–ñ’†‚Ì‚à‚Ì‚©‚çŒŸõ‚·‚é
 		for (auto&& iter : mode_list_)
@@ -138,7 +137,7 @@ namespace mode
 		return nullptr;
 	}
 
-	int ModeServer::GetId(ModeBase* _mode)
+	int ModeServer::GetId(std::shared_ptr<ModeBase> _mode)
 	{
 		if (IsAdd(_mode)) { return _mode->uid_; }
 		return 0;
@@ -149,7 +148,7 @@ namespace mode
 		return GetId(Get(_name));
 	}
 
-	const char* ModeServer::GetName(ModeBase* _mode)
+	const char* ModeServer::GetName(std::shared_ptr<ModeBase> _mode)
 	{
 		if (IsAdd(_mode)) { return _mode->modename_.c_str(); }
 		return nullptr;

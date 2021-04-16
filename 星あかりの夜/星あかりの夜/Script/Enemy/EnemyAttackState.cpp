@@ -26,7 +26,7 @@ void EnemyAttackState::Enter(Enemy& _enemy)
 {
 	_enemy.SetMoveStatus(Enemy::MOVE_STATUS::ATTACK);
 
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	VECTOR position = _enemy.GetPosition();
 	VECTOR rotation = _enemy.GetRotation();
@@ -37,7 +37,7 @@ void EnemyAttackState::Enter(Enemy& _enemy)
 		//プレイヤーをエネミーの方に向ける
 		if (iter->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 		{
-			player::Player* player = static_cast<player::Player*>(iter);
+			std::shared_ptr<player::Player> player = std::dynamic_pointer_cast<player::Player>(iter);
 			player->SetRotation(VGet(0.0f, rotation.y + DEG2RAD(180.0f), 0.0f));
 			player->SetDamageFlag(true);
 
@@ -49,7 +49,7 @@ void EnemyAttackState::Enter(Enemy& _enemy)
 		}
 	}
 	//プレイヤーのダメージエフェクトを描画
-	effect::DamageEffect* damage_effect = NEW effect::DamageEffect();
+	std::shared_ptr<effect::DamageEffect>damage_effect = std::make_shared<effect::DamageEffect>();
 	VECTOR damage_pos = VScale(VAdd(player_position, position), 0.5f);
 	damage_pos = VAdd(damage_pos, VGet(0, 50, 0));
 

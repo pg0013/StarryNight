@@ -84,7 +84,7 @@ void ModeTutorial::NextMode()
 	if (nextmode_count_ > 0)
 		return;
 
-	::mode::ModeServer::GetInstance()->Del(this);
+	::mode::ModeServer::GetInstance()->Del(shared_from_this());
 }
 
 bool ModeTutorial::Render()

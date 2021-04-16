@@ -39,14 +39,14 @@ void CameraMoveState::Exit(Camera& _camera)
 
 void CameraMoveState::Input(Camera& _camera)
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	bool slingshot_flag = false;
 	for (auto&& iter : (*mode_game->object_server_.List()))
 	{
 		if (iter->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 		{
-			player::Player* player = static_cast<player::Player*>(iter);
+			std::shared_ptr<player::Player> player = std::dynamic_pointer_cast<player::Player>(iter);
 			//プレイヤーが射撃状態か取得
 			slingshot_flag = player->GetPlayerSlingShotStatus();
 		}
@@ -62,7 +62,7 @@ void CameraMoveState::Input(Camera& _camera)
 
 void CameraMoveState::Update(Camera& _camera)
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	//ゲームオーバーであれば、プレイヤーの処理を行わない
 	if (mode_game->GetIsGameOver() == true)

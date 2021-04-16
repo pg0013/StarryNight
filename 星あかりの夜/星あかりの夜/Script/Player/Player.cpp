@@ -39,7 +39,6 @@ Player::Player(const std::string& _stage_name)
 		SetRotation(VGet(0, DEG2RAD(-13.65f), 0));
 	}
 
-
 	player_hp_ = 3;
 	floor_type_ = -1;
 
@@ -73,10 +72,10 @@ void Player::Initialize()
 	state_map_.emplace("Shoot", std::make_shared<PlayerShootState>());
 	state_map_.emplace("Damage", std::make_shared<PlayerDamageState>());
 
-	effect::PlayerTrailEffect* trail_effect = NEW effect::PlayerTrailEffect();
+	std::shared_ptr<effect::PlayerTrailEffect> trail_effect = std::make_shared<effect::PlayerTrailEffect>();
 	trail_effect->PlayEffect();
 	trail_effect->SetPosition(position_);
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 	mode_game->effect_server_.Add(trail_effect);
 }
 

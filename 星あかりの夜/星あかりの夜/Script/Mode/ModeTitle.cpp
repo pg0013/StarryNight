@@ -39,7 +39,7 @@ bool ModeTitle::Initialize()
 {
 	if (!::mode::ModeBase::Initialize()) { return false; }
 
-	ModeOverlay* modeoverlay = NEW ModeOverlay();
+	std::shared_ptr<ModeOverlay> modeoverlay = std::make_shared<ModeOverlay>();
 	modeoverlay->Fade(60, FADE_IN);
 	::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 
@@ -125,7 +125,7 @@ void ModeTitle::Input()
 		nextmode_count_ = 60;
 		nextmode_ = cursol_;
 
-		ModeOverlay* modeoverlay = NEW ModeOverlay();
+		std::shared_ptr<ModeOverlay> modeoverlay = std::make_shared<ModeOverlay>();
 		modeoverlay->Fade(nextmode_count_, FADE_OUT);
 		::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 
@@ -152,13 +152,13 @@ void ModeTitle::NextMode()
 
 	if (nextmode_ == MENU)
 	{
-		ModeMenu* mode_menu = NEW ModeMenu();
+		std::shared_ptr<ModeMenu> mode_menu = std::make_shared<ModeMenu>();
 		::mode::ModeServer::GetInstance()->Add(mode_menu, 0, "Menu");
-		::mode::ModeServer::GetInstance()->Del(this);
+		::mode::ModeServer::GetInstance()->Del(shared_from_this());
 	}
 	else if (nextmode_ == EXIT)
 	{
-		::mode::ModeServer::GetInstance()->Del(this);
+		::mode::ModeServer::GetInstance()->Del(shared_from_this());
 		appframe::ApplicationBase::GetInstance()->ExitProgram();
 	}
 }

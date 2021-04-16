@@ -78,7 +78,8 @@ namespace appframe
 		sound::PlayWAVE::Init();
 		resource::ResourceServer::Init();
 
-		mode_server_ = NEW mode::ModeServer();
+		mode_server_ = std::make_shared<mode::ModeServer>();
+		mode_server_->SetInstance(mode_server_->shared_from_this());
 
 		fps_check_time_ = GetNowHiPerformanceCount();
 
@@ -87,8 +88,6 @@ namespace appframe
 
 	bool ApplicationBase::Terminate()
 	{
-		delete mode_server_;
-
 		if (bgm_.CheckIsRunning())
 		{
 			bgm_.Pause();

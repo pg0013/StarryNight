@@ -26,7 +26,7 @@ void PlayerShootState::Enter(Player& _player)
 {
 	_player.SetPlayerSlingShotStatus(true);
 
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	//ƒQ[ƒ€“àUI‚ğ”ñ•\¦‚É‚·‚é
 	mode_game->ui_.SetDrawPlayerUIFlag(false);
@@ -36,7 +36,7 @@ void PlayerShootState::Enter(Player& _player)
 
 void PlayerShootState::Exit(Player& _player)
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	//ËŒ‚ó‘Ô‚ğ‰ğœ
 	_player.SetPlayerSlingShotStatus(false);
@@ -63,7 +63,7 @@ void PlayerShootState::Input(Player& _player)
 		return;
 	}
 
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	if (_player.GetPlayerStatus() == Player::STATUS::SHOOT_END &&
 		_player.GetAnimPlayTime() > _player.GetAnimTotalTime() &&

@@ -78,7 +78,7 @@ void PlayerMoveState::Input(Player& _player)
 	}
 
 	XINPUT_STATE x_input = appframe::ApplicationBase::GetInstance()->GetXInputState();
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	//Navimesh‚Æ‚Ì“–‚½‚è”»’è
 	MV1_COLL_RESULT_POLY hit_poly_shootpoint;

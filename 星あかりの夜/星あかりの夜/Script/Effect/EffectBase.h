@@ -8,6 +8,7 @@
 
 #pragma once
 #include"appframe.h"
+#include<memory>
 
 namespace starrynight
 {
@@ -16,7 +17,7 @@ namespace starrynight
 		/**
 		 * @brief  エフェクトの基底クラス
 		 */
-		class EffectBase
+		class EffectBase : public std::enable_shared_from_this<EffectBase>
 		{
 		public:
 			EffectBase();

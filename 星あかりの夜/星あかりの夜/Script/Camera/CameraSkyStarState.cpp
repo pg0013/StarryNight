@@ -24,7 +24,7 @@ CameraSkyStarState::~CameraSkyStarState()
 
 void CameraSkyStarState::Enter(Camera& _camera)
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	VECTOR position = _camera.GetPosition();
 	VECTOR target = _camera.GetTarget();
@@ -46,7 +46,7 @@ void CameraSkyStarState::Enter(Camera& _camera)
 	mode_game->ui_.SetDrawUIFlag(false);
 
 	int fade_count = 90;
-	mode::ModeOverlay* modeoverlay = NEW mode::ModeOverlay();
+	std::shared_ptr<mode::ModeOverlay> modeoverlay = std::make_shared < mode::ModeOverlay >();
 	modeoverlay->Fade(fade_count, FADE_IN);
 	::mode::ModeServer::GetInstance()->Add(modeoverlay, 0, "Overlay");
 

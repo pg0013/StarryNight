@@ -31,7 +31,7 @@ bool ModeLoading::Initialize()
 {
 	if (!::mode::ModeBase::Initialize()) { return false; }
 
-	ModeOverlay* modeoverlay = NEW ModeOverlay();
+	std::shared_ptr<ModeOverlay> modeoverlay = std::make_shared<ModeOverlay>();
 	modeoverlay->Fade(30, FADE_IN);
 	::mode::ModeServer::GetInstance()->Add(modeoverlay, 11, "Overlay");
 
@@ -74,7 +74,7 @@ void ModeLoading::SetNextMode()
 
 	nextmode_count_ = 30;
 
-	ModeOverlay* modeoverlay = NEW ModeOverlay();
+	std::shared_ptr<ModeOverlay> modeoverlay = std::make_shared<ModeOverlay>();
 	modeoverlay->Fade(nextmode_count_, FADE_OUT);
 	::mode::ModeServer::GetInstance()->Add(modeoverlay, 11, "Overlay");
 }
@@ -89,5 +89,5 @@ void ModeLoading::NextMode()
 	if (nextmode_count_ > 0)
 		return;
 
-	::mode::ModeServer::GetInstance()->Del(this);
+	::mode::ModeServer::GetInstance()->Del(shared_from_this());
 }

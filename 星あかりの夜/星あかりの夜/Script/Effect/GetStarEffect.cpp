@@ -40,9 +40,9 @@ void GetStarEffect::Process()
 	//再生完了したらエフェクトを削除
 	if (elapsed_frame > effect_frame_)
 	{
-		mode::ModeGame* mode_game =
+		std::shared_ptr<mode::ModeGame> mode_game =
 			mode::ModeGame::GetModeGame();
-		mode_game->effect_server_.Delete(this);
+		mode_game->effect_server_.Delete(shared_from_this());
 	}
 
 	SetPlayingEffectPosition();

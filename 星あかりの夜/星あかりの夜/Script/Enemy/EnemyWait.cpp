@@ -14,7 +14,7 @@ using namespace starrynight::enemy;
 
 void EnemyWaitState::Wait(Enemy& _enemy)
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 	int elapsed_frame = mode_game->GetModeCount() - waitstart_frame_;
 
 	//索敵状態であれば、経過時間によって待機と直進を交互に繰り返す

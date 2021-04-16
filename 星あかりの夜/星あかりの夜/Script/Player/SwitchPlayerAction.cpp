@@ -13,7 +13,7 @@ using namespace starrynight::player;
 
 void Player::SwitchPlayerAction()
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	//星座カメラモードであれば、プレイヤーの処理を行わない
 	if (camera::Camera::GetInstance()->GetStatus() == camera::Camera::STATUS::SKYSTAR)

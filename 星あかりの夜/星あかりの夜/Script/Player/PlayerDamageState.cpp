@@ -28,7 +28,7 @@ void PlayerDamageState::Enter(Player& _player)
 	_player.SetDamageFlag(true);
 
 	//所持しているスターの数をリセットする
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 	mode_game->SetPlayerStarNum(0);
 }
 

@@ -28,7 +28,7 @@ void EnemyWaitState::Enter(Enemy& _enemy)
 	_enemy.SetAnimStatus(Enemy::ANIM_STATUS::WAIT);
 
 	//待機状態開始フレームを初期化
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 	waitstart_frame_ = mode_game->GetModeCount();
 }
 
@@ -38,7 +38,7 @@ void EnemyWaitState::Exit(Enemy& _enemy)
 
 void EnemyWaitState::Input(Enemy& _enemy)
 {
-	mode::ModeGame* mode_game = mode::ModeGame::GetModeGame();
+	std::shared_ptr<mode::ModeGame> mode_game = mode::ModeGame::GetModeGame();
 
 	//プレイヤーがダメージを受けたかどうか取得
 	bool player_damaged = false;
@@ -46,7 +46,7 @@ void EnemyWaitState::Input(Enemy& _enemy)
 	{
 		if ((iter)->GetObjectType() == object::ObjectBase::OBJECT_TYPE::PLAYER)
 		{
-			player::Player* player = static_cast<player::Player*>(iter);
+			std::shared_ptr<player::Player> player = std::dynamic_pointer_cast<player::Player>(iter);
 			player_damaged = player->GetDamageFlag();
 			break;
 		}

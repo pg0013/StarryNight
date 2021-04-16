@@ -7,6 +7,7 @@
  */
 #pragma once
 #include"appframe.h"
+#include<memory>
 
 namespace starrynight
 {
@@ -15,7 +16,7 @@ namespace starrynight
 		/**
 		 * @brief オブジェクトの基底クラス
 		 */
-		class ObjectBase
+		class ObjectBase : public std::enable_shared_from_this<ObjectBase>
 		{
 		public:
 			ObjectBase();

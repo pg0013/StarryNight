@@ -25,18 +25,18 @@ void ObjectServer::Clear()
 {
 	for (auto&& iter : object_list_)
 	{
-		delete (iter);
+		iter.reset();
 	}
 
 	object_list_.clear();
 }
 
-void ObjectServer::Add(ObjectBase* _object)
+void ObjectServer::Add(const std::shared_ptr<ObjectBase>& _object)
 {
 	add_list_.push_back(_object);
 }
 
-void ObjectServer::Delete(ObjectBase* _object)
+void ObjectServer::Delete(const std::shared_ptr<ObjectBase>& _object)
 {
 	delete_list_.push_back(_object);
 }
@@ -59,7 +59,7 @@ void ObjectServer::DeleteListObject()
 			//削除リストと一致したオブジェクトを削除
 			if ((*iter) == (iter_del))
 			{
-				delete (*iter);
+				iter->reset();
 				//イテレータを削除し、次に進める
 				iter = object_list_.erase(iter);
 			}

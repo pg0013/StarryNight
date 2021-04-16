@@ -26,18 +26,18 @@ void EffectServer::Clear()
 {
 	for (auto&& iter : effect_list_)
 	{
-		delete (iter);
+		iter.reset();
 	}
 
 	effect_list_.clear();
 }
 
-void EffectServer::Add(EffectBase* _Effect)
+void EffectServer::Add(const std::shared_ptr<EffectBase>& _Effect)
 {
 	add_list_.push_back(_Effect);
 }
 
-void EffectServer::Delete(EffectBase* _Effect)
+void EffectServer::Delete(const std::shared_ptr<EffectBase>& _Effect)
 {
 	delete_list_.push_back(_Effect);
 }
@@ -60,7 +60,7 @@ void EffectServer::DeleteListEffect()
 			//削除リストと一致したエフェクトを削除
 			if ((*iter) == (iter_del))
 			{
-				delete (*iter);
+				iter->reset();
 				//イテレータを削除し、次に進める
 				iter = effect_list_.erase(iter);
 			}
