@@ -93,9 +93,6 @@
     <ClInclude Include="Script\Sound\MyStereoDownMixXAPO.h">
       <Filter>ヘッダー ファイル\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="Script\Sound\PlayWAVE.h">
-      <Filter>ヘッダー ファイル\Sound</Filter>
-    </ClInclude>
     <ClInclude Include="Script\Sound\WAVEReader.h">
       <Filter>ヘッダー ファイル\Sound</Filter>
     </ClInclude>
@@ -107,6 +104,9 @@
     </ClInclude>
     <ClInclude Include="Script\State\StateBase.h">
       <Filter>ヘッダー ファイル\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Sound\Sound.h">
+      <Filter>ヘッダー ファイル\Sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -143,9 +143,6 @@
     <ClCompile Include="Script\Sound\MyStereoDownMixXAPO.cpp">
       <Filter>ソース ファイル\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Sound\PlayWAVE.cpp">
-      <Filter>ソース ファイル\Sound</Filter>
-    </ClCompile>
     <ClCompile Include="Script\Sound\WAVEReader.cpp">
       <Filter>ソース ファイル\Sound</Filter>
     </ClCompile>
@@ -157,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="Script\Parameters\LoadImageParamFromJson.cpp">
       <Filter>ソース ファイル\Paramaters</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Sound\Sound.cpp">
+      <Filter>ソース ファイル\Sound</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -150,8 +150,8 @@ namespace starrynight
 			 */
 			void ChangeEnemyState(const std::string& _state_name);
 
-			sound::PlayWAVE se_;//敵モーションSE
-			sound::PlayWAVE attention_se_;//敵プレイヤー発見SE
+			sound::Sound se_;//敵モーションSE
+			sound::Sound attention_se_;//敵プレイヤー発見SE
 
 		private:
 			/**

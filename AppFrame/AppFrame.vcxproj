@@ -31,7 +31,7 @@
     <ClInclude Include="Script\Sound\MyLowPassFilterXAPO.h" />
     <ClInclude Include="Script\Sound\MyPeakMeterXAPO.h" />
     <ClInclude Include="Script\Sound\MyStereoDownMixXAPO.h" />
-    <ClInclude Include="Script\Sound\PlayWAVE.h" />
+    <ClInclude Include="Script\Sound\Sound.h" />
     <ClInclude Include="Script\Sound\WAVEReader.h" />
     <ClInclude Include="Script\State\StateBase.h" />
     <ClInclude Include="Script\Utility\DefineMacro.h" />
@@ -51,7 +51,7 @@
     <ClCompile Include="Script\Sound\MyLowPassFilterXAPO.cpp" />
     <ClCompile Include="Script\Sound\MyPeakMeterXAPO.cpp" />
     <ClCompile Include="Script\Sound\MyStereoDownMixXAPO.cpp" />
-    <ClCompile Include="Script\Sound\PlayWAVE.cpp" />
+    <ClCompile Include="Script\Sound\Sound.cpp" />
     <ClCompile Include="Script\Sound\WAVEReader.cpp" />
     <ClCompile Include="Script\Utility\Utility.cpp" />
   </ItemGroup>

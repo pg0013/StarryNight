@@ -1,22 +1,22 @@
 /**
- * @file	AMG_Summer_Co_Production_2020\script\PlayWAVE.cpp.
+ * @file	AMG_Summer_Co_Production_2020\script\Sound.cpp.
  *
  * @brief	XAudio2を用いた音声再生
  */
 
-#include"PlayWAVE.h"
+#include"Sound.h"
 #include"../Utility/Utility.h"
 #include"../Application/ApplicationBase.h"
 #include"DxLib.h"
 
 namespace sound
 {
-	IXAudio2* PlayWAVE::xaudio2_ = nullptr;
-	IXAudio2MasteringVoice* PlayWAVE::mastering_voice_ = nullptr;
-	HRESULT PlayWAVE::hr_;
+	IXAudio2* Sound::xaudio2_ = nullptr;
+	IXAudio2MasteringVoice* Sound::mastering_voice_ = nullptr;
+	HRESULT Sound::hr_;
 
-	PlayWAVE::PlayWAVE() {}
-	PlayWAVE::~PlayWAVE()
+	Sound::Sound() {}
+	Sound::~Sound()
 	{
 		if (CheckIsRunning() == false)
 			return;
@@ -25,7 +25,7 @@ namespace sound
 		Destroy();
 	}
 
-	void PlayWAVE::Init()
+	void Sound::Init()
 	{
 		//COMの初期化
 		//DXLibでCOMの初期化が行われるので、こちらでは初期化しない
@@ -47,7 +47,7 @@ namespace sound
 		}
 	}
 
-	void PlayWAVE::Release()
+	void Sound::Release()
 	{
 		mastering_voice_->DestroyVoice();
 		xaudio2_->Release();
@@ -55,7 +55,7 @@ namespace sound
 		//CoUninitialize();
 	}
 
-	void PlayWAVE::Load(const std::string& _filename)
+	void Sound::Load(const std::string& _filename)
 	{
 		//WAVEファイルの読み込み
 		wave_reader_ = resource::ResourceServer::LoadSound(_filename);
@@ -71,23 +71,23 @@ namespace sound
 		}
 	}
 
-	void PlayWAVE::SetLoopCount(const int& _count)
+	void Sound::SetLoopCount(const int& _count)
 	{
 		loop_count_ = _count;
 	}
 
-	void PlayWAVE::SetVolume(const float& _volume)
+	void Sound::SetVolume(const float& _volume)
 	{
 		source_voice_->SetVolume(_volume);
 	}
 
-	void PlayWAVE::SetVolume_dB(const float& _db)
+	void Sound::SetVolume_dB(const float& _db)
 	{
 		float volume = XAudio2DecibelsToAmplitudeRatio(_db);
 		source_voice_->SetVolume(volume);
 	}
 
-	void PlayWAVE::Pan(const float& _targetPan)
+	void Sound::Pan(const float& _targetPan)
 	{
 		int in_channel, out_channel;
 		XAUDIO2_VOICE_DETAILS details;
@@ -135,7 +135,7 @@ namespace sound
 		}
 	}
 
-	void PlayWAVE::Pan(const int& _pos_x)
+	void Sound::Pan(const int& _pos_x)
 	{
 		int in_channel, out_channel;
 		XAUDIO2_VOICE_DETAILS details;
@@ -183,12 +183,12 @@ namespace sound
 		}
 	}
 
-	void PlayWAVE::Pitch(const float& _pitch)
+	void Sound::Pitch(const float& _pitch)
 	{
 		source_voice_->SetFrequencyRatio(_pitch);
 	}
 
-	void PlayWAVE::RandomPitch(const float& _pitch_diff)
+	void Sound::RandomPitch(const float& _pitch_diff)
 	{
 		//srand((unsigned)time(NULL));
 		float random = ((rand() % 100) - 50) * 0.01f * _pitch_diff;
@@ -196,20 +196,20 @@ namespace sound
 		source_voice_->SetFrequencyRatio(1.0f + random);
 	}
 
-	void PlayWAVE::Pause()
+	void Sound::Pause()
 	{
 		Fade(0.0f, 0.0f);
 		source_voice_->DisableEffect(0);
 		source_voice_->Stop(XAUDIO2_PLAY_TAILS);
 	}
 
-	void PlayWAVE::ReStart()
+	void Sound::ReStart()
 	{
 		Fade(1.0f, 0.01f);
 		source_voice_->Start();
 	}
 
-	void PlayWAVE::Fade(const float& _targetVolume, const float& _targetTime)
+	void Sound::Fade(const float& _targetVolume, const float& _targetTime)
 	{
 		//Fadeフィルターの宣言
 		IUnknown* pXAPO;
@@ -238,7 +238,7 @@ namespace sound
 		source_voice_->SetEffectParameters(0, &fade_params, sizeof(fade_params));
 	}
 
-	void PlayWAVE::FadeWithEQ(const float& _targetVolume, const float& _targetTime, const float& _freqency, const int& _typeEQ)
+	void Sound::FadeWithEQ(const float& _targetVolume, const float& _targetTime, const float& _freqency, const int& _typeEQ)
 	{
 		//Fadeフィルターの宣言
 		IUnknown* FadeXAPO;
@@ -288,7 +288,7 @@ namespace sound
 		source_voice_->SetEffectParameters(1, &freq, sizeof(freq));
 	}
 
-	void PlayWAVE::LowPassFilter(const float& _freqency)
+	void Sound::LowPassFilter(const float& _freqency)
 	{
 		WAVEFORMATEX wfx = wave_reader_.Getwfx();
 
@@ -303,7 +303,7 @@ namespace sound
 		source_voice_->SetFilterParameters(&FilterParams);
 	}
 
-	void PlayWAVE::HighPassFilter(const float& _freqency)
+	void Sound::HighPassFilter(const float& _freqency)
 	{
 		IUnknown* pXAPO;
 		pXAPO = (IXAPO*)new MyHighPassFilterXAPO();
@@ -325,7 +325,7 @@ namespace sound
 		source_voice_->SetEffectParameters(0, &freq, sizeof(freq));
 	}
 
-	void PlayWAVE::Echo(const float& _wetdrymix, const float& _delay, const float& _feedback)
+	void Sound::Echo(const float& _wetdrymix, const float& _delay, const float& _feedback)
 	{
 		IUnknown* pXAPO;
 		::CreateFX(__uuidof(::FXEcho), &pXAPO);
@@ -352,7 +352,7 @@ namespace sound
 		source_voice_->SetEffectParameters(0, &EchoParam, sizeof(EchoParam));
 	}
 
-	void PlayWAVE::Reverb()
+	void Sound::Reverb()
 	{
 		IUnknown* pXAPO;
 		CreateAudioReverb(&pXAPO);
@@ -370,7 +370,7 @@ namespace sound
 		pXAPO->Release();
 	}
 
-	void PlayWAVE::Play()
+	void Sound::Play()
 	{
 		//XAudio2_BUFFER構造体の作成
 		XAUDIO2_BUFFER buffer = { 0 };
@@ -393,7 +393,7 @@ namespace sound
 		}
 	}
 
-	void PlayWAVE::PlayWithLoop(const float& _loopbegin, const float& _looplength)
+	void Sound::PlayWithLoop(const float& _loopbegin, const float& _looplength)
 	{
 		XAUDIO2_BUFFER buffer = { 0 };
 		buffer.pAudioData = (BYTE*)wave_reader_.GetpBuffer();
@@ -417,7 +417,7 @@ namespace sound
 		}
 	}
 
-	bool PlayWAVE::CheckIsRunning()
+	bool Sound::CheckIsRunning()
 	{
 		if (source_voice_ == nullptr)
 			return false;
@@ -430,21 +430,21 @@ namespace sound
 			return false;
 	}
 
-	void PlayWAVE::Destroy()
+	void Sound::Destroy()
 	{
 		source_voice_->DestroyVoice();
 		source_voice_ = nullptr;
 	}
 
-	void PlayWAVE::PlayBackGround(PlayWAVE& _pw)
+	void Sound::PlayBackGround(Sound& _pw)
 	{
-		std::thread th(&PlayWAVE::Play, &_pw);
+		std::thread th(&Sound::Play, &_pw);
 		th.detach();
 	}
 
-	void PlayWAVE::PlayBackGroundWithLoop(PlayWAVE& _pw, const float& _loopbegin, const float& _looplength)
+	void Sound::PlayBackGroundWithLoop(Sound& _pw, const float& _loopbegin, const float& _looplength)
 	{
-		std::thread th(&PlayWAVE::PlayWithLoop, &_pw, _loopbegin, _looplength);
+		std::thread th(&Sound::PlayWithLoop, &_pw, _loopbegin, _looplength);
 		th.detach();
 	}
 }

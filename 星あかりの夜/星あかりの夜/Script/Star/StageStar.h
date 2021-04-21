@@ -117,7 +117,7 @@ namespace starrynight
 			 */
 			float GetRotSpeed() const { return rot_speed_; }
 
-			sound::PlayWAVE se_;//Œø‰Ê‰¹
+			sound::Sound se_;//Œø‰Ê‰¹
 
 		private:
 			/**

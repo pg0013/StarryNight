@@ -9,7 +9,7 @@
 #include"../Utility/Utility.h"
 #include"../Utility/DefineMacro.h"
 #include"../Resource/ResourceServer.h"
-#include"../Sound/PlayWAVE.h"
+#include"../Sound/Sound.h"
 
 namespace appframe
 {
@@ -75,7 +75,7 @@ namespace appframe
 
 		srand((unsigned int)time(NULL));
 
-		sound::PlayWAVE::Init();
+		sound::Sound::Init();
 		resource::ResourceServer::Init();
 
 		mode_server_ = std::make_shared<mode::ModeServer>();
@@ -100,7 +100,7 @@ namespace appframe
 		}
 
 		resource::ResourceServer::Release();
-		sound::PlayWAVE::Release();
+		sound::Sound::Release();
 
 		Effkseer_End();
 		DxLib_End();

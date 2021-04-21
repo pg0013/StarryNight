@@ -85,7 +85,7 @@ namespace starrynight
 
 			std::string stage_name_;//ステージ名
 
-			sound::PlayWAVE se_;//効果音
+			sound::Sound se_;//効果音
 
 			int cursol_;//メニュー選択カーソル
 			int menu_num_;//メニュー項目数

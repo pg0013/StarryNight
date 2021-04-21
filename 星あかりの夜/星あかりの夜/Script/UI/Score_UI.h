@@ -105,7 +105,7 @@ namespace starrynight
 			handle score_base_graph_;//下地画像
 			handle star_count_graph_;//残り何個画像
 
-			sound::PlayWAVE se_;//効果音
+			sound::Sound se_;//効果音
 
 			int player_score_;//プレイヤースコア
 			int rank_value_[6] = { 0 };//スコアの桁の値 0が一の位

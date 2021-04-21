@@ -60,8 +60,8 @@ namespace starrynight
 			 */
 			void SetEffectRotationToPlayer();
 
-			sound::PlayWAVE se1_;//効果音
-			sound::PlayWAVE se2_;//効果音
+			sound::Sound se1_;//効果音
+			sound::Sound se2_;//効果音
 
 			std::string skystar_name_;//生成する星座名
 			handle after_effect_resource_[3];//完成星座エフェクトのリソースハンドル

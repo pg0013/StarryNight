@@ -169,7 +169,7 @@ namespace starrynight
 			PlayerParameters player_param_;
 
 			//ƒvƒŒƒCƒ„[Œø‰Ê‰¹
-			sound::PlayWAVE se_;
+			sound::Sound se_;
 
 		private:
 			/**

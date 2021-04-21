@@ -40,7 +40,7 @@ namespace starrynight
 			void Render() override;
 
 		private:
-			sound::PlayWAVE se_;//Œø‰Ê‰¹
+			sound::Sound se_;//Œø‰Ê‰¹
 		};
 	}
 }

@@ -128,7 +128,7 @@ namespace starrynight
 			handle timing_judge_[3];//判定画像
 			handle aim_middle_;//真ん中を狙え画像
 
-			sound::PlayWAVE se_;//効果音
+			sound::Sound se_;//効果音
 
 			bool draw_timing_guide_;//trueでタイミングゲージを描画するフラグ
 			bool launch_star_shoot_;//trueでプレイヤーがスターを発射できるフラグ

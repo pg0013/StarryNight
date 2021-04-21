@@ -1,5 +1,5 @@
 /**
- * @file	AMG_Summer_Co_Production_2020\script\PlayWAVE.h.
+ * @file	AMG_Summer_Co_Production_2020\script\Sound.h.
  *
  * @brief XAudio2を用いた音声再生
  * @author Takuya Fujisawa
@@ -32,19 +32,19 @@ namespace sound
 	}
 
 	/**
-	 * @class	PlayWAVE
+	 * @class	Sound
 	 *
 	 * @brief	wavファイルの再生
 	 *
 	 */
-	class PlayWAVE
+	class Sound
 	{
 	public:
-		PlayWAVE();
-		~PlayWAVE();
+		Sound();
+		~Sound();
 
 		/**
-		 * @fn	static void PlayWAVE::Init();
+		 * @fn	static void Sound::Init();
 		 *
 		 * @brief	XAudio2の初期化処理
 		 *
@@ -52,7 +52,7 @@ namespace sound
 		static void Init();
 
 		/**
-		 * @fn	static void PlayWAVE::Release();
+		 * @fn	static void Sound::Release();
 		 *
 		 * @brief	XAudio2の解放処理
 		 *
@@ -60,7 +60,7 @@ namespace sound
 		static void Release();
 
 		/**
-		 * @fn	void PlayWAVE::Load(const std::string _fileName);
+		 * @fn	void Sound::Load(const std::string _fileName);
 		 *
 		 * @brief	wavファイルを読み込み、ソースボイス作成
 		 *
@@ -69,7 +69,7 @@ namespace sound
 		void Load(const std::string& _filename);
 
 		/**
-		 * @fn	void PlayWAVE::SetLoopCount(const int _count);
+		 * @fn	void Sound::SetLoopCount(const int _count);
 		 *
 		 * @brief	ループ回数を設定
 		 *
@@ -80,7 +80,7 @@ namespace sound
 		void SetLoopCount(const int& _count);
 
 		/**
-		 * @fn	void PlayWAVE::SetVolume(const float _volume);
+		 * @fn	void Sound::SetVolume(const float _volume);
 		 *
 		 * @brief	SourceVoiceの音量を設定
 		 *
@@ -90,7 +90,7 @@ namespace sound
 		void SetVolume(const float& _volume);
 
 		/**
-		 * @fn	void PlayWAVE::SetVolume_dB(const float _db);
+		 * @fn	void Sound::SetVolume_dB(const float _db);
 		 *
 		 * @brief	デシベル値でボリュームを設定
 		 *
@@ -101,7 +101,7 @@ namespace sound
 		void SetVolume_dB(const float& _db);
 
 		/**
-		 * @fn	void PlayWAVE::Pan(const float _targetPan);
+		 * @fn	void Sound::Pan(const float _targetPan);
 		 *
 		 * @brief	出力チャンネルの音量バランスの設定 (-90.0f <= _targetPan <= 90.0f)
 		 * 			Lのみ→PAN_LEFT　センター→PAN_CENTER　Rのみ→PAN_RIGHT
@@ -115,7 +115,7 @@ namespace sound
 		void Pan(const float& _target_pan);
 
 		/**
-		 * @fn	void PlayWAVE::Pan(const int _pos_x);
+		 * @fn	void Sound::Pan(const int _pos_x);
 		 *
 		 * @brief	画面の幅に対する左右の音量バランスの設定
 		 *
@@ -124,7 +124,7 @@ namespace sound
 		void Pan(const int& _pos_x);
 
 		/**
-		 * @fn	void PlayWAVE::Pitch(const float _pitch);
+		 * @fn	void Sound::Pitch(const float _pitch);
 		 *
 		 * @brief	再生速度を設定
 		 *
@@ -135,7 +135,7 @@ namespace sound
 		void Pitch(const float& _pitch);
 
 		/**
-		 * @fn	void PlayWAVE::RandomPitch(const float _pitch_diff);
+		 * @fn	void Sound::RandomPitch(const float _pitch_diff);
 		 *
 		 * @brief	SE用ランダムピッチ設定
 		 *
@@ -144,7 +144,7 @@ namespace sound
 		void RandomPitch(const float& _pitch_diff);
 
 		/**
-		 * @fn	void PlayWAVE::Pause();
+		 * @fn	void Sound::Pause();
 		 *
 		 * @brief	一時停止
 		 *
@@ -152,7 +152,7 @@ namespace sound
 		void Pause();
 
 		/**
-		 * @fn	void PlayWAVE::Start();
+		 * @fn	void Sound::Start();
 		 *
 		 * @brief	一時停止後の再生
 		 * @detail	一時停止時にFadeによって音量が0になっているため、Fadeinで戻す
@@ -161,7 +161,7 @@ namespace sound
 		void ReStart();
 
 		/**
-		 * @fn	void PlayWAVE::Fade(const float _targetVolume, const float _targetTime);
+		 * @fn	void Sound::Fade(const float _targetVolume, const float _targetTime);
 		 *
 		 * @brief	フェード処理
 		 *
@@ -172,7 +172,7 @@ namespace sound
 		void Fade(const float& _target_volume, const float& _target_time);
 
 		/**
-		 * @fn	void PlayWAVE::FadeWithEQ(const float _targetVolume, const float _targetTime, const float _freqency, const int _typeEQ);
+		 * @fn	void Sound::FadeWithEQ(const float _targetVolume, const float _targetTime, const float _freqency, const int _typeEQ);
 		 *
 		 * @brief	EQをかけながらフェード処理を行う
 		 *
@@ -186,7 +186,7 @@ namespace sound
 		void FadeWithEQ(const float& _target_volume, const float& _target_time, const float& _freqency, const int& _typeEQ);
 
 		/**
-		 * @fn	void PlayWAVE::LowPassFilter(const float _freqency);
+		 * @fn	void Sound::LowPassFilter(const float _freqency);
 		 *
 		 * @brief	ローパスフィルター.
 		 *
@@ -195,7 +195,7 @@ namespace sound
 		void LowPassFilter(const float& _freqency);
 
 		/**
-		 * @fn	void PlayWAVE::HighPassFilter(const float _freqency);
+		 * @fn	void Sound::HighPassFilter(const float _freqency);
 		 *
 		 * @brief	ハイパスフィルター
 		 *
@@ -226,7 +226,7 @@ namespace sound
 		void Reverb();
 
 		/**
-		 * @fn	void PlayWAVE::Play();
+		 * @fn	void Sound::Play();
 		 *
 		 * @brief	WAVEファイルをはじめから再生
 		 *
@@ -234,7 +234,7 @@ namespace sound
 		void Play();
 
 		/**
-		 * @fn	void PlayWAVE::PlayWithLoop(float _loopbegin, float looplength);
+		 * @fn	void Sound::PlayWithLoop(float _loopbegin, float looplength);
 		 *
 		 * @brief	ループ再選
 		 *
@@ -244,27 +244,27 @@ namespace sound
 		void PlayWithLoop(const float& _loopbegin, const float& _looplength);
 
 		/**
-		 * @fn	void PlayWAVE::PlayBackGround(PlayWAVE& _pw);
+		 * @fn	void Sound::PlayBackGround(Sound& _pw);
 		 *
 		 * @brief	バックグラウンド再生
 		 *
-		 * @param [in,out]	PlayWAVEの参照
+		 * @param [in,out]	Soundの参照
 		 */
-		void PlayBackGround(PlayWAVE& _pw);
+		void PlayBackGround(Sound& _pw);
 
 		/**
-		 * @fn	void PlayWAVE::PlayBackGroundWithLoop(PlayWAVE& _pw, float _loopbegin, float looplength);
+		 * @fn	void Sound::PlayBackGroundWithLoop(Sound& _pw, float _loopbegin, float looplength);
 		 *
 		 * @brief	バックグラウンドでループ再生
 		 *
-		 * @param [in,out]	PlayWAVEの参照
+		 * @param [in,out]	Soundの参照
 		 * 	@param 	_loopbegin	ループ開始地点[s]
 		 * @param 	looplength		ループ継続時間[s]
 		 */
-		void PlayBackGroundWithLoop(PlayWAVE& _pw, const float& _loopbegin, const float& looplength);
+		void PlayBackGroundWithLoop(Sound& _pw, const float& _loopbegin, const float& looplength);
 
 		/**
-		 * @fn	void PlayWAVE::Destroy();
+		 * @fn	void Sound::Destroy();
 		 *
 		 * @brief	ソースボイスの破棄
 		 *
@@ -272,7 +272,7 @@ namespace sound
 		void Destroy();
 
 		/**
-		 * @fn	bool PlayWAVE::CheckIsRunning();
+		 * @fn	bool Sound::CheckIsRunning();
 		 *
 		 * @brief	再生中か確認
 		 *

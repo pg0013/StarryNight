@@ -13,7 +13,7 @@
 #include<time.h>
 #include"EffekseerForDXLib.h"
 #include"../Mode/ModeServer.h"
-#include"../Sound/PlayWAVE.h"
+#include"../Sound/Sound.h"
 
 namespace appframe
 {
@@ -138,8 +138,8 @@ namespace appframe
 		 */
 		bool IsProgramExit() const { return exit_flag_; }
 
-		sound::PlayWAVE bgm_;//BGM再生用
-		sound::PlayWAVE se_;//BGM再生用
+		sound::Sound bgm_;//BGM再生用
+		sound::Sound se_;//BGM再生用
 
 	protected:
 		static ApplicationBase* appbase_instance_;

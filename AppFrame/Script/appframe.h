@@ -5,7 +5,7 @@
 #include"DxLib.h"
 #include"Application/ApplicationBase.h"
 #include"Resource/ResourceServer.h"
-#include"Sound/PlayWAVE.h"
+#include"Sound/Sound.h"
 #include"Picojson/picojson.h"
 #include"Utility/Utility.h"
 #include"Utility/DefineMacro.h"
