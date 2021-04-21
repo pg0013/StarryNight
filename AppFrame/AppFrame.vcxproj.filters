@@ -55,6 +55,9 @@
     <Filter Include="ヘッダー ファイル\State">
       <UniqueIdentifier>{974ea5b6-d1ab-42a0-a202-b6135c0ed4cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Sound\lib">
+      <UniqueIdentifier>{c396b78a-48d1-47ca-876b-bb00768521c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\Application\ApplicationBase.h">
@@ -108,6 +111,27 @@
     <ClInclude Include="Script\Sound\Sound.h">
       <Filter>ヘッダー ファイル\Sound</Filter>
     </ClInclude>
+    <ClInclude Include="Script\Sound\lib\oggvorbis\include\vorbis\codec.h">
+      <Filter>ソース ファイル\Sound\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Sound\lib\oggvorbis\include\vorbis\vorbisenc.h">
+      <Filter>ソース ファイル\Sound\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Sound\lib\oggvorbis\include\vorbis\vorbisfile.h">
+      <Filter>ソース ファイル\Sound\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Sound\lib\oggvorbis\include\ogg\config_types.h">
+      <Filter>ソース ファイル\Sound\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Sound\lib\oggvorbis\include\ogg\ogg.h">
+      <Filter>ソース ファイル\Sound\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Sound\lib\oggvorbis\include\ogg\os_types.h">
+      <Filter>ソース ファイル\Sound\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Sound\OGGReader.h">
+      <Filter>ヘッダー ファイル\Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Script\Application\WinMain.cpp">
@@ -158,5 +182,25 @@
     <ClCompile Include="Script\Sound\Sound.cpp">
       <Filter>ソース ファイル\Sound</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Sound\OGGReader.cpp">
+      <Filter>ソース ファイル\Sound</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Script\Sound\lib\oggvorbis\include\vorbis\Makefile.am">
+      <Filter>ソース ファイル\Sound\lib</Filter>
+    </None>
+    <None Include="Script\Sound\lib\oggvorbis\include\vorbis\Makefile.in">
+      <Filter>ソース ファイル\Sound\lib</Filter>
+    </None>
+    <None Include="Script\Sound\lib\oggvorbis\include\ogg\config_types.h.in">
+      <Filter>ソース ファイル\Sound\lib</Filter>
+    </None>
+    <None Include="Script\Sound\lib\oggvorbis\include\ogg\Makefile.am">
+      <Filter>ソース ファイル\Sound\lib</Filter>
+    </None>
+    <None Include="Script\Sound\lib\oggvorbis\include\ogg\Makefile.in">
+      <Filter>ソース ファイル\Sound\lib</Filter>
+    </None>
   </ItemGroup>
 </Project>

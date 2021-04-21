@@ -26,11 +26,18 @@
     <ClInclude Include="Script\Parameters\Parameters.h" />
     <ClInclude Include="Script\Picojson\picojson.h" />
     <ClInclude Include="Script\Resource\ResourceServer.h" />
+    <ClInclude Include="Script\Sound\lib\oggvorbis\include\ogg\config_types.h" />
+    <ClInclude Include="Script\Sound\lib\oggvorbis\include\ogg\ogg.h" />
+    <ClInclude Include="Script\Sound\lib\oggvorbis\include\ogg\os_types.h" />
+    <ClInclude Include="Script\Sound\lib\oggvorbis\include\vorbis\codec.h" />
+    <ClInclude Include="Script\Sound\lib\oggvorbis\include\vorbis\vorbisenc.h" />
+    <ClInclude Include="Script\Sound\lib\oggvorbis\include\vorbis\vorbisfile.h" />
     <ClInclude Include="Script\Sound\MyFadeXAPO.h" />
     <ClInclude Include="Script\Sound\MyHighPassFilter.h" />
     <ClInclude Include="Script\Sound\MyLowPassFilterXAPO.h" />
     <ClInclude Include="Script\Sound\MyPeakMeterXAPO.h" />
     <ClInclude Include="Script\Sound\MyStereoDownMixXAPO.h" />
+    <ClInclude Include="Script\Sound\OGGReader.h" />
     <ClInclude Include="Script\Sound\Sound.h" />
     <ClInclude Include="Script\Sound\WAVEReader.h" />
     <ClInclude Include="Script\State\StateBase.h" />
@@ -51,9 +58,17 @@
     <ClCompile Include="Script\Sound\MyLowPassFilterXAPO.cpp" />
     <ClCompile Include="Script\Sound\MyPeakMeterXAPO.cpp" />
     <ClCompile Include="Script\Sound\MyStereoDownMixXAPO.cpp" />
+    <ClCompile Include="Script\Sound\OGGReader.cpp" />
     <ClCompile Include="Script\Sound\Sound.cpp" />
     <ClCompile Include="Script\Sound\WAVEReader.cpp" />
     <ClCompile Include="Script\Utility\Utility.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Script\Sound\lib\oggvorbis\include\ogg\config_types.h.in" />
+    <None Include="Script\Sound\lib\oggvorbis\include\ogg\Makefile.am" />
+    <None Include="Script\Sound\lib\oggvorbis\include\ogg\Makefile.in" />
+    <None Include="Script\Sound\lib\oggvorbis\include\vorbis\Makefile.am" />
+    <None Include="Script\Sound\lib\oggvorbis\include\vorbis\Makefile.in" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -119,15 +134,15 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\プロジェクトに追加すべきファイル_VC用;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\プロジェクトに追加すべきファイル_VC用;$(IncludePath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\プロジェクトに追加すべきファイル_VC用;$(SolutionDir)..\AppFrame\Script\Sound\lib\oggvorbis\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\プロジェクトに追加すべきファイル_VC用;$(SolutionDir)..\AppFrame\Script\Sound\lib\oggvorbis\lib\Debug;$(IncludePath)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)..\プロジェクトに追加すべきファイル_VC用;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\プロジェクトに追加すべきファイル_VC用;$(IncludePath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\プロジェクトに追加すべきファイル_VC用;$(SolutionDir)..\AppFrame\Script\Sound\lib\oggvorbis\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\プロジェクトに追加すべきファイル_VC用;$(SolutionDir)..\AppFrame\Script\Sound\lib\oggvorbis\lib\Release;$(IncludePath)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -172,7 +187,7 @@
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)..¥プロジェクトに追加すべきファイル_VC用</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..¥プロジェクトに追加すべきファイル_VC用;$(SolutionDir)..\AppFrame\Script\Sound\lib\oggvorbis\include\Debug;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -189,7 +204,7 @@
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)..¥プロジェクトに追加すべきファイル_VC用</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..¥プロジェクトに追加すべきファイル_VC用;$(SolutionDir)..\AppFrame\Script\Sound\lib\oggvorbis\include\Release;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

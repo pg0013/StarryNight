@@ -99,14 +99,17 @@ namespace resource
 			return iter->second;
 		}
 
-		//キーがなかったら音声ファイルを読み込み
-		sound::WAVEReader _wavereader;
-
 		if (utility::GetExtension(_filename) == ".wav")
+		{
+			//キーがなかったら音声ファイルを読み込み
+			sound::WAVEReader _wavereader;
+
 			_wavereader.LoadWAVE(_filename.c_str());
 
-		map_sound_[_filename] = _wavereader;
-		return _wavereader;
+			map_sound_[_filename] = _wavereader;
+			return _wavereader;
+		}
+
 	}
 
 	void ResourceServer::RegisterDivGraph(std::string _mode, std::string _filename, int _allnum,

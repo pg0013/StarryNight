@@ -57,17 +57,36 @@ namespace sound
 
 	void Sound::Load(const std::string& _filename)
 	{
-		//WAVEファイルの読み込み
-		wave_reader_ = resource::ResourceServer::LoadSound(_filename);
-
-		//SourceVoiceの作成
-		WAVEFORMATEX wfx = wave_reader_.Getwfx();
-		hr_ = xaudio2_->CreateSourceVoice(&source_voice_, &wfx, XAUDIO2_VOICE_USEFILTER, 16.0f);
-		if (FAILED(hr_))
+		if (utility::GetExtension(_filename) == ".wav")
 		{
-			free(wave_reader_.GetpBuffer());
-			std::string error = "can not create SourceVoice \n" + _filename;
-			utility::DrawDebugError(error.c_str());
+			//WAVEファイルの読み込み
+			wave_reader_ = resource::ResourceServer::LoadSound(_filename);
+
+			//SourceVoiceの作成
+			WAVEFORMATEX wfx = wave_reader_.Getwfx();
+			hr_ = xaudio2_->CreateSourceVoice(&source_voice_, &wfx, XAUDIO2_VOICE_USEFILTER, 16.0f);
+			if (FAILED(hr_))
+			{
+				free(wave_reader_.GetpBuffer());
+				std::string error = "can not create SourceVoice \n" + _filename;
+				utility::DrawDebugError(error.c_str());
+			}
+		}
+
+		if (utility::GetExtension(_filename) == ".ogg")
+		{
+			ogg_reader_.LoadOGG(_filename.c_str());
+
+			//SourceVoiceの作成
+			WAVEFORMATEX wfx = ogg_reader_.Getwfx();
+			hr_ = xaudio2_->CreateSourceVoice(&source_voice_, &wfx, XAUDIO2_VOICE_USEFILTER, 16.0f);
+			if (FAILED(hr_))
+			{
+				free(ogg_reader_.GetpBuffer());
+				std::string error = "can not create SourceVoice \n" + _filename;
+				utility::DrawDebugError(error.c_str());
+			}
+
 		}
 	}
 
