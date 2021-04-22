@@ -172,30 +172,39 @@ int Stage::GetHitFloorType(const VECTOR& _startline, const VECTOR& _endline) con
 {
 	MV1_COLL_RESULT_POLY hit_poly;
 	hit_poly.HitFlag = 0;
+	hit_poly.HitPosition = { 0,-1,0 };
+
+	MV1_COLL_RESULT_POLY hit_poly_check;
+	hit_poly_check.HitFlag = 0;
+
+	int floor_type = -1;
 
 	for (auto&& iter : navimesh_handle_)
 	{
 		//床ポリゴンがあるオブジェクトと当たり判定をとる
-		if (MV1SearchFrame((iter), "floor_NavMesh") > 0)
+		if (MV1SearchFrame(iter, "floor_NavMesh") > 0)
 		{
-			hit_poly = MV1CollCheck_Line(
-				(iter),
-				MV1SearchFrame((iter), "floor_NavMesh"),
+			hit_poly_check = MV1CollCheck_Line(
+				iter,
+				MV1SearchFrame(iter, "floor_NavMesh"),
 				_startline, _endline);
 		}
 
-		if (!hit_poly.HitFlag)
+		if (!hit_poly_check.HitFlag)
 			continue;
-		else
+
+		//すでに当たり判定があるものより高さが高ければ、入れ替える
+		if (hit_poly_check.HitPosition.y >= hit_poly.HitPosition.y)
 		{
 			// キーの検索
 			auto type = map_floortype_.find(iter);
 			if (type != map_floortype_.end())
 			{
 				//登録済みなので終了
-				return (*type).second;
+				floor_type = (*type).second;
 			}
 		}
 	}
-	return -1;
+
+	return floor_type;
 }

@@ -92,12 +92,21 @@ int Stage::CheckFloorType(std::string& _filename)
 	std::transform(_filename.begin(), _filename.end(), _filename.begin(), tolower);
 
 	if (std::equal(_filename.begin(), _filename.begin() + 3, "rock"))
+	{
 		return ROCK;
+	}
 	else if (std::equal(_filename.begin(), _filename.begin() + 4, "stone") ||
-		std::equal(_filename.begin(), _filename.begin() + 5, "stairs"))
+		std::equal(_filename.begin(), _filename.begin() + 5, "stairs") ||
+		std::equal(_filename.begin(), _filename.begin() + 4, "shoot"))
+	{
 		return ROCK;
+	}
 	else if (std::equal(_filename.begin(), _filename.begin() + 5, "bridge"))
+	{
 		return WOOD;
+	}
 	else
+	{
 		return GRASS;
+	}
 }
