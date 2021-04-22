@@ -96,9 +96,6 @@
     <ClInclude Include="Script\Sound\MyStereoDownMixXAPO.h">
       <Filter>ヘッダー ファイル\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="Script\Sound\WAVEReader.h">
-      <Filter>ヘッダー ファイル\Sound</Filter>
-    </ClInclude>
     <ClInclude Include="Script\Parameters\Parameters.h">
       <Filter>ヘッダー ファイル\Parameters</Filter>
     </ClInclude>
@@ -130,6 +127,9 @@
       <Filter>ソース ファイル\Sound\lib</Filter>
     </ClInclude>
     <ClInclude Include="Script\Sound\OGGReader.h">
+      <Filter>ヘッダー ファイル\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Script\Sound\SoundReader.h">
       <Filter>ヘッダー ファイル\Sound</Filter>
     </ClInclude>
   </ItemGroup>
@@ -167,9 +167,6 @@
     <ClCompile Include="Script\Sound\MyStereoDownMixXAPO.cpp">
       <Filter>ソース ファイル\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Sound\WAVEReader.cpp">
-      <Filter>ソース ファイル\Sound</Filter>
-    </ClCompile>
     <ClCompile Include="Script\Parameters\Parameters.cpp">
       <Filter>ソース ファイル\Paramaters</Filter>
     </ClCompile>
@@ -182,7 +179,13 @@
     <ClCompile Include="Script\Sound\Sound.cpp">
       <Filter>ソース ファイル\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Sound\OGGReader.cpp">
+    <ClCompile Include="Script\Sound\SoundReader.cpp">
+      <Filter>ソース ファイル\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Sound\LoadWave.cpp">
+      <Filter>ソース ファイル\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Sound\LoadOgg.cpp">
       <Filter>ソース ファイル\Sound</Filter>
     </ClCompile>
   </ItemGroup>

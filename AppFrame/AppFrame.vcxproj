@@ -39,7 +39,7 @@
     <ClInclude Include="Script\Sound\MyStereoDownMixXAPO.h" />
     <ClInclude Include="Script\Sound\OGGReader.h" />
     <ClInclude Include="Script\Sound\Sound.h" />
-    <ClInclude Include="Script\Sound\WAVEReader.h" />
+    <ClInclude Include="Script\Sound\SoundReader.h" />
     <ClInclude Include="Script\State\StateBase.h" />
     <ClInclude Include="Script\Utility\DefineMacro.h" />
     <ClInclude Include="Script\Utility\Utility.h" />
@@ -53,14 +53,15 @@
     <ClCompile Include="Script\Parameters\LoadModelParamFromJson.cpp" />
     <ClCompile Include="Script\Parameters\Parameters.cpp" />
     <ClCompile Include="Script\Resource\ResourceServer.cpp" />
+    <ClCompile Include="Script\Sound\LoadOgg.cpp" />
+    <ClCompile Include="Script\Sound\LoadWave.cpp" />
     <ClCompile Include="Script\Sound\MyFadeXAPO.cpp" />
     <ClCompile Include="Script\Sound\MyHighPassFilter.cpp" />
     <ClCompile Include="Script\Sound\MyLowPassFilterXAPO.cpp" />
     <ClCompile Include="Script\Sound\MyPeakMeterXAPO.cpp" />
     <ClCompile Include="Script\Sound\MyStereoDownMixXAPO.cpp" />
-    <ClCompile Include="Script\Sound\OGGReader.cpp" />
     <ClCompile Include="Script\Sound\Sound.cpp" />
-    <ClCompile Include="Script\Sound\WAVEReader.cpp" />
+    <ClCompile Include="Script\Sound\SoundReader.cpp" />
     <ClCompile Include="Script\Utility\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>

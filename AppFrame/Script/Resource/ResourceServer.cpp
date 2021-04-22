@@ -4,13 +4,15 @@
  * @brief	画像や音声ファイルを補完するリソースサーバのクラス
  */
 
-#include "DxLib.h"
-#include "ResourceServer.h"
+#include"DxLib.h"
+#include"ResourceServer.h"
+#include"../Sound/SoundReader.h"
 #include"../Utility/Utility.h"
+
 namespace resource
 {
 	// 静的メンバ実体
-	std::unordered_map<std::string, sound::WAVEReader> ResourceServer::map_sound_;
+	std::unordered_map<std::string, sound::SoundReader> ResourceServer::map_sound_;
 	std::unordered_map < std::string, std::vector<int>> ResourceServer::map_texture_;
 	std::unordered_map<std::string, int> ResourceServer::map_model_;
 
@@ -89,7 +91,7 @@ namespace resource
 		return 0;
 	}
 
-	sound::WAVEReader ResourceServer::LoadSound(std::string _filename)
+	sound::SoundReader ResourceServer::LoadSound(std::string _filename)
 	{
 		//キーの検索
 		auto iter = map_sound_.find(_filename);
@@ -99,17 +101,13 @@ namespace resource
 			return iter->second;
 		}
 
-		if (utility::GetExtension(_filename) == ".wav")
-		{
-			//キーがなかったら音声ファイルを読み込み
-			sound::WAVEReader _wavereader;
+		//キーがなかったら音声ファイルを読み込み
+		sound::SoundReader _soundreader;
 
-			_wavereader.LoadWAVE(_filename.c_str());
+		_soundreader.Load(_filename.c_str());
+		map_sound_[_filename] = _soundreader;
 
-			map_sound_[_filename] = _wavereader;
-			return _wavereader;
-		}
-
+		return _soundreader;
 	}
 
 	void ResourceServer::RegisterDivGraph(std::string _mode, std::string _filename, int _allnum,

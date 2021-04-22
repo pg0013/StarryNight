@@ -1,25 +1,20 @@
 /**
- * @file	AMG_Summer_Co_Production_2020\script\WAVEReader.h.
+ * @file    SoundReader.h
+ * @brief  音声ファイル読み込みクラス
  *
- * @brief WAVEファイル読み込みクラス
  * @author Takuya Fujisawa
+ * @date   2021/04/22
  */
 
+#pragma once
 #include<xaudio2.h>
 #include<iostream>
 
 namespace sound
 {
-	/**
-	 * @class	WAVEReader
-	 *
-	 * @brief	WAVEファイル読み込みクラス
-	 *
-	 */
-	class WAVEReader
+	class SoundReader
 	{
 	private:
-
 		/**
 		 * @struct	Chunk
 		 *
@@ -58,52 +53,70 @@ namespace sound
 		};
 
 	public:
-		WAVEReader();
-		~WAVEReader();
+		SoundReader();
+		~SoundReader();
 
-		WAVEReader& operator=(const WAVEReader& rhs);
+		SoundReader& operator=(const SoundReader& rhs)
+		{
+			//自己代入処理
+			if (this != &rhs)
+			{
+				this->buffer_ = rhs.buffer_;
+				this->wfx_ = rhs.wfx_;
+				this->data_ = rhs.data_;
+			}
+			return*this;
+		}
 
 		/**
-		 * @fn	void WAVEReader::LoadWAVE(const char* _fileName);
+		 * @brief サウンドファイルの読み込み
 		 *
-		 * @brief	WAVファイルの読み込み
-		 *
-		 * @param 	_fileName	Filename of the file.
+		 * @param _filename サウンドファイル名（拡張子込み）
 		 */
-		void LoadWAVE(const char* _filename);
+		void Load(const char* _filename);
 
 		/**
-		 * @fn	WAVEFORMATEX WAVEReader::Getwfx()
-		 *
-		 * @brief	WFX構造体を返す
+		 * @brief WFX構造体を返す
 		 *
 		 * @returns	A WAVEFORMATEX.
 		 */
 		WAVEFORMATEX Getwfx() const { return wfx_; }
 
 		/**
-		 * @fn	char* WAVEReader::GetpBuffer()
-		 *
-		 * @brief	波形データの先頭アドレスを返す
+		 * @brief 波形データの先頭アドレスを返す
 		 *
 		 * @returns	波形データの先頭アドレス
 		 */
 		char* GetpBuffer() const { return buffer_; }
 
 		/**
-		 * @fn	Chunk WAVEReader::GetDataChunk()
-		 *
-		 * @brief	波形データを返す
+		 * @brief 波形データを返す
 		 *
 		 * @returns	The data chunk.
 		 */
 		Chunk GetDataChunk() const { return data_; }
 
 	private:
+		/**
+		 * @brief wavファイルの読み込み
+		 *
+		 * @param _filename ファイル名
+		 */
+		void LoadWav(const char* _filename);
+
+		/**
+		 * @brief oggファイルの読み込み
+		 *
+		 * @param _filename ファイル名
+		 */
+		void LoadOgg(const char* _filename);
+
 		WAVEFORMATEX wfx_{};   //!< WAVEFORMATEX構造体
 
 		char* buffer_;	//!< 波形データ部の先頭アドレス
 
 		Chunk data_;   //!< データチャンク
 	};
+
 }
+

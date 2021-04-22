@@ -7,7 +7,11 @@
 
 #pragma once
 #include	<unordered_map>
-#include"../Sound/WAVEReader.h"
+
+namespace sound
+{
+	class SoundReader;
+}
 
 namespace resource
 {
@@ -100,7 +104,7 @@ namespace resource
 		 *
 		 * @returns	音声データ
 		 */
-		static sound::WAVEReader LoadSound(std::string _filename);
+		static sound::SoundReader LoadSound(std::string _filename);
 
 		/**
 		 * @brief　3Dモデルをリソースサーバーに登録.
@@ -130,7 +134,7 @@ namespace resource
 		static int GetTexture(const std::string _filename, int tex_num = 0);
 
 	private:
-		static std::unordered_map<std::string, sound::WAVEReader> map_sound_;  //!< 音声用マップ
+		static std::unordered_map<std::string, sound::SoundReader> map_sound_;  //!< 音声用マップ
 		static std::unordered_map<std::string, std::vector<int>> map_texture_;//!<テクスチャ用マップ
 		static std::unordered_map<std::string, int> map_model_;//!<3Dモデル用マップ
 	};

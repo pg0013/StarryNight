@@ -19,8 +19,7 @@
 #include"MyLowPassFilterXAPO.h"
 #include"MyHighPassFilter.h"
 #include"MyPeakMeterXAPO.h"
-#include"../Resource/ResourceServer.h"
-#include"OGGReader.h"
+#include"SoundReader.h"
 #pragma comment(lib,"xaudio2.lib")
 
 namespace sound
@@ -285,8 +284,7 @@ namespace sound
 		static IXAudio2* xaudio2_;	//!< XAudio2の作成
 		static IXAudio2MasteringVoice* mastering_voice_;   //!< MasteringVoiceの作成
 		static HRESULT hr_;
-		WAVEReader wave_reader_;	//!< WAVEファイル読み込みクラス
-		OGGReader ogg_reader_;
+		sound::SoundReader sound_reader_;
 		IXAudio2SourceVoice* source_voice_ = nullptr;  //!< SourceVoiceの作成
 		int loop_count_ = 0;	//!< ループ回数
 	};

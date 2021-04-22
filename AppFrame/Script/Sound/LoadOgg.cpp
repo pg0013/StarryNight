@@ -1,18 +1,18 @@
-#include "OGGReader.h"
+/**
+ * @file    LoadOgg.cpp
+ * @brief  oggファイルの読み込み
+ *
+ * @author Takuya Fujisawa
+ * @date   2021/04/22
+ */
+
+#include"SoundReader.h"
 #include"vorbis/vorbisfile.h"
 #include"../Utility/Utility.h"
 
 using namespace sound;
 
-OGGReader::OGGReader()
-{
-}
-
-OGGReader::~OGGReader()
-{
-}
-
-void OGGReader::LoadOGG(const char* _filename)
+void SoundReader::LoadOgg(const char* _filename)
 {
 	OggVorbis_File ov_file;
 
@@ -44,7 +44,6 @@ void OGGReader::LoadOGG(const char* _filename)
 	int tmp_size = 4096;//読み込みサイズ
 	int bitstream = 0;//ストリーム再生位置が返る
 	char tmp_buffer[4096];
-	int data_size = 0;
 
 	//データサイズの読み込み
 	while (1)
@@ -56,13 +55,13 @@ void OGGReader::LoadOGG(const char* _filename)
 			&bitstream);
 
 		if (read_size == 0) { break; }
-		data_size += read_size;
+		data_.chunk_size += read_size;
 	}
 
 	//ファイルの先頭に戻る
 	ov_raw_seek(&ov_file, 0);
 	//データ分のメモリを確保
-	buffer_ = (char*)malloc(data_size);
+	buffer_ = (char*)malloc(data_.chunk_size);
 	char* read_buffer = buffer_;
 
 	//波形データの読み込み
@@ -87,4 +86,5 @@ void OGGReader::LoadOGG(const char* _filename)
 		ov_info->channels * ov_info->rate * 16 / 8;	//1秒間に何バイトか
 	wfx_.nBlockAlign =
 		ov_info->channels * 16 / 8;							//1サンプルは何バイトか
+
 }

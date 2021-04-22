@@ -7,6 +7,7 @@
 #include"Sound.h"
 #include"../Utility/Utility.h"
 #include"../Application/ApplicationBase.h"
+#include"../Resource/ResourceServer.h"
 #include"DxLib.h"
 
 namespace sound
@@ -57,37 +58,98 @@ namespace sound
 
 	void Sound::Load(const std::string& _filename)
 	{
-		if (utility::GetExtension(_filename) == ".wav")
-		{
-			//WAVEファイルの読み込み
-			wave_reader_ = resource::ResourceServer::LoadSound(_filename);
+		//音声ファイルの読み込み
+		sound_reader_ = resource::ResourceServer::LoadSound(_filename);
 
-			//SourceVoiceの作成
-			WAVEFORMATEX wfx = wave_reader_.Getwfx();
-			hr_ = xaudio2_->CreateSourceVoice(&source_voice_, &wfx, XAUDIO2_VOICE_USEFILTER, 16.0f);
-			if (FAILED(hr_))
-			{
-				free(wave_reader_.GetpBuffer());
-				std::string error = "can not create SourceVoice \n" + _filename;
-				utility::DrawDebugError(error.c_str());
-			}
+		//SourceVoiceの作成
+		WAVEFORMATEX wfx = sound_reader_.Getwfx();
+		hr_ = xaudio2_->CreateSourceVoice(&source_voice_, &wfx, XAUDIO2_VOICE_USEFILTER, 16.0f);
+		if (FAILED(hr_))
+		{
+			free(sound_reader_.GetpBuffer());
+			std::string error = "can not create SourceVoice \n" + _filename;
+			utility::DrawDebugError(error.c_str());
+		}
+	}
+
+	void Sound::Play()
+	{
+		//XAudio2_BUFFER構造体の作成
+		XAUDIO2_BUFFER buffer = { 0 };
+		buffer.pAudioData = (BYTE*)sound_reader_.GetpBuffer();
+		buffer.Flags = XAUDIO2_END_OF_STREAM;
+		buffer.AudioBytes = sound_reader_.GetDataChunk().chunk_size;
+		buffer.PlayBegin = 0;
+		buffer.LoopCount = loop_count_;
+
+		//波形データの情報をセット
+		if (FAILED(hr_ = source_voice_->SubmitSourceBuffer(&buffer)))
+		{
+			source_voice_->DestroyVoice();
+			utility::DrawDebugError("can not submitting source buffer");
 		}
 
-		if (utility::GetExtension(_filename) == ".ogg")
+		//音声の再生
+		if (FAILED(hr_ = source_voice_->Start()))
 		{
-			ogg_reader_.LoadOGG(_filename.c_str());
-
-			//SourceVoiceの作成
-			WAVEFORMATEX wfx = ogg_reader_.Getwfx();
-			hr_ = xaudio2_->CreateSourceVoice(&source_voice_, &wfx, XAUDIO2_VOICE_USEFILTER, 16.0f);
-			if (FAILED(hr_))
-			{
-				free(ogg_reader_.GetpBuffer());
-				std::string error = "can not create SourceVoice \n" + _filename;
-				utility::DrawDebugError(error.c_str());
-			}
-
+			source_voice_->DestroyVoice();
+			utility::DrawDebugError("can not play source voice");
 		}
+	}
+
+	void Sound::PlayWithLoop(const float& _loopbegin, const float& _looplength)
+	{
+		XAUDIO2_BUFFER buffer = { 0 };
+		buffer.pAudioData = (BYTE*)sound_reader_.GetpBuffer();
+		buffer.Flags = XAUDIO2_END_OF_STREAM;
+		buffer.AudioBytes = sound_reader_.GetDataChunk().chunk_size;
+		buffer.PlayBegin = 0;
+		buffer.LoopCount = loop_count_;
+		buffer.LoopBegin = static_cast<int>(_loopbegin * sound_reader_.Getwfx().nSamplesPerSec);
+		buffer.LoopLength = static_cast<int>(_looplength * sound_reader_.Getwfx().nSamplesPerSec);
+
+		//波形データの情報をセット
+		if (FAILED(hr_ = source_voice_->SubmitSourceBuffer(&buffer)))
+		{
+			source_voice_->DestroyVoice();
+			std::string error = "can not submitting source buffer";
+			utility::DrawDebugError(error.c_str());
+		}
+
+		if (SUCCEEDED(hr_ = source_voice_->Start()))
+		{
+		}
+	}
+
+	bool Sound::CheckIsRunning()
+	{
+		if (source_voice_ == nullptr)
+			return false;
+
+		XAUDIO2_VOICE_STATE state;
+		source_voice_->GetState(&state);
+		if (state.BuffersQueued > 0)
+			return true;
+		else
+			return false;
+	}
+
+	void Sound::Destroy()
+	{
+		source_voice_->DestroyVoice();
+		source_voice_ = nullptr;
+	}
+
+	void Sound::PlayBackGround(Sound& _pw)
+	{
+		std::thread th(&Sound::Play, &_pw);
+		th.detach();
+	}
+
+	void Sound::PlayBackGroundWithLoop(Sound& _pw, const float& _loopbegin, const float& _looplength)
+	{
+		std::thread th(&Sound::PlayWithLoop, &_pw, _loopbegin, _looplength);
+		th.detach();
 	}
 
 	void Sound::SetLoopCount(const int& _count)
@@ -302,14 +364,14 @@ namespace sound
 		fade_params.TargetTime = _targetTime;
 		source_voice_->SetEffectParameters(0, &fade_params, sizeof(fade_params));
 
-		WAVEFORMATEX wfx = wave_reader_.Getwfx();
+		WAVEFORMATEX wfx = sound_reader_.Getwfx();
 		float freq = 2.0f * sinf(static_cast<float>(M_PI) * _freqency / wfx.nSamplesPerSec);
 		source_voice_->SetEffectParameters(1, &freq, sizeof(freq));
 	}
 
 	void Sound::LowPassFilter(const float& _freqency)
 	{
-		WAVEFORMATEX wfx = wave_reader_.Getwfx();
+		WAVEFORMATEX wfx = sound_reader_.Getwfx();
 
 		XAUDIO2_FILTER_PARAMETERS FilterParams;
 		FilterParams.Type = XAUDIO2_FILTER_TYPE::LowPassFilter;
@@ -339,7 +401,7 @@ namespace sound
 		source_voice_->SetEffectChain(&chain);
 		pXAPO->Release();
 
-		WAVEFORMATEX wfx = wave_reader_.Getwfx();
+		WAVEFORMATEX wfx = sound_reader_.Getwfx();
 		float freq = 2.0f * sinf(static_cast<float>(M_PI) * _freqency / wfx.nSamplesPerSec);
 		source_voice_->SetEffectParameters(0, &freq, sizeof(freq));
 	}
@@ -387,83 +449,5 @@ namespace sound
 
 		source_voice_->SetEffectChain(&chain);
 		pXAPO->Release();
-	}
-
-	void Sound::Play()
-	{
-		//XAudio2_BUFFER構造体の作成
-		XAUDIO2_BUFFER buffer = { 0 };
-		buffer.pAudioData = (BYTE*)wave_reader_.GetpBuffer();
-		buffer.Flags = XAUDIO2_END_OF_STREAM;
-		buffer.AudioBytes = wave_reader_.GetDataChunk().chunk_size;
-		buffer.PlayBegin = 0;
-		buffer.LoopCount = loop_count_;
-
-		//波形データの情報をセット
-		if (FAILED(hr_ = source_voice_->SubmitSourceBuffer(&buffer)))
-		{
-			source_voice_->DestroyVoice();
-			std::string error = "can not submitting source buffer";
-			utility::DrawDebugError(error.c_str());
-		}
-
-		if (SUCCEEDED(hr_ = source_voice_->Start()))
-		{
-		}
-	}
-
-	void Sound::PlayWithLoop(const float& _loopbegin, const float& _looplength)
-	{
-		XAUDIO2_BUFFER buffer = { 0 };
-		buffer.pAudioData = (BYTE*)wave_reader_.GetpBuffer();
-		buffer.Flags = XAUDIO2_END_OF_STREAM;
-		buffer.AudioBytes = wave_reader_.GetDataChunk().chunk_size;
-		buffer.PlayBegin = 0;
-		buffer.LoopCount = loop_count_;
-		buffer.LoopBegin = static_cast<int>(_loopbegin * wave_reader_.Getwfx().nSamplesPerSec);
-		buffer.LoopLength = static_cast<int>(_looplength * wave_reader_.Getwfx().nSamplesPerSec);
-
-		//波形データの情報をセット
-		if (FAILED(hr_ = source_voice_->SubmitSourceBuffer(&buffer)))
-		{
-			source_voice_->DestroyVoice();
-			std::string error = "can not submitting source buffer";
-			utility::DrawDebugError(error.c_str());
-		}
-
-		if (SUCCEEDED(hr_ = source_voice_->Start()))
-		{
-		}
-	}
-
-	bool Sound::CheckIsRunning()
-	{
-		if (source_voice_ == nullptr)
-			return false;
-
-		XAUDIO2_VOICE_STATE state;
-		source_voice_->GetState(&state);
-		if (state.BuffersQueued > 0)
-			return true;
-		else
-			return false;
-	}
-
-	void Sound::Destroy()
-	{
-		source_voice_->DestroyVoice();
-		source_voice_ = nullptr;
-	}
-
-	void Sound::PlayBackGround(Sound& _pw)
-	{
-		std::thread th(&Sound::Play, &_pw);
-		th.detach();
-	}
-
-	void Sound::PlayBackGroundWithLoop(Sound& _pw, const float& _loopbegin, const float& _looplength)
-	{
-		std::thread th(&Sound::PlayWithLoop, &_pw, _loopbegin, _looplength);
-		th.detach();
 	}
 }
