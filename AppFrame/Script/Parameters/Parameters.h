@@ -8,10 +8,10 @@
  */
 
 #pragma once
-#include<string>
-#include<unordered_map>
 #include"../Utility/Utility.h"
 #include "DxLib.h"
+#include<string>
+#include<unordered_map>
 
 namespace parameters
 {
