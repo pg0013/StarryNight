@@ -39,6 +39,7 @@
     <ClInclude Include="Script\Sound\MyStereoDownMixXAPO.h" />
     <ClInclude Include="Script\Sound\OGGReader.h" />
     <ClInclude Include="Script\Sound\Sound.h" />
+    <ClInclude Include="Script\Sound\SoundCallback.h" />
     <ClInclude Include="Script\Sound\SoundReader.h" />
     <ClInclude Include="Script\State\StateBase.h" />
     <ClInclude Include="Script\Utility\DefineMacro.h" />

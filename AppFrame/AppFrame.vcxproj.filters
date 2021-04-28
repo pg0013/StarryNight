@@ -141,6 +141,9 @@
     <ClInclude Include="Script\Sound\SoundReader.h">
       <Filter>ヘッダー ファイル\Sound</Filter>
     </ClInclude>
+    <ClInclude Include="Script\Sound\SoundCallback.h">
+      <Filter>ヘッダー ファイル\Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Script\Application\WinMain.cpp">
