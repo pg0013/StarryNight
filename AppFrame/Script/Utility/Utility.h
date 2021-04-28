@@ -5,8 +5,8 @@
  */
 
 #include"DxLib.h"
-#include<string>
 #include<Windows.h>
+#include<string>
 
  /**
   * @brief メモリリークチェック用.
