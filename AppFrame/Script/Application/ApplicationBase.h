@@ -8,10 +8,10 @@
  */
 
 #include"DxLib.h"
+#include"EffekseerForDXLib.h"
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
-#include"EffekseerForDXLib.h"
 #include"../Mode/ModeServer.h"
 #include"../Sound/Sound.h"
 
