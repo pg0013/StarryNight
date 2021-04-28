@@ -12,6 +12,9 @@
 
 namespace sound
 {
+	/**
+	 * @brief xaudio2のsourcevoiceコールバッククラス
+	 */
 	class SoundCallback : public IXAudio2VoiceCallback
 	{
 	public:
