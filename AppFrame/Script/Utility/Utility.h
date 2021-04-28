@@ -4,9 +4,9 @@
  * @brief	Declares the utility class
  */
 
-#include"DxLib.h"
 #include<string>
 #include<Windows.h>
+#include"DxLib.h"
 
  /**
   * @brief メモリリークチェック用.
