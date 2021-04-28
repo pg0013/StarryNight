@@ -6,9 +6,9 @@
  * @date    2020/10/21
  */
 #pragma once
+#include"ModeBase.h"
 #include<list>
 #include<memory>
-#include"ModeBase.h"
 
 namespace mode
 {
