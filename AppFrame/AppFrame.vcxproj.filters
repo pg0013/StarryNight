@@ -58,6 +58,15 @@
     <Filter Include="ソース ファイル\Sound\lib">
       <UniqueIdentifier>{c396b78a-48d1-47ca-876b-bb00768521c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Sound\wav">
+      <UniqueIdentifier>{2367105a-8dd6-4dd1-9443-f6530f7f89cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Sound\ogg">
+      <UniqueIdentifier>{edd96f2f-af0d-4ee6-97b6-fced6610ac2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Sound\xapo">
+      <UniqueIdentifier>{d21e4d6b-52f8-43b7-abcf-61da6a87ac23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Script\Application\ApplicationBase.h">
@@ -152,21 +161,6 @@
     <ClCompile Include="Script\Resource\ResourceServer.cpp">
       <Filter>ソース ファイル\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Sound\MyFadeXAPO.cpp">
-      <Filter>ソース ファイル\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="Script\Sound\MyHighPassFilter.cpp">
-      <Filter>ソース ファイル\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="Script\Sound\MyLowPassFilterXAPO.cpp">
-      <Filter>ソース ファイル\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="Script\Sound\MyPeakMeterXAPO.cpp">
-      <Filter>ソース ファイル\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="Script\Sound\MyStereoDownMixXAPO.cpp">
-      <Filter>ソース ファイル\Sound</Filter>
-    </ClCompile>
     <ClCompile Include="Script\Parameters\Parameters.cpp">
       <Filter>ソース ファイル\Paramaters</Filter>
     </ClCompile>
@@ -182,11 +176,26 @@
     <ClCompile Include="Script\Sound\SoundReader.cpp">
       <Filter>ソース ファイル\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="Script\Sound\LoadWave.cpp">
-      <Filter>ソース ファイル\Sound</Filter>
-    </ClCompile>
     <ClCompile Include="Script\Sound\LoadOgg.cpp">
-      <Filter>ソース ファイル\Sound</Filter>
+      <Filter>ソース ファイル\Sound\ogg</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Sound\LoadWave.cpp">
+      <Filter>ソース ファイル\Sound\wav</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Sound\MyFadeXAPO.cpp">
+      <Filter>ソース ファイル\Sound\xapo</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Sound\MyHighPassFilter.cpp">
+      <Filter>ソース ファイル\Sound\xapo</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Sound\MyLowPassFilterXAPO.cpp">
+      <Filter>ソース ファイル\Sound\xapo</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Sound\MyPeakMeterXAPO.cpp">
+      <Filter>ソース ファイル\Sound\xapo</Filter>
+    </ClCompile>
+    <ClCompile Include="Script\Sound\MyStereoDownMixXAPO.cpp">
+      <Filter>ソース ファイル\Sound\xapo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
