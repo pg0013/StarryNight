@@ -9,11 +9,11 @@
 
 #include"DxLib.h"
 #include"EffekseerForDXLib.h"
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
 #include"../Mode/ModeServer.h"
 #include"../Sound/Sound.h"
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
 
 namespace appframe
 {
