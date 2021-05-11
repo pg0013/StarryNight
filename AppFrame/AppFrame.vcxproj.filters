@@ -200,6 +200,9 @@
     <ClCompile Include="Script\Sound\MyStereoDownMixXAPO.cpp">
       <Filter>ソース ファイル\Sound\xapo</Filter>
     </ClCompile>
+    <ClCompile Include="Script\Sound\LoadWavStream.cpp">
+      <Filter>ソース ファイル\Sound\wav</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Script\Sound\lib\oggvorbis\include\vorbis\Makefile.am">

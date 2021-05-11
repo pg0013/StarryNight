@@ -9,6 +9,7 @@
 #include "ModeTitle.h"
 #include"ModeOverlay.h"
 #include"ModeMenu.h"
+#include<thread>
 
 using namespace starrynight::mode;
 
@@ -45,10 +46,12 @@ bool ModeTitle::Initialize()
 
 	if (appframe::ApplicationBase::GetInstance()->bgm_.CheckIsRunning() == false)
 	{
-		appframe::ApplicationBase::GetInstance()->bgm_.Load("Resource/sound/outgame_bgm.wav");
-		appframe::ApplicationBase::GetInstance()->bgm_.SetVolume(1.0f);
-		appframe::ApplicationBase::GetInstance()->bgm_.SetLoopCount(XAUDIO2_LOOP_INFINITE);
-		appframe::ApplicationBase::GetInstance()->bgm_.PlayWithLoop(0.0f, 144.0f);
+		std::thread thread(&sound::Sound::PlayStream, &appframe::ApplicationBase::GetInstance()->bgm_, "Resource/sound/outgame_bgm.wav");
+		thread.detach();
+		//appframe::ApplicationBase::GetInstance()->bgm_.Load("Resource/sound/outgame_bgm.ogg");
+		//appframe::ApplicationBase::GetInstance()->bgm_.SetVolume(1.0f);
+		//appframe::ApplicationBase::GetInstance()->bgm_.SetLoopCount(XAUDIO2_LOOP_INFINITE);
+		//appframe::ApplicationBase::GetInstance()->bgm_.PlayWithLoop(0.0f, 144.0f);
 	}
 
 	return true;

@@ -56,6 +56,7 @@
     <ClCompile Include="Script\Resource\ResourceServer.cpp" />
     <ClCompile Include="Script\Sound\LoadOgg.cpp" />
     <ClCompile Include="Script\Sound\LoadWave.cpp" />
+    <ClCompile Include="Script\Sound\LoadWavStream.cpp" />
     <ClCompile Include="Script\Sound\MyFadeXAPO.cpp" />
     <ClCompile Include="Script\Sound\MyHighPassFilter.cpp" />
     <ClCompile Include="Script\Sound\MyLowPassFilterXAPO.cpp" />

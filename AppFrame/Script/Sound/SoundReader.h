@@ -10,6 +10,11 @@
 #include<xaudio2.h>
 #include<iostream>
 
+namespace
+{
+	constexpr size_t BUFFER_SIZE = 4;
+}
+
 namespace sound
 {
 	class SoundReader
@@ -76,6 +81,13 @@ namespace sound
 		void Load(const char* _filename);
 
 		/**
+		 * @brief wavファイルのストリーミング再生読み込み
+		 *
+		 * @param _filename ファイル名
+		 */
+		FILE* LoadWavStream(const char* _filename);
+
+		/**
 		 * @brief WFX構造体を返す
 		 *
 		 * @returns	A WAVEFORMATEX.
@@ -96,6 +108,8 @@ namespace sound
 		 */
 		Chunk GetDataChunk() const { return data_; }
 
+
+		char* stream_buffer_[4]; //ストリーミング再生のプライマリバッファ
 	private:
 		/**
 		 * @brief wavファイルの読み込み

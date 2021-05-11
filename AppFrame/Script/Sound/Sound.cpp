@@ -5,6 +5,7 @@
  */
 
 #include"Sound.h"
+#include"SoundCallback.h"
 #include"../Utility/Utility.h"
 #include"../Application/ApplicationBase.h"
 #include"../Resource/ResourceServer.h"
@@ -95,6 +96,83 @@ namespace sound
 			source_voice_->DestroyVoice();
 			utility::DrawDebugError("can not play source voice");
 		}
+	}
+
+	void Sound::PlayStream(const std::string& _filename)
+	{
+		//音声ファイルの読み込み
+		FILE* fp = sound_reader_.LoadWavStream(_filename.c_str());
+
+		WAVEFORMATEX wfx = sound_reader_.Getwfx();
+		SoundCallback callback;
+
+		//SourceVoiceの作成
+		hr_ = xaudio2_->CreateSourceVoice(
+			&source_voice_,
+			&wfx,
+			XAUDIO2_VOICE_USEFILTER,
+			XAUDIO2_DEFAULT_FREQ_RATIO,
+			&callback);
+
+		if (FAILED(hr_))
+		{
+			std::string error = "can not create SourceVoice \n" + _filename;
+			utility::DrawDebugError(error.c_str());
+		}
+
+		//XAudio2_BUFFER構造体の作成
+		XAUDIO2_BUFFER buffer = { 0 };
+		buffer.Flags = 0;
+		buffer.AudioBytes = BUFFER_SIZE;
+		buffer.PlayBegin = 0;
+		buffer.LoopCount = loop_count_;
+
+		//stream_bufferのメモリ割り当て
+		for (int i = 0; i < 4; i++)
+		{
+			sound_reader_.stream_buffer_[i] = (char*)malloc(BUFFER_SIZE);
+		}
+
+		for(int i=0;i<3;i++)
+		{
+			//読み込み
+			fread(sound_reader_.stream_buffer_[i], BUFFER_SIZE, 1, fp);
+		}
+
+		int buffer_count = 2;
+		int now_buffer = 0;
+
+		do
+		{
+			//読み込み
+			fread(sound_reader_.stream_buffer_[buffer_count], BUFFER_SIZE, 1, fp);
+
+			if (sizeof(sound_reader_.stream_buffer_[now_buffer]) <= 0)
+				break;
+
+			buffer.AudioBytes = sizeof(sound_reader_.stream_buffer_[now_buffer]);
+			buffer.pAudioData = (BYTE*)sound_reader_.stream_buffer_[now_buffer];
+			//波形データの情報をセット
+			if (FAILED(hr_ = source_voice_->SubmitSourceBuffer(&buffer)))
+			{
+				source_voice_->DestroyVoice();
+				utility::DrawDebugError("can not submitting source buffer");
+			}
+
+			//音声の再生
+			if (FAILED(hr_ = source_voice_->Start()))
+			{
+				source_voice_->DestroyVoice();
+				utility::DrawDebugError("can not play source voice");
+			}
+
+			buffer_count++;
+			now_buffer++;
+			buffer_count = buffer_count % 4;
+			now_buffer %= 4;
+
+		} while (WaitForSingleObject(callback.event, INFINITE) == WAIT_OBJECT_0);
+
 	}
 
 	void Sound::PlayWithLoop(const float& _loopbegin, const float& _looplength)

@@ -21,10 +21,10 @@ bool ApplicationMain::Initialize(HINSTANCE _hinstance)
 	std::shared_ptr<mode::ModeMovie> mode_movie = std::make_shared<mode::ModeMovie>();
 	::mode::ModeServer::GetInstance()->Add(mode_movie, 0, "Movie");
 
-	resource::ResourceServer::LoadSound("Resource/sound/outgame_bgm.wav");
+	resource::ResourceServer::LoadSound("Resource/sound/outgame_bgm.ogg");
 	resource::ResourceServer::LoadSound("Resource/sound/se1.wav");
 
-	bgm_.Load("Resource/sound/outgame_bgm.wav");
+	bgm_.Load("Resource/sound/outgame_bgm.ogg");
 	se_.Load("Resource/sound/se1.wav");
 
 	return true;

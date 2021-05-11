@@ -29,3 +29,14 @@ void SoundReader::Load(const char* _filename)
 		LoadOgg(_filename);
 	}
 }
+
+//void SoundReader::LoadStream(const char* _filename)
+//{
+//	//Šg’£Žq‚ðŽæ“¾
+//	std::string extension = utility::GetExtension(_filename);
+//
+//	if (extension == ".wav")
+//	{
+//		LoadWavStream(_filename);
+//	}
+//}

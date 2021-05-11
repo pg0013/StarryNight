@@ -234,6 +234,13 @@ namespace sound
 		void Play();
 
 		/**
+		 * @brief ストリーミング再生
+		 *
+		 * @param _filename ファイル名
+		 */
+		void PlayStream(const std::string& _filename);
+
+		/**
 		 * @fn	void Sound::PlayWithLoop(float _loopbegin, float looplength);
 		 *
 		 * @brief	ループ再選
